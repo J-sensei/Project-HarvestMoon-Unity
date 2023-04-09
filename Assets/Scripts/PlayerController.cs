@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float movementSpeed = 1f;
     [SerializeField] private float rotateSpeed = 0.15f;
 
+    private PlayerInput _playerInput;
+
     private Vector2 _moveVector;
 
     private void Update()
