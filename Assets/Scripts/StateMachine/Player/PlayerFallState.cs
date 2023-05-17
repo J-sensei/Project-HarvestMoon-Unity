@@ -22,7 +22,7 @@ namespace StateMachine.Player
 
         public override void Exit()
         {
-            this.Context.Animator.SetBool(this.Context.FallingAnimationHash, false);
+            //this.Context.Animator.SetBool(this.Context.FallingAnimationHash, false);
         }
 
         public override void InitializeSubState()

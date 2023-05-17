@@ -1,3 +1,5 @@
+using Item;
+using Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,6 +52,8 @@ namespace StateMachine.Player
         /// Player animator reference
         /// </summary>
         public Animator Animator { get { return _animator; } }
+        public PlayerAudioController AudioController { get; private set; }
+        public PlayerParticleController ParticleController { get; private set; }
 
         #region Move
         /// <summary>
@@ -196,15 +200,16 @@ namespace StateMachine.Player
         /// Gravity force pulling down the player
         /// </summary>
         public float Gravity { get { return _gravity; } }
+        public float JumpGravity { get; private set; }
 
-        /// <summary>
-        /// Gravity force pulling down the player when grounded
-        /// </summary>
-        private float _groundedGravity = -0.5f;
-        /// <summary>
-        /// Gravity force pulling down the player when grounded
-        /// </summary>
-        public float GroundedGravity { get { return _groundedGravity; } }
+        ///// <summary>
+        ///// Gravity force pulling down the player when grounded
+        ///// </summary>
+        //private float _groundedGravity = -0.5f;
+        ///// <summary>
+        ///// Gravity force pulling down the player when grounded
+        ///// </summary>
+        //public float GroundedGravity { get { return _groundedGravity; } }
 
         /// <summary>
         /// Multiplier multiply the gravity when falling down
@@ -218,11 +223,26 @@ namespace StateMachine.Player
         /// <summary>
         /// Maximum falling speed allow for the player
         /// </summary>
-        private float _maximumFallingSpeed = 20.0f;
+        private float _maximumFallingSpeed = 11.5f;
         /// <summary>
         /// Maximum falling speed allow for the player
         /// </summary>
         public float MaximumFallingSpeed { get { return _maximumFallingSpeed; } }
+        #endregion
+
+        #region Pick up
+        private bool _pickupInputPress;
+        public bool PickupInputPress { get { return _pickupInputPress; } }
+        private bool _lifting = false;
+        public bool Lifting
+        {
+            get { return _lifting; }
+            set { _lifting = value; }
+        }
+        /// <summary>
+        /// Current slected item
+        /// </summary>
+        public PickableItem SelectedItem { get; set; }
         #endregion
 
         #region State Machine
@@ -260,10 +280,15 @@ namespace StateMachine.Player
             _inputControls.CharacterControls.Jump.started += OnInputJump;
             _inputControls.CharacterControls.Jump.canceled += OnInputJump;
 
+            _inputControls.CharacterControls.Pickup.started += OnItemPickup;
+            _inputControls.CharacterControls.Pickup.canceled += OnItemPickup;
+
             // Get component
             _characterController = GetComponent<CharacterController>();
             _animator = GetComponent<Animator>();
             if (_animator == null) _animator = GetComponentInChildren<Animator>();
+            AudioController = GetComponentInChildren<PlayerAudioController>();
+            ParticleController = GetComponentInChildren<PlayerParticleController>();
 
             // Define animation hash
             _walkingAnimationHash = Animator.StringToHash("Walking");
@@ -277,6 +302,11 @@ namespace StateMachine.Player
             _stateFactory = new PlayerStateFactory(this);
             _currentState = _stateFactory.Grounded();
             _currentState.Enter();
+        }
+
+        private void Start()
+        {
+            _characterController.Move(_applyMovement * Time.deltaTime);
         }
 
         private void Update()
@@ -305,7 +335,7 @@ namespace StateMachine.Player
         private void InitializeJumpValues()
         {
             float timeToApex = _maxJumpTime / 2f;
-            _gravity = (-2f * _maxJumpHeight) / Mathf.Pow(timeToApex, 2f);
+            JumpGravity = (-2f * _maxJumpHeight) / Mathf.Pow(timeToApex, 2f);
             _initialJumpVelocity = (2f * _maxJumpHeight) / timeToApex;
         }
 
@@ -326,6 +356,11 @@ namespace StateMachine.Player
         {
             _jumpInputPress = context.ReadValueAsButton();
             _requireJumpAgain = false; // Make it false when player is pressing the jump button
+        }
+
+        private void OnItemPickup(InputAction.CallbackContext context)
+        {
+            _pickupInputPress = context.ReadValueAsButton();
         }
         #endregion
 

@@ -11,6 +11,7 @@ namespace StateMachine.Player
 
         public override void Enter()
         {
+            this.Context.AudioController.PlayAudio(this.Context.AudioController.Jump);
             Jump();
         }
 
@@ -61,7 +62,7 @@ namespace StateMachine.Player
             if (isFalling)
             {
                 float prevYVel = this.Context.CurrentMovementY;
-                float newYVel = this.Context.CurrentMovementY + (this.Context.Gravity * this.Context.FallMultiplier * Time.deltaTime);
+                float newYVel = this.Context.CurrentMovementY + (this.Context.JumpGravity * this.Context.FallMultiplier * Time.deltaTime);
                 float nextYVel = Mathf.Max((prevYVel + newYVel) * 0.5f, -this.Context.MaximumFallingSpeed);
 
                 // Apply falling
@@ -71,12 +72,18 @@ namespace StateMachine.Player
             else
             {
                 float prevYVel = this.Context.CurrentMovementY;
-                float newYVel = this.Context.CurrentMovementY + (this.Context.Gravity * Time.deltaTime);
+                float newYVel = this.Context.CurrentMovementY + (this.Context.JumpGravity * Time.deltaTime);
                 float nextYVel = (prevYVel + newYVel) * 0.5f;
 
                 // Apply falling
                 this.Context.CurrentMovementY = nextYVel;
                 this.Context.ApplyMovementY = nextYVel;
+            }
+
+            // Play falling animation
+            if(this.Context.ApplyMovementY < 0 && !this.Context.Animator.GetBool(this.Context.FallingAnimationHash))
+            {
+                this.Context.Animator.SetBool(this.Context.FallingAnimationHash, true);
             }
         }
     }
