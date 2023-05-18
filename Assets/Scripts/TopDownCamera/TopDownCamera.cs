@@ -56,14 +56,14 @@ namespace TopDownCamera
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = new Color(0f, 1f, 0f, 0.5f);
+            Gizmos.color = new Color(0f, 1f, 0f, 0.35f);
             if (target != null)
             {
                 Gizmos.DrawLine(transform.position, target.position);
-                Gizmos.DrawSphere(target.position, 1.5f);
+                Gizmos.DrawSphere(target.position, 0.5f);
             }
 
-            Gizmos.DrawSphere(transform.position, 1.5f);
+            Gizmos.DrawSphere(transform.position, 0.5f);
         }
     }
 }

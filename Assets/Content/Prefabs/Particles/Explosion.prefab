@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7700513551453179966}
   - component: {fileID: 7700513551453179965}
   - component: {fileID: 6957277018568350069}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Explosion
   m_TagString: Spell
   m_Icon: {fileID: 0}

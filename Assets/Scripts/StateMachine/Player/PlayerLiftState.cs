@@ -28,11 +28,11 @@
 
             PlayerBaseState state;
             // Idle when character not moving / running
-            if (!this.Context.MoveInputPress && !this.Context.RunInputPress)
+            if (!this.Context.MoveInputPress && !this.Context.WalkInputPress)
             {
                 state = this.StateFactory.Idle();
             }
-            else if (this.Context.MoveInputPress && !this.Context.RunInputPress)
+            else if (this.Context.MoveInputPress && !this.Context.WalkInputPress)
             {
                 state = this.StateFactory.Walk();
             }

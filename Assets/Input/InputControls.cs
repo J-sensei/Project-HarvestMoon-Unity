@@ -145,6 +145,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""3721ec3a-ecb8-467f-9020-2cdcd6e68244"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -268,6 +277,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""action"": ""Pickup"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fac120f8-84a7-4468-8868-790b162579c2"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -283,6 +303,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_CharacterControls_Run = m_CharacterControls.FindAction("Run", throwIfNotFound: true);
         m_CharacterControls_Jump = m_CharacterControls.FindAction("Jump", throwIfNotFound: true);
         m_CharacterControls_Pickup = m_CharacterControls.FindAction("Pickup", throwIfNotFound: true);
+        m_CharacterControls_Interact = m_CharacterControls.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -379,6 +400,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_CharacterControls_Run;
     private readonly InputAction m_CharacterControls_Jump;
     private readonly InputAction m_CharacterControls_Pickup;
+    private readonly InputAction m_CharacterControls_Interact;
     public struct CharacterControlsActions
     {
         private @InputControls m_Wrapper;
@@ -387,6 +409,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @Run => m_Wrapper.m_CharacterControls_Run;
         public InputAction @Jump => m_Wrapper.m_CharacterControls_Jump;
         public InputAction @Pickup => m_Wrapper.m_CharacterControls_Pickup;
+        public InputAction @Interact => m_Wrapper.m_CharacterControls_Interact;
         public InputActionMap Get() { return m_Wrapper.m_CharacterControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -408,6 +431,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Pickup.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnPickup;
                 @Pickup.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnPickup;
                 @Pickup.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnPickup;
+                @Interact.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_CharacterControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -424,6 +450,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Pickup.started += instance.OnPickup;
                 @Pickup.performed += instance.OnPickup;
                 @Pickup.canceled += instance.OnPickup;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -438,5 +467,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnPickup(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

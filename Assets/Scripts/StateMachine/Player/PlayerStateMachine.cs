@@ -54,6 +54,10 @@ namespace StateMachine.Player
         public Animator Animator { get { return _animator; } }
         public PlayerAudioController AudioController { get; private set; }
         public PlayerParticleController ParticleController { get; private set; }
+        /// <summary>
+        /// Player interactor to have interaction with interactable objects such as farm and tools
+        /// </summary>
+        public PlayerInteractor PlayerInteractor { get; private set; }
 
         #region Move
         /// <summary>
@@ -120,11 +124,11 @@ namespace StateMachine.Player
         /// <summary>
         /// Is the character running
         /// </summary>
-        private bool _runInputPress;
+        private bool _walkInputPress;
         /// <summary>
         /// Is the running input is press by the player
         /// </summary>
-        public bool RunInputPress { get { return _runInputPress; } }
+        public bool WalkInputPress { get { return _walkInputPress; } }
         #endregion
 
         #region Jump
@@ -230,14 +234,31 @@ namespace StateMachine.Player
         public float MaximumFallingSpeed { get { return _maximumFallingSpeed; } }
         #endregion
 
-        #region Pick up
+        #region Interaction
         private bool _pickupInputPress;
-        public bool PickupInputPress { get { return _pickupInputPress; } }
+        /// <summary>
+        /// Ket press when player is request to pickup something interactable
+        /// </summary>
+        public bool PickupInputPress 
+        {
+            get { return _pickupInputPress; }
+            set { _pickupInputPress = value; }
+        }
         private bool _lifting = false;
         public bool Lifting
         {
             get { return _lifting; }
             set { _lifting = value; }
+        }
+
+        private bool _interactInputPress;
+        /// <summary>
+        /// Key press when player is request to interact with something
+        /// </summary>
+        public bool InteractInputPress 
+        { 
+            get { return _interactInputPress; }
+            set { _interactInputPress = value; }
         }
         /// <summary>
         /// Current slected item
@@ -283,12 +304,16 @@ namespace StateMachine.Player
             _inputControls.CharacterControls.Pickup.started += OnItemPickup;
             _inputControls.CharacterControls.Pickup.canceled += OnItemPickup;
 
+            _inputControls.CharacterControls.Interact.started += OnInteract;
+            _inputControls.CharacterControls.Interact.canceled += OnInteract;
+
             // Get component
             _characterController = GetComponent<CharacterController>();
             _animator = GetComponent<Animator>();
             if (_animator == null) _animator = GetComponentInChildren<Animator>();
             AudioController = GetComponentInChildren<PlayerAudioController>();
             ParticleController = GetComponentInChildren<PlayerParticleController>();
+            PlayerInteractor = GetComponentInChildren<PlayerInteractor>();
 
             // Define animation hash
             _walkingAnimationHash = Animator.StringToHash("Walking");
@@ -349,7 +374,7 @@ namespace StateMachine.Player
 
         private void OnInputRun(InputAction.CallbackContext context)
         {
-            _runInputPress = context.ReadValueAsButton();
+            _walkInputPress = context.ReadValueAsButton();
         }
 
         private void OnInputJump(InputAction.CallbackContext context)
@@ -361,6 +386,11 @@ namespace StateMachine.Player
         private void OnItemPickup(InputAction.CallbackContext context)
         {
             _pickupInputPress = context.ReadValueAsButton();
+        }
+
+        private void OnInteract(InputAction.CallbackContext context)
+        {
+            _interactInputPress = context.ReadValueAsButton();
         }
         #endregion
 

@@ -36,7 +36,7 @@ namespace StateMachine.Player
         public override void CheckSwitchState()
         {
             // Player is running if both key is press
-            if (this.Context.MoveInputPress && this.Context.RunInputPress)
+            if (this.Context.MoveInputPress && this.Context.WalkInputPress)
             {
                 this.SwitchState(this.StateFactory.Run());
             }

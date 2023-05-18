@@ -29,20 +29,20 @@ namespace StateMachine.Player
         {
             PlayerBaseState state;
             // Idle when character not moving / running
-            if (!this.Context.MoveInputPress && !this.Context.RunInputPress)
+            if (!this.Context.MoveInputPress && !this.Context.WalkInputPress)
             {
                 state = this.StateFactory.Idle();
             }
-            else if (this.Context.MoveInputPress && !this.Context.RunInputPress)
-            {
-                state = this.StateFactory.Walk();
-            }
-            else // Moving and Running
+            else if (this.Context.MoveInputPress && !this.Context.WalkInputPress)
             {
                 state = this.StateFactory.Run();
             }
+            else // Pressing shift to walk
+            {
+                state = this.StateFactory.Walk();
+            }
 
-            state.Enter();
+            state.Enter(); // This to make sure the sub state enter can be call
             this.SetSubState(state);
         }
 

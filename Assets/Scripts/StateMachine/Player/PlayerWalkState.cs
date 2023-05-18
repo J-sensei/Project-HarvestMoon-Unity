@@ -38,7 +38,7 @@ namespace StateMachine.Player
             {
                 this.SwitchState(this.StateFactory.Idle());
             }
-            else if (this.Context.MoveInputPress && this.Context.RunInputPress)
+            else if (this.Context.MoveInputPress && !this.Context.WalkInputPress)
             {
                 this.SwitchState(this.StateFactory.Run());
             }

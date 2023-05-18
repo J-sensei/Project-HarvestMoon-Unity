@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Farming;
+using UnityEngine;
 
 namespace StateMachine.Player
 {
@@ -42,17 +43,17 @@ namespace StateMachine.Player
         {
             PlayerBaseState state;
             // Idle when character not moving / running
-            if (!this.Context.MoveInputPress && !this.Context.RunInputPress)
+            if (!this.Context.MoveInputPress && !this.Context.WalkInputPress)
             {
                 state = this.StateFactory.Idle();
             }
-            else if (this.Context.MoveInputPress && !this.Context.RunInputPress)
-            {
-                state = this.StateFactory.Walk();
-            }
-            else // Moving and Running
+            else if (this.Context.MoveInputPress && !this.Context.WalkInputPress)
             {
                 state = this.StateFactory.Run();
+            }
+            else // Pressing shift to walk
+            {
+                state = this.StateFactory.Walk();
             }
 
             state.Enter(); // This to make sure the sub state enter can be call
@@ -61,6 +62,10 @@ namespace StateMachine.Player
 
         public override void CheckSwitchState()
         {
+            /*
+                * Always check jumping and falling first as player cannot interact and do farming when jumping / falling
+                * Pickup item has higher priority than farm interaction (e.g. item drop on farm land, player should able to pick it up)
+            */
             // If player is grounded, pressing jump button will switch to jump state
             if(this.Context.JumpInputPress && !this.Context.RequireJumpAgain)
             {
@@ -72,8 +77,23 @@ namespace StateMachine.Player
             }
             else if(this.Context.PickupInputPress) // Pick item is near the player 
             {
-                // Switch pickup
-                Debug.Log("Pickup");
+                this.Context.PickupInputPress = false; // Set to false to make sure it only trigger once
+
+                // TODO: Switch to lift state as player gonna lifting something is valid
+                Debug.Log("Player request pickup");
+            }
+            else if (this.Context.InteractInputPress)
+            {
+                this.Context.InteractInputPress = false; // Set to false to make sure it only trigger once
+
+                // TODO: Interact with corresponding
+                Debug.Log("Player request interact");
+                if(this.Context.PlayerInteractor.SelectedFarmLand != null)
+                {
+                    FarmLand farm = this.Context.PlayerInteractor.SelectedFarmLand;
+                    Debug.Log("Interact with Land: " + farm.name + " State: " + farm.CurrentState.ToString());
+                    farm.Hoe();
+                }
             }
         }
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7700513551453179967}
   - component: {fileID: 7700513551453179966}
   - component: {fileID: 7700513551453179965}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Smoke_Small
   m_TagString: Spell
   m_Icon: {fileID: 0}
