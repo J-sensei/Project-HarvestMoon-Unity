@@ -16,7 +16,6 @@ namespace StateMachine.Player
 
             this.Context.ApplyMovementX = 0;
             this.Context.ApplyMovementZ = 0;
-            Debug.Log("Enter Idle");
         }
 
         public override void Update()
