@@ -1,4 +1,5 @@
 ﻿using Farming;
+using Inventory;
 using UnityEngine;
 
 namespace StateMachine.Player
@@ -92,7 +93,21 @@ namespace StateMachine.Player
                 {
                     FarmLand farm = this.Context.PlayerInteractor.SelectedFarmLand;
                     Debug.Log("Interact with Land: " + farm.name + " State: " + farm.CurrentState.ToString());
-                    farm.Hoe();
+
+                    ItemData item = InventoryManager.Instance.HoldingItem;
+                    if (item != null && item is ToolData)
+                    {
+                        ToolData toolData = (ToolData)item;
+                        switch (toolData.toolType)
+                        {
+                            case ToolData.ToolType.Hoe:
+                                farm.Hoe();
+                                break;
+                            case ToolData.ToolType.WateringCan:
+                                farm.Water();
+                                break;
+                        }
+                    }
                 }
             }
         }
