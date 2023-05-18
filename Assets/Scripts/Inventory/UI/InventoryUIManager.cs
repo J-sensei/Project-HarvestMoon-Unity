@@ -20,21 +20,24 @@ namespace Inventory.UI
         /// <summary>
         /// Tools slots
         /// </summary>
-        [SerializeField] private InventorySlot[] _toolSlots;
+        private InventorySlot[] _toolSlots;
         /// <summary>
         /// Item slots
         /// </summary>
-        [SerializeField] private InventorySlot[] _itemSlots;
+        private InventorySlot[] _itemSlots;
 
         [Tooltip("Slot that show current equip item")]
         [SerializeField] private EquipInventorySlot equipInventorySlot;
 
         [Header("Item Info")]
+        [Tooltip("Text to display the item name")]
         [SerializeField] private TMP_Text itemNameText;
+        [Tooltip("Text to display the item description")]
         [SerializeField] private TMP_Text itemDescriptionText;
 
         protected override void AwakeSingleton()
         {
+            // Initialize the slots
             _toolSlots = toolHolder.GetComponentsInChildren<InventorySlot>();
             _itemSlots = itemHolder.GetComponentsInChildren<InventorySlot>();
 
@@ -54,6 +57,9 @@ namespace Inventory.UI
             }
         }
 
+        /// <summary>
+        /// Update the inventory UI to show the correct data to the player
+        /// </summary>
         public void UpdateInventoryUI()
         {
             // Get the item data
@@ -79,6 +85,11 @@ namespace Inventory.UI
         }
 
         
+        /// <summary>
+        /// Update inventory slots in the inventory UI
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="slots"></param>
         private void UpdateInventory(ItemData[] data, InventorySlot[] slots)
         {
             // Assume that item data and slot has same length, this will not give any trouble
@@ -88,7 +99,10 @@ namespace Inventory.UI
             }
         }
 
-
+        /// <summary>
+        /// Show / Hide the inventory
+        /// </summary>
+        /// <param name="v"></param>
         public void ToggleInventory(bool v)
         {
             // Toggle inventory
@@ -100,6 +114,10 @@ namespace Inventory.UI
             }
         }
 
+        /// <summary>
+        /// Update the item information when user if hovering it
+        /// </summary>
+        /// <param name="data"></param>
         public void UpdateItemInfo(ItemData data)
         {
             if(data == null)

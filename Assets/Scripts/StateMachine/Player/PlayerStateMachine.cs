@@ -3,6 +3,7 @@ using Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace StateMachine.Player
@@ -30,6 +31,7 @@ namespace StateMachine.Player
         /// Hash value for jumping animation
         /// </summary>
         public int JumpingAnimationHash { get { return _jumpingAnimationHash; } }
+        public int ToolAnimationHash { get; private set; }
         #endregion
 
         /// <summary>
@@ -261,9 +263,13 @@ namespace StateMachine.Player
             set { _interactInputPress = value; }
         }
         /// <summary>
-        /// Current slected item
+        /// Player is using tool
         /// </summary>
-        public PickableItem SelectedItem { get; set; }
+        public bool UsingTool { get; set; }
+        /// <summary>
+        /// Event to fire when tool is using
+        /// </summary>
+        public UnityEvent ToolEvent;
         #endregion
 
         #region State Machine
@@ -320,6 +326,7 @@ namespace StateMachine.Player
             _runningAnimationHash = Animator.StringToHash("Running");
             _jumpingAnimationHash = Animator.StringToHash("Jumping");
             _fallingAnimationHash = Animator.StringToHash("Falling");
+            ToolAnimationHash = Animator.StringToHash("Tool");
 
             InitializeJumpValues(); // Initialize jump variabels
 
@@ -336,14 +343,10 @@ namespace StateMachine.Player
 
         private void Update()
         {
-            //if (_isRunning)
-            //{
-            //    move.x = move.x *= _runMultiplier;
-            //    move.z = move.z *= _runMultiplier;
-            //}
-            //Move = move;
             _currentState.UpdateStates(); // Update the current state
-            PlayerRotation();
+
+            if(!UsingTool)
+                PlayerRotation();
             _characterController.Move(_applyMovement * Time.deltaTime);
         }
 

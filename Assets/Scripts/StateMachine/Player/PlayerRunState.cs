@@ -33,7 +33,13 @@ namespace StateMachine.Player
 
         public override void CheckSwitchState()
         {
-            if(!this.Context.MoveInputPress)
+            if (this.Context.UsingTool)
+            {
+                this.SwitchState(this.StateFactory.UsingTool());
+                return;
+            }
+
+            if (!this.Context.MoveInputPress)
             {
                 this.SwitchState(this.StateFactory.Idle());
             }

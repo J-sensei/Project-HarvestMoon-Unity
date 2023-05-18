@@ -1,15 +1,17 @@
 using Inventory.UI;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
 
 namespace Inventory
 {
+    /// <summary>
+    /// Manage all the items available that player holds
+    /// </summary>
     public class InventoryManager : Singleton<InventoryManager>
     {
         protected override void AwakeSingleton()
         {
+            // If there is no items set, then initialize it all empty
             if(_tools.Length == 0)
                 _tools = new ItemData[toolsSlot];
 
@@ -18,14 +20,22 @@ namespace Inventory
         }
 
         [Header("Inventory Slot")]
+        [Tooltip("Maximum tools player can holds")]
         [SerializeField] private int toolsSlot = 8;
+        [Tooltip("Maximum items player can holds")]
         [SerializeField] private int itemSlot = 8;
 
         [Header("Inventory")]
         [SerializeField] private ItemData[] _tools;
         [SerializeField] private ItemData[] _items;
 
+        /// <summary>
+        /// Tools that player is holding
+        /// </summary>
         public ItemData[] Tools { get { return _tools; } }
+        /// <summary>
+        /// Items that player is holding
+        /// </summary>
         public ItemData[] Items { get { return _items; } }
 
         /// <summary>
@@ -49,13 +59,8 @@ namespace Inventory
                 // Cache
                 ItemData itemToEquip = InventoryManager.Instance._items[slotId];
 
-                // Replace inventory to the current holding item
-                //_items[slotId] = _holdingItem;
-                //if (!PutBackItem(_holdingItem))
-                //{
-                //    _items[slotId] = null;
-                //}
-
+                // Replace the holding item to the corresponding inventory id if the type is same
+                // Else just put it back to corresponding inventory and take the item out from current inventory
                 if (_holdingItem != null && _holdingItem.type != ItemType.Item)
                 {
                     PutBackItem(_holdingItem); // Put back to its corresponding inventory
@@ -63,7 +68,7 @@ namespace Inventory
                 }
                 else
                 {
-                    _items[slotId] = _holdingItem;
+                    _items[slotId] = _holdingItem; // Replace if the item type is same
                 }
 
                 // Change holding slot to inventory slot
@@ -74,18 +79,6 @@ namespace Inventory
                 // Cache
                 ItemData itemToEquip = InventoryManager.Instance._tools[slotId];
 
-                // Replace inventory to the current holding item
-                //_tools[slotId] = _holdingItem;
-                //if (!PutBackItem(_holdingItem))
-                //{
-                //    _tools[slotId] = null;
-                //}
-
-                //// As the holding time is store back to its corresponding inventory, should make the tools slot null
-                //if(_holdingItem != null && _holdingItem.type != ItemType.Tool)
-                //{
-                //    _tools[slotId] = null;
-                //}
 
                 if (_holdingItem != null && _holdingItem.type != ItemType.Tool)
                 {
@@ -111,7 +104,7 @@ namespace Inventory
         /// </summary>
         public void Unequip(ItemData item)
         {
-            if (item == null) return;
+            if (item == null) return; // If there is nothing in the equip slot, just do nothing
             if (PutBackItem(item))
             {
                 _holdingItem = null; // Player are not holding anything if successfully putting the item back to the inventory

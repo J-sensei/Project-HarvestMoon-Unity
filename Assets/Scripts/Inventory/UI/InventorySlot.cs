@@ -24,7 +24,9 @@ namespace Inventory.UI
         private int _id = -1;
 
         [Header("Configuration")]
+        [Tooltip("Does this inventory slot allow player to click and do something")]
         [SerializeField] protected bool mouseEvent = true;
+        [Tooltip("Which item type should this slot to correspond to? Invalid for EquipInventorySlot")]
         [SerializeField] private ItemType itemType = ItemType.Tool;
 
         [Tooltip("Reference to the image responsible to display the item thumbnail")]
@@ -62,7 +64,16 @@ namespace Inventory.UI
             }
         }
 
-        // Event to happen when mouse enter the inventory slot
+        /// <summary>
+        /// Set the unique identifier for the inventory slot, as later will use it to take in/out item in InventoryManager
+        /// </summary>
+        /// <param name="id"></param>
+        public void SetId(int id)
+        {
+            _id = id;
+        }
+
+        #region Mouse Events
         public void OnPointerEnter(PointerEventData eventData)
         {
             if(mouseEvent)
@@ -80,10 +91,6 @@ namespace Inventory.UI
             if (mouseEvent)
                 InventoryManager.Instance.Equip(_id, itemType);
         }
-
-        public void SetId(int id)
-        {
-            _id = id;
-        }
+        #endregion
     }
 }

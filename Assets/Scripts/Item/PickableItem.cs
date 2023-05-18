@@ -14,7 +14,7 @@ namespace Item
             {
                 // Set selected item
                 PlayerStateMachine player = other.GetComponent<PlayerStateMachine>();
-                player.SelectedItem = this;
+                //player.SelectedItem = this;
             }
         }
 
@@ -24,7 +24,7 @@ namespace Item
             {
                 // Unset selected item
                 PlayerStateMachine player = other.GetComponent<PlayerStateMachine>();
-                player.SelectedItem = null;
+                //player.SelectedItem = null;
             }
         }
     }

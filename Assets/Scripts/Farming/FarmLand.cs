@@ -1,6 +1,8 @@
+using Inventory;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 namespace Farming
 {
@@ -105,6 +107,7 @@ namespace Farming
             if(currentState == FarmLandState.Farmland)
             {
                 SwitchState(FarmLandState.Watered);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.wateringAudio);
             }
         }
 
@@ -116,7 +119,26 @@ namespace Farming
             if(currentState == FarmLandState.Soil)
             {
                 SwitchState(FarmLandState.Farmland);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.hoeAudio);
             }
+        }
+
+        /// <summary>
+        /// Check if player using current tool to farm
+        /// </summary>
+        /// <returns>Is player able to farm the land</returns>
+        public bool CheckTool(ToolData.ToolType toolType)
+        {
+            if (currentState == FarmLandState.Farmland && toolType == ToolData.ToolType.WateringCan)
+            {
+                return true;
+            }
+            else if (currentState == FarmLandState.Soil && toolType == ToolData.ToolType.Hoe)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

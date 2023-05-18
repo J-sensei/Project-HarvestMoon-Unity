@@ -20,11 +20,16 @@ namespace Inventory
     /// </summary>
     public class ItemData : ScriptableObject
     {
+        [Tooltip("Name of the item")]
         public string itemName = "Item";
+        [Tooltip("Description of the item")]
         public string description = "";
+        [Tooltip("Type of the item, use for inventory checking and item use case checking when player is trying to using it")]
         public ItemType type = ItemType.Tool;
 
+        [Tooltip("Thumbnail to display in the inventory")]
         public Sprite thumnail;
+        [Tooltip("3D Model of the object for the player to equip on hand")]
         public GameObject itemPrefab;
     }
 }

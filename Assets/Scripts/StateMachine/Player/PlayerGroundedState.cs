@@ -22,12 +22,10 @@ namespace StateMachine.Player
             this.Context.Animator.SetBool(this.Context.FallingAnimationHash, false);
             this.Context.CurrentMovementY = this.Context.Gravity;
             this.Context.ApplyMovementY = this.Context.Gravity;
-            //this.Context.ApplyMovementY = this.Context.GroundedGravity;
+
             this.Context.ApplyMovementX = 0;
             this.Context.ApplyMovementZ = 0;
-            //this.Context.Animator.SetBool(this.Context.WalkingAnimationHash, false);
-            //this.Context.Animator.SetBool(this.Context.RunningAnimationHash, false);
-            //this.InitializeSubState();
+
         }
 
         public override void Update()
@@ -37,25 +35,34 @@ namespace StateMachine.Player
 
         public override void Exit()
         {
-            //this.Context.AudioController.PlayAudio(this.Context.AudioController.FallHitGround);
+
         }
 
         public override void InitializeSubState()
         {
+
             PlayerBaseState state;
-            // Idle when character not moving / running
-            if (!this.Context.MoveInputPress && !this.Context.WalkInputPress)
+            if (this.Context.UsingTool)
             {
-                state = this.StateFactory.Idle();
+                state = this.StateFactory.UsingTool();
             }
-            else if (this.Context.MoveInputPress && !this.Context.WalkInputPress)
+            else
             {
-                state = this.StateFactory.Run();
+                // Idle when character not moving / running
+                if (!this.Context.MoveInputPress && !this.Context.WalkInputPress)
+                {
+                    state = this.StateFactory.Idle();
+                }
+                else if (this.Context.MoveInputPress && !this.Context.WalkInputPress)
+                {
+                    state = this.StateFactory.Run();
+                }
+                else // Pressing shift to walk
+                {
+                    state = this.StateFactory.Walk();
+                }
             }
-            else // Pressing shift to walk
-            {
-                state = this.StateFactory.Walk();
-            }
+
 
             state.Enter(); // This to make sure the sub state enter can be call
             this.SetSubState(state);
@@ -91,23 +98,43 @@ namespace StateMachine.Player
                 Debug.Log("Player request interact");
                 if(this.Context.PlayerInteractor.SelectedFarmLand != null)
                 {
-                    FarmLand farm = this.Context.PlayerInteractor.SelectedFarmLand;
-                    Debug.Log("Interact with Land: " + farm.name + " State: " + farm.CurrentState.ToString());
-
+                    // This will enter tool event
+                    // The farm method will call when animation is finish playing
                     ItemData item = InventoryManager.Instance.HoldingItem;
                     if (item != null && item is ToolData)
                     {
+                        FarmLand farm = this.Context.PlayerInteractor.SelectedFarmLand;
                         ToolData toolData = (ToolData)item;
-                        switch (toolData.toolType)
+
+                        // Check if the farm can be interact by the player tool
+                        if(farm.CheckTool(toolData.toolType))
                         {
-                            case ToolData.ToolType.Hoe:
-                                farm.Hoe();
-                                break;
-                            case ToolData.ToolType.WateringCan:
-                                farm.Water();
-                                break;
+                            this.Context.ToolEvent.AddListener(Farm);
+                            this.Context.UsingTool = true; // This boolean will change to PlayerToolUsingState
                         }
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Change the farm state
+        /// </summary>
+        private void Farm()
+        {
+            FarmLand farm = this.Context.PlayerInteractor.SelectedFarmLand;
+            ItemData item = InventoryManager.Instance.HoldingItem;
+            if (item != null && item is ToolData)
+            {
+                ToolData toolData = (ToolData)item;
+                switch (toolData.toolType)
+                {
+                    case ToolData.ToolType.Hoe:
+                        farm.Hoe();
+                        break;
+                    case ToolData.ToolType.WateringCan:
+                        farm.Water();
+                        break;
                 }
             }
         }
