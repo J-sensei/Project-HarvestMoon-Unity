@@ -25,19 +25,23 @@ namespace Player
             ItemData data = InventoryManager.Instance.HoldingItem;
             if (data != null)
             {
+                /**
+                 * If current item hold is null then we should instantiate it
+                 * If different time is switch to hand, we also need to sinatantiate the new item on player hand
+                 */
                 if ((_currentTool == null || !_currentItemName.Equals(data.name)))
                 {
+                    // If the data is a tool
                     if(data is ToolData)
                     {
                         ToolData toolData = (ToolData)data;
                         if (toolData.itemPrefab != null)
                         {
-                            if (_currentTool != null) DeleteTool();
+                            if (_currentTool != null) DeleteTool(); // IF there is any item just delete it
 
                             _currentTool = Instantiate(toolData.itemPrefab, attachPoint);
                             _currentTool.transform.parent = _currentTool.transform;
                             _currentItemName = toolData.name;
-                            Debug.Log("Instantiate Tool");
                         }
                         else
                         {
@@ -46,6 +50,8 @@ namespace Player
                     }
                     else
                     {
+                        // TODO: Item on hand
+
                         DeleteTool();
                     }
                 }

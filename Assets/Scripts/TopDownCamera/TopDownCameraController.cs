@@ -29,21 +29,18 @@ namespace TopDownCamera
 
         private void Update()
         {
-            if (Mouse.current.leftButton.isPressed)
+            float angleMove = Input.mouseScrollDelta.y;
+            angleMove = Mathf.Clamp(angleMove, -1, 1);
+
+            _camera.Angle = Mathf.SmoothDamp(_camera.Angle, _camera.Angle + (angleMove * rotateMultiplier), ref _rotateVel, rotateSmoothTime);
+            if(_camera.Angle < 0)
             {
-                Vector3 angleMove = Mouse.current.delta.ReadValue().normalized;
-
-                _camera.Angle = Mathf.SmoothDamp(_camera.Angle, _camera.Angle + (angleMove.x * rotateMultiplier), ref _rotateVel, rotateSmoothTime);
-                if(_camera.Angle < 0)
-                {
-                    _camera.Angle = 360f;
-                } 
-                else if(_camera.Angle > 360f)
-                {
-                    _camera.Angle = 0;
-                }
+                _camera.Angle = 360f;
+            } 
+            else if(_camera.Angle > 360f)
+            {
+                _camera.Angle = 0;
             }
-
         }
     }
 }

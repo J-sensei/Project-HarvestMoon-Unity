@@ -1,3 +1,4 @@
+using GameDateTime;
 using Inventory;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace Farming
     /// <summary>
     /// A farming land that are able to hoe, water and plant seed on it
     /// </summary>
-    public class FarmLand : MonoBehaviour
+    public class FarmLand : MonoBehaviour, ITimeChecker
     {
         [SerializeField] FarmLandConfig config;
         [SerializeField] private FarmLandState currentState;
@@ -64,6 +65,9 @@ namespace Farming
         {
             dirtRenderer = hoeDirt.GetComponent<Renderer>();
             SwitchState(currentState);
+
+            // Add listener to the game time manager to get call when game time is update
+            GameTimeManager.Instance.AddListener(this);
         }
 
         public void SwitchState(FarmLandState state)
@@ -140,5 +144,25 @@ namespace Farming
 
             return false;
         }
+
+        #region ITimeChecker
+        public void ClockUpdate(GameTime gameTime)
+        {
+
+        }
+
+        /// <summary>
+        /// Update the farm land status when new day is start (Water dry out, fruit grow up)
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public void NewDay(GameTime gameTime)
+        {
+            // Make the water dry out in the next day
+            if (currentState == FarmLandState.Watered)
+            {
+                SwitchState(FarmLandState.Farmland); // Back to farm land for the player to water again
+            }
+        }
+        #endregion
     }
 }
