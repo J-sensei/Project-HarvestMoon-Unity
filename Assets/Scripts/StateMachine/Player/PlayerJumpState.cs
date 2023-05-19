@@ -32,6 +32,8 @@ namespace StateMachine.Player
             {
                 this.Context.RequireJumpAgain = true;
             }
+
+            this.Context.IsJumping = false;
         }
 
         public override void InitializeSubState()

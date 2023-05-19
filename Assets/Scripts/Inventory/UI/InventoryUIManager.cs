@@ -55,6 +55,7 @@ namespace Inventory.UI
                 _toolSlots[i].SetId(i);
                 _itemSlots[i].SetId(i);
             }
+            ToggleInventory(false);
         }
 
         /// <summary>
@@ -112,6 +113,11 @@ namespace Inventory.UI
             {
                 UpdateInventoryUI();
             }
+        }
+
+        public void ToggleInventory()
+        {
+            ToggleInventory(!gameObject.activeSelf);
         }
 
         /// <summary>

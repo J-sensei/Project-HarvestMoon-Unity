@@ -1,7 +1,9 @@
+using Inventory.UI;
 using Item;
 using Player;
 using System.Collections;
 using System.Collections.Generic;
+using TopDownCamera;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -56,6 +58,7 @@ namespace StateMachine.Player
         public Animator Animator { get { return _animator; } }
         public PlayerAudioController AudioController { get; private set; }
         public PlayerParticleController ParticleController { get; private set; }
+
         /// <summary>
         /// Player interactor to have interaction with interactable objects such as farm and tools
         /// </summary>
@@ -313,6 +316,8 @@ namespace StateMachine.Player
             _inputControls.CharacterControls.Interact.started += OnInteract;
             _inputControls.CharacterControls.Interact.canceled += OnInteract;
 
+            _inputControls.UI.Inventory.started += ToggleInventory;
+
             // Get component
             _characterController = GetComponent<CharacterController>();
             _animator = GetComponent<Animator>();
@@ -343,9 +348,10 @@ namespace StateMachine.Player
 
         private void Update()
         {
+            OnRotate();
             _currentState.UpdateStates(); // Update the current state
 
-            if(!UsingTool)
+            if (!UsingTool)
                 PlayerRotation();
             _characterController.Move(_applyMovement * Time.deltaTime);
         }
@@ -367,11 +373,40 @@ namespace StateMachine.Player
             _initialJumpVelocity = (2f * _maxJumpHeight) / timeToApex;
         }
 
+        /// <summary>
+        /// Move the playe relative to the camera position
+        /// </summary>
+        private void OnRotate()
+        {
+            Vector3 forward = Camera.main.transform.forward;
+            Vector3 right = Camera.main.transform.right;
+            forward.y = 0;
+            right.y = 0;
+            forward = forward.normalized;
+            right = right.normalized;
+
+            Vector3 forwardMove = _moveInput.y * forward;
+            Vector3 rightMove = _moveInput.x * right;
+
+            Vector3 move = forwardMove + rightMove;
+
+            _currentMovement = new Vector3(move.x, _currentMovement.y, move.z); // Update the current movement
+        }
+
         #region New Input System callback
         private void OnInputMove(InputAction.CallbackContext context)
         {
             _moveInput = context.ReadValue<Vector2>(); // Read the input values as vector2
-            _currentMovement = new Vector3(_moveInput.x, _currentMovement.y, _moveInput.y); // Update the current movement
+
+            //Vector3 forward = Camera.main.transform.forward;
+            //Vector3 right = Camera.main.transform.right;
+
+            //Vector3 forwardMove = _moveInput.y * forward;
+            //Vector3 rightMove = _moveInput.x * right;
+
+            //Vector3 move = forwardMove + rightMove;
+
+            //_currentMovement = new Vector3(move.x, _currentMovement.y, move.z); // Update the current movement
             _moveInputPress = _moveInput.x != 0 || _moveInput.y != 0; // Update the move input press boolean if any dimension is press
         }
 
@@ -394,6 +429,11 @@ namespace StateMachine.Player
         private void OnInteract(InputAction.CallbackContext context)
         {
             _interactInputPress = context.ReadValueAsButton();
+        }
+
+        private void ToggleInventory(InputAction.CallbackContext context)
+        {
+            InventoryUIManager.Instance.ToggleInventory();
         }
         #endregion
 

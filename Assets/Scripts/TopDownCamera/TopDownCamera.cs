@@ -15,6 +15,23 @@ namespace TopDownCamera
         [SerializeField] private float angle = 45f;
         [SerializeField] private float smoothTime = 0.5f;
 
+        public Transform Target { get { return target; } }
+        public float Height 
+        {
+            get { return height; }
+            set { height = value; }
+        }
+        public float Distance 
+        { 
+            get { return distance; }
+            set { distance = value; }
+        }
+        public float Angle
+        {
+            get { return angle; }
+            set { angle = value; }
+        }
+
         private Vector3 refVelocity;
         private void Start()
         {

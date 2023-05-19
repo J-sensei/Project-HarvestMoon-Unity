@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61549e5258e8de46a45cd1a2e5f666e, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
-  itemName: Hoe
+  itemName: Axe
   description: A tool to chop the tree into wood
   type: 0
   thumnail: {fileID: -306325166, guid: c656dfc9116f6c14b9b0e5be6062ceae, type: 3}
