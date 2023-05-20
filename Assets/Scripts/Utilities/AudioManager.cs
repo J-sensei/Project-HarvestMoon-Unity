@@ -21,6 +21,7 @@ namespace Utilities
         [Header("Farming Audio")]
         [SerializeField] public AudioClip wateringAudio;
         [SerializeField] public AudioClip hoeAudio;
+        [SerializeField] public AudioClip plantAudio;
 
         private double _musicDuration;
         private double _goalTime = 0;

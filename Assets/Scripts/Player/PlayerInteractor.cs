@@ -1,4 +1,5 @@
 using Farming;
+using Item;
 using UnityEngine;
 
 namespace Player
@@ -23,6 +24,11 @@ namespace Player
         /// </summary>
         public bool Selecting { get; private set; }
         #endregion
+
+        #region Item Interactioin
+        private PickableItem _selectedItem;
+        public PickableItem SelectedItem { get { return _selectedItem; } }
+        #endregion
         private void Update()
         {
             // Draw raycast below
@@ -38,8 +44,12 @@ namespace Player
             Collider collider = hit.collider; // Get the collider reference
 
             // TODO: Detect other interactable item
-            // Detect farm land
-            if(collider.TryGetComponent<FarmLand>(out FarmLand farm))
+            if(collider.TryGetComponent<PickableItem>(out PickableItem item))
+            {
+                OnSelectItem(item);
+                Selecting = true;
+            }
+            else if(collider.TryGetComponent<FarmLand>(out FarmLand farm)) // Detect farm land
             {
                 //Debug.Log("Detecting Land: " + farm.name + " State: " + farm.CurrentState.ToString());
                 OnSelectFarmLand(farm);
@@ -52,6 +62,12 @@ namespace Player
                 {
                     _selectedFarmLand.OnSelect(false);
                     _selectedFarmLand = null;
+                }
+
+                if(_selectedItem != null)
+                {
+                    _selectedItem.OnSelect(false);
+                    _selectedItem = null;
                 }
 
                 Selecting = false;
@@ -73,6 +89,19 @@ namespace Player
             // Set the farm land
             _selectedFarmLand = land;
             _selectedFarmLand.OnSelect(true);
+        }
+
+        private void OnSelectItem(PickableItem item)
+        {
+            // If its not null, need to deselect the previous farm land
+            if (_selectedItem != null)
+            {
+                _selectedItem.OnSelect(false);
+            }
+
+            // Set the farm land
+            _selectedItem = item;
+            _selectedItem.OnSelect(true);
         }
     }
 }

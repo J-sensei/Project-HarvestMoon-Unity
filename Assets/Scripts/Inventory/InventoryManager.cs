@@ -100,6 +100,36 @@ namespace Inventory
             InventoryUIManager.Instance.UpdateInventoryUI();
         }
 
+        public void Pickup(ItemData item)
+        {
+            // Do somthing with the new item
+            PutBackItem(_holdingItem);
+            _holdingItem = item;
+
+            InventoryUIManager.Instance.UpdateInventoryUI();
+        }
+
+        public void Unload()
+        {
+            if(_holdingItem == null)
+            {
+                Debug.Log("[Inventory Manager] Cannot unload as holding item is null!");
+            }
+
+            _holdingItem = null;
+            InventoryUIManager.Instance.UpdateInventoryUI();
+        }
+
+        public bool CheckHoldingItemType(ItemType type)
+        {
+            if (_holdingItem == null) return false;
+
+            if (_holdingItem.type == type) 
+                return true;
+            else 
+                return false;
+        }
+
         /// <summary>
         /// Unquip the item from player to the inventory
         /// </summary>
@@ -113,7 +143,6 @@ namespace Inventory
 
             // Update changes of the UI
             InventoryUIManager.Instance.UpdateInventoryUI();
-
         }
 
         /// <summary>

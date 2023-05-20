@@ -28,6 +28,7 @@ namespace Farming
     /// </summary>
     public class FarmLand : MonoBehaviour, ITimeChecker
     {
+        [Header("Configuration")]
         [SerializeField] FarmLandConfig config;
         [SerializeField] private FarmLandState currentState;
         [Tooltip("Dirt that need to hoe before plant the seed on it")]
@@ -36,7 +37,12 @@ namespace Farming
         [SerializeField] private GameObject hoeDirt;
         [Tooltip("Gameobject to show when the farm land is selected")]
         [SerializeField] private GameObject selectObject;
-        private Renderer dirtRenderer;
+        private Renderer _dirtRenderer;
+
+        [Header("Yield")]
+        [Tooltip("Determine if any crop is grow on it, empty if its null")]
+        [SerializeField] private Crop crop;
+        [SerializeField] private Transform cropTransform;
 
         public FarmLandState CurrentState { get { return currentState; } }
 
@@ -59,11 +65,16 @@ namespace Farming
             {
                 selectObject = transform.GetChild(2).gameObject;
             }
+
+            if(cropTransform == null)
+            {
+                cropTransform = transform.GetChild(3);
+            }
         }
 
         private void Start()
         {
-            dirtRenderer = hoeDirt.GetComponent<Renderer>();
+            _dirtRenderer = hoeDirt.GetComponent<Renderer>();
             SwitchState(currentState);
 
             // Add listener to the game time manager to get call when game time is update
@@ -84,12 +95,12 @@ namespace Farming
                 case FarmLandState.Farmland:
                     dirt.SetActive(false);
                     hoeDirt.SetActive(true);
-                    dirtRenderer.material = config.soil;
+                    _dirtRenderer.material = config.soil;
                     break;
                 case FarmLandState.Watered:
                     dirt.SetActive(false);
                     hoeDirt.SetActive(true);
-                    dirtRenderer.material = config.water;
+                    _dirtRenderer.material = config.water;
                     break;
             }
         }
@@ -127,6 +138,28 @@ namespace Farming
             }
         }
 
+        public bool Plant(SeedData seedData)
+        {
+            if(currentState != FarmLandState.Soil && crop == null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.plantAudio);
+                crop = Instantiate(seedData.cropPrefab, cropTransform);
+                crop.Initialize(seedData, cropTransform);
+                crop.UpdateCropPrefab();
+                return true;
+            }
+            else
+            {
+                Debug.Log("[Farm Land] Not able to plant as condition are not valid");
+                return false;
+            }
+        }
+
+        public bool CanPlant()
+        {
+            return currentState != FarmLandState.Soil;
+        }
+
         /// <summary>
         /// Check if player using current tool to farm
         /// </summary>
@@ -160,6 +193,13 @@ namespace Farming
             // Make the water dry out in the next day
             if (currentState == FarmLandState.Watered)
             {
+                // If crop is available, do something with it
+                // Only want to grow the crop if player remember to water it
+                if (crop != null)
+                {
+                    crop.Grow();
+                }
+
                 SwitchState(FarmLandState.Farmland); // Back to farm land for the player to water again
             }
         }

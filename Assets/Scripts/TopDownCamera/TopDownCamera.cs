@@ -61,7 +61,7 @@ namespace TopDownCamera
 
             // Move our position
             Vector3 targetPos = target.position;
-            targetPos.y = 0;
+            //targetPos.y = 0;
             Vector3 finalPos = targetPos + rotatedVector;
 
             // Debug.DrawLine(target.position, finalPos, Color.blue);

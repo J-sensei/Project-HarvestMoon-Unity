@@ -1,4 +1,5 @@
 using Inventory;
+using Item;
 using UnityEngine;
 
 namespace Player
@@ -10,6 +11,7 @@ namespace Player
     {
         [Tooltip("Attach Point for the tools on hand")]
         [SerializeField] private Transform attachPoint;
+        [SerializeField] private Transform itemAttachPoint;
 
         /// <summary>
         /// Current game object that is instantiate and attached to the player
@@ -31,17 +33,18 @@ namespace Player
                  */
                 if ((_currentTool == null || !_currentItemName.Equals(data.name)))
                 {
+                    // TODO: Add seed and item data
                     // If the data is a tool
-                    if(data is ToolData)
+                    if(data.type == ItemType.Tool)
                     {
-                        ToolData toolData = (ToolData)data;
-                        if (toolData.itemPrefab != null)
+                        if (data.itemPrefab != null)
                         {
                             if (_currentTool != null) DeleteTool(); // IF there is any item just delete it
 
-                            _currentTool = Instantiate(toolData.itemPrefab, attachPoint);
+                            _currentTool = Instantiate(data.itemPrefab, attachPoint);
+                            _currentTool.GetComponent<PickableItem>().OnHold();
                             _currentTool.transform.parent = _currentTool.transform;
-                            _currentItemName = toolData.name;
+                            _currentItemName = data.name;
                         }
                         else
                         {
@@ -50,9 +53,20 @@ namespace Player
                     }
                     else
                     {
-                        // TODO: Item on hand
+                        if(data.itemPrefab != null)
+                        {
+                            if (_currentTool != null) DeleteTool(); // IF there is any item just delete it
 
-                        DeleteTool();
+                            // TODO: Translate player to lift state
+                            _currentTool = Instantiate(data.itemPrefab, itemAttachPoint);
+                            _currentTool.GetComponent<PickableItem>().OnHold();
+                            _currentTool.transform.parent = _currentTool.transform;
+                            _currentItemName = data.name;
+                        }
+                        else
+                        {
+                            DeleteTool();
+                        }
                     }
                 }
             }
@@ -69,6 +83,21 @@ namespace Player
                 Destroy(_currentTool.gameObject);
                 _currentTool = null;
                 _currentItemName = "";
+            }
+        }
+
+        public void DetachItem()
+        {
+            if(_currentTool != null)
+            {
+                _currentTool.GetComponent<PickableItem>().OnThrow();
+                _currentTool.transform.parent = null;
+                _currentTool = null;
+                InventoryManager.Instance.Unload();
+            }
+            else
+            {
+                Debug.LogWarning("[Player Equip Controller] Trying to detach null object!");
             }
         }
     }

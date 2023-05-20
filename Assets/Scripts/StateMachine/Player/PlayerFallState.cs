@@ -22,7 +22,9 @@ namespace StateMachine.Player
 
         public override void Exit()
         {
-            //this.Context.Animator.SetBool(this.Context.FallingAnimationHash, false);
+            // Polish stuff
+            this.Context.AudioController.PlayAudio(this.Context.AudioController.FallHitGround);
+            this.Context.ParticleController.PlayLandSmoke();
         }
 
         public override void InitializeSubState()

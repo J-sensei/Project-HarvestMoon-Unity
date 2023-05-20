@@ -1,5 +1,6 @@
 ﻿using Farming;
 using Inventory;
+using Item;
 using UnityEngine;
 
 namespace StateMachine.Player
@@ -14,10 +15,6 @@ namespace StateMachine.Player
         public override void Enter()
         {
             this.InitializeSubState();
-
-            // Polish stuff
-            this.Context.AudioController.PlayAudio(this.Context.AudioController.FallHitGround);
-            this.Context.ParticleController.PlayLandSmoke();
 
             this.Context.Animator.SetBool(this.Context.FallingAnimationHash, false);
             this.Context.CurrentMovementY = this.Context.Gravity;
@@ -89,6 +86,21 @@ namespace StateMachine.Player
 
                 // TODO: Switch to lift state as player gonna lifting something is valid
                 Debug.Log("Player request pickup");
+                if(this.Context.PlayerInteractor.SelectedItem != null)
+                {
+                    Debug.Log("Player pickup: " + this.Context.PlayerInteractor.SelectedItem.name);
+                    PickableItem item = this.Context.PlayerInteractor.SelectedItem;
+                    InventoryManager.Instance.Pickup(item.ItemData);
+                    item.OnPickup(); // Destroy it when picked up
+                    // TODO: Go to lift state
+                    // If its item then lift
+                    if(InventoryManager.Instance.CheckHoldingItemType(ItemType.Item))
+                    {
+                        this.Context.PickingItem = true;
+                        this.SwitchState(this.StateFactory.Lift());
+                    }
+                    // Else just equip the tool
+                }
             }
             else if (this.Context.InteractInputPress)
             {
@@ -109,11 +121,31 @@ namespace StateMachine.Player
                         // Check if the farm can be interact by the player tool
                         if(farm.CheckTool(toolData.toolType))
                         {
-                            this.Context.ToolEvent.AddListener(Farm);
-                            this.Context.UsingTool = true; // This boolean will change to PlayerToolUsingState
+                            this.Context.ToolEvent.AddListener(Farm);                   
                         }
+                        this.Context.UsingTool = true; // This boolean will change to PlayerToolUsingState
+                    }
+                    else if(item != null && item is SeedData)
+                    {
+                        this.Context.ToolEvent.AddListener(Plant);
+                        this.Context.UsingTool = true; // This boolean will change to PlayerToolUsingState
                     }
                 }
+            }
+        }
+
+        private void Plant()
+        {
+            FarmLand farm = this.Context.PlayerInteractor.SelectedFarmLand;
+            ItemData item = InventoryManager.Instance.HoldingItem;
+            SeedData seedData = (SeedData)item;
+            if (seedData != null)
+            {
+                farm.Plant(seedData);
+            }
+            else
+            {
+                Debug.LogWarning("[Player Ground State] Unable to cast item into seed data!");
             }
         }
 

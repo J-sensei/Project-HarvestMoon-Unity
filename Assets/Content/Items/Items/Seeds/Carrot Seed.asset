@@ -14,8 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Carrot Seed
   description: Grow a carrot
-  type: 1
+  type: 0
   thumnail: {fileID: -212726908, guid: e76ca3bc447cf9d42b5c51d1aa7d9090, type: 3}
-  itemPrefab: {fileID: 0}
-  growDay: 2
-  crop: {fileID: 11400000}
+  itemPrefab: {fileID: 7449535406293280459, guid: fc377e08433d5cb49b3f8a9671e86d66,
+    type: 3}
+  growDay: 3
+  grows:
+  - day: 1
+    displayPrefab: {fileID: 479791622274313816, guid: fbecadbc573a79c4d83baad21d029947,
+      type: 3}
+  - day: 2
+    displayPrefab: {fileID: 3631273362958225267, guid: 3b0d6559583a612448ad1bc858fc53cd,
+      type: 3}
+  - day: 3
+    displayPrefab: {fileID: 1968267868024247241, guid: cb7a161d09b68644ca8cd72c352ddd2f,
+      type: 3}
+  cropPrefab: {fileID: 956674251774442366, guid: 5d8d256cfe78d5849958cb19de1a9c37,
+    type: 3}
+  crop: {fileID: 11400000, guid: 2781fe65b90cb3b46b1478d1762b13e6, type: 2}

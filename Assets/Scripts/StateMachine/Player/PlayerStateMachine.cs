@@ -34,6 +34,8 @@ namespace StateMachine.Player
         /// </summary>
         public int JumpingAnimationHash { get { return _jumpingAnimationHash; } }
         public int ToolAnimationHash { get; private set; }
+        public int LiftingAnimationHash { get; private set; }
+        public int LiftFinishAnimationHash { get; private set; }
         #endregion
 
         /// <summary>
@@ -58,6 +60,7 @@ namespace StateMachine.Player
         public Animator Animator { get { return _animator; } }
         public PlayerAudioController AudioController { get; private set; }
         public PlayerParticleController ParticleController { get; private set; }
+        public PlayerEquipController EquipController { get; private set; }
 
         /// <summary>
         /// Player interactor to have interaction with interactable objects such as farm and tools
@@ -268,11 +271,12 @@ namespace StateMachine.Player
         /// <summary>
         /// Player is using tool
         /// </summary>
-        public bool UsingTool { get; set; }
+        public bool UsingTool { get; set; } = false;
         /// <summary>
         /// Event to fire when tool is using
         /// </summary>
         public UnityEvent ToolEvent;
+        public bool PickingItem { get; set; } = false;
         #endregion
 
         #region State Machine
@@ -325,6 +329,7 @@ namespace StateMachine.Player
             AudioController = GetComponentInChildren<PlayerAudioController>();
             ParticleController = GetComponentInChildren<PlayerParticleController>();
             PlayerInteractor = GetComponentInChildren<PlayerInteractor>();
+            EquipController = GetComponentInChildren<PlayerEquipController>();
 
             // Define animation hash
             _walkingAnimationHash = Animator.StringToHash("Walking");
@@ -332,6 +337,8 @@ namespace StateMachine.Player
             _jumpingAnimationHash = Animator.StringToHash("Jumping");
             _fallingAnimationHash = Animator.StringToHash("Falling");
             ToolAnimationHash = Animator.StringToHash("Tool");
+            LiftingAnimationHash = Animator.StringToHash("Lifting");
+            LiftFinishAnimationHash = Animator.StringToHash("LiftFinish");
 
             InitializeJumpValues(); // Initialize jump variabels
 
@@ -351,7 +358,7 @@ namespace StateMachine.Player
             OnRotate();
             _currentState.UpdateStates(); // Update the current state
 
-            if (!UsingTool)
+            if (!UsingTool && !PickingItem)
                 PlayerRotation();
             _characterController.Move(_applyMovement * Time.deltaTime);
         }
