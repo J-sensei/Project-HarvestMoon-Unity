@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2149635641934982402}
   - component: {fileID: 3797307049434897784}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: Watering Can
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 2149635641937159476}
   - component: {fileID: 9017999153412104175}
   - component: {fileID: 6888108841104244165}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,8 @@ GameObject:
   - component: {fileID: 2732683574266714849}
   - component: {fileID: -1538195500812690940}
   - component: {fileID: 5070795918498281667}
-  m_Layer: 7
+  - component: {fileID: 5498807159858429128}
+  m_Layer: 2
   m_Name: Watering Can
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,6 +211,8 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: 87a810ec4383ee94d8458dca98008057, type: 2}
   rb: {fileID: 6888108841104244165}
   canvas: {fileID: 5174789370220154750}
+  itemCollider: {fileID: 5070795918498281667}
+  outline: {fileID: 0}
 --- !u!65 &5070795918498281667
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -223,6 +226,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.54389095, y: 0.53628904, z: 0.52108544}
   m_Center: {x: -0.16724001, y: 0.20905, z: -0.06461546}
+--- !u!114 &5498807159858429128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2732683574266714782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.22075468, g: 0.59159434, b: 1, a: 1}
+  outlineWidth: 4.5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &8945075737760688560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -230,10 +251,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2732683574266714849}
     m_Modifications:
+    - target: {fileID: 4320009215683346241, guid: 4f5d98f1147486f4ca8099a1b8714780,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4320009215985870546, guid: 4f5d98f1147486f4ca8099a1b8714780,
         type: 3}
       propertyPath: m_Name
       value: Item Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320009215985870546, guid: 4f5d98f1147486f4ca8099a1b8714780,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4320009215985870547, guid: 4f5d98f1147486f4ca8099a1b8714780,
         type: 3}

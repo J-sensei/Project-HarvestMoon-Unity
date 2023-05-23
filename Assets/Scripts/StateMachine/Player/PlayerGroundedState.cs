@@ -90,7 +90,7 @@ namespace StateMachine.Player
                 {
                     Debug.Log("Player pickup: " + this.Context.PlayerInteractor.SelectedItem.name);
                     PickableItem item = this.Context.PlayerInteractor.SelectedItem;
-                    InventoryManager.Instance.Pickup(item.ItemData);
+                    InventoryManager.Instance.Pickup(item.ItemData); // Updatee the holding item
                     item.OnPickup(); // Destroy it when picked up
                     // TODO: Go to lift state
                     // If its item then lift
@@ -100,6 +100,15 @@ namespace StateMachine.Player
                         this.SwitchState(this.StateFactory.Lift());
                     }
                     // Else just equip the tool
+                }
+                else if(this.Context.PlayerInteractor.SelectedCrop != null)
+                {
+                    // Pickup the item for crop, harvest the crop!
+                    Crop crop = this.Context.PlayerInteractor.SelectedCrop;
+                    InventoryManager.Instance.Pickup(crop.YieldItem);
+                    crop.Harvest();
+                    this.Context.PickingItem = true;
+                    this.SwitchState(this.StateFactory.Lift());
                 }
             }
             else if (this.Context.InteractInputPress)
@@ -131,6 +140,7 @@ namespace StateMachine.Player
                         this.Context.UsingTool = true; // This boolean will change to PlayerToolUsingState
                     }
                 }
+                // TODO: other interaction like bed
             }
         }
 

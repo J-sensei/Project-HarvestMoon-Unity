@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2497278091901408048}
   - component: {fileID: 5398775983525091048}
   - component: {fileID: 7279054708785108659}
+  - component: {fileID: 8428729599386097348}
   m_Layer: 7
   m_Name: Hoe
   m_TagString: Untagged
@@ -50,6 +51,8 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: f5ff71bf37113d045bd3099cc61b0e87, type: 2}
   rb: {fileID: 2388652125297679872}
   canvas: {fileID: 6723390676905202379}
+  itemCollider: {fileID: 7279054708785108659}
+  outline: {fileID: 0}
 --- !u!65 &7279054708785108659
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63,6 +66,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.45093814, y: 0.48231307, z: 0.8222085}
   m_Center: {x: -0.04967703, y: 0.075822845, z: 0.08889574}
+--- !u!114 &8428729599386097348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2497278091901408049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.22075468, g: 0.59159434, b: 1, a: 1}
+  outlineWidth: 4.5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8706479094109472977
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +97,7 @@ GameObject:
   - component: {fileID: 8706479094111409681}
   - component: {fileID: 2233938782979827163}
   - component: {fileID: 2388652125297679872}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: Hoe
   m_TagString: Untagged
   m_Icon: {fileID: 0}

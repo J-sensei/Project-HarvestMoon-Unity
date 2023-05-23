@@ -21,12 +21,15 @@ namespace Farming
         [SerializeField] private GameObject[] cropStateObjects;
         [Tooltip("Current day to grow the crop")]
         [SerializeField] private ItemData yieldItem;
+        public ItemData YieldItem { get { return yieldItem; } }
         [Tooltip("Growing day")]
         [SerializeField] private int day = 1;
+        [SerializeField] private Collider detectCollider;
 
         [SerializeField] private CropState currentState = CropState.Grow;
         private GrowData[] _growData;
         private GameObject _currentDisplayObject;
+        private Outline _outline;
 
         //public Crop(SeedData seed, Transform transform)
         //{
@@ -41,6 +44,15 @@ namespace Farming
         //    this.transform.position = transform.position;
         //    _growData = seed.grows;
         //}
+
+        private void Start()
+        {
+            if(detectCollider == null)
+            {
+                detectCollider = GetComponent<BoxCollider>();
+            }
+            if (currentState != CropState.Harvest) detectCollider.enabled = false;
+        }
 
         public void Initialize(SeedData seed, Transform transform)
         {
@@ -99,7 +111,15 @@ namespace Farming
             if(day >= _growData[_growData.Length - 1].day)
             {
                 currentState = CropState.Harvest; // Crop are ready to harvest
+                detectCollider.enabled = true; // Allow player to detect the crop to harvest it
+                _outline = _currentDisplayObject.GetComponent<Outline>();
             }
+        }
+
+        public void OnSelect(bool v)
+        {
+            if (currentState == CropState.Harvest)
+                _outline.enabled = v;
         }
 
         /// <summary>
@@ -107,7 +127,8 @@ namespace Farming
         /// </summary>
         public void Harvest()
         {
-
+            // Just destroy the object
+            Destroy(gameObject);
         }
 
 

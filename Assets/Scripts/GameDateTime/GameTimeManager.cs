@@ -5,6 +5,13 @@ using Utilities;
 
 namespace GameDateTime
 {
+    [System.Serializable]
+    public struct SkyboxTime
+    {
+        public Material material;
+        public float time;
+    }
+
     /// <summary>
     /// Manage in game time
     /// </summary>
@@ -16,6 +23,7 @@ namespace GameDateTime
         [SerializeField] private GameTime gameTime;
         [Tooltip("Pause the clock tick")]
         [SerializeField] private bool pause = false;
+        [SerializeField] private SkyboxTime[] skyboxTimes;
 
         [Header("Sun")]
         [SerializeField] private Transform sunTransform;
@@ -27,6 +35,10 @@ namespace GameDateTime
         /// Flag to false when player sleep or its 2am
         /// </summary>
         private bool _updateNewDay = false;
+
+        private SkyboxTime currentSkybox;
+        private float skyboxTransitionTime = 1f;
+        private float skyboxTimer = 0f;
 
         protected override void AwakeSingleton()
         {
@@ -41,6 +53,7 @@ namespace GameDateTime
 
             StartCoroutine(UpdateTime()); // Start the time update
             sunTransform.rotation = _targetSunAngle; // Rotate the sun instantly
+            currentSkybox = skyboxTimes[0];
         }
 
         private void Update()
@@ -89,6 +102,25 @@ namespace GameDateTime
             {
                 listener.ClockUpdate(gameTime);
             }
+
+            // Update skybox
+            if(skyboxTimes != null)
+            {
+                foreach(SkyboxTime skyboxTime in skyboxTimes)
+                {
+                    if(gameTime.Hour == skyboxTime.time && skyboxTime.time != currentSkybox.time)
+                    {
+                        currentSkybox = skyboxTime;
+                        RenderSettings.skybox = currentSkybox.material; // TODO: Make it smoothly change the texture
+                        //skyboxTimer = 0;
+                        break;
+                    }
+                }
+            }
+
+            //if (skyboxTimer < skyboxTransitionTime) skyboxTimer += Time.deltaTime;
+            //RenderSettings.skybox.Lerp(RenderSettings.skybox, currentSkybox.material, skyboxTimer / skyboxTransitionTime);
+
 
             UpdateSunTransform(); // Calculate target sun rotation
         }

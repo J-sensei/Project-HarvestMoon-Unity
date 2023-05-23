@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1211987882620252779}
   - component: {fileID: 956674251774442366}
+  - component: {fileID: 5385671050198761495}
+  - component: {fileID: 4675108640980006131}
   m_Layer: 0
   m_Name: Carrot Crop
   m_TagString: Untagged
@@ -49,6 +51,39 @@ MonoBehaviour:
   - {fileID: 479791622274313816, guid: fbecadbc573a79c4d83baad21d029947, type: 3}
   - {fileID: 3631273362958225267, guid: 3b0d6559583a612448ad1bc858fc53cd, type: 3}
   - {fileID: 1968267868024247241, guid: cb7a161d09b68644ca8cd72c352ddd2f, type: 3}
-  currentState: 0
   yieldItem: {fileID: 11400000, guid: 2781fe65b90cb3b46b1478d1762b13e6, type: 2}
   day: 1
+  outline: {fileID: 0}
+  detectCollider: {fileID: 0}
+  currentState: 0
+--- !u!65 &5385671050198761495
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211987882620252772}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.5, z: 0.8}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4675108640980006131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211987882620252772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

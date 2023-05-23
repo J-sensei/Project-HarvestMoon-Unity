@@ -11,6 +11,11 @@ namespace Item
         [SerializeField] private ItemData itemData;
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Canvas canvas;
+        [Tooltip("Collider to detect the raycast of player interactor")]
+        [SerializeField] private Collider itemCollider;
+        [Tooltip("Outline to show the item is selected")]
+        [SerializeField] private Outline outline;
+
         public ItemData ItemData { get { return itemData; } }
         private Vector3 _attachPos;
         private Quaternion _attachRot;
@@ -40,6 +45,14 @@ namespace Item
                 _attachPos = rb.transform.localPosition;
                 _attachRot = rb.transform.localRotation;
             }
+
+            if(outline == null)
+            {
+                outline = GetComponent<Outline>();
+                //if (outline == null) outline = GetComponentInChildren<Outline>();
+            }
+
+            outline.enabled = false;
         }
 
         /// <summary>
@@ -48,14 +61,15 @@ namespace Item
         /// <param name="v"></param>
         public void OnSelect(bool v)
         {
-            if(canvas != null)
-            {
-                canvas.gameObject.SetActive(v);
-            }
-            else
-            {
-                Debug.LogWarning("[Pickable Item] Trying to show canvas but canvas is null");
-            }
+            //if(canvas != null)
+            //{
+            //    canvas.gameObject.SetActive(v);
+            //}
+            //else
+            //{
+            //    Debug.LogWarning("[Pickable Item] Trying to show canvas but canvas is null");
+            //}
+            outline.enabled = v;
         }
 
         public void OnPickup()
@@ -76,6 +90,15 @@ namespace Item
             {
                 Debug.Log("[Pickable Item]" + name + " rigidbody is not defined!");
             }
+
+            if(itemCollider != null)
+            {
+                itemCollider.enabled = false;
+            }
+            else
+            {
+                Debug.Log("[Pickable Item]" + name + " item collider is not defined!");
+            }
         }
 
         public void OnThrow()
@@ -88,6 +111,15 @@ namespace Item
             else
             {
                 Debug.Log("[Pickable Item]" + name + " rigidbody is not defined!");
+            }
+
+            if (itemCollider != null)
+            {
+                itemCollider.enabled = true;
+            }
+            else
+            {
+                Debug.Log("[Pickable Item]" + name + " item collider is not defined!");
             }
         }
     }

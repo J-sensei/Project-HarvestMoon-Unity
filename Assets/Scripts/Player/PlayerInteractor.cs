@@ -28,6 +28,8 @@ namespace Player
         #region Item Interactioin
         private PickableItem _selectedItem;
         public PickableItem SelectedItem { get { return _selectedItem; } }
+        private Crop _selectedCrop;
+        public Crop SelectedCrop { get { return _selectedCrop; } }
         #endregion
         private void Update()
         {
@@ -35,6 +37,7 @@ namespace Player
             RaycastHit hit;
             if(Physics.Raycast(transform.position, Vector3.down, out hit, maxInteractionRay))
             {
+                Debug.Log("[Player Interactor] Hit: " + hit.collider.name);
                 OnInteractableHit(hit);
             }
         }
@@ -48,12 +51,55 @@ namespace Player
             {
                 OnSelectItem(item);
                 Selecting = true;
+
+                if (_selectedFarmLand != null)
+                {
+                    _selectedFarmLand.OnSelect(false);
+                    _selectedFarmLand = null;
+                }
+
+                if (_selectedCrop != null)
+                {
+                    _selectedCrop.OnSelect(false);
+                    _selectedCrop = null;
+                }
+            }
+            else if (collider.TryGetComponent<Crop>(out Crop crop))
+            {
+                OnSelectCrop(crop);
+                Selecting = true;
+
+                if (_selectedFarmLand != null)
+                {
+                    _selectedFarmLand.OnSelect(false);
+                    _selectedFarmLand = null;
+                }
+
+                if (_selectedItem != null)
+                {
+                    Debug.Log("Selected Item: " + _selectedItem);
+                    _selectedItem.OnSelect(false);
+                    _selectedItem = null;
+                }
             }
             else if(collider.TryGetComponent<FarmLand>(out FarmLand farm)) // Detect farm land
             {
                 //Debug.Log("Detecting Land: " + farm.name + " State: " + farm.CurrentState.ToString());
                 OnSelectFarmLand(farm);
                 Selecting = true;
+
+                if (_selectedItem != null)
+                {
+                    Debug.Log("Selected Item: " + _selectedItem);
+                    _selectedItem.OnSelect(false);
+                    _selectedItem = null;
+                }
+
+                if (_selectedCrop != null)
+                {
+                    _selectedCrop.OnSelect(false);
+                    _selectedCrop = null;
+                }
             } 
             else
             {
@@ -66,8 +112,15 @@ namespace Player
 
                 if(_selectedItem != null)
                 {
+                    Debug.Log("Selected Item: " + _selectedItem);
                     _selectedItem.OnSelect(false);
                     _selectedItem = null;
+                }
+
+                if(_selectedCrop != null)
+                {
+                    _selectedCrop.OnSelect(false);
+                    _selectedCrop = null;
                 }
 
                 Selecting = false;
@@ -93,15 +146,28 @@ namespace Player
 
         private void OnSelectItem(PickableItem item)
         {
-            // If its not null, need to deselect the previous farm land
+            // If its not null, need to deselect the previous item
             if (_selectedItem != null)
             {
                 _selectedItem.OnSelect(false);
             }
 
-            // Set the farm land
+            // Set the item
             _selectedItem = item;
             _selectedItem.OnSelect(true);
+        }
+
+        private void OnSelectCrop(Crop item)
+        {
+            // If its not null, need to deselect the previous crop
+            if (_selectedCrop != null)
+            {
+                _selectedCrop.OnSelect(false);
+            }
+
+            // Set the crop
+            _selectedCrop = item;
+            _selectedCrop.OnSelect(true);
         }
     }
 }

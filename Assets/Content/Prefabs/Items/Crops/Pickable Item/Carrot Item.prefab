@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6174945748638128221}
   - component: {fileID: 6174945748638128220}
   - component: {fileID: 702690384489310097}
+  - component: {fileID: 4953726337888703896}
   m_Layer: 8
   m_Name: Carrot Item
   m_TagString: Item
@@ -103,6 +104,8 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: 2781fe65b90cb3b46b1478d1762b13e6, type: 2}
   rb: {fileID: 6174945748638128220}
   canvas: {fileID: 4239694587345114936}
+  itemCollider: {fileID: 6174945748638128221}
+  outline: {fileID: 0}
 --- !u!65 &6174945748638128221
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -146,6 +149,24 @@ CapsuleCollider:
   m_Height: 0.9
   m_Direction: 2
   m_Center: {x: -0.009084932, y: 0, z: -0.0017483531}
+--- !u!114 &4953726337888703896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188043438508429691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.22075468, g: 0.59159434, b: 1, a: 1}
+  outlineWidth: 4.5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &82659900988748278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -157,6 +178,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Item Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320009215985870546, guid: 4f5d98f1147486f4ca8099a1b8714780,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4320009215985870547, guid: 4f5d98f1147486f4ca8099a1b8714780,
         type: 3}

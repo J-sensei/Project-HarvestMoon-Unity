@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6914543547879215716}
   - component: {fileID: 2860513274249110147}
   - component: {fileID: 8484631194909260824}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: Seed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 7449535406293280456}
   - component: {fileID: 7449535406293280457}
   - component: {fileID: 7449535406293280502}
+  - component: {fileID: 5395161233826616429}
   m_Layer: 7
   m_Name: Carrot Seed
   m_TagString: Untagged
@@ -164,6 +165,8 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: a5ca50553848da64481b66b644f7ade3, type: 2}
   rb: {fileID: 8484631194909260824}
   canvas: {fileID: 6670342894516655112}
+  itemCollider: {fileID: 7449535406293280502}
+  outline: {fileID: 0}
 --- !u!65 &7449535406293280502
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -177,6 +180,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.37360683, y: 0.15959653, z: 0.5416869}
   m_Center: {x: -0.110728756, y: 0.13, z: -0.008017004}
+--- !u!114 &5395161233826616429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7449535406293280459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.22075468, g: 0.59159434, b: 1, a: 1}
+  outlineWidth: 4.5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &7449535407554245318
 PrefabInstance:
   m_ObjectHideFlags: 0

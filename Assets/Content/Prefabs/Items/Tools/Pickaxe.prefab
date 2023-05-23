@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5967804503201592092}
   - component: {fileID: 7589174397810040062}
   - component: {fileID: 3547294569545124122}
+  - component: {fileID: 855100938894382722}
   m_Layer: 7
   m_Name: Pickaxe
   m_TagString: Untagged
@@ -50,6 +51,8 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: 52d2c2bca621a4745b1d552f5dc05961, type: 2}
   rb: {fileID: 907455733458505652}
   canvas: {fileID: 8669589740574119347}
+  itemCollider: {fileID: 3547294569545124122}
+  outline: {fileID: 0}
 --- !u!65 &3547294569545124122
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63,6 +66,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.4951986, y: 0.35096976, z: 0.8557711}
   m_Center: {x: -0.1802862, y: 0.14937998, z: 0.1030207}
+--- !u!114 &855100938894382722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5967804503201592093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.22075468, g: 0.59159434, b: 1, a: 1}
+  outlineWidth: 4.5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8649767214761336208
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +97,7 @@ GameObject:
   - component: {fileID: 8649767214759134032}
   - component: {fileID: 1714373210232505917}
   - component: {fileID: 907455733458505652}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: Pickaxe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
