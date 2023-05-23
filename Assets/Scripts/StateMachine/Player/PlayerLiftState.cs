@@ -71,6 +71,12 @@ namespace StateMachine.Player
                 this.Context.EquipController.DetachItem(); // TODO: Check if this work properly
                 this.SwitchState(this.StateFactory.Fall());
             }
+            else if (this.Context.PickupInputPress)
+            {
+                this.Context.PickingItem = true; // Use same variable for dropping
+                this.Context.PickupInputPress = false; // Set to false to make sure it only trigger once
+                this.SwitchState(this.StateFactory.DroppingItem());
+            }
         }
     }
 }

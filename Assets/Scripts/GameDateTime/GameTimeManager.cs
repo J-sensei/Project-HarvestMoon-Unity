@@ -132,6 +132,7 @@ namespace GameDateTime
         {
             _updateNewDay = false;
             gameTime.Reset();
+            Debug.Log("Sleep!");
         }
 
         private void UpdateSunTransform()

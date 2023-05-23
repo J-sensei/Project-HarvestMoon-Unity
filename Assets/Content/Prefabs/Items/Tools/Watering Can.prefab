@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: -1538195500812690940}
   - component: {fileID: 5070795918498281667}
   - component: {fileID: 5498807159858429128}
-  m_Layer: 2
+  m_Layer: 7
   m_Name: Watering Can
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2732683574266714782}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.54389095, y: 0.53628904, z: 0.52108544}
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 0.22075468, g: 0.59159434, b: 1, a: 1}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 4.5
   precomputeOutline: 0
   bakeKeys: []

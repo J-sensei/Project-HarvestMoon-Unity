@@ -99,6 +99,11 @@ namespace StateMachine.Player
             }
         }
 
+        public void Switch(PlayerBaseState state)
+        {
+            SwitchState(state);
+        }
+
         /// <summary>
         /// Set only parent state
         /// </summary>

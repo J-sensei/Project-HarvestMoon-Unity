@@ -1,5 +1,6 @@
 using Inventory;
 using Item;
+using StateMachine.Player;
 using UnityEngine;
 
 namespace Player
@@ -9,6 +10,7 @@ namespace Player
     /// </summary>
     public class PlayerEquipController : MonoBehaviour
     {
+        [SerializeField] private PlayerStateMachine player;
         [Tooltip("Attach Point for the tools on hand")]
         [SerializeField] private Transform attachPoint;
         [SerializeField] private Transform itemAttachPoint;
@@ -62,6 +64,10 @@ namespace Player
                             _currentTool.GetComponent<PickableItem>().OnHold();
                             _currentTool.transform.parent = _currentTool.transform;
                             _currentItemName = data.name;
+
+                            // Transition to lift state
+                            player.PickingItem = true;
+                            player.SwitchState(player.StateFactory.Lift());
                         }
                         else
                         {

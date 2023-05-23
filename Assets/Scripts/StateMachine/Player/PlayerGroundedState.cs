@@ -1,4 +1,5 @@
 ﻿using Farming;
+using Interactable;
 using Inventory;
 using Item;
 using UnityEngine;
@@ -107,6 +108,8 @@ namespace StateMachine.Player
                     Crop crop = this.Context.PlayerInteractor.SelectedCrop;
                     InventoryManager.Instance.Pickup(crop.YieldItem);
                     crop.Harvest();
+
+                    // Translate to lift state
                     this.Context.PickingItem = true;
                     this.SwitchState(this.StateFactory.Lift());
                 }
@@ -141,6 +144,11 @@ namespace StateMachine.Player
                     }
                 }
                 // TODO: other interaction like bed
+                else if (this.Context.PlayerInteractor.SelectedtInteractable != null)
+                {
+                    IInteractable interactable = this.Context.PlayerInteractor.SelectedtInteractable;
+                    interactable.Interact();
+                }
             }
         }
 

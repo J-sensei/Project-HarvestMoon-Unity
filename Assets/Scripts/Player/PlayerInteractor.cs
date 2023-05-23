@@ -1,4 +1,5 @@
 using Farming;
+using Interactable;
 using Item;
 using UnityEngine;
 
@@ -30,6 +31,10 @@ namespace Player
         public PickableItem SelectedItem { get { return _selectedItem; } }
         private Crop _selectedCrop;
         public Crop SelectedCrop { get { return _selectedCrop; } }
+
+        // TODO: Future will use this interface as common property
+        private IInteractable _selectedInteractable;
+        public IInteractable SelectedtInteractable { get { return _selectedInteractable; } }
         #endregion
         private void Update()
         {
@@ -52,6 +57,8 @@ namespace Player
                 OnSelectItem(item);
                 Selecting = true;
 
+                // Bad coding
+                // TODO: Replace everything with IInteracrable interface
                 if (_selectedFarmLand != null)
                 {
                     _selectedFarmLand.OnSelect(false);
@@ -62,6 +69,11 @@ namespace Player
                 {
                     _selectedCrop.OnSelect(false);
                     _selectedCrop = null;
+                }
+                if (_selectedInteractable != null)
+                {
+                    _selectedInteractable.OnSelect(false);
+                    _selectedInteractable = null;
                 }
             }
             else if (collider.TryGetComponent<Crop>(out Crop crop))
@@ -77,9 +89,13 @@ namespace Player
 
                 if (_selectedItem != null)
                 {
-                    Debug.Log("Selected Item: " + _selectedItem);
                     _selectedItem.OnSelect(false);
                     _selectedItem = null;
+                }
+                if (_selectedInteractable != null)
+                {
+                    _selectedInteractable.OnSelect(false);
+                    _selectedInteractable = null;
                 }
             }
             else if(collider.TryGetComponent<FarmLand>(out FarmLand farm)) // Detect farm land
@@ -90,7 +106,6 @@ namespace Player
 
                 if (_selectedItem != null)
                 {
-                    Debug.Log("Selected Item: " + _selectedItem);
                     _selectedItem.OnSelect(false);
                     _selectedItem = null;
                 }
@@ -100,7 +115,35 @@ namespace Player
                     _selectedCrop.OnSelect(false);
                     _selectedCrop = null;
                 }
+                if (_selectedInteractable != null)
+                {
+                    _selectedInteractable.OnSelect(false);
+                    _selectedInteractable = null;
+                }
             } 
+            else if(collider.TryGetComponent(out IInteractable interactable))
+            {
+                OnSelectInteractable(interactable);
+                Selecting = true;
+
+                if (_selectedFarmLand != null)
+                {
+                    _selectedFarmLand.OnSelect(false);
+                    _selectedFarmLand = null;
+                }
+
+                if (_selectedItem != null)
+                {
+                    _selectedItem.OnSelect(false);
+                    _selectedItem = null;
+                }
+
+                if (_selectedCrop != null)
+                {
+                    _selectedCrop.OnSelect(false);
+                    _selectedCrop = null;
+                }
+            }
             else
             {
                 // As player not step on the farm land, if there is any farm land should set to null
@@ -112,7 +155,6 @@ namespace Player
 
                 if(_selectedItem != null)
                 {
-                    Debug.Log("Selected Item: " + _selectedItem);
                     _selectedItem.OnSelect(false);
                     _selectedItem = null;
                 }
@@ -121,6 +163,12 @@ namespace Player
                 {
                     _selectedCrop.OnSelect(false);
                     _selectedCrop = null;
+                }
+
+                if(_selectedInteractable != null)
+                {
+                    _selectedInteractable.OnSelect(false);
+                    _selectedInteractable = null;
                 }
 
                 Selecting = false;
@@ -168,6 +216,19 @@ namespace Player
             // Set the crop
             _selectedCrop = item;
             _selectedCrop.OnSelect(true);
+        }
+
+        private void OnSelectInteractable(IInteractable interactable)
+        {
+            // If its not null, need to deselect the previous interactable
+            if (_selectedInteractable != null)
+            {
+                _selectedInteractable.OnSelect(false);
+            }
+
+            // Set the interactable
+            _selectedInteractable = interactable;
+            _selectedInteractable.OnSelect(true);
         }
     }
 }

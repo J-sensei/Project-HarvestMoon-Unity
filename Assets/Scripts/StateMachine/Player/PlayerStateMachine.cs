@@ -282,6 +282,10 @@ namespace StateMachine.Player
         #region State Machine
         private PlayerBaseState _currentState;
         private PlayerStateFactory _stateFactory;
+        /// <summary>
+        /// Allow access to state factory to change the state
+        /// </summary>
+        public PlayerStateFactory StateFactory { get { return _stateFactory; } }
 
         public PlayerBaseState CurrentState
         {
@@ -297,6 +301,16 @@ namespace StateMachine.Player
         public Vector3 Move { get; private set; }
         public Vector3 CurrentMove { get { return _currentMovement; } }
         #endregion
+
+        /// <summary>
+        /// Switch state function allow to modify the state outside the state machine itself
+        /// </summary>
+        /// <param name="state"></param>
+
+        public void SwitchState(PlayerBaseState state)
+        {
+            _currentState.Switch(state);
+        }
 
         // Initialize values
         private void Awake()
