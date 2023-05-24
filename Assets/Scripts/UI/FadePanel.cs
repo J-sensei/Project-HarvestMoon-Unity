@@ -76,7 +76,6 @@ public class FadePanel : MonoBehaviour
         Finish = true;
         OnFinish?.Invoke();
         OnFinish.RemoveAllListeners();
-        Debug.Log("Execute Yeah?");
 
         if(alphaOut == 1)
         {
