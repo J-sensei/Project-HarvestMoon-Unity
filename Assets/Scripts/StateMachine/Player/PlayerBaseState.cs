@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace StateMachine.Player
 {
     /// <summary>
@@ -30,7 +28,13 @@ namespace StateMachine.Player
         /// Is the state a root state, meaning it is allow to have children state
         /// </summary>
         protected bool IsRootState { set { _isRootState = value; } }
+        /// <summary>
+        /// Player state machine context to access alll the resources of the player
+        /// </summary>
         protected PlayerStateMachine Context { get { return _context; } }
+        /// <summary>
+        /// State factory reference, prividing states available for the player
+        /// </summary>
         protected PlayerStateFactory StateFactory { get { return _stateFactory; } }
 
         /// <summary>

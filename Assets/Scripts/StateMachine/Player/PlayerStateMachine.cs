@@ -1,5 +1,3 @@
-using Inventory.UI;
-using Item;
 using Player;
 using UnityEngine;
 using UnityEngine.Events;
@@ -123,16 +121,25 @@ namespace StateMachine.Player
         /// Final movement vector3 that will apply to the player move
         /// </summary>
         private Vector3 _applyMovement;
+        /// <summary>
+        /// Final movement of X-axis
+        /// </summary>
         public float ApplyMovementX
         {
             get { return _applyMovement.x; }
             set { _applyMovement.x = value; }
         }
+        /// <summary>
+        /// Final movement of Y-axis
+        /// </summary>
         public float ApplyMovementY
         {
             get { return _applyMovement.y; }
             set { _applyMovement.y = value; }
         }
+        /// <summary>
+        /// Final movement of Z-axis
+        /// </summary>
         public float ApplyMovementZ
         {
             get { return _applyMovement.z; }
@@ -293,8 +300,15 @@ namespace StateMachine.Player
         /// Player is using tool
         /// </summary>
         public bool UsingTool { get; set; } = false;
-        [Tooltip("Event to fire when tool is using")]
+
+        [Header("Events")]
+        [Tooltip("Events to fire when tool is using finish")]
         public UnityEvent ToolEvent;
+        [Tooltip("Events to fire when interaction is finish")]
+        public UnityEvent InteractEvent;
+        /// <summary>
+        /// Player is picking up/down item
+        /// </summary>
         public bool PickingItem { get; set; } = false;
         #endregion
 

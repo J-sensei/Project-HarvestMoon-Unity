@@ -118,10 +118,6 @@ namespace GameDateTime
                 }
             }
 
-            //if (skyboxTimer < skyboxTransitionTime) skyboxTimer += Time.deltaTime;
-            //RenderSettings.skybox.Lerp(RenderSettings.skybox, currentSkybox.material, skyboxTimer / skyboxTransitionTime);
-
-
             UpdateSunTransform(); // Calculate target sun rotation
         }
 
@@ -132,9 +128,13 @@ namespace GameDateTime
         {
             _updateNewDay = false;
             gameTime.Reset();
+            sunTransform.rotation = _targetSunAngle; // Rotate the sun instantly
             Debug.Log("Sleep!");
         }
 
+        /// <summary>
+        /// Calculate target sun angle to the directional light to rotate
+        /// </summary>
         private void UpdateSunTransform()
         {
             int minutes = GameTime.HoursToMinutes(gameTime.Hour) + gameTime.Minute;

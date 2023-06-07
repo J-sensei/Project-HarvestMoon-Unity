@@ -1,6 +1,6 @@
 using GameDateTime;
-using System.Collections;
 using UnityEngine;
+using Utilities;
 
 namespace Interactable
 {
@@ -8,7 +8,6 @@ namespace Interactable
     {
         [SerializeField] FadePanel fadePanel;
         [SerializeField] private Outline outline;
-        const float initOutlineTime = 0.05f;
 
         private bool _fadeIn = false;
         private bool _fadeOut = false;
@@ -20,31 +19,16 @@ namespace Interactable
                 outline = GetComponent<Outline>();
             }
             outline.enabled = false;
+
             // For some reason this can make the setting applied
-            StartCoroutine(InitOutline(outline));
-        }
-
-        IEnumerator InitOutline(Outline outline)
-        {
-            yield return new WaitForSeconds(initOutlineTime);
-            outline.enabled = true;
-            yield return new WaitForSeconds(initOutlineTime);
-            outline.enabled = false;
-        }
-
-        public void Interact()
-        {
-            fadePanel.FadeOut();
-            _fadeIn = true;
-            fadePanel.OnFinish.AddListener(FadeIn);
-            //GameTimeManager.Instance.Sleep();
+            StartCoroutine(OutlineHelper.InitializeOutline(outline));
         }
 
         private void FadeIn()
         {
             fadePanel.OnFinish.RemoveAllListeners();
             GameTimeManager.Instance.Sleep();
-//            GameTimeManager.Instance.PauseTime(true);
+//          GameTimeManager.Instance.PauseTime(true);
             _fadeIn = false;
 
             fadePanel.FadeIn();
@@ -55,7 +39,7 @@ namespace Interactable
         private void FadeOut()
         {
             fadePanel.OnFinish.RemoveAllListeners();
-//            GameTimeManager.Instance.PauseTime(false);
+//          GameTimeManager.Instance.PauseTime(false);
             Debug.Log("Execute sleep");
 
 
@@ -70,9 +54,24 @@ namespace Interactable
         //    }
         //}
 
+        #region IInteractable
         public void OnSelect(bool v)
         {
             outline.enabled = v;
         }
+
+        public InteractableType GetInteractableType()
+        {
+            return InteractableType.Environmental;
+        }
+
+        public void Interact()
+        {
+            fadePanel.FadeOut();
+            _fadeIn = true;
+            fadePanel.OnFinish.AddListener(FadeIn);
+            //GameTimeManager.Instance.Sleep();
+        }
+        #endregion
     }
 }

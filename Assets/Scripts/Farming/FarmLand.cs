@@ -1,4 +1,5 @@
 using GameDateTime;
+using Interactable;
 using Inventory;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace Farming
     /// <summary>
     /// A farming land that are able to hoe, water and plant seed on it
     /// </summary>
-    public class FarmLand : MonoBehaviour, ITimeChecker
+    public class FarmLand : MonoBehaviour, ITimeChecker, IInteractable
     {
         [Header("Configuration")]
         [SerializeField] FarmLandConfig config;
@@ -37,6 +38,7 @@ namespace Farming
         [SerializeField] private GameObject hoeDirt;
         [Tooltip("Gameobject to show when the farm land is selected")]
         [SerializeField] private GameObject selectObject;
+        [SerializeField] private Outline outline;
         private Renderer _dirtRenderer;
 
         [Header("Yield")]
@@ -70,6 +72,8 @@ namespace Farming
             {
                 cropTransform = transform.GetChild(3);
             }
+
+            if (outline == null) outline = GetComponent<Outline>();
         }
 
         private void Start()
@@ -77,10 +81,16 @@ namespace Farming
             _dirtRenderer = hoeDirt.GetComponent<Renderer>();
             SwitchState(currentState);
 
+            StartCoroutine(OutlineHelper.InitializeOutline(outline));
+
             // Add listener to the game time manager to get call when game time is update
             GameTimeManager.Instance.AddListener(this);
         }
 
+        /// <summary>
+        /// Change the state of the farm land
+        /// </summary>
+        /// <param name="state"></param>
         public void SwitchState(FarmLandState state)
         {
             currentState = state;
@@ -103,15 +113,6 @@ namespace Farming
                     _dirtRenderer.material = config.water;
                     break;
             }
-        }
-
-        /// <summary>
-        /// Show/Hide select effect of the farm land
-        /// </summary>
-        /// <param name="v">flag</param>
-        public void OnSelect(bool v)
-        {
-            selectObject.SetActive(v);
         }
 
         /// <summary>
@@ -138,6 +139,11 @@ namespace Farming
             }
         }
 
+        /// <summary>
+        /// Plant crop into the land
+        /// </summary>
+        /// <param name="seedData">Seed that are going to plant</param>
+        /// <returns></returns>
         public bool Plant(SeedData seedData)
         {
             if(currentState != FarmLandState.Soil && crop == null)
@@ -155,6 +161,10 @@ namespace Farming
             }
         }
 
+        /// <summary>
+        /// Check if the farmland is ready to plant the crop
+        /// </summary>
+        /// <returns></returns>
         public bool CanPlant()
         {
             return currentState != FarmLandState.Soil;
@@ -202,6 +212,26 @@ namespace Farming
 
                 SwitchState(FarmLandState.Farmland); // Back to farm land for the player to water again
             }
+        }
+        #endregion
+
+        #region IInteractable
+        public void OnSelect(bool v)
+        {
+            selectObject.SetActive(v);
+            if(outline != null)
+            {
+                outline.enabled = v;
+            }
+        }
+        public void Interact()
+        {
+            // TODO: Find something to put it here      
+        }
+
+        public InteractableType GetInteractableType()
+        {
+            return InteractableType.Farm;
         }
         #endregion
     }

@@ -25,7 +25,6 @@ namespace Utilities
 
         private double _musicDuration;
         private double _goalTime = 0;
-        bool test = false;
         /// <summary>
         /// Play sound effect audio clip
         /// </summary>
@@ -72,7 +71,7 @@ namespace Utilities
 
         private void PlayScheduleClip()
         {
-            Debug.Log("Schedule loop");
+            Debug.Log("[Audio Manager] Schedule loop");
             audioSources[_audioToggle].clip = musicClip;
             audioSources[_audioToggle].PlayScheduled(_goalTime);
             audioSources[_audioToggle].time = musicStartTime;

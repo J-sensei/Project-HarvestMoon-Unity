@@ -1,7 +1,9 @@
+using Interactable;
 using Inventory;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 namespace Farming
 {
@@ -14,7 +16,7 @@ namespace Farming
     /// <summary>
     /// A crop to grow on the farm land
     /// </summary>
-    public class Crop : MonoBehaviour
+    public class Crop : MonoBehaviour, IInteractable
     {
         [SerializeField] private SeedData seed;
         [Tooltip("Game objects to represent number of life cycle required to grow the crop")]
@@ -104,6 +106,9 @@ namespace Farming
             _currentDisplayObject = Instantiate(go, this.transform);
         }
 
+        /// <summary>
+        /// Grow the plant into next state
+        /// </summary>
         public void Grow()
         {
             day++;
@@ -112,14 +117,9 @@ namespace Farming
             {
                 currentState = CropState.Harvest; // Crop are ready to harvest
                 detectCollider.enabled = true; // Allow player to detect the crop to harvest it
-                _outline = _currentDisplayObject.GetComponent<Outline>();
+                _outline = _currentDisplayObject.GetComponent<Outline>(); // Get the outline for the current display object
+                StartCoroutine(OutlineHelper.InitializeOutline(_outline));
             }
-        }
-
-        public void OnSelect(bool v)
-        {
-            if (currentState == CropState.Harvest)
-                _outline.enabled = v;
         }
 
         /// <summary>
@@ -131,6 +131,21 @@ namespace Farming
             Destroy(gameObject);
         }
 
+        public void Interact()
+        {
+            InventoryManager.Instance.Pickup(YieldItem);
+            Harvest();
+        }
+
+        public InteractableType GetInteractableType()
+        {
+            return InteractableType.Crop;
+        }
+        public void OnSelect(bool v)
+        {
+            if (currentState == CropState.Harvest && _outline != null)
+                _outline.enabled = v;
+        }
 
     }
 

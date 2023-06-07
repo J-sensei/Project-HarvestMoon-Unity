@@ -120,11 +120,16 @@ namespace Inventory
             InventoryUIManager.Instance.UpdateInventoryUI();
         }
 
+        /// <summary>
+        /// Check current item type of the current holding item
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public bool CheckHoldingItemType(ItemType type)
         {
-            if (_holdingItem == null) return false;
+            if (_holdingItem == null) return false; // False if player not holding anything
 
-            if (_holdingItem.type == type) 
+            if (_holdingItem.type == type) // Type is matching
                 return true;
             else 
                 return false;

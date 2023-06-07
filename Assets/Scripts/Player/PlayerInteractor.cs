@@ -5,37 +5,32 @@ using UnityEngine;
 
 namespace Player
 {
+    /*
+     * Interactor is using raycast shooting down from top to bottom to detect any item has interactable components to it
+     * Interactor has its own layer, any layer physics disable to the interactor will not work!
+     * Check Unity Editor to see if the physics between interactor and the interactable object has proper physics layer
+     */
     /// <summary>
     /// Enable interaction between player and interactable objects
     /// </summary>
     public class PlayerInteractor : MonoBehaviour
     {
+        [Header("Configuration")]
         [Tooltip("Valid maximum distance for the ray cast to happen")]
         [SerializeField] private float maxInteractionRay = 1f;
+
+
+        [Header("Debug")]
         [Tooltip("Show debug properties fro the player interactor")]
         [SerializeField] private bool debug = false;
+        /// <summary>
+        /// Line color for the debug ray
+        /// </summary>
         private Color _debugLineColor = Color.white;
 
-        #region Farm Interaction
-
-        private FarmLand _selectedFarmLand;
-        /// <summary>
-        /// Current selected farm land
-        /// </summary>
-        public FarmLand SelectedFarmLand { get { return _selectedFarmLand; } }
-        /// <summary>
-        /// Detect whether player is selecting any interactable object
-        /// </summary>
         public bool Selecting { get; private set; }
-        #endregion
 
-        #region Item Interactioin
-        private PickableItem _selectedItem;
-        public PickableItem SelectedItem { get { return _selectedItem; } }
-        private Crop _selectedCrop;
-        public Crop SelectedCrop { get { return _selectedCrop; } }
-
-        // TODO: Future will use this interface as common property
+        #region Item Interaction
         private IInteractable _selectedInteractable;
         public IInteractable SelectedtInteractable { get { return _selectedInteractable; } }
         #endregion
@@ -45,203 +40,71 @@ namespace Player
             RaycastHit hit;
             if(Physics.Raycast(transform.position, Vector3.down, out hit, maxInteractionRay))
             {
-                Debug.Log("[Player Interactor] Hit: " + hit.collider.name);
+                //Debug.Log("[Player Interactor] Hit: " + hit.collider.name);
                 OnInteractableHit(hit);
             }
             else
             {
-                _debugLineColor = Color.white;
+                Deselect();
             }
 
             if (debug)
             {
-                //Debug.DrawLine(transform.position, transform.position + (Vector3.down * maxInteractionRay), _debugLineColor, 0f, false);
+                // Draw ray to show how the ray cast work
                 Debug.DrawRay(transform.position, Vector3.down * maxInteractionRay, _debugLineColor, 0f, false);
             }
         }
 
+        /// <summary>
+        /// Call when raycast is hitting something
+        /// </summary>
+        /// <param name="hit"></param>
         private void OnInteractableHit(RaycastHit hit)
         {
-            _debugLineColor = Color.red;
+            Debug.Log("Hit: " + hit.collider.name);
+            _debugLineColor = Color.red; // Update the color to red to indicate something is selected for debug line
             Collider collider = hit.collider; // Get the collider reference
 
-            // TODO: Detect other interactable item
-            if(collider.TryGetComponent<PickableItem>(out PickableItem item))
-            {
-                OnSelectItem(item);
-                Selecting = true;
-
-                // Bad coding
-                // TODO: Replace everything with IInteracrable interface
-                if (_selectedFarmLand != null)
-                {
-                    _selectedFarmLand.OnSelect(false);
-                    _selectedFarmLand = null;
-                }
-
-                if (_selectedCrop != null)
-                {
-                    _selectedCrop.OnSelect(false);
-                    _selectedCrop = null;
-                }
-                if (_selectedInteractable != null)
-                {
-                    _selectedInteractable.OnSelect(false);
-                    _selectedInteractable = null;
-                }
-            }
-            else if (collider.TryGetComponent<Crop>(out Crop crop))
-            {
-                OnSelectCrop(crop);
-                Selecting = true;
-
-                if (_selectedFarmLand != null)
-                {
-                    _selectedFarmLand.OnSelect(false);
-                    _selectedFarmLand = null;
-                }
-
-                if (_selectedItem != null)
-                {
-                    _selectedItem.OnSelect(false);
-                    _selectedItem = null;
-                }
-                if (_selectedInteractable != null)
-                {
-                    _selectedInteractable.OnSelect(false);
-                    _selectedInteractable = null;
-                }
-            }
-            else if(collider.TryGetComponent<FarmLand>(out FarmLand farm)) // Detect farm land
-            {
-                //Debug.Log("Detecting Land: " + farm.name + " State: " + farm.CurrentState.ToString());
-                OnSelectFarmLand(farm);
-                Selecting = true;
-
-                if (_selectedItem != null)
-                {
-                    _selectedItem.OnSelect(false);
-                    _selectedItem = null;
-                }
-
-                if (_selectedCrop != null)
-                {
-                    _selectedCrop.OnSelect(false);
-                    _selectedCrop = null;
-                }
-                if (_selectedInteractable != null)
-                {
-                    _selectedInteractable.OnSelect(false);
-                    _selectedInteractable = null;
-                }
-            } 
-            else if(collider.TryGetComponent(out IInteractable interactable))
+            // Hitting a interactable object
+            if (collider.TryGetComponent(out IInteractable interactable))
             {
                 OnSelectInteractable(interactable);
                 Selecting = true;
-
-                if (_selectedFarmLand != null)
-                {
-                    _selectedFarmLand.OnSelect(false);
-                    _selectedFarmLand = null;
-                }
-
-                if (_selectedItem != null)
-                {
-                    _selectedItem.OnSelect(false);
-                    _selectedItem = null;
-                }
-
-                if (_selectedCrop != null)
-                {
-                    _selectedCrop.OnSelect(false);
-                    _selectedCrop = null;
-                }
             }
-            else
+            else // Not hitting anything valid item
             {
-                // As player not step on the farm land, if there is any farm land should set to null
-                if(_selectedFarmLand != null)
-                {
-                    _selectedFarmLand.OnSelect(false);
-                    _selectedFarmLand = null;
-                }
-
-                if(_selectedItem != null)
-                {
-                    _selectedItem.OnSelect(false);
-                    _selectedItem = null;
-                }
-
-                if(_selectedCrop != null)
-                {
-                    _selectedCrop.OnSelect(false);
-                    _selectedCrop = null;
-                }
-
-                if(_selectedInteractable != null)
-                {
-                    _selectedInteractable.OnSelect(false);
-                    _selectedInteractable = null;
-                }
-
-                Selecting = false;
-                _debugLineColor = Color.white;
+                Deselect();
             }
         }
 
         /// <summary>
-        /// Toggle selection of the farm land
+        /// Deselect interactable object
         /// </summary>
-        /// <param name="land"></param>
-        private void OnSelectFarmLand(FarmLand land)
+        private void Deselect()
         {
-            // If its not null, need to deselect the previous farm land
-            if(_selectedFarmLand != null)
+            if (_selectedInteractable != null)
             {
-                _selectedFarmLand.OnSelect(false);
+                _selectedInteractable.OnSelect(false);
+                _selectedInteractable = null;
             }
 
-            // Set the farm land
-            _selectedFarmLand = land;
-            _selectedFarmLand.OnSelect(true);
+            Selecting = false;
+            _debugLineColor = Color.white;
         }
 
-        private void OnSelectItem(PickableItem item)
-        {
-            // If its not null, need to deselect the previous item
-            if (_selectedItem != null)
-            {
-                _selectedItem.OnSelect(false);
-            }
-
-            // Set the item
-            _selectedItem = item;
-            _selectedItem.OnSelect(true);
-        }
-
-        private void OnSelectCrop(Crop item)
-        {
-            // If its not null, need to deselect the previous crop
-            if (_selectedCrop != null)
-            {
-                _selectedCrop.OnSelect(false);
-            }
-
-            // Set the crop
-            _selectedCrop = item;
-            _selectedCrop.OnSelect(true);
-        }
-
+        /// <summary>
+        /// Select interactable objects
+        /// </summary>
+        /// <param name="interactable">Object that inherites IInteractable</param>
         private void OnSelectInteractable(IInteractable interactable)
         {
-            // If its not null, need to deselect the previous interactable
+            // If its not null, deselect the previous interactable
             if (_selectedInteractable != null)
             {
                 _selectedInteractable.OnSelect(false);
             }
 
-            // Set the interactable
+            // Set the new interactable object
             _selectedInteractable = interactable;
             _selectedInteractable.OnSelect(true);
         }

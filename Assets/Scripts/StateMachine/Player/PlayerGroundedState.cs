@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace StateMachine.Player
 {
+    /// <summary>
+    /// State when player standing on the ground
+    /// </summary>
     public class PlayerGroundedState : PlayerBaseState
     {
         public PlayerGroundedState(PlayerStateMachine context, PlayerStateFactory stateFactory) : base(context, stateFactory)
@@ -38,7 +41,6 @@ namespace StateMachine.Player
 
         public override void InitializeSubState()
         {
-
             PlayerBaseState state;
             if (this.Context.UsingTool)
             {
@@ -61,7 +63,8 @@ namespace StateMachine.Player
                 }
             }
 
-
+            // Bug found this is not call when not explicitly calling this,
+            // just called the sub state enter to prevent sub state not enter!
             state.Enter(); // This to make sure the sub state enter can be call
             this.SetSubState(state);
         }
@@ -79,82 +82,86 @@ namespace StateMachine.Player
             } 
             else if(!this.Context.CharacterController.isGrounded)
             {
-                this.SwitchState(this.StateFactory.Fall());
+                this.SwitchState(this.StateFactory.Fall()); // Switch to fall state when not grounded
             }
             else if(this.Context.PickupInputPress) // Pick item is near the player 
             {
                 this.Context.PickupInputPress = false; // Set to false to make sure it only trigger once
-
-                // TODO: Switch to lift state as player gonna lifting something is valid
-                Debug.Log("Player request pickup");
-                if(this.Context.PlayerInteractor.SelectedItem != null)
-                {
-                    Debug.Log("Player pickup: " + this.Context.PlayerInteractor.SelectedItem.name);
-                    PickableItem item = this.Context.PlayerInteractor.SelectedItem;
-                    InventoryManager.Instance.Pickup(item.ItemData); // Updatee the holding item
-                    item.OnPickup(); // Destroy it when picked up
-                    // TODO: Go to lift state
-                    // If its item then lift
-                    if(InventoryManager.Instance.CheckHoldingItemType(ItemType.Item))
-                    {
-                        this.Context.PickingItem = true;
-                        this.SwitchState(this.StateFactory.Lift());
-                    }
-                    // Else just equip the tool
-                }
-                else if(this.Context.PlayerInteractor.SelectedCrop != null)
-                {
-                    // Pickup the item for crop, harvest the crop!
-                    Crop crop = this.Context.PlayerInteractor.SelectedCrop;
-                    InventoryManager.Instance.Pickup(crop.YieldItem);
-                    crop.Harvest();
-
-                    // Translate to lift state
-                    this.Context.PickingItem = true;
-                    this.SwitchState(this.StateFactory.Lift());
-                }
+                OnPickupPress(this.Context.PlayerInteractor.SelectedtInteractable);
             }
             else if (this.Context.InteractInputPress)
             {
                 this.Context.InteractInputPress = false; // Set to false to make sure it only trigger once
-
-                // TODO: Interact with corresponding
-                Debug.Log("Player request interact");
-                if(this.Context.PlayerInteractor.SelectedFarmLand != null)
-                {
-                    // This will enter tool event
-                    // The farm method will call when animation is finish playing
-                    ItemData item = InventoryManager.Instance.HoldingItem;
-                    if (item != null && item is ToolData)
-                    {
-                        FarmLand farm = this.Context.PlayerInteractor.SelectedFarmLand;
-                        ToolData toolData = (ToolData)item;
-
-                        // Check if the farm can be interact by the player tool
-                        if(farm.CheckTool(toolData.toolType))
-                        {
-                            this.Context.ToolEvent.AddListener(Farm);                   
-                        }
-                        this.Context.UsingTool = true; // This boolean will change to PlayerToolUsingState
-                    }
-                    else if(item != null && item is SeedData)
-                    {
-                        this.Context.ToolEvent.AddListener(Plant);
-                        this.Context.UsingTool = true; // This boolean will change to PlayerToolUsingState
-                    }
-                }
-                // TODO: other interaction like bed
-                else if (this.Context.PlayerInteractor.SelectedtInteractable != null)
-                {
-                    IInteractable interactable = this.Context.PlayerInteractor.SelectedtInteractable;
-                    interactable.Interact();
-                }
+                OnInteractPress(this.Context.PlayerInteractor.SelectedtInteractable);
             }
         }
 
-        private void Plant()
+        /// <summary>
+        /// Check when player press pickup key
+        /// </summary>
+        private void OnPickupPress(IInteractable interactable)
         {
-            FarmLand farm = this.Context.PlayerInteractor.SelectedFarmLand;
+            if (interactable == null) return; // No need to do anything if interactable object is null
+
+            switch (interactable.GetInteractableType())
+            {
+                case InteractableType.Tool: case InteractableType.Item:
+                    interactable.Interact();
+                    if (interactable.GetInteractableType() == InteractableType.Item)
+                    {
+                        this.Context.PickingItem = true;
+                        this.SwitchState(this.StateFactory.Lift());
+                    }
+                    break;
+                case InteractableType.Crop:
+                    interactable.Interact();
+
+                    // Translate to lift state
+                    this.Context.PickingItem = true;
+                    this.SwitchState(this.StateFactory.Lift());
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Check when player press interact key
+        /// </summary>
+        private void OnInteractPress(IInteractable interactable)
+        {
+            if (interactable == null) return; // No need to do anything if interactable object is null
+
+            switch (interactable.GetInteractableType())
+            {
+                case InteractableType.Farm:
+                    ItemData item = InventoryManager.Instance.HoldingItem; // Get current holding item data
+                    // Check what item is currently holding
+                    if (item != null && item is ToolData)
+                    {
+                        FarmLand farm = this.Context.PlayerInteractor.SelectedtInteractable as FarmLand;
+                        ToolData toolData = (ToolData)item;
+
+                        // Check if the farm can be interact by the player tool
+                        if (farm.CheckTool(toolData.toolType))
+                        {
+                            this.Context.ToolEvent.AddListener(FarmEvent);
+                        }
+                        this.Context.UsingTool = true; // This boolean will change to PlayerToolUsingState
+                    }
+                    else if (item != null && item is SeedData)
+                    {
+                        this.Context.ToolEvent.AddListener(PlantEvent);
+                        this.Context.UsingTool = true; // This boolean will change to PlayerToolUsingState
+                    }
+                    break;
+                case InteractableType.Environmental:
+                    interactable.Interact(); // Use the environmental object
+                    break;
+            }
+        }
+
+        private void PlantEvent()
+        {
+            FarmLand farm = this.Context.PlayerInteractor.SelectedtInteractable as FarmLand;
             ItemData item = InventoryManager.Instance.HoldingItem;
             SeedData seedData = (SeedData)item;
             if (seedData != null)
@@ -166,13 +173,10 @@ namespace StateMachine.Player
                 Debug.LogWarning("[Player Ground State] Unable to cast item into seed data!");
             }
         }
-
-        /// <summary>
-        /// Change the farm state
-        /// </summary>
-        private void Farm()
+        
+        private void FarmEvent()
         {
-            FarmLand farm = this.Context.PlayerInteractor.SelectedFarmLand;
+            FarmLand farm = this.Context.PlayerInteractor.SelectedtInteractable as FarmLand;
             ItemData item = InventoryManager.Instance.HoldingItem;
             if (item != null && item is ToolData)
             {
