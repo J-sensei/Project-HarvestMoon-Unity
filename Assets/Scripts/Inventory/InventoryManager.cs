@@ -1,10 +1,10 @@
 using Inventory.UI;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Utilities;
 
 namespace Inventory
 {
+    // TODO: Remove tools slot just items slot is enough
     /// <summary>
     /// Manage all the items available that player holds
     /// </summary>
@@ -13,27 +13,18 @@ namespace Inventory
         protected override void AwakeSingleton()
         {
             // If there is no items set, then initialize it all empty
-            if(_tools.Length == 0)
-                _tools = new ItemData[toolsSlot];
-
             if(_items.Length == 0)
                 _items = new ItemData[itemSlot];
         }
 
         [Header("Inventory Slot")]
-        [Tooltip("Maximum tools player can holds")]
-        [SerializeField] private int toolsSlot = 8;
         [Tooltip("Maximum items player can holds")]
         [SerializeField] private int itemSlot = 8;
 
         [Header("Inventory")]
-        [SerializeField] private ItemData[] _tools;
+        [Tooltip("Items stored in the inventory")]
         [SerializeField] private ItemData[] _items;
 
-        /// <summary>
-        /// Tools that player is holding
-        /// </summary>
-        public ItemData[] Tools { get { return _tools; } }
         /// <summary>
         /// Items that player is holding
         /// </summary>
@@ -55,46 +46,56 @@ namespace Inventory
         /// <param name="itemType">Which type of the slot should be interact</param>
         public void Equip(int slotId, ItemType itemType)
         {
-            if(itemType == ItemType.Item)
+            // Cache
+            ItemData itemToEquip = InventoryManager.Instance._items[slotId];
+            _items[slotId] = null; // Take out from the inventory
+
+            // Replace the holding item to the corresponding inventory id if the type is same
+            // Else just put it back to corresponding inventory and take the item out from current inventory
+            if (_holdingItem != null)
             {
-                // Cache
-                ItemData itemToEquip = InventoryManager.Instance._items[slotId];
-
-                // Replace the holding item to the corresponding inventory id if the type is same
-                // Else just put it back to corresponding inventory and take the item out from current inventory
-                if (_holdingItem != null && _holdingItem.type != ItemType.Item)
-                {
-                    PutBackItem(_holdingItem); // Put back to its corresponding inventory
-                    _items[slotId] = null; // Take out from the inventory
-                }
-                else
-                {
-                    _items[slotId] = _holdingItem; // Replace if the item type is same
-                }
-
-                // Change holding slot to inventory slot
-                _holdingItem = itemToEquip;
+                PutBackItem(_holdingItem); // Put back to its corresponding inventory
             }
-            else
-            {
-                // Cache
-                ItemData itemToEquip = InventoryManager.Instance._tools[slotId];
+
+            // Change holding slot to inventory slot
+            _holdingItem = itemToEquip;
+
+            //if (itemType == ItemType.Item)
+            //{
+            //    // Cache
+            //    ItemData itemToEquip = InventoryManager.Instance._items[slotId];
+
+            //    // Replace the holding item to the corresponding inventory id if the type is same
+            //    // Else just put it back to corresponding inventory and take the item out from current inventory
+            //    if (_holdingItem != null)
+            //    {
+            //        PutBackItem(_holdingItem); // Put back to its corresponding inventory
+            //        _items[slotId] = null; // Take out from the inventory
+            //    }
+
+            //    // Change holding slot to inventory slot
+            //    _holdingItem = itemToEquip;
+            //}
+            //else
+            //{
+            //    // Cache
+            //    ItemData itemToEquip = InventoryManager.Instance._tools[slotId];
 
 
-                if (_holdingItem != null && _holdingItem.type != ItemType.Tool)
-                {
-                    PutBackItem(_holdingItem); // Put back to its own item
-                    _tools[slotId] = null;
-                }
-                else
-                {
-                    _tools[slotId] = _holdingItem;
-                }
+            //    if (_holdingItem != null && _holdingItem.type != ItemType.Tool)
+            //    {
+            //        PutBackItem(_holdingItem); // Put back to its own item
+            //        _tools[slotId] = null;
+            //    }
+            //    else
+            //    {
+            //        _tools[slotId] = _holdingItem;
+            //    }
 
 
-                // Change holding slot to inventory slot
-                _holdingItem = itemToEquip;
-            }
+            //    // Change holding slot to inventory slot
+            //    _holdingItem = itemToEquip;
+            //}
 
             // Update changes of the UI
             InventoryUIManager.Instance.UpdateInventoryUI();
@@ -158,28 +159,25 @@ namespace Inventory
         private bool PutBackItem(ItemData item)
         {
             if (item == null) return false;
-            if(item.type == ItemType.Item)
+            for(int i = 0; i < _items.Length; i++)
             {
-                for(int i = 0; i < _items.Length; i++)
+                if (_items[i] == null)
                 {
-                    if (_items[i] == null)
-                    {
-                        _items[i] = item;
-                        return true;
-                    }
+                    _items[i] = item;
+                    return true;
                 }
             }
-            else
-            {
-                for (int i = 0; i < _tools.Length; i++)
-                {
-                    if (_tools[i] == null)
-                    {
-                        _tools[i] = item;
-                        return true;
-                    }
-                }
-            }
+            //else
+            //{
+            //    for (int i = 0; i < _tools.Length; i++)
+            //    {
+            //        if (_tools[i] == null)
+            //        {
+            //            _tools[i] = item;
+            //            return true;
+            //        }
+            //    }
+            //}
 
             return false;
         }

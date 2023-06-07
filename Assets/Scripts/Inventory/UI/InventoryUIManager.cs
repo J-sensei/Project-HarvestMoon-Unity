@@ -11,7 +11,7 @@ namespace Inventory.UI
     public class InventoryUIManager : Singleton<InventoryUIManager>
     {
         [Header("Inventory System")]
-        [Tooltip("Game object that holds multiple inventory slot of tools")]
+        [Tooltip("Game object that holds multiple inventory slot of tools (Deprecated, put all item in item holder)")]
         [SerializeField] private GameObject toolHolder;
         [Tooltip("Game object that holds multiple inventory slot of items")]
         [SerializeField] private GameObject itemHolder;
@@ -34,12 +34,15 @@ namespace Inventory.UI
         [Tooltip("Text to display the item description")]
         [SerializeField] private TMP_Text itemDescriptionText;
 
+        /// <summary>
+        /// Controls map
+        /// </summary>
         private InputControls _inputControls;
 
         protected override void AwakeSingleton()
         {
             // Initialize the slots
-            _toolSlots = toolHolder.GetComponentsInChildren<InventorySlot>();
+            //_toolSlots = toolHolder.GetComponentsInChildren<InventorySlot>();
             _itemSlots = itemHolder.GetComponentsInChildren<InventorySlot>();
 
             if(equipInventorySlot == null)
@@ -72,9 +75,9 @@ namespace Inventory.UI
         private void Start()
         {
             UpdateInventoryUI();
-            for(int i = 0; i < _toolSlots.Length; i++)
+            for(int i = 0; i < _itemSlots.Length; i++)
             {
-                _toolSlots[i].SetId(i);
+                //_toolSlots[i].SetId(i);
                 _itemSlots[i].SetId(i);
             }
             ToggleInventory(false);
@@ -86,11 +89,11 @@ namespace Inventory.UI
         public void UpdateInventoryUI()
         {
             // Get the item data
-            ItemData[] tools = InventoryManager.Instance.Tools;
+            //ItemData[] tools = InventoryManager.Instance.Tools;
             ItemData[] items = InventoryManager.Instance.Items;
 
             // Update the inventory slot using the items data
-            UpdateInventory(tools, _toolSlots);
+            //UpdateInventory(tools, _toolSlots);
             UpdateInventory(items, _itemSlots);
 
             // Update Equip Item
@@ -116,6 +119,7 @@ namespace Inventory.UI
         private void UpdateInventory(ItemData[] data, InventorySlot[] slots)
         {
             // Assume that item data and slot has same length, this will not give any trouble
+            Debug.Log(data + "    " + slots);
             for(int i = 0; i < slots.Length; i++)
             {
                 slots[i].Display(data[i]); // Update the item display in the inventory slot
@@ -129,7 +133,7 @@ namespace Inventory.UI
         public void ToggleInventory(bool v)
         {
             // Toggle inventory
-            gameObject.SetActive(v);
+            GameMenu.Instance.ToggleGameMenu(v);
 
             if (v)
             {
@@ -139,7 +143,7 @@ namespace Inventory.UI
 
         public void ToggleInventory()
         {
-            ToggleInventory(!gameObject.activeSelf);
+            ToggleInventory(!GameMenu.Instance.gameObject.activeSelf);
         }
 
         /// <summary>
@@ -148,6 +152,7 @@ namespace Inventory.UI
         /// <param name="data"></param>
         public void UpdateItemInfo(ItemData data)
         {
+            return;
             if(data == null)
             {
                 itemNameText.text = "";

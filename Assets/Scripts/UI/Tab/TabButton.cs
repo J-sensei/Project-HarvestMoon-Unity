@@ -15,7 +15,7 @@ namespace UI.Tab
         public UnityEvent OnTabSelected;
         public UnityEvent OnTabDeselected;
 
-        private void Start()
+        private void Awake()
         {
             if(tabGroup == null) tabGroup = GetComponentInParent<TabGroup>();
             if (background == null) background = GetComponent<Image>();

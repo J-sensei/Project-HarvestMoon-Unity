@@ -30,14 +30,30 @@ namespace Inventory.UI
         [SerializeField] private ItemType itemType = ItemType.Tool;
 
         [Tooltip("Reference to the image responsible to display the item thumbnail")]
+        [SerializeField] private Image background;
         [SerializeField] private Image image;
         [Tooltip("Use to search for item thumbnail object is its null")]
         [SerializeField] private string itemThumbnailName = "Item Thumbnail";
+
+        [Header("Color")]
+        [SerializeField] private Color idleColor = Color.white;
+        [SerializeField] private Color hoverColor = Color.white;
+        [SerializeField] private Color activeColor = Color.white;
+
+        [Header("UI Tween")]
+        [SerializeField] private float hoverScaleMultiplier = 1.35f;
+        private Vector3 _scale;
+
         private void Awake()
         {
             // Try to get the item thumbnail children image reference if its null
             if(image == null)
                 image = transform.Find(itemThumbnailName).GetComponent<Image>();
+
+            if (background == null)
+                background = GetComponent<Image>();
+
+            _scale = transform.localScale;
         }
 
         /// <summary>
@@ -78,12 +94,20 @@ namespace Inventory.UI
         {
             if(mouseEvent)
                 InventoryUIManager.Instance.UpdateItemInfo(_item);
+
+            background.color = hoverColor;
+            image.color = hoverColor;
+            transform.localScale = _scale * hoverScaleMultiplier;
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             if(mouseEvent)
                 InventoryUIManager.Instance.UpdateItemInfo(null);
+
+            background.color = idleColor;
+            image.color = idleColor;
+            transform.localScale = _scale;
         }
 
         public virtual void OnPointerClick(PointerEventData eventData)

@@ -18,6 +18,17 @@ namespace UI.Tab
 
         private TabButton _selectedTab;
 
+        private void Start()
+        {
+            for(int i = 0; i < contents.Count; i++)
+            {
+                if (contents[i].activeSelf)
+                {
+                    OnTabSelect(_tabButtons[i]);
+                }
+            }
+        }
+
         public void Add(TabButton button)
         {
             if(_tabButtons == null)

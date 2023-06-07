@@ -61,7 +61,7 @@ namespace Player
         /// <param name="hit"></param>
         private void OnInteractableHit(RaycastHit hit)
         {
-            Debug.Log("Hit: " + hit.collider.name);
+            //Debug.Log("Hit: " + hit.collider.name);
             _debugLineColor = Color.red; // Update the color to red to indicate something is selected for debug line
             Collider collider = hit.collider; // Get the collider reference
 
