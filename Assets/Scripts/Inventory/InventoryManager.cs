@@ -42,7 +42,7 @@ namespace Inventory
         /// <summary>
         /// Item holding by the player
         /// </summary>
-        [SerializeField] private ItemData _holdingItem;
+        [SerializeField] private ItemData _holdingItem; // Exposed for debug purposes
         /// <summary>
         /// Item holding by the player
         /// </summary>

@@ -10,30 +10,44 @@ namespace Player
     /// </summary>
     public class PlayerEquipController : MonoBehaviour
     {
+        [Header("State Machine")]
+        [Tooltip("Player State Machine reference to allow switching state")]
         [SerializeField] private PlayerStateMachine player;
-        [Tooltip("Attach Point for the tools on hand")]
+
+        [Header("Transform points")]
+        [Tooltip("Attach Point holding a tool in a hand")]
         [SerializeField] private Transform attachPoint;
+        [Tooltip("Attach point to lift the item")]
         [SerializeField] private Transform itemAttachPoint;
 
         /// <summary>
         /// Current game object that is instantiate and attached to the player
         /// </summary>
-        private GameObject _currentTool;
+        private GameObject _currentItem;
         /// <summary>
-        /// Current name of the item
+        /// Current name of the item (Use to compare and detect item changes)
         /// </summary>
         private string _currentItemName;
+
         private void Update()
         {
-            // Check holding item
+            // Check data for current holding item
             ItemData data = InventoryManager.Instance.HoldingItem;
-            if (data != null)
+
+            // Player is not holding anything
+            if(data == null)
             {
+                DeleteTool(); // Delete holding item if any
+                return;
+            }
+
+            //if (data != null)
+            //{
                 /**
                  * If current item hold is null then we should instantiate it
                  * If different time is switch to hand, we also need to sinatantiate the new item on player hand
                  */
-                if ((_currentTool == null || !_currentItemName.Equals(data.name)))
+                if ((_currentItem == null || !_currentItemName.Equals(data.name)))
                 {
                     // TODO: Add seed and item data
                     // If the data is a tool
@@ -41,11 +55,11 @@ namespace Player
                     {
                         if (data.itemPrefab != null)
                         {
-                            if (_currentTool != null) DeleteTool(); // IF there is any item just delete it
+                            if (_currentItem != null) DeleteTool(); // IF there is any item just delete it
 
-                            _currentTool = Instantiate(data.itemPrefab, attachPoint);
-                            _currentTool.GetComponent<PickableItem>().OnHold();
-                            _currentTool.transform.parent = _currentTool.transform;
+                            _currentItem = Instantiate(data.itemPrefab, attachPoint);
+                            _currentItem.GetComponent<PickableItem>().OnHold();
+                            _currentItem.transform.parent = _currentItem.transform;
                             _currentItemName = data.name;
                         }
                         else
@@ -57,12 +71,12 @@ namespace Player
                     {
                         if(data.itemPrefab != null)
                         {
-                            if (_currentTool != null) DeleteTool(); // IF there is any item just delete it
+                            if (_currentItem != null) DeleteTool(); // IF there is any item just delete it
 
                             // TODO: Translate player to lift state
-                            _currentTool = Instantiate(data.itemPrefab, itemAttachPoint);
-                            _currentTool.GetComponent<PickableItem>().OnHold();
-                            _currentTool.transform.parent = _currentTool.transform;
+                            _currentItem = Instantiate(data.itemPrefab, itemAttachPoint);
+                            _currentItem.GetComponent<PickableItem>().OnHold();
+                            _currentItem.transform.parent = _currentItem.transform;
                             _currentItemName = data.name;
 
                             // Transition to lift state
@@ -75,30 +89,33 @@ namespace Player
                         }
                     }
                 }
-            }
-            else
-            {
-                DeleteTool();
-            }
+            //}
+            //else
+            //{
+            //    DeleteTool();
+            //}
         }
 
+        /// <summary>
+        /// Delete current holding item if its not null
+        /// </summary>
         private void DeleteTool()
         {
-            if (_currentTool != null)
+            if (_currentItem != null)
             {
-                Destroy(_currentTool.gameObject);
-                _currentTool = null;
+                Destroy(_currentItem.gameObject);
+                _currentItem = null;
                 _currentItemName = "";
             }
         }
 
         public void DetachItem()
         {
-            if(_currentTool != null)
+            if(_currentItem != null)
             {
-                _currentTool.GetComponent<PickableItem>().OnThrow();
-                _currentTool.transform.parent = null;
-                _currentTool = null;
+                _currentItem.GetComponent<PickableItem>().OnThrow();
+                _currentItem.transform.parent = null;
+                _currentItem = null;
                 InventoryManager.Instance.Unload();
             }
             else

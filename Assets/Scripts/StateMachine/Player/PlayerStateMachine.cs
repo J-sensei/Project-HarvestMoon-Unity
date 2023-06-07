@@ -1,9 +1,6 @@
 using Inventory.UI;
 using Item;
 using Player;
-using System.Collections;
-using System.Collections.Generic;
-using TopDownCamera;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -17,6 +14,9 @@ namespace StateMachine.Player
     {
         #region Animation
         private int _fallingAnimationHash;
+        /// <summary>
+        /// Hash value for falling animation
+        /// </summary>
         public int FallingAnimationHash { get { return _fallingAnimationHash; } }
         private int _walkingAnimationHash;
         /// <summary>
@@ -33,8 +33,17 @@ namespace StateMachine.Player
         /// Hash value for jumping animation
         /// </summary>
         public int JumpingAnimationHash { get { return _jumpingAnimationHash; } }
+        /// <summary>
+        /// Hash value for using tool animation
+        /// </summary>
         public int ToolAnimationHash { get; private set; }
+        /// <summary>
+        /// Hash value for lifting up animation
+        /// </summary>
         public int LiftingAnimationHash { get; private set; }
+        /// <summary>
+        /// Hash value for lifting down animation
+        /// </summary>
         public int LiftFinishAnimationHash { get; private set; }
         #endregion
 
@@ -58,8 +67,17 @@ namespace StateMachine.Player
         /// Player animator reference
         /// </summary>
         public Animator Animator { get { return _animator; } }
+        /// <summary>
+        /// Control the audio of the player (Using the audio source attached to the player)
+        /// </summary>
         public PlayerAudioController AudioController { get; private set; }
+        /// <summary>
+        /// Control the particle effects of the player
+        /// </summary>
         public PlayerParticleController ParticleController { get; private set; }
+        /// <summary>
+        /// Control the equip behavior
+        /// </summary>
         public PlayerEquipController EquipController { get; private set; }
 
         /// <summary>
@@ -212,6 +230,9 @@ namespace StateMachine.Player
         /// Gravity force pulling down the player
         /// </summary>
         public float Gravity { get { return _gravity; } }
+        /// <summary>
+        /// Gravity changes when falling while jumpping
+        /// </summary>
         public float JumpGravity { get; private set; }
 
         ///// <summary>
@@ -272,21 +293,24 @@ namespace StateMachine.Player
         /// Player is using tool
         /// </summary>
         public bool UsingTool { get; set; } = false;
-        /// <summary>
-        /// Event to fire when tool is using
-        /// </summary>
+        [Tooltip("Event to fire when tool is using")]
         public UnityEvent ToolEvent;
         public bool PickingItem { get; set; } = false;
         #endregion
 
         #region State Machine
+        /// <summary>
+        /// Current state reference
+        /// </summary>
         private PlayerBaseState _currentState;
         private PlayerStateFactory _stateFactory;
         /// <summary>
         /// Allow access to state factory to change the state
         /// </summary>
         public PlayerStateFactory StateFactory { get { return _stateFactory; } }
-
+        /// <summary>
+        /// Current state of the player
+        /// </summary>
         public PlayerBaseState CurrentState
         {
             get { return _currentState; }
@@ -305,8 +329,7 @@ namespace StateMachine.Player
         /// <summary>
         /// Switch state function allow to modify the state outside the state machine itself
         /// </summary>
-        /// <param name="state"></param>
-
+        /// <param name="state">State that wish to switch</param>
         public void SwitchState(PlayerBaseState state)
         {
             _currentState.Switch(state);
@@ -318,6 +341,7 @@ namespace StateMachine.Player
             _inputControls = new(); // Initialize input controls (Input asset created by the developer)
 
             // Subcribe input events to the input controls
+            #region Input Subscription
             _inputControls.CharacterControls.Move.started += OnInputMove;
             _inputControls.CharacterControls.Move.canceled += OnInputMove;
             _inputControls.CharacterControls.Move.performed += OnInputMove;
@@ -333,8 +357,7 @@ namespace StateMachine.Player
 
             _inputControls.CharacterControls.Interact.started += OnInteract;
             _inputControls.CharacterControls.Interact.canceled += OnInteract;
-
-            _inputControls.UI.Inventory.started += ToggleInventory;
+            #endregion
 
             // Get component
             _characterController = GetComponent<CharacterController>();
@@ -346,6 +369,7 @@ namespace StateMachine.Player
             EquipController = GetComponentInChildren<PlayerEquipController>();
 
             // Define animation hash
+            #region Animation Hash Values
             _walkingAnimationHash = Animator.StringToHash("Walking");
             _runningAnimationHash = Animator.StringToHash("Running");
             _jumpingAnimationHash = Animator.StringToHash("Jumping");
@@ -353,12 +377,13 @@ namespace StateMachine.Player
             ToolAnimationHash = Animator.StringToHash("Tool");
             LiftingAnimationHash = Animator.StringToHash("Lifting");
             LiftFinishAnimationHash = Animator.StringToHash("LiftFinish");
+            #endregion
 
             InitializeJumpValues(); // Initialize jump variabels
 
             // Initialize state machine
             _stateFactory = new PlayerStateFactory(this);
-            _currentState = _stateFactory.Grounded();
+            _currentState = _stateFactory.Grounded(); // Initial state is grounded state
             _currentState.Enter();
         }
 
@@ -379,12 +404,12 @@ namespace StateMachine.Player
 
         private void OnEnable()
         {
-            _inputControls.Enable(); // Enable to listen to the events
+            _inputControls.CharacterControls.Enable(); // Enable to listen to the events
         }
 
         private void OnDisable()
         {
-            _inputControls.Disable(); // Disable when object is not active to not listen to any events
+            _inputControls.CharacterControls.Disable(); // Disable when object is not active to not listen to any events
         }
 
         private void InitializeJumpValues()
@@ -395,7 +420,7 @@ namespace StateMachine.Player
         }
 
         /// <summary>
-        /// Move the playe relative to the camera position
+        /// Update the current movement to move the playe relative to the camera position
         /// </summary>
         private void OnRotate()
         {
@@ -412,6 +437,24 @@ namespace StateMachine.Player
             Vector3 move = forwardMove + rightMove;
 
             _currentMovement = new Vector3(move.x, _currentMovement.y, move.z); // Update the current movement
+        }
+
+        /// <summary>
+        /// Handle player rotation when moving
+        /// </summary>
+        private void PlayerRotation()
+        {
+            Vector3 posLookAt; // Look at position
+
+            // Change the position to look at
+            posLookAt = new Vector3(_currentMovement.x, 0f, _currentMovement.z);
+
+            Quaternion currentRot = transform.rotation;
+            if (_moveInputPress)
+            {
+                Quaternion targetRot = Quaternion.LookRotation(posLookAt);
+                transform.rotation = Quaternion.Slerp(currentRot, targetRot, _rotationFactor * Time.deltaTime);
+            }
         }
 
         #region New Input System callback
@@ -451,29 +494,6 @@ namespace StateMachine.Player
         {
             _interactInputPress = context.ReadValueAsButton();
         }
-
-        private void ToggleInventory(InputAction.CallbackContext context)
-        {
-            InventoryUIManager.Instance.ToggleInventory();
-        }
         #endregion
-
-        /// <summary>
-        /// Handle player rotation when moving
-        /// </summary>
-        private void PlayerRotation()
-        {
-            Vector3 posLookAt; // Look at position
-
-            // Change the position to look at
-            posLookAt = new Vector3(_currentMovement.x, 0f, _currentMovement.z);
-
-            Quaternion currentRot = transform.rotation;
-            if (_moveInputPress)
-            {
-                Quaternion targetRot = Quaternion.LookRotation(posLookAt);
-                transform.rotation = Quaternion.Slerp(currentRot, targetRot, _rotationFactor * Time.deltaTime);
-            }
-        }
     }
 }

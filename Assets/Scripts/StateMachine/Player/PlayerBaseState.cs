@@ -17,14 +17,25 @@ namespace StateMachine.Player
         /// </summary>
         private PlayerStateFactory _stateFactory;
 
+        /// <summary>
+        /// Current super state (Available if the state is a child state)
+        /// </summary>
         private PlayerBaseState _currentSuperState;
+        /// <summary>
+        /// The current substate of the state (Available if the state is a parent state and has set child state)
+        /// </summary>
         private PlayerBaseState _currentSubState;
 
+        /// <summary>
+        /// Is the state a root state, meaning it is allow to have children state
+        /// </summary>
         protected bool IsRootState { set { _isRootState = value; } }
         protected PlayerStateMachine Context { get { return _context; } }
         protected PlayerStateFactory StateFactory { get { return _stateFactory; } }
 
-        // Debug
+        /// <summary>
+        /// Get the current substate running in the state
+        /// </summary>
         public PlayerBaseState CurrentSubState { get { return _currentSubState; } }
 
         public PlayerBaseState(PlayerStateMachine context, PlayerStateFactory stateFactory)

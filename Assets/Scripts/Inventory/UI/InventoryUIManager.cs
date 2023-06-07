@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Utilities;
+using UnityEngine.InputSystem;
 
 namespace Inventory.UI
 {
@@ -35,6 +34,8 @@ namespace Inventory.UI
         [Tooltip("Text to display the item description")]
         [SerializeField] private TMP_Text itemDescriptionText;
 
+        private InputControls _inputControls;
+
         protected override void AwakeSingleton()
         {
             // Initialize the slots
@@ -45,6 +46,27 @@ namespace Inventory.UI
             {
                 equipInventorySlot = GetComponentInChildren<EquipInventorySlot>();
             }
+
+            // Binding inventory key
+            _inputControls = new();
+            _inputControls.UI.Inventory.started += ToggleInventoryUI;
+            _inputControls.UI.Inventory.Enable();
+        }
+
+        /// <summary>
+        /// Toggle the invnetory UI to show the player
+        /// </summary>
+        /// <param name="context"></param>
+        private void ToggleInventoryUI(InputAction.CallbackContext context)
+        {
+            Instance.ToggleInventory();
+        }
+
+        private void OnDestroy()
+        {
+            // Delete inventory UI controls if the InventoryUIManager is destroyed
+            _inputControls.UI.Inventory.started -= ToggleInventoryUI;
+            _inputControls.UI.Inventory.Disable();
         }
 
         private void Start()

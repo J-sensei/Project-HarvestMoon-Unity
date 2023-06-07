@@ -12,6 +12,9 @@ namespace Player
     {
         [Tooltip("Valid maximum distance for the ray cast to happen")]
         [SerializeField] private float maxInteractionRay = 1f;
+        [Tooltip("Show debug properties fro the player interactor")]
+        [SerializeField] private bool debug = false;
+        private Color _debugLineColor = Color.white;
 
         #region Farm Interaction
 
@@ -45,10 +48,21 @@ namespace Player
                 Debug.Log("[Player Interactor] Hit: " + hit.collider.name);
                 OnInteractableHit(hit);
             }
+            else
+            {
+                _debugLineColor = Color.white;
+            }
+
+            if (debug)
+            {
+                //Debug.DrawLine(transform.position, transform.position + (Vector3.down * maxInteractionRay), _debugLineColor, 0f, false);
+                Debug.DrawRay(transform.position, Vector3.down * maxInteractionRay, _debugLineColor, 0f, false);
+            }
         }
 
         private void OnInteractableHit(RaycastHit hit)
         {
+            _debugLineColor = Color.red;
             Collider collider = hit.collider; // Get the collider reference
 
             // TODO: Detect other interactable item
@@ -172,6 +186,7 @@ namespace Player
                 }
 
                 Selecting = false;
+                _debugLineColor = Color.white;
             }
         }
 
