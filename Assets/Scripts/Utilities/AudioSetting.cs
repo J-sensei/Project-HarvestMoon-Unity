@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using UI.Tooltip;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class AudioSetting : MonoBehaviour
+public class AudioSetting : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
 {
     [SerializeField] private string mixerParameter = "Music";
     [SerializeField] private AudioMixer mixer;
@@ -36,5 +36,20 @@ public class AudioSetting : MonoBehaviour
     {
         slider.value = PlayerPrefs.GetFloat(mixerParameter);
         SetVolume();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        TooltipManager.Instance.Show((slider.value * 100).ToString("F0") + "%");
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        TooltipManager.Instance.Hide();
+    }
+
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        TooltipManager.Instance.UpdateTooltip((slider.value * 100).ToString("F0") + "%");
     }
 }

@@ -147,7 +147,7 @@ namespace Inventory.UI
         {
             foreach(InventorySlot slot in _itemSlots)
             {
-                slot.Reset();
+                slot.ResetSlotUI();
             }
         }
     }

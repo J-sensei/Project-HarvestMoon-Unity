@@ -64,7 +64,7 @@ namespace UI.Tooltip
         {
             gameObject.SetActive(true);
             _canvasGroup.alpha = 0f;
-            _canvasGroup.DOFade(1f, 0.5f);
+            _canvasGroup.DOFade(0.85f, 0.5f);
         }
 
         public void Hide()

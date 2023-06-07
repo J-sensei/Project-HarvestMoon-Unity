@@ -38,5 +38,13 @@ namespace UI.Tooltip
 
             ShowingTooltip = false;
         }
+
+        public void UpdateTooltip(string description, string title = "")
+        {
+            if (ShowingTooltip)
+            {
+                _tooltip.SetText(description, title);
+            }
+        }
     }
 }

@@ -106,7 +106,7 @@ namespace Inventory.UI
             _id = id;
         }
 
-        public void Reset()
+        public void ResetSlotUI()
         {
             transform.localScale = _scale;
             _mousePointing = false;
