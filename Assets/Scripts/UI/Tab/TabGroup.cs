@@ -20,13 +20,41 @@ namespace UI.Tab
 
         private void Start()
         {
-            for(int i = 0; i < contents.Count; i++)
+            //for(int i = 0; i < contents.Count; i++)
+            //{
+            //    if (contents[i].activeSelf)
+            //    {
+            //        OnTabSelect(_tabButtons[i]);
+            //        break;
+            //    }
+            //}
+        }
+
+        public void SetTab(int index)
+        {
+            if (index < 0 || index >= contents.Count)
             {
-                if (contents[i].activeSelf)
+                UnityEngine.Debug.LogWarning("[Tab Group] Invalid index!");
+                return;
+            }
+
+            TabButton resultButton = null;
+            foreach(TabButton button in _tabButtons)
+            {
+                int i = button.transform.GetSiblingIndex();
+                if(i == index)
                 {
-                    OnTabSelect(_tabButtons[i]);
+                    resultButton = button;
+                    break;
                 }
             }
+
+            if(resultButton == null)
+            {
+                UnityEngine.Debug.LogWarning("[Tab Group] Cannot find the tab button!");
+                return;
+            }
+            OnTabSelect(resultButton);
         }
 
         public void Add(TabButton button)

@@ -303,6 +303,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""a510c012-1830-4130-a5ec-554296341708"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -314,6 +323,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dbbead58-ee5a-4517-a3a6-8058c810f0fe"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -383,6 +403,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
+        m_UI_Mouse = m_UI.FindAction("Mouse", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Zoom = m_Camera.FindAction("Zoom", throwIfNotFound: true);
@@ -545,11 +566,13 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UI;
     private IUIActions m_UIActionsCallbackInterface;
     private readonly InputAction m_UI_Inventory;
+    private readonly InputAction m_UI_Mouse;
     public struct UIActions
     {
         private @InputControls m_Wrapper;
         public UIActions(@InputControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Inventory => m_Wrapper.m_UI_Inventory;
+        public InputAction @Mouse => m_Wrapper.m_UI_Mouse;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -562,6 +585,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Inventory.started -= m_Wrapper.m_UIActionsCallbackInterface.OnInventory;
                 @Inventory.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnInventory;
                 @Inventory.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnInventory;
+                @Mouse.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMouse;
+                @Mouse.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMouse;
+                @Mouse.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMouse;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -569,6 +595,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Inventory.started += instance.OnInventory;
                 @Inventory.performed += instance.OnInventory;
                 @Inventory.canceled += instance.OnInventory;
+                @Mouse.started += instance.OnMouse;
+                @Mouse.performed += instance.OnMouse;
+                @Mouse.canceled += instance.OnMouse;
             }
         }
     }
@@ -629,6 +658,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     public interface IUIActions
     {
         void OnInventory(InputAction.CallbackContext context);
+        void OnMouse(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {

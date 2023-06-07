@@ -28,12 +28,6 @@ namespace Inventory.UI
         [Tooltip("Slot that show current equip item")]
         [SerializeField] private EquipInventorySlot equipInventorySlot;
 
-        [Header("Item Info")]
-        [Tooltip("Text to display the item name")]
-        [SerializeField] private TMP_Text itemNameText;
-        [Tooltip("Text to display the item description")]
-        [SerializeField] private TMP_Text itemDescriptionText;
-
         /// <summary>
         /// Controls map
         /// </summary>
@@ -133,7 +127,7 @@ namespace Inventory.UI
         public void ToggleInventory(bool v)
         {
             // Toggle inventory
-            GameMenu.Instance.ToggleGameMenu(v);
+            GameMenu.Instance.ToggleInventory(v);
 
             if (v)
             {
@@ -147,35 +141,13 @@ namespace Inventory.UI
         }
 
         /// <summary>
-        /// Update the item information when user if hovering it
+        /// Reset the inventory slots to prevent any ui bug
         /// </summary>
-        /// <param name="data"></param>
-        public void UpdateItemInfo(ItemData data)
+        public void ResetInventorySlots()
         {
-            return;
-            if(data == null)
+            foreach(InventorySlot slot in _itemSlots)
             {
-                itemNameText.text = "";
-                itemDescriptionText.text = "";
-                return;
-            }
-
-            if(itemNameText != null)
-            {
-                itemNameText.text = data.itemName;
-            }
-            else
-            {
-                Debug.LogWarning("[Inventory UI Manager] Item name text is null");
-            }
-
-            if (itemDescriptionText != null)
-            {
-                itemDescriptionText.text = data.description;
-            }
-            else
-            {
-                Debug.LogWarning("[Inventory UI Manager] Item description text is null");
+                slot.Reset();
             }
         }
     }

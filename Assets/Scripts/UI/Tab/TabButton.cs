@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using UI.Tooltip;
 
 namespace UI.Tab
 {
@@ -14,6 +15,9 @@ namespace UI.Tab
         [Header("Events")]
         public UnityEvent OnTabSelected;
         public UnityEvent OnTabDeselected;
+
+        [Header("Description")]
+        [SerializeField] private string description;
 
         private void Awake()
         {
@@ -40,11 +44,19 @@ namespace UI.Tab
         public void OnPointerEnter(PointerEventData eventData)
         {
             tabGroup.OnTabEnter(this);
+            if (!string.IsNullOrEmpty(description))
+            {
+                TooltipManager.Instance.Show(description);
+            }
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             tabGroup.OnTabExit(this);
+            if (!string.IsNullOrEmpty(description))
+            {
+                TooltipManager.Instance.Hide();
+            }
         }
 
         public void Select()

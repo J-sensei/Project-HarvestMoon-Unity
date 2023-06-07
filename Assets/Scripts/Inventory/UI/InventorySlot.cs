@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
+using UI.Tooltip;
 
 namespace Inventory.UI
 {
@@ -42,7 +44,10 @@ namespace Inventory.UI
 
         [Header("UI Tween")]
         [SerializeField] private float hoverScaleMultiplier = 1.35f;
+        [SerializeField] private float tweenDuration = 0.05f;
         private Vector3 _scale;
+
+        private bool _mousePointing = false;
 
         private void Awake()
         {
@@ -72,11 +77,23 @@ namespace Inventory.UI
 
                 _item = item;
                 image.gameObject.SetActive(true);
+
+                // Update the tooltip if the slot is currently having the tooltip showing
+                if(_mousePointing)
+                {
+                    TooltipManager.Instance.Show(_item.description, _item.name);
+                }
             }
             else
             {
                 _item = null; // As item is null, put it as null
                 image.gameObject.SetActive(false); // Active false for the image not to display anything is the item is empty
+
+                // Hide tooltip is showing anything
+                if(_mousePointing && TooltipManager.Instance.ShowingTooltip)
+                {
+                    TooltipManager.Instance.Hide();
+                }
             }
         }
 
@@ -89,25 +106,42 @@ namespace Inventory.UI
             _id = id;
         }
 
+        public void Reset()
+        {
+            transform.localScale = _scale;
+            _mousePointing = false;
+            background.color = idleColor;
+            image.color = idleColor;
+        }
+
         #region Mouse Events
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if(mouseEvent)
-                InventoryUIManager.Instance.UpdateItemInfo(_item);
-
-            background.color = hoverColor;
-            image.color = hoverColor;
+            //background.color = hoverColor;
+            //image.color = hoverColor;
+            background.DOColor(hoverColor, tweenDuration).SetEase(Ease.Linear);
+            image.DOColor(hoverColor, tweenDuration).SetEase(Ease.Linear);
             transform.localScale = _scale * hoverScaleMultiplier;
+            //transform.DOScale(_scale * hoverScaleMultiplier, 0.15f).SetEase(Ease.Linear);
+
+            if(_item != null)
+            {
+                TooltipManager.Instance.Show(_item.description, _item.name);
+            }
+            _mousePointing = true;
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            if(mouseEvent)
-                InventoryUIManager.Instance.UpdateItemInfo(null);
-
-            background.color = idleColor;
-            image.color = idleColor;
+            //background.color = idleColor;
+            //image.color = idleColor;
+            background.DOColor(idleColor, tweenDuration).SetEase(Ease.Linear);
+            image.DOColor(idleColor, tweenDuration).SetEase(Ease.Linear);
             transform.localScale = _scale;
+            //transform.DOScale(_scale, tweenDuration).SetEase(Ease.Linear);
+
+            TooltipManager.Instance.Hide();
+            _mousePointing = false;
         }
 
         public virtual void OnPointerClick(PointerEventData eventData)
