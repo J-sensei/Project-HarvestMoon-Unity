@@ -1,6 +1,6 @@
 ﻿//UCTS_Outline_tess.cginc
 //Unitychan Toon Shader ver.2.0
-//v.2.0.7.5
+//v.2.0.9
 //nobuyuki@unity3d.com
 //https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
 //(C)Unity Technologies Japan/UCL
@@ -52,6 +52,8 @@
                 float3 normal : NORMAL;
                 float4 tangent : TANGENT;
                 float2 texcoord0 : TEXCOORD0;
+                // v.2.0.9
+                UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 #endif
             struct VertexOutput {
@@ -60,9 +62,15 @@
                 float3 normalDir : TEXCOORD1;
                 float3 tangentDir : TEXCOORD2;
                 float3 bitangentDir : TEXCOORD3;
+                // v.2.0.9
+                UNITY_VERTEX_INPUT_INSTANCE_ID
+                UNITY_VERTEX_OUTPUT_STEREO
             };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_TRANSFER_INSTANCE_ID(v, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
                 o.uv0 = v.texcoord0;
                 float4 objPos = mul ( unity_ObjectToWorld, float4(0,0,0,1) );
                 float2 Set_UV0 = o.uv0;
@@ -112,11 +120,16 @@
 #endif // UNITY_CAN_COMPILE_TESSELLATION
 #endif // TESSELLATION_ON
             float4 frag(VertexOutput i) : SV_Target{
+                UNITY_SETUP_INSTANCE_ID(i);
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
                 //v.2.0.5
                 _Color = _BaseColor;
                 float4 objPos = mul ( unity_ObjectToWorld, float4(0,0,0,1) );
-                //v.2.0.7.5
-                half3 ambientSkyColor = unity_AmbientSky.rgb>0.05 ? unity_AmbientSky.rgb*_Unlit_Intensity : half3(0.05,0.05,0.05)*_Unlit_Intensity;
+                //v.2.0.9
+                float3 envLightSource_GradientEquator = unity_AmbientEquator.rgb >0.05 ? unity_AmbientEquator.rgb : half3(0.05,0.05,0.05);
+                float3 envLightSource_SkyboxIntensity = max(ShadeSH9(half4(0.0,0.0,0.0,1.0)),ShadeSH9(half4(0.0,-1.0,0.0,1.0))).rgb;
+                float3 ambientSkyColor = envLightSource_SkyboxIntensity.rgb>0.0 ? envLightSource_SkyboxIntensity*_Unlit_Intensity : envLightSource_GradientEquator*_Unlit_Intensity;
+                //
                 float3 lightColor = _LightColor0.rgb >0.05 ? _LightColor0.rgb : ambientSkyColor.rgb;
                 float lightColorIntensity = (0.299*lightColor.r + 0.587*lightColor.g + 0.114*lightColor.b);
                 lightColor = lightColorIntensity<1 ? lightColor : lightColor/lightColorIntensity;
