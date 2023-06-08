@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace StateMachine.Player
+﻿namespace StateMachine.Player
 {
     /// <summary>
     /// State where player is playing tool animation

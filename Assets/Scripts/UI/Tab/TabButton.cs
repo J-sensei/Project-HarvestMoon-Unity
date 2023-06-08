@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UI.Tooltip;
+using Utilities;
 
 namespace UI.Tab
 {
@@ -39,6 +40,7 @@ namespace UI.Tab
         public void OnPointerClick(PointerEventData eventData)
         {
             tabGroup.OnTabSelect(this);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.menuClick);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -48,6 +50,7 @@ namespace UI.Tab
             {
                 TooltipManager.Instance.Show(description);
             }
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.menuSelect);
         }
 
         public void OnPointerExit(PointerEventData eventData)

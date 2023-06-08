@@ -18,12 +18,16 @@ public class GameMenu : Singleton<GameMenu>
         {
             TooltipManager.Instance.Hide();
             InventoryUIManager.Instance.ResetInventorySlots();
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.menuClose, 1);
+            GameManager.Instance.Player.EnableControl();
         }
 
         gameObject.SetActive(v);
         if (v && tabGroup)
         {
             tabGroup.SetTab(0); // 0 => First Tab
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.menuOpen, 1);
+            GameManager.Instance.Player.DisableControl();
         }
     }
 
@@ -34,5 +38,13 @@ public class GameMenu : Singleton<GameMenu>
         {
             tabGroup.SetTab(1); // 1 => Inventory Tab
         }
+    }
+
+    public void CloseGameMenu()
+    {
+        TooltipManager.Instance.Hide();
+        InventoryUIManager.Instance.ResetInventorySlots();
+        GameManager.Instance.Player.EnableControl();
+        gameObject.SetActive(false);
     }
 }

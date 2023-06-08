@@ -1,7 +1,6 @@
 ﻿using Farming;
 using Interactable;
 using Inventory;
-using Item;
 using UnityEngine;
 
 namespace StateMachine.Player
@@ -26,7 +25,6 @@ namespace StateMachine.Player
 
             this.Context.ApplyMovementX = 0;
             this.Context.ApplyMovementZ = 0;
-
         }
 
         public override void Update()

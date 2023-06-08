@@ -10,7 +10,7 @@ namespace Utilities
         [Header("Audio Sources")]
         [SerializeField] private AudioSource[] audioSources;
         private int _audioToggle = 0;
-        [SerializeField] private AudioSource sfxSource;
+        [SerializeField] private AudioSource[] sfxSources;
 
         [Header("Background Music")]
         [SerializeField] private float musicStartTime = 0f;
@@ -23,6 +23,13 @@ namespace Utilities
         [SerializeField] public AudioClip hoeAudio;
         [SerializeField] public AudioClip plantAudio;
 
+        [Header("UI")]
+        [Header("Menu Audio")]
+        [SerializeField] public AudioClip menuOpen;
+        [SerializeField] public AudioClip menuClose;
+        [SerializeField] public AudioClip menuSelect;
+        [SerializeField] public AudioClip menuClick;
+
         private double _musicDuration;
         private double _goalTime = 0;
         /// <summary>
@@ -31,7 +38,23 @@ namespace Utilities
         /// <param name="clip"></param>
         public void PlaySFX(AudioClip clip)
         {
-            sfxSource.PlayOneShot(clip);
+            //sfxSource.PlayOneShot(clip);
+            sfxSources[0].clip = clip;
+            sfxSources[0].loop = false;
+            sfxSources[0].Play();
+        }
+
+        public void PlaySFX(AudioClip clip, int channel)
+        {
+            if(channel < 0 || channel >= sfxSources.Length)
+            {
+                Debug.LogWarning("[Audio Manager] Invalid channel index: " + channel);
+                return;
+            }
+
+            sfxSources[channel].clip = clip;
+            sfxSources[channel].loop = false;
+            sfxSources[channel].Play();
         }
 
         public void PlaySFX(AudioSource source, AudioClip clip)
@@ -91,10 +114,10 @@ namespace Utilities
             //    Debug.LogWarning("[Audio Manager] Music source was null, assigned children component. IS NULL: " + (musicSource == null));
             //}
 
-            if(sfxSource == null)
+            if(sfxSources == null || sfxSources.Length == 0)
             {
-                sfxSource = GetComponentInChildren<AudioSource>();
-                Debug.LogWarning("[Audio Manager] SFX source was null, assigned children component. IS NULL: " + (sfxSource == null));
+                sfxSources = transform.Find("SFX Audio Source").GetComponentsInChildren<AudioSource>();
+                Debug.LogWarning("[Audio Manager] SFX source was null, assigned children component. IS NULL: " + (sfxSources == null));
             }
         }
     }

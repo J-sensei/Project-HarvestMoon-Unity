@@ -418,12 +418,20 @@ namespace StateMachine.Player
 
         private void OnEnable()
         {
-            _inputControls.CharacterControls.Enable(); // Enable to listen to the events
+            EnableControl();
         }
 
         private void OnDisable()
         {
+            DisableControl();
+        }
+        public void DisableControl()
+        {
             _inputControls.CharacterControls.Disable(); // Disable when object is not active to not listen to any events
+        }
+        public void EnableControl()
+        {
+            _inputControls.CharacterControls.Enable(); // Enable to listen to the events
         }
 
         private void InitializeJumpValues()

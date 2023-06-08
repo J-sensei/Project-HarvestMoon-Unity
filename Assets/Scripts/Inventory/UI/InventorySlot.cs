@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
 using UI.Tooltip;
+using Utilities;
 
 namespace Inventory.UI
 {
@@ -129,6 +130,7 @@ namespace Inventory.UI
                 TooltipManager.Instance.Show(_item.description, _item.name);
             }
             _mousePointing = true;
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.menuSelect);
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -148,6 +150,8 @@ namespace Inventory.UI
         {
             if (mouseEvent)
                 InventoryManager.Instance.Equip(_id, itemType);
+
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.menuClick);
         }
         #endregion
     }

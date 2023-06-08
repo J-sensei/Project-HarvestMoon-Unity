@@ -74,7 +74,8 @@ namespace Inventory.UI
                 //_toolSlots[i].SetId(i);
                 _itemSlots[i].SetId(i);
             }
-            ToggleInventory(false);
+            //ToggleInventory(false);
+            GameMenu.Instance.CloseGameMenu();
         }
 
         /// <summary>
