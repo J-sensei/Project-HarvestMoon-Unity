@@ -118,16 +118,17 @@ namespace Inventory.UI
         #region Mouse Events
         public void OnPointerEnter(PointerEventData eventData)
         {
-            //background.color = hoverColor;
-            //image.color = hoverColor;
             background.DOColor(hoverColor, tweenDuration).SetEase(Ease.Linear);
             image.DOColor(hoverColor, tweenDuration).SetEase(Ease.Linear);
             transform.localScale = _scale * hoverScaleMultiplier;
-            //transform.DOScale(_scale * hoverScaleMultiplier, 0.15f).SetEase(Ease.Linear);
 
             if(_item != null)
             {
                 TooltipManager.Instance.Show(_item.description, _item.name);
+            }
+            else
+            {
+                TooltipManager.Instance.Hide();
             }
             _mousePointing = true;
             AudioManager.Instance.PlaySFX(AudioManager.Instance.menuSelect);
@@ -135,12 +136,9 @@ namespace Inventory.UI
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            //background.color = idleColor;
-            //image.color = idleColor;
             background.DOColor(idleColor, tweenDuration).SetEase(Ease.Linear);
             image.DOColor(idleColor, tweenDuration).SetEase(Ease.Linear);
             transform.localScale = _scale;
-            //transform.DOScale(_scale, tweenDuration).SetEase(Ease.Linear);
 
             TooltipManager.Instance.Hide();
             _mousePointing = false;

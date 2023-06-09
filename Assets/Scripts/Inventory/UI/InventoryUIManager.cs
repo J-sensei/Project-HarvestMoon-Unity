@@ -11,15 +11,15 @@ namespace Inventory.UI
     public class InventoryUIManager : Singleton<InventoryUIManager>
     {
         [Header("Inventory System")]
-        [Tooltip("Game object that holds multiple inventory slot of tools (Deprecated, put all item in item holder)")]
-        [SerializeField] private GameObject toolHolder;
+        //[Tooltip("Game object that holds multiple inventory slot of tools (Deprecated, put all item in item holder)")]
+        //[SerializeField] private GameObject toolHolder;
         [Tooltip("Game object that holds multiple inventory slot of items")]
         [SerializeField] private GameObject itemHolder;
 
         /// <summary>
         /// Tools slots
         /// </summary>
-        private InventorySlot[] _toolSlots;
+        //private InventorySlot[] _toolSlots;
         /// <summary>
         /// Item slots
         /// </summary>
@@ -150,6 +150,7 @@ namespace Inventory.UI
             {
                 slot.ResetSlotUI();
             }
+            equipInventorySlot.ResetSlotUI();
         }
     }
 }
