@@ -1,4 +1,5 @@
 using GameDateTime;
+using UI.FadeScreen;
 using UnityEngine;
 using Utilities;
 
@@ -6,11 +7,9 @@ namespace Interactable
 {
     public class Bed : MonoBehaviour, IInteractable
     {
-        [SerializeField] FadePanel fadePanel;
         [SerializeField] private Outline outline;
 
-        private bool _fadeIn = false;
-        private bool _fadeOut = false;
+        private bool _sleeping = false;
 
         private void Start()
         {
@@ -23,36 +22,6 @@ namespace Interactable
             // For some reason this can make the setting applied
             StartCoroutine(OutlineHelper.InitializeOutline(outline));
         }
-
-        private void FadeIn()
-        {
-            fadePanel.OnFinish.RemoveAllListeners();
-            GameTimeManager.Instance.Sleep();
-//          GameTimeManager.Instance.PauseTime(true);
-            _fadeIn = false;
-
-            fadePanel.FadeIn();
-            _fadeOut = true;
-            fadePanel.OnFinish.AddListener(FadeOut);
-        }
-
-        private void FadeOut()
-        {
-            fadePanel.OnFinish.RemoveAllListeners();
-//          GameTimeManager.Instance.PauseTime(false);
-            Debug.Log("Execute sleep");
-
-
-            _fadeOut = false;
-        }
-
-        //private void Update()
-        //{
-        //    if(_fadeOut == false)
-        //    {
-        //        GameTimeManager.Instance.PauseTime(false);
-        //    }
-        //}
 
         #region IInteractable
         public void OnSelect(bool v)
@@ -67,10 +36,30 @@ namespace Interactable
 
         public void Interact()
         {
-            fadePanel.FadeOut();
-            _fadeIn = true;
-            fadePanel.OnFinish.AddListener(FadeIn);
-            //GameTimeManager.Instance.Sleep();
+            if (_sleeping) return; // Prevent player spamming bed to cause weird bahvior when sleeping
+
+            _sleeping = true; // Player start to sleep
+
+            // Callback when fade first started
+            FadeScreenManager.Instance.FadePanel.OnStart.AddListener(() =>
+            {
+                GameManager.Instance.Player.DisableControl(); // Prevent player moving when sleeping
+                GameTimeManager.Instance.PauseTime(true); // Pause the time
+            });
+
+            // Update the date time when fade out is finish
+            FadeScreenManager.Instance.FadePanel.OnFinish.AddListener(() =>
+            {
+                GameTimeManager.Instance.Sleep(); // Called sleep to past the date time to next day
+            });
+
+            FadeScreenManager.Instance.FadePanel.FadeOutIn(() =>
+            {
+                // Callback when fade in is finish
+                GameTimeManager.Instance.PauseTime(false); // Unpause the time
+                GameManager.Instance.Player.EnableControl(); // Allow player to move after finish sleep
+                _sleeping = false; // Player finish sleep
+            });
         }
         #endregion
     }

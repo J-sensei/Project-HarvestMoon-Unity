@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TopDownCamera
@@ -35,7 +33,7 @@ namespace TopDownCamera
         private Vector3 refVelocity;
         private void Start()
         {
-            CameraHandler();
+            InitializeCameraPos(); // Instantly teleport to the target position
         }
 
         private void Update()
@@ -43,6 +41,44 @@ namespace TopDownCamera
             CameraHandler();
         }
 
+        public void UpdateTarget(Transform target) => this.target = target;
+
+        public void UpdateTargetAndInitialize(Transform target)
+        {
+            UpdateTarget(target);
+            InitializeCameraPos();
+        }
+
+        /// <summary>
+        /// Instantly move camera to the target position
+        /// </summary>
+        protected virtual void InitializeCameraPos()
+        {
+            if (target == null)
+            {
+                Debug.LogWarning("[TopDownCamera] Target is null");
+                return;
+            }
+
+            // Build world position vector
+            Vector3 worldPos = (Vector3.forward * -distance) + (Vector3.up * height);
+
+            // Camera rotation
+            Vector3 rotatedVector = Quaternion.AngleAxis(angle, Vector3.up) * worldPos;
+
+            // Move our position
+            Vector3 targetPos = target.position;
+            //targetPos.y = 0;
+            Vector3 finalPos = targetPos + rotatedVector;
+
+            // Smooth values
+            transform.position = finalPos;
+            transform.LookAt(targetPos);
+        }
+
+        /// <summary>
+        /// Smoothly move camera to the target
+        /// </summary>
         protected virtual void CameraHandler()
         {
             if (target == null)

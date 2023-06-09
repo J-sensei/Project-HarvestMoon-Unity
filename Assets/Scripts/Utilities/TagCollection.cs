@@ -10,5 +10,9 @@
         /// </summary>
         public const string PLAYER_TAG = "Player";
         public const string ENEMY_TAG = "Enemy";
+        /// <summary>
+        /// Tag for fade panel in the game
+        /// </summary>
+        public const string FADE_PANEL_TAG = "FadePanel";
     }
 }

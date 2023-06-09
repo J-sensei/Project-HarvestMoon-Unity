@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utilities.Audio;
 
 namespace Utilities
 {
@@ -8,8 +9,13 @@ namespace Utilities
     public class AudioManager : Singleton<AudioManager>
     {
         [Header("Audio Sources")]
-        [SerializeField] private AudioSource[] audioSources;
+        [Tooltip("Audio Source for BGM")]
+        [SerializeField] private AudioSource[] bgmSources;
+        /// <summary>
+        /// Number to toggle between index for bgm sources
+        /// </summary>
         private int _audioToggle = 0;
+        [Tooltip("Audio Source for SFX")]
         [SerializeField] private AudioSource[] sfxSources;
 
         [Header("Background Music")]
@@ -17,7 +23,9 @@ namespace Utilities
         [SerializeField] private float musicEndTime = 100f;
         public float initialSkip = 160;
         [SerializeField] private AudioClip musicClip;
+        [SerializeField] private BGMData[] bgmList;
 
+        [Header("SFX Audios")]
         [Header("Farming Audio")]
         [SerializeField] public AudioClip wateringAudio;
         [SerializeField] public AudioClip hoeAudio;
@@ -32,18 +40,18 @@ namespace Utilities
 
         private double _musicDuration;
         private double _goalTime = 0;
+
         /// <summary>
-        /// Play sound effect audio clip
+        /// Play sound effect audio clip on channel 0
         /// </summary>
         /// <param name="clip"></param>
-        public void PlaySFX(AudioClip clip)
-        {
-            //sfxSource.PlayOneShot(clip);
-            sfxSources[0].clip = clip;
-            sfxSources[0].loop = false;
-            sfxSources[0].Play();
-        }
+        public void PlaySFX(AudioClip clip) => PlaySFXClip(clip, 0);
 
+        /// <summary>
+        /// Player sound effect audio clip on target channel providing that target audio source is exist
+        /// </summary>
+        /// <param name="clip"></param>
+        /// <param name="channel"></param>
         public void PlaySFX(AudioClip clip, int channel)
         {
             if(channel < 0 || channel >= sfxSources.Length)
@@ -52,28 +60,27 @@ namespace Utilities
                 return;
             }
 
+            PlaySFXClip(clip, channel);
+        }
+
+        private void PlaySFXClip(AudioClip clip, int channel)
+        {
+
             sfxSources[channel].clip = clip;
             sfxSources[channel].loop = false;
             sfxSources[channel].Play();
         }
 
-        public void PlaySFX(AudioSource source, AudioClip clip)
-        {
-            source.clip = clip;
-            source.loop = false;
-            source.PlayOneShot(clip);
-        }
-
         public void PlayMusic(AudioClip clip)
         {
             _goalTime = AudioSettings.dspTime;
-            audioSources[0].clip = clip;
-            audioSources[0].PlayScheduled(_goalTime);
-            audioSources[0].time = initialSkip;
+            bgmSources[0].clip = clip;
+            bgmSources[0].PlayScheduled(_goalTime);
+            bgmSources[0].time = initialSkip;
 
             _musicDuration = (double)clip.samples / clip.frequency;
             _goalTime = _goalTime + (musicEndTime - initialSkip);
-            audioSources[0].SetScheduledEndTime(_goalTime);
+            bgmSources[0].SetScheduledEndTime(_goalTime);
 
             _audioToggle = 1 - _audioToggle;
         }
@@ -95,12 +102,12 @@ namespace Utilities
         private void PlayScheduleClip()
         {
             Debug.Log("[Audio Manager] Schedule loop");
-            audioSources[_audioToggle].clip = musicClip;
-            audioSources[_audioToggle].PlayScheduled(_goalTime);
-            audioSources[_audioToggle].time = musicStartTime;
+            bgmSources[_audioToggle].clip = musicClip;
+            bgmSources[_audioToggle].PlayScheduled(_goalTime);
+            bgmSources[_audioToggle].time = musicStartTime;
 
             _goalTime = _goalTime + (musicEndTime - musicStartTime);
-            audioSources[_audioToggle].SetScheduledEndTime(_goalTime);
+            bgmSources[_audioToggle].SetScheduledEndTime(_goalTime);
 
             _audioToggle = 1 - _audioToggle;
         }
@@ -108,16 +115,16 @@ namespace Utilities
         protected override void AwakeSingleton()
         {
             // Extra checking incase music or sfx source is null
-            //if(musicSource == null)
-            //{
-            //    musicSource = GetComponentInChildren<AudioSource>();
-            //    Debug.LogWarning("[Audio Manager] Music source was null, assigned children component. IS NULL: " + (musicSource == null));
-            //}
-
             if(sfxSources == null || sfxSources.Length == 0)
             {
                 sfxSources = transform.Find("SFX Audio Source").GetComponentsInChildren<AudioSource>();
-                Debug.LogWarning("[Audio Manager] SFX source was null, assigned children component. IS NULL: " + (sfxSources == null));
+                Debug.LogWarning("[Audio Manager] SFX source was null, assigned children component. SFX Sources NULL: " + (sfxSources == null));
+            }
+
+            if(bgmSources == null || bgmSources.Length == 0)
+            {
+                bgmSources = transform.Find("Music Audio Source").GetComponentsInChildren<AudioSource>();
+                Debug.LogWarning("[Audio Manager] BGM source was null, assigned children component. BGM Sources NULL: " + (bgmSources == null));
             }
         }
     }

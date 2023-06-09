@@ -57,11 +57,9 @@ namespace Item
             StartCoroutine(OutlineHelper.InitializeOutline(outline));
         }
 
-        public void OnPickup()
-        {
-            Destroy(gameObject);
-        }
-
+        /// <summary>
+        /// When player request to hold the item
+        /// </summary>
         public void OnHold()
         {
             if(rb != null)
@@ -69,7 +67,6 @@ namespace Item
                 rb.gameObject.transform.localPosition = _attachPos;
                 rb.gameObject.transform.localRotation = _attachRot;
                 rb.isKinematic = true;
-                Debug.Log("Yes its holding by the player");
             }
             else
             {
@@ -112,7 +109,7 @@ namespace Item
         public void Interact()
         {
             InventoryManager.Instance.Pickup(itemData); // Update the holding item of the inventory manager
-            OnPickup();
+            Destroy(gameObject); // Destroy the object as its already picked up by the player
         }
 
         public InteractableType GetInteractableType()
@@ -131,8 +128,6 @@ namespace Item
         {
             if (outline != null)
                 outline.enabled = v;
-            else
-                Debug.Log("Outline is NULL!!");
         }
     }
 }

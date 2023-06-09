@@ -4,10 +4,13 @@ using UI.Tooltip;
 using UnityEngine;
 using Utilities;
 using DG.Tweening;
+using GameDateTime;
 
 public class GameMenu : Singleton<GameMenu>
 {
+    [Tooltip("Tab group to switch the tab when game menu is called to open/close")]
     [SerializeField] private TabGroup tabGroup;
+
     private CanvasGroup _canvasGroup;
     private Vector3 _originalPosition;
     private float _duration = 0.15f;
@@ -26,6 +29,7 @@ public class GameMenu : Singleton<GameMenu>
             InventoryUIManager.Instance.ResetInventorySlots();
             AudioManager.Instance.PlaySFX(AudioManager.Instance.menuClose, 1);
             GameManager.Instance.Player.EnableControl();
+            GameTimeManager.Instance.PauseTime(false); // Resume time ticking
 
             // Tween
             Vector3 pos = _originalPosition;
@@ -36,7 +40,7 @@ public class GameMenu : Singleton<GameMenu>
             _canvasGroup.alpha = 1f;
             _canvasGroup.DOFade(0f, _duration).OnComplete(() =>
             {
-                TooltipManager.Instance.Hide(); // Reset the tooltip tp solve any tooltip ui bug (not active/deactive correctly)
+                TooltipManager.Instance.Hide(); // Reset the tooltip to solve any tooltip ui bug (not active/deactive correctly)
                 gameObject.SetActive(v);
             });
         }
@@ -45,6 +49,7 @@ public class GameMenu : Singleton<GameMenu>
             tabGroup.SetTab(0); // 0 => First Tab
             AudioManager.Instance.PlaySFX(AudioManager.Instance.menuOpen, 1);
             GameManager.Instance.Player.DisableControl();
+            GameTimeManager.Instance.PauseTime(true); // Stop time ticking
 
             // Tween
             gameObject.SetActive(v);

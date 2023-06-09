@@ -17,7 +17,8 @@ namespace GameDateTime
     /// </summary>
     public class GameTimeManager : Singleton<GameTimeManager>
     {
-        [Tooltip("How many second pass to increate the in game time")]
+        [Header("DateTime Configuration")]
+        [Tooltip("How many second pass to increate the in game time, increase the value will fast forward the time")]
         [SerializeField] private float timeScale = 1f;
         [Tooltip("Set the initial game time")]
         [SerializeField] private GameTime gameTime;
@@ -127,9 +128,10 @@ namespace GameDateTime
         public void Sleep()
         {
             _updateNewDay = false;
-            gameTime.Reset();
+            gameTime.Reset(); // Reset the date time
+            Tick(); // Explicitly call tick to update the date time
             sunTransform.rotation = _targetSunAngle; // Rotate the sun instantly
-            Debug.Log("Sleep!");
+            Debug.Log("[Game Time Manager] Sleep is called");
         }
 
         /// <summary>
