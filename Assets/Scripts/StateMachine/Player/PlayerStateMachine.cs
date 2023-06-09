@@ -310,6 +310,7 @@ namespace StateMachine.Player
         /// Player is picking up/down item
         /// </summary>
         public bool PickingItem { get; set; } = false;
+        public bool DroppingItem { get; set; } = false;
         #endregion
 
         #region State Machine
@@ -331,6 +332,8 @@ namespace StateMachine.Player
             set { _currentState = value; }
         }
         #endregion
+
+        private bool _pause = false;
 
         #region Debug Properties
         /// <summary>
@@ -408,30 +411,36 @@ namespace StateMachine.Player
 
         private void Update()
         {
+            if (_pause) return;
+
             OnRotate();
             _currentState.UpdateStates(); // Update the current state
 
-            if (!UsingTool && !PickingItem)
+            if (!UsingTool && !PickingItem && !DroppingItem)
                 PlayerRotation();
             _characterController.Move(_applyMovement * Time.deltaTime);
         }
 
         private void OnEnable()
         {
-            EnableControl();
+            Enable();
         }
 
         private void OnDisable()
         {
-            DisableControl();
+            Disable();
         }
-        public void DisableControl()
+        public void Disable()
         {
             _inputControls.CharacterControls.Disable(); // Disable when object is not active to not listen to any events
+            _pause = true;
+            _animator.speed = 0;
         }
-        public void EnableControl()
+        public void Enable()
         {
             _inputControls.CharacterControls.Enable(); // Enable to listen to the events
+            _pause = false;
+            _animator.speed = 1f;
         }
 
         private void InitializeJumpValues()

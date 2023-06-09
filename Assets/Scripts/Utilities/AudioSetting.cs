@@ -14,6 +14,12 @@ public class AudioSetting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         slider.minValue = 0.0001f;
 
+        InitializeVolume();
+    }
+
+    public void InitializeVolume()
+    {
+
         if (PlayerPrefs.HasKey(mixerParameter))
         {
             LoadVolume();
@@ -22,7 +28,6 @@ public class AudioSetting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             SetVolume();
         }
-
     }
 
     public void SetVolume()

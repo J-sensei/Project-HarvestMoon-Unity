@@ -118,13 +118,17 @@ namespace Utilities
             if(sfxSources == null || sfxSources.Length == 0)
             {
                 sfxSources = transform.Find("SFX Audio Source").GetComponentsInChildren<AudioSource>();
-                Debug.LogWarning("[Audio Manager] SFX source was null, assigned children component. SFX Sources NULL: " + (sfxSources == null));
+
+                if(sfxSources == null || sfxSources.Length == 0)
+                    Debug.LogWarning("[Audio Manager] SFX sources is null");
             }
 
             if(bgmSources == null || bgmSources.Length == 0)
             {
                 bgmSources = transform.Find("Music Audio Source").GetComponentsInChildren<AudioSource>();
-                Debug.LogWarning("[Audio Manager] BGM source was null, assigned children component. BGM Sources NULL: " + (bgmSources == null));
+
+                if (bgmSources == null || bgmSources.Length == 0)
+                    Debug.LogWarning("[Audio Manager] BGM sources is null");
             }
         }
     }

@@ -4,7 +4,6 @@ using Utilities;
 
 namespace Inventory
 {
-    // TODO: Remove tools slot just items slot is enough
     /// <summary>
     /// Manage all the items available that player holds
     /// </summary>
@@ -59,43 +58,6 @@ namespace Inventory
 
             // Change holding slot to inventory slot
             _holdingItem = itemToEquip;
-
-            //if (itemType == ItemType.Item)
-            //{
-            //    // Cache
-            //    ItemData itemToEquip = InventoryManager.Instance._items[slotId];
-
-            //    // Replace the holding item to the corresponding inventory id if the type is same
-            //    // Else just put it back to corresponding inventory and take the item out from current inventory
-            //    if (_holdingItem != null)
-            //    {
-            //        PutBackItem(_holdingItem); // Put back to its corresponding inventory
-            //        _items[slotId] = null; // Take out from the inventory
-            //    }
-
-            //    // Change holding slot to inventory slot
-            //    _holdingItem = itemToEquip;
-            //}
-            //else
-            //{
-            //    // Cache
-            //    ItemData itemToEquip = InventoryManager.Instance._tools[slotId];
-
-
-            //    if (_holdingItem != null && _holdingItem.type != ItemType.Tool)
-            //    {
-            //        PutBackItem(_holdingItem); // Put back to its own item
-            //        _tools[slotId] = null;
-            //    }
-            //    else
-            //    {
-            //        _tools[slotId] = _holdingItem;
-            //    }
-
-
-            //    // Change holding slot to inventory slot
-            //    _holdingItem = itemToEquip;
-            //}
 
             // Update changes of the UI
             InventoryUIManager.Instance.UpdateInventoryUI();
@@ -167,18 +129,6 @@ namespace Inventory
                     return true;
                 }
             }
-            //else
-            //{
-            //    for (int i = 0; i < _tools.Length; i++)
-            //    {
-            //        if (_tools[i] == null)
-            //        {
-            //            _tools[i] = item;
-            //            return true;
-            //        }
-            //    }
-            //}
-
             return false;
         }
     }

@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Item
   - Tooltip
-  - FadePanel
   layers:
   - Default
   - TransparentFX

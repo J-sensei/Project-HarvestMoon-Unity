@@ -31,69 +31,80 @@ namespace Player
 
         private void Update()
         {
+            // TODO: Optimise this to call when player is picking, equip, unequip item
             // Check data for current holding item
-            ItemData data = InventoryManager.Instance.HoldingItem;
+            ItemData data = InventoryManager.Instance.HoldingItem; // Constantly check the current holding item and responded to it
 
             // Player is not holding anything
             if(data == null)
             {
+                CheckPlayerPicking();
                 DeleteTool(); // Delete holding item if any
                 return;
             }
 
-            //if (data != null)
-            //{
-                /**
-                 * If current item hold is null then we should instantiate it
-                 * If different time is switch to hand, we also need to sinatantiate the new item on player hand
-                 */
-                if ((_currentItem == null || !_currentItemName.Equals(data.name)))
+            /**
+             * If current item hold is null then we should instantiate it
+             * If different time is switch to hand, we also need to sinatantiate the new item on player hand
+             */
+            if ((_currentItem == null || !_currentItemName.Equals(data.name)))
+            {
+                // TODO: Add seed and item data
+                // If the data is a tool
+                if (data.type == ItemType.Tool)
                 {
-                    // TODO: Add seed and item data
-                    // If the data is a tool
-                    if(data.type == ItemType.Tool)
+                    CheckPlayerPicking();
+                    if (data.itemPrefab != null)
                     {
-                        if (data.itemPrefab != null)
-                        {
-                            if (_currentItem != null) DeleteTool(); // IF there is any item just delete it
+                        if (_currentItem != null) 
+                            DeleteTool(); // If there is any item just delete it
 
-                            _currentItem = Instantiate(data.itemPrefab, attachPoint);
-                            _currentItem.GetComponent<PickableItem>().OnHold();
-                            _currentItem.transform.parent = _currentItem.transform;
-                            _currentItemName = data.name;
-                        }
-                        else
-                        {
-                            Debug.LogWarning("[Player Equip Controller] Tool item prefab is null!");
-                        }
+                        _currentItem = Instantiate(data.itemPrefab, attachPoint);
+                        _currentItem.GetComponent<PickableItem>().OnHold();
+                        _currentItem.transform.parent = _currentItem.transform;
+                        _currentItemName = data.name;
                     }
                     else
                     {
-                        if(data.itemPrefab != null)
-                        {
-                            if (_currentItem != null) DeleteTool(); // IF there is any item just delete it
-
-                            // TODO: Translate player to lift state
-                            _currentItem = Instantiate(data.itemPrefab, itemAttachPoint);
-                            _currentItem.GetComponent<PickableItem>().OnHold();
-                            _currentItem.transform.parent = _currentItem.transform;
-                            _currentItemName = data.name;
-
-                            // Transition to lift state
-                            player.PickingItem = true;
-                            player.SwitchState(player.StateFactory.Lift());
-                        }
-                        else
-                        {
-                            DeleteTool();
-                        }
+                        Debug.LogWarning("[Player Equip Controller] Tool item prefab is null!");
                     }
                 }
-            //}
-            //else
-            //{
-            //    DeleteTool();
-            //}
+                else
+                {
+                    if (data.itemPrefab != null)
+                    {
+                        if (_currentItem != null) 
+                            DeleteTool(); // If there is any item just delete it
+
+                        // Translate player to lift state
+                        _currentItem = Instantiate(data.itemPrefab, itemAttachPoint);
+                        _currentItem.GetComponent<PickableItem>().OnHold();
+                        _currentItem.transform.parent = _currentItem.transform;
+                        _currentItemName = data.name;
+
+                        // Transition to lift state
+                        player.PickingItem = true;
+                        player.SwitchState(player.StateFactory.Lift());
+                    }
+                    else
+                    {
+                        DeleteTool();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Check if player change the item when character is picking up the item
+        /// </summary>
+        private void CheckPlayerPicking()
+        {
+            // Fixed when player is picking item and take out the item from inventory
+            if (player.PickingItem)
+            {
+                player.SwitchState(player.StateFactory.Grounded());
+                player.PickingItem = false;
+            }
         }
 
         /// <summary>
@@ -109,6 +120,9 @@ namespace Player
             }
         }
 
+        /// <summary>
+        /// Detach current carrying item from the player
+        /// </summary>
         public void DetachItem()
         {
             if(_currentItem != null)

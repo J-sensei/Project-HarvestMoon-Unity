@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace StateMachine.Player
 {
     public class PlayerLiftDroppingState : PlayerBaseState
@@ -25,10 +23,10 @@ namespace StateMachine.Player
 
         public override void Update()
         {
-            if (this.Context.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !this.Context.Animator.IsInTransition(0) && this.Context.PickingItem)
+            if (this.Context.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !this.Context.Animator.IsInTransition(0) && this.Context.DroppingItem)
             {
-                this.Context.EquipController.DetachItem();
-                this.Context.PickingItem = false;
+                //this.Context.EquipController.DetachItem();
+                this.Context.DroppingItem = false;
             }
 
             this.CheckSwitchState();
@@ -46,7 +44,7 @@ namespace StateMachine.Player
 
         public override void CheckSwitchState()
         {
-            if (!this.Context.PickingItem)
+            if (!this.Context.DroppingItem)
             {
                 this.SwitchState(this.StateFactory.Grounded());
             }

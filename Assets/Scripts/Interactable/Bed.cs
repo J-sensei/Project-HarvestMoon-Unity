@@ -43,7 +43,7 @@ namespace Interactable
             // Callback when fade first started
             FadeScreenManager.Instance.FadePanel.OnStart.AddListener(() =>
             {
-                GameManager.Instance.Player.DisableControl(); // Prevent player moving when sleeping
+                GameManager.Instance.Player.Disable(); // Prevent player moving when sleeping
                 GameTimeManager.Instance.PauseTime(true); // Pause the time
             });
 
@@ -57,7 +57,7 @@ namespace Interactable
             {
                 // Callback when fade in is finish
                 GameTimeManager.Instance.PauseTime(false); // Unpause the time
-                GameManager.Instance.Player.EnableControl(); // Allow player to move after finish sleep
+                GameManager.Instance.Player.Enable(); // Allow player to move after finish sleep
                 _sleeping = false; // Player finish sleep
             });
         }

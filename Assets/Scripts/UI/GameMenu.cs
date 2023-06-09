@@ -28,7 +28,7 @@ public class GameMenu : Singleton<GameMenu>
         {
             InventoryUIManager.Instance.ResetInventorySlots();
             AudioManager.Instance.PlaySFX(AudioManager.Instance.menuClose, 1);
-            GameManager.Instance.Player.EnableControl();
+            GameManager.Instance.Player.Enable();
             GameTimeManager.Instance.PauseTime(false); // Resume time ticking
 
             // Tween
@@ -48,7 +48,7 @@ public class GameMenu : Singleton<GameMenu>
         {
             tabGroup.SetTab(0); // 0 => First Tab
             AudioManager.Instance.PlaySFX(AudioManager.Instance.menuOpen, 1);
-            GameManager.Instance.Player.DisableControl();
+            GameManager.Instance.Player.Disable();
             GameTimeManager.Instance.PauseTime(true); // Stop time ticking
 
             // Tween
@@ -81,7 +81,7 @@ public class GameMenu : Singleton<GameMenu>
     {
         TooltipManager.Instance.Hide();
         InventoryUIManager.Instance.ResetInventorySlots();
-        GameManager.Instance.Player.EnableControl();
+        GameManager.Instance.Player.Enable();
         gameObject.SetActive(false);
     }
 }

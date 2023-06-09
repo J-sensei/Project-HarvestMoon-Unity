@@ -1,4 +1,6 @@
-﻿namespace StateMachine.Player
+﻿using UnityEngine;
+
+namespace StateMachine.Player
 {
     /// <summary>
     /// State where player is playing tool animation
@@ -26,7 +28,7 @@
 
         public override void Update()
         {
-            if(this.Context.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !this.Context.Animator.IsInTransition(0) && this.Context.PickingItem)
+            if((this.Context.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !this.Context.Animator.IsInTransition(0) && this.Context.PickingItem))
             {
                 this.Context.PickingItem = false;                
             }
@@ -50,7 +52,6 @@
             {
                 return;
             }
-
             PlayerBaseState state;
 
             // Idle when character not moving / running

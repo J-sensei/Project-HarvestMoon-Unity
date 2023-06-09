@@ -26,6 +26,7 @@ namespace StateMachine.Player
             this.Context.Animator.SetBool(this.Context.LiftingAnimationHash, false);
 
             // TODO: Drop the item
+            // Note: Item drop is tied to animation event now
             //this.Context.EquipController.DetachItem();
         }
 
@@ -34,20 +35,27 @@ namespace StateMachine.Player
             // TODO: Set lifting to true and each sub state will set lifting animation to true
 
             PlayerBaseState state;
-            // Idle when character not moving / running
-            //if (!this.Context.MoveInputPress && !this.Context.WalkInputPress)
-            //{
-            //    state = this.StateFactory.Idle();
-            //}
-            //else if (this.Context.MoveInputPress && !this.Context.WalkInputPress)
-            //{
-            //    state = this.StateFactory.Walk();
-            //}
-            //else // Moving and Running
-            //{
-            //    state = this.StateFactory.Run();
-            //}
-            state = this.StateFactory.PickingItem();
+
+            if (this.Context.PickingItem)
+            {
+                state = this.StateFactory.PickingItem();
+            }
+            else
+            {
+                // Idle when character not moving / running
+                if (!this.Context.MoveInputPress && !this.Context.WalkInputPress)
+                {
+                    state = this.StateFactory.Idle();
+                }
+                else if (this.Context.MoveInputPress && !this.Context.WalkInputPress)
+                {
+                    state = this.StateFactory.Walk();
+                }
+                else // Moving and Running
+                {
+                    state = this.StateFactory.Run();
+                }
+            }
 
             state.Enter();
             this.SetSubState(state);
@@ -55,13 +63,7 @@ namespace StateMachine.Player
 
         public override void CheckSwitchState()
         {
-            // TODO: !Grounded or After dropped item will change to grounded state
-
-            //if (this.Context.CharacterController.isGrounded)
-            //{
-            //    this.SwitchState(this.StateFactory.Grounded());
-            //}
-
+            // Not Grounded or After dropped item will change to grounded state
             if(!InventoryManager.Instance.CheckHoldingItemType(ItemType.Item))
             {
                 this.SwitchState(this.StateFactory.Grounded());
@@ -71,9 +73,10 @@ namespace StateMachine.Player
                 this.Context.EquipController.DetachItem(); // TODO: Check if this work properly
                 this.SwitchState(this.StateFactory.Fall());
             }
-            else if (this.Context.PickupInputPress)
+            else if (this.Context.PickupInputPress && !this.Context.PickingItem) // Prevent bug happen when pressing pickup when picking an item
             {
-                this.Context.PickingItem = true; // Use same variable for dropping
+                //this.Context.PickingItem = true; // Use same variable for dropping
+                this.Context.DroppingItem = true;
                 this.Context.PickupInputPress = false; // Set to false to make sure it only trigger once
                 this.SwitchState(this.StateFactory.DroppingItem());
             }

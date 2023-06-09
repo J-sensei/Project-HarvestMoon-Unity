@@ -114,7 +114,7 @@ namespace Inventory.UI
         private void UpdateInventory(ItemData[] data, InventorySlot[] slots)
         {
             // Assume that item data and slot has same length, this will not give any trouble
-            Debug.Log(data + "    " + slots);
+            //Debug.Log(data + "    " + slots);
             for(int i = 0; i < slots.Length; i++)
             {
                 slots[i].Display(data[i]); // Update the item display in the inventory slot
