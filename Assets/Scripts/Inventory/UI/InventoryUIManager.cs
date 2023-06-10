@@ -59,12 +59,24 @@ namespace Inventory.UI
             Instance.ToggleInventory();
         }
 
-        private void OnDestroy()
-        {
-            // Delete inventory UI controls if the InventoryUIManager is destroyed
-            _inputControls.UI.Inventory.started -= ToggleInventoryUI;
-            _inputControls.UI.Inventory.Disable();
-        }
+        //private void OnDestroy()
+        //{
+        //    // Delete inventory UI controls if the InventoryUIManager is destroyed
+        //    _inputControls.UI.Inventory.started -= ToggleInventoryUI;
+        //    _inputControls.UI.Inventory.Disable();
+        //}
+
+        //private void OnEnable()
+        //{
+        //    _inputControls.UI.Inventory.started += ToggleInventoryUI;
+        //    _inputControls.UI.Inventory.Enable();
+        //}
+
+        //private void OnDisable()
+        //{
+        //    _inputControls.UI.Inventory.started -= ToggleInventoryUI;
+        //    _inputControls.UI.Inventory.Disable();
+        //}
 
         private void Start()
         {

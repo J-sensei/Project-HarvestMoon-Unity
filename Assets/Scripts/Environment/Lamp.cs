@@ -1,6 +1,4 @@
 using GameDateTime;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Environment
@@ -22,14 +20,16 @@ namespace Environment
             {
                 foreach(GameObject lightSource in lightSources)
                 {
-                    lightSource.SetActive(true);
+                    if(lightSource != null)
+                        lightSource.SetActive(true);
                 }
             }
             else
             {
                 foreach (GameObject lightSource in lightSources)
                 {
-                    lightSource.SetActive(false);
+                    if (lightSource != null)
+                        lightSource.SetActive(false);
                 }
             }
         }

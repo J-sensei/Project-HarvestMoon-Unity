@@ -1,3 +1,5 @@
+using SceneTransition;
+using StateMachine.Player;
 using UnityEngine;
 
 namespace Utilities
@@ -7,7 +9,9 @@ namespace Utilities
     /// </summary>
     public class GameInitializer : MonoBehaviour
     {
+        [SerializeField] private SceneLocation defaultScene = SceneLocation.Home;
         [SerializeField] private GameMenu gameMenu;
+        [SerializeField] private PlayerStateMachine player;
 
         private void Start()
         {
@@ -21,6 +25,12 @@ namespace Utilities
                 {
                     audioSetting.InitializeVolume();
                 }
+            }
+
+            if (player != null && GameManager.Instance.Player == null)
+            {
+                Instantiate(player, StartLocationManager.Instance.GetTransform(defaultScene).position, Quaternion.identity);
+                GameManager.Instance.Camera.UpdateTarget(GameManager.Instance.Player.transform);
             }
         }
     }

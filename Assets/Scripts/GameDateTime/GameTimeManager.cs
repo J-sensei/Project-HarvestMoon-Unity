@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Utilities;
 
@@ -28,6 +29,17 @@ namespace GameDateTime
 
         [Header("Sun")]
         [SerializeField] private Transform sunTransform;
+        private Transform SunTransform
+        {
+            get
+            {
+                if(sunTransform == null)
+                {
+                    sunTransform = GameObject.Find("Directional Light").GetComponent<Transform>();
+                }
+                return sunTransform;
+            }
+        }
         private float _sunMoveAngle;
         private Quaternion _targetSunAngle;
 
@@ -53,14 +65,14 @@ namespace GameDateTime
             }
 
             StartCoroutine(UpdateTime()); // Start the time update
-            sunTransform.rotation = _targetSunAngle; // Rotate the sun instantly
+            LoadSunTransform(); // Rotate the sun instantly
             currentSkybox = skyboxTimes[0];
         }
 
         private void Update()
         {
             // Smooth rotate the sun (Directional light)
-            sunTransform.rotation = Quaternion.Slerp(sunTransform.rotation, _targetSunAngle, Time.deltaTime);
+            SunTransform.rotation = Quaternion.Slerp(SunTransform.rotation, _targetSunAngle, Time.deltaTime);
         }
 
         /// <summary>
@@ -101,7 +113,8 @@ namespace GameDateTime
             // Inform listeners about the clock time
             foreach(ITimeChecker listener in timeCheckerListeners)
             {
-                listener.ClockUpdate(gameTime);
+                if(listener != null)
+                    listener.ClockUpdate(gameTime);
             }
 
             // Update skybox
@@ -130,8 +143,16 @@ namespace GameDateTime
             _updateNewDay = false;
             gameTime.Reset(); // Reset the date time
             Tick(); // Explicitly call tick to update the date time
-            sunTransform.rotation = _targetSunAngle; // Rotate the sun instantly
+            LoadSunTransform();
             Debug.Log("[Game Time Manager] Sleep is called");
+        }
+
+        /// <summary>
+        /// Update sun transform instantly
+        /// </summary>
+        public void LoadSunTransform()
+        {
+            SunTransform.rotation = _targetSunAngle; // Rotate the sun instantly
         }
 
         /// <summary>
@@ -160,6 +181,11 @@ namespace GameDateTime
         public void RemoveListener(ITimeChecker listener)
         {
             timeCheckerListeners.Remove(listener);
+        }
+
+        public void UpdateListener()
+        {
+            timeCheckerListeners.RemoveAll(x => x == null);
         }
 
         public void RemoveAllListeners()

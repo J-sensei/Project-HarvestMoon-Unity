@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Item
   - Tooltip
+  - PersistObject
   layers:
   - Default
   - TransparentFX

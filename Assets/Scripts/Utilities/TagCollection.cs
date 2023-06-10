@@ -14,5 +14,9 @@
         /// Tag for fade panel in the game
         /// </summary>
         public const string FADE_PANEL_TAG = "FadePanel";
+        /// <summary>
+        /// Object to bring one scene to another
+        /// </summary>
+        public const string PERSIST_OBJECT_TAG = "PersistObject";
     }
 }

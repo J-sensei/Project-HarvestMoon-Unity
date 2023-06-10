@@ -14,11 +14,6 @@ namespace Inventory
             // If there is no items set, then initialize it all empty
             if (_itemSlots == null || _itemSlots.Length == 0)
                 _itemSlots = new ItemSlot[itemSlot];
-
-            for (int i = 0; i < _itemSlots.Length; i++)
-            {
-                Debug.Log(_itemSlots[i]);
-            }
         }
 
         [Header("Inventory Slot")]

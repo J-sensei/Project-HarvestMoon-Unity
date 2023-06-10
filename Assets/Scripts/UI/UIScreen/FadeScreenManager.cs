@@ -25,13 +25,6 @@ namespace UI.UIScreen
             {
                 loadingPanel = transform.GetComponentInChildren<SpriteAnimationUI>();
             }
-
-            if (fadePanel.FadeOnStart)
-            {
-                fadePanel.OnStart.AddListener(() => Loading(true));
-                fadePanel.OnFinish.AddListener(() => Loading(false));
-                fadePanel.FadeIn();
-            }
         }
 
         public void Loading(bool v)

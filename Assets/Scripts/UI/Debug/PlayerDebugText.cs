@@ -13,6 +13,11 @@ namespace UI.Debug
 
         private void Update()
         {
+            if(playerStateMachine == null)
+            {
+                playerStateMachine = GameManager.Instance.Player;
+                return;
+            }
             finalMoveText.text = "Apply Move: " + "("+ playerStateMachine.ApplyMovementX+ ", "+ playerStateMachine.ApplyMovementY + ","+ playerStateMachine.ApplyMovementZ+ ")";
             currentMoveText.text = "Current Move: " + playerStateMachine.CurrentMove.ToString();
             string sub = "Invalid";

@@ -17,6 +17,8 @@ namespace UI.UIScreen
         [Tooltip("Color of the panel")]
         [SerializeField] private Color fadeColor;
 
+        public float OriginalFadeDuration { get; private set; }
+        public float FadeDuration { get { return fadeDuration; } set { fadeDuration = value; } }
         private CanvasGroup _canvasGroup;
 
         public UnityEvent OnStart;
@@ -30,21 +32,14 @@ namespace UI.UIScreen
 
         private void Awake()
         {
-            if(image == null)
+            OriginalFadeDuration = fadeDuration;
+            if (image == null)
             {
                 image = GetComponent<Image>();
             }
             image.gameObject.SetActive(false); // Disable the image
             _canvasGroup = image.GetComponent<CanvasGroup>();
         }
-
-        //private void Start()
-        //{
-        //    if (fadeOnStart)
-        //    {
-        //        FadeIn();
-        //    }
-        //}
 
         /// <summary>
         /// Black to transparent fade
