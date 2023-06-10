@@ -1,6 +1,7 @@
 using SceneTransition;
 using StateMachine.Player;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Utilities
 {
@@ -10,8 +11,11 @@ namespace Utilities
     public class GameInitializer : MonoBehaviour
     {
         [SerializeField] private SceneLocation defaultScene = SceneLocation.Home;
+
+        [Header("Initialize Objects")]
         [SerializeField] private GameMenu gameMenu;
         [SerializeField] private PlayerStateMachine player;
+        [SerializeField] private EventSystem eventSystem;
 
         private void Start()
         {
@@ -29,8 +33,20 @@ namespace Utilities
 
             if (player != null && GameManager.Instance.Player == null)
             {
-                Instantiate(player, StartLocationManager.Instance.GetTransform(defaultScene).position, Quaternion.identity);
+                Transform spawnPos = StartLocationManager.Instance.GetTransform(defaultScene);
+                Instantiate(player, spawnPos.position, spawnPos.rotation);
                 GameManager.Instance.Camera.UpdateTarget(GameManager.Instance.Player.transform);
+            }
+        }
+
+        /// <summary>
+        /// Ensure everything is properly initialize
+        /// </summary>
+        public void Ensure()
+        {
+            if(eventSystem != null && GameObject.FindObjectOfType<EventSystem>() == null)
+            {
+                Instantiate(eventSystem, Vector3.zero, Quaternion.identity);
             }
         }
     }
