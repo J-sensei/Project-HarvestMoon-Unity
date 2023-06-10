@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7449535406293280459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7449535406293280456}
+  - component: {fileID: 7449535406293280457}
+  - component: {fileID: 7449535406293280502}
+  - component: {fileID: 5395161233826616429}
+  m_Layer: 7
+  m_Name: Cucumber Seed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7449535406293280456
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7449535406293280459}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8205698861636604384}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7449535406293280457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7449535406293280459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e0ebff135cacb4f87d43c9e4496ded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 81056b2528c068b4c935c82da45a6fe7, type: 2}
+  rb: {fileID: 2118450393074988007}
+  itemColliders:
+  - {fileID: 7449535406293280502}
+  outline: {fileID: 5395161233826616429}
+--- !u!65 &7449535406293280502
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7449535406293280459}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.37360683, y: 0.15959653, z: 0.5416869}
+  m_Center: {x: -0.110728756, y: 0.13, z: -0.008017004}
+--- !u!114 &5395161233826616429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7449535406293280459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.20392157, g: 0.6745098, b: 0.8784314, a: 1}
+  outlineWidth: 8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!1001 &5609925364625775284
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7449535406293280456}
+    m_Modifications:
+    - target: {fileID: 4338655499337290110, guid: c32ecfdbfeb3a844a999e03cfc5fd579,
+        type: 3}
+      propertyPath: m_Name
+      value: Cucumber_SeedPacket
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338655499337290110, guid: c32ecfdbfeb3a844a999e03cfc5fd579,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339793040392866644, guid: c32ecfdbfeb3a844a999e03cfc5fd579,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339793040392866644, guid: c32ecfdbfeb3a844a999e03cfc5fd579,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.129
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339793040392866644, guid: c32ecfdbfeb3a844a999e03cfc5fd579,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.099
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339793040392866644, guid: c32ecfdbfeb3a844a999e03cfc5fd579,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.119
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339793040392866644, guid: c32ecfdbfeb3a844a999e03cfc5fd579,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6601771
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339793040392866644, guid: c32ecfdbfeb3a844a999e03cfc5fd579,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.66577256
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339793040392866644, guid: c32ecfdbfeb3a844a999e03cfc5fd579,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.19450775
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339793040392866644, guid: c32ecfdbfeb3a844a999e03cfc5fd579,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.28823572
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339793040392866644, guid: c32ecfdbfeb3a844a999e03cfc5fd579,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339793040392866644, guid: c32ecfdbfeb3a844a999e03cfc5fd579,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339793040392866644, guid: c32ecfdbfeb3a844a999e03cfc5fd579,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4383070306192536280, guid: c32ecfdbfeb3a844a999e03cfc5fd579, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: c32ecfdbfeb3a844a999e03cfc5fd579, type: 3}
+--- !u!54 &2118450393074988007 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 5817606242368776531, guid: c32ecfdbfeb3a844a999e03cfc5fd579,
+    type: 3}
+  m_PrefabInstance: {fileID: 5609925364625775284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8205698861636604384 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4339793040392866644, guid: c32ecfdbfeb3a844a999e03cfc5fd579,
+    type: 3}
+  m_PrefabInstance: {fileID: 5609925364625775284}
+  m_PrefabAsset: {fileID: 0}

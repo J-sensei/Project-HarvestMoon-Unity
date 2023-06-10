@@ -139,10 +139,10 @@ namespace StateMachine.Player
                         ToolData toolData = (ToolData)item;
 
                         // Check if the farm can be interact by the player tool
-                        if (farm.CheckTool(toolData.toolType))
-                        {
+                        //if (farm.CheckTool(toolData.toolType)) // Redundant check
+                        //{
                             this.Context.ToolEvent.AddListener(FarmEvent);
-                        }
+                        //}
                         this.Context.UsingTool = true; // This boolean will change to PlayerToolUsingState
                     }
                     else if (item != null && item is SeedData)
@@ -161,6 +161,8 @@ namespace StateMachine.Player
         {
             FarmLand farm = this.Context.PlayerInteractor.SelectedtInteractable as FarmLand;
             ItemData item = InventoryManager.Instance.HoldingItem;
+            if (item == null) return;
+
             SeedData seedData = (SeedData)item;
             if (seedData != null)
             {
@@ -176,6 +178,8 @@ namespace StateMachine.Player
         {
             FarmLand farm = this.Context.PlayerInteractor.SelectedtInteractable as FarmLand;
             ItemData item = InventoryManager.Instance.HoldingItem;
+            if (item == null) return;
+
             if (item != null && item is ToolData)
             {
                 ToolData toolData = (ToolData)item;
@@ -186,6 +190,9 @@ namespace StateMachine.Player
                         break;
                     case ToolData.ToolType.WateringCan:
                         farm.Water();
+                        break;
+                    case ToolData.ToolType.Pickaxe: case ToolData.ToolType.Axe:
+                        farm.RemoveCrop();
                         break;
                 }
             }

@@ -139,6 +139,18 @@ namespace Farming
         }
 
         /// <summary>
+        /// Remove any crop in the farmland
+        /// </summary>
+        public void RemoveCrop()
+        {
+            if(crop != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.plantRemoveAudio);
+                Destroy(crop.gameObject);
+            }
+        }
+
+        /// <summary>
         /// Plant crop into the land
         /// </summary>
         /// <param name="seedData">Seed that are going to plant</param>
@@ -210,6 +222,13 @@ namespace Farming
                 }
 
                 SwitchState(FarmLandState.Farmland); // Back to farm land for the player to water again
+            }
+            else if(currentState != FarmLandState.Watered)
+            {
+                if (crop != null)
+                {
+                    crop.Wilt();
+                }
             }
         }
         #endregion

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: 
   itemName: Axe
-  description: A tool to chop the tree into wood
+  description: A tool to chop the tree into wood (Can be use to remove crop)
   type: 0
   thumnail: {fileID: -306325166, guid: c656dfc9116f6c14b9b0e5be6062ceae, type: 3}
   itemPrefab: {fileID: 3134679073235487123, guid: edcea15c537c7af4397b72a2f8552baa,

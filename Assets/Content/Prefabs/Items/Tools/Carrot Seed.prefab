@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fdf18c58b725a2f469593ece1786d307, type: 2}
+  - {fileID: 2100000, guid: 741931f355537fb4d9990d718b52225f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 0.40943396, g: 0.8428952, b: 1, a: 1}
+  outlineColor: {r: 0.20392157, g: 0.6745098, b: 0.8784314, a: 1}
   outlineWidth: 8
   precomputeOutline: 0
   bakeKeys: []

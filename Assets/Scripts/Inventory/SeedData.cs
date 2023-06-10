@@ -1,10 +1,11 @@
 using Farming;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Inventory
 {
+    /// <summary>
+    /// Define how crop grows
+    /// </summary>
     [System.Serializable]
     public struct GrowData
     {
@@ -31,6 +32,11 @@ namespace Inventory
         [Header("Yield")]
         [Tooltip("The crop can be collected by the player when the plant is fully grown")]
         public ItemData crop;
-    }
 
+        [Header("Regrowable")]
+        [Tooltip("Is the plant regrowable after harvested")]
+        public bool regrowable = false;
+        [Tooltip("Day needed to regrow back the harvest state, this value will use to subtract grow day")]
+        public int dayToRegrow = 1;
+    }
 }

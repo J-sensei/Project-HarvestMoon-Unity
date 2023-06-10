@@ -9,7 +9,11 @@ namespace Farming
     public enum CropState
     {
         Grow,
-        Harvest
+        Harvest,
+        /// <summary>
+        /// Plant die because not watered it
+        /// </summary>
+        Wilted
     }
 
     /// <summary>
@@ -20,6 +24,8 @@ namespace Farming
         [SerializeField] private SeedData seed;
         [Tooltip("Game objects to represent number of life cycle required to grow the crop")]
         [SerializeField] private GameObject[] cropStateObjects;
+        [Tooltip("Game Object to represent when the crop wilted")]
+        [SerializeField] private GameObject wiltedCrop;
         [Tooltip("Current day to grow the crop")]
         [SerializeField] private ItemData yieldItem;
         public ItemData YieldItem { get { return yieldItem; } }
@@ -32,29 +38,20 @@ namespace Farming
         private GameObject _currentDisplayObject;
         private Outline _outline;
 
-        //public Crop(SeedData seed, Transform transform)
-        //{
-        //    this.seed = seed;
-        //    yieldItem = seed.crop;
-        //    cropStateObjects = new GameObject[seed.grows.Length];
-        //    for(int i = 0; i < seed.grows.Length; i++)
-        //    {
-        //        cropStateObjects[i] = seed.grows[i].displayPrefab;
-        //    }
-
-        //    this.transform.position = transform.position;
-        //    _growData = seed.grows;
-        //}
-
         private void Start()
         {
             if(detectCollider == null)
             {
                 detectCollider = GetComponent<BoxCollider>();
             }
-            if (currentState != CropState.Harvest) detectCollider.enabled = false;
+            if (currentState != CropState.Harvest) detectCollider.enabled = false; // Prevent player detect the unharvestable crop
         }
 
+        /// <summary>
+        /// Initialze to plant to crop
+        /// </summary>
+        /// <param name="seed"></param>
+        /// <param name="transform"></param>
         public void Initialize(SeedData seed, Transform transform)
         {
             this.seed = seed;
@@ -69,9 +66,17 @@ namespace Farming
             _growData = seed.grows;
         }
 
+        /// <summary>
+        /// Update to decide which gameobject to show based on the current state
+        /// </summary>
         public void UpdateCropPrefab()
         {
             if (day > _growData.Length) return; // No need to instantiate / destroy the display prefab as plant is fullly grown
+            if(currentState == CropState.Wilted)
+            {
+                InstantiatePlant(wiltedCrop);
+                return;
+            }
 
             GameObject go = null;
             for (int i = 0; i < _growData.Length; i++)
@@ -89,12 +94,15 @@ namespace Farming
             InstantiatePlant(go);
         }
 
-
+        /// <summary>
+        /// Instantiate the plant game object for display purposes
+        /// </summary>
+        /// <param name="go"></param>
         private void InstantiatePlant(GameObject go)
         {
             if(go == null)
             {
-                Debug.LogWarning("[Crop] Unable to instantiate null game object");
+                Debug.LogWarning("[Crop] Unable to instantiate null game object. GameObject name: " + name);
                 return;
             }
 
@@ -121,19 +129,38 @@ namespace Farming
             }
         }
 
+        public void Wilt()
+        {
+            currentState = CropState.Wilted;
+            UpdateCropPrefab();
+        }
+
         /// <summary>
         /// When the plant is ready to harvest
         /// </summary>
-        public void Harvest()
+        private void Harvest()
         {
-            // Just destroy the object
-            Destroy(gameObject);
+            if (seed.regrowable)
+            {
+                day -= seed.dayToRegrow;
+                currentState = CropState.Grow; // Back to grow state
+                detectCollider.enabled = false; // Disable not allow player to detect the crop to harvest it
+                UpdateCropPrefab(); // Update the display game object
+            }
+            else
+            {
+                // Destroy the object if its not regrowable
+                Destroy(gameObject);
+            }
         }
 
+        /// <summary>
+        /// When player interact with fully grown plant
+        /// </summary>
         public void Interact()
         {
-            InventoryManager.Instance.Pickup(YieldItem);
-            Harvest();
+            InventoryManager.Instance.Pickup(YieldItem); // Get the yield item
+            Harvest(); // Then harvest the crop
         }
 
         public InteractableType GetInteractableType()
@@ -145,7 +172,5 @@ namespace Farming
             if (currentState == CropState.Harvest && _outline != null)
                 _outline.enabled = v;
         }
-
     }
-
 }

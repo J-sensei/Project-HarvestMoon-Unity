@@ -1,4 +1,3 @@
-using Player;
 using StateMachine.Player;
 using TMPro;
 using UnityEngine;

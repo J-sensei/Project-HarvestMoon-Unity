@@ -83,8 +83,12 @@ namespace Player
                         _currentItemName = data.name;
 
                         // Transition to lift state
-                        player.PickingItem = true;
-                        player.SwitchState(player.StateFactory.Lift());
+                        // Checking to prevent player go lift again even when player already inside lift state
+                        if (player.CurrentState != player.StateFactory.Lift())
+                        {
+                            player.PickingItem = true;
+                            player.SwitchState(player.StateFactory.Lift());
+                        }
                     }
                     else
                     {
@@ -104,6 +108,12 @@ namespace Player
             {
                 player.SwitchState(player.StateFactory.Grounded());
                 player.PickingItem = false;
+            }
+
+            if (player.DroppingItem)
+            {
+                player.SwitchState(player.StateFactory.Grounded());
+                player.DroppingItem = false;
             }
         }
 

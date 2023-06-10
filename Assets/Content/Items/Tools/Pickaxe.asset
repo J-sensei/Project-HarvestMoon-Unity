@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pickaxe
   m_EditorClassIdentifier: 
   itemName: Pickaxe
-  description: A tool to mine the stone
+  description: A tool to mine the stone (Can be use to remove crop)
   type: 0
   thumnail: {fileID: -1796156216, guid: c656dfc9116f6c14b9b0e5be6062ceae, type: 3}
   itemPrefab: {fileID: 5967804503201592093, guid: 4c527e9a64ae4d849906c1c16b8a7ee4,

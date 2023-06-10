@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   itemName: Carrot
-  description: Good Vegetable
+  description: Generally biennial plant of the Apiaceae family that produces an edible
+    taproot
   type: 1
   thumnail: {fileID: -1348461358, guid: 4720d88610a3d95498fe99e1600fd077, type: 3}
   itemPrefab: {fileID: 6188043438508429691, guid: 1c1d2489160303842bc143bafe7dd338,

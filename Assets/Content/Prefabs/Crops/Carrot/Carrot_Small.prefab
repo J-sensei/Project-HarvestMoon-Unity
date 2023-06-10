@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 493661686753699068}
   - component: {fileID: 504164588900351290}
   - component: {fileID: 7259266983406690564}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Carrot_Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,8 +62,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fdf18c58b725a2f469593ece1786d307, type: 2}
-  - {fileID: 2100000, guid: da5a311d3775332478c396918dda3aaa, type: 2}
+  - {fileID: 2100000, guid: 12434f9929f0e3a46a12959940277f5a, type: 2}
+  - {fileID: 2100000, guid: 33dd3983c37291c4e938b147f9d468cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0.17358488, b: 0.17358488, a: 1}
-  outlineWidth: 5
+  outlineColor: {r: 1, g: 0.32156864, b: 0.32156864, a: 1}
+  outlineWidth: 8
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

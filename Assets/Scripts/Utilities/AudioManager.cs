@@ -30,6 +30,7 @@ namespace Utilities
         [SerializeField] public AudioClip wateringAudio;
         [SerializeField] public AudioClip hoeAudio;
         [SerializeField] public AudioClip plantAudio;
+        [SerializeField] public AudioClip plantRemoveAudio;
 
         [Header("UI")]
         [Header("Menu Audio")]

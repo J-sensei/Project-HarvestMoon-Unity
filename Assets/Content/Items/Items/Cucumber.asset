@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe392b30be19c34ca6e6558effcc9f1, type: 3}
+  m_Name: Cucumber
+  m_EditorClassIdentifier: 
+  itemName: Cucumber
+  description: Cucumbers are commonly mistaken for vegetables. But in fact they are
+    fruits, specifically berries.
+  type: 1
+  thumnail: {fileID: 21300000, guid: 22e16685296c94b4fbeb7d9cd1624073, type: 3}
+  itemPrefab: {fileID: 9131786731820687168, guid: 45493284f529c8949839948ec5b366c7,
+    type: 3}
