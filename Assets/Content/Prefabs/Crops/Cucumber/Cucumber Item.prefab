@@ -106,6 +106,7 @@ MonoBehaviour:
   - {fileID: 5057250705736080490}
   - {fileID: 9104860461112671632}
   outline: {fileID: 5229424078341568509}
+  groundedDistance: 0.5
 --- !u!64 &9104860461112671632
 MeshCollider:
   m_ObjectHideFlags: 0

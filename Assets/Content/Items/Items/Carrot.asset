@@ -19,3 +19,5 @@ MonoBehaviour:
   thumnail: {fileID: -1348461358, guid: 4720d88610a3d95498fe99e1600fd077, type: 3}
   itemPrefab: {fileID: 6188043438508429691, guid: 1c1d2489160303842bc143bafe7dd338,
     type: 3}
+  stacktable: 1
+  consumable: 1

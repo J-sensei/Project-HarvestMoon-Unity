@@ -77,6 +77,29 @@ namespace Inventory
         }
 
         /// <summary>
+        /// Consume current holding item
+        /// </summary>
+        public void Consume()
+        {
+            if(_holdingItemSlot != null && _holdingItemSlot.ItemData != null)
+            {
+                if (_holdingItemSlot.ItemData.consumable)
+                {
+                    _holdingItemSlot.Remove();
+                    if(_holdingItemSlot.Quantity <= 0)
+                    {
+                        _holdingItemSlot = null; // Item is used up finish
+                    }
+                    InventoryUIManager.Instance.UpdateInventoryUI();
+                }
+            }
+            else
+            {
+                Debug.LogWarning("[Inventory Manager] Trying to consume null item slot");
+            }
+        }
+
+        /// <summary>
         /// Pickup the item to the holding item slot
         /// </summary>
         /// <param name="item"></param>

@@ -107,6 +107,7 @@ MonoBehaviour:
   - {fileID: 6174945748638128221}
   - {fileID: 7467182811202278417}
   outline: {fileID: 4953726337888703896}
+  groundedDistance: 0.5
 --- !u!65 &6174945748638128221
 BoxCollider:
   m_ObjectHideFlags: 0

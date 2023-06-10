@@ -99,7 +99,15 @@ namespace StateMachine.Player
         /// </summary>
         private void OnPickupPress(IInteractable interactable)
         {
-            if (interactable == null) return; // No need to do anything if interactable object is null
+            if (interactable == null) 
+            {
+                // Drop whatever item player equiping
+                if (InventoryManager.Instance.HoldingItemSlot != null)
+                {
+                    this.Context.EquipController.DetachItem();
+                }
+                return; // No need to do anything if interactable object is null
+            }  
 
             switch (interactable.GetInteractableType())
             {
@@ -167,6 +175,7 @@ namespace StateMachine.Player
             if (seedData != null)
             {
                 farm.Plant(seedData);
+                InventoryManager.Instance.Consume();
             }
             else
             {

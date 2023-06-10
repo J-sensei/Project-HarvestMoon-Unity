@@ -18,6 +18,8 @@ MonoBehaviour:
   thumnail: {fileID: -212726908, guid: e76ca3bc447cf9d42b5c51d1aa7d9090, type: 3}
   itemPrefab: {fileID: 7449535406293280459, guid: fc377e08433d5cb49b3f8a9671e86d66,
     type: 3}
+  stacktable: 1
+  consumable: 1
   growDay: 3
   grows:
   - day: 1
@@ -32,3 +34,5 @@ MonoBehaviour:
   cropPrefab: {fileID: 956674251774442366, guid: 5d8d256cfe78d5849958cb19de1a9c37,
     type: 3}
   crop: {fileID: 11400000, guid: 2781fe65b90cb3b46b1478d1762b13e6, type: 2}
+  regrowable: 0
+  dayToRegrow: 1

@@ -35,7 +35,7 @@ namespace Inventory
         /// <returns></returns>
         public bool Stackable(ItemSlot slot)
         {
-            return _itemData.Equals(slot._itemData) && _quantity < MAX_QUANTITY;
+            return _itemData.Equals(slot._itemData) && _quantity < MAX_QUANTITY && _itemData.stacktable;
         }
 
         /// <summary>

@@ -20,6 +20,7 @@ namespace Inventory
     /// </summary>
     public class ItemData : ScriptableObject
     {
+        [Header("Details")]
         [Tooltip("Name of the item")]
         public string itemName = "Item";
         [Tooltip("Description of the item")]
@@ -27,9 +28,16 @@ namespace Inventory
         [Tooltip("Type of the item, use for inventory checking and item use case checking when player is trying to using it")]
         public ItemType type = ItemType.Tool;
 
+        [Header("Render")]
         [Tooltip("Thumbnail to display in the inventory")]
         public Sprite thumnail;
         [Tooltip("3D Model of the object for the player to equip on hand")]
         public GameObject itemPrefab;
+
+        [Header("Item Properties")]
+        [Tooltip("Can this item stack with same item?")]
+        public bool stacktable = true;
+        [Tooltip("Will this item descrease the quantity after consumed")]
+        public bool consumable = false;
     }
 }

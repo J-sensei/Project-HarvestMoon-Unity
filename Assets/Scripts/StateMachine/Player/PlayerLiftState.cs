@@ -75,6 +75,7 @@ namespace StateMachine.Player
             }
             else if (this.Context.PickupInputPress && !this.Context.PickingItem) // Prevent bug happen when pressing pickup when picking an item
             {
+                // Pickup same item again if its stackable
                 if (this.Context.PlayerInteractor.SelectedtInteractable != null && this.Context.PlayerInteractor.SelectedtInteractable.GetItemData() != null)
                 {
                     ItemData itemData = this.Context.PlayerInteractor.SelectedtInteractable.GetItemData();
@@ -90,8 +91,7 @@ namespace StateMachine.Player
                         return;
                     }
                 }
-
-                //this.Context.PickingItem = true; // Use same variable for dropping
+                
                 this.Context.DroppingItem = true;
                 this.Context.PickupInputPress = false; // Set to false to make sure it only trigger once
                 this.SwitchState(this.StateFactory.DroppingItem());
