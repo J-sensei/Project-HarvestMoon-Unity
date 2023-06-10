@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44716364, g: 0.49708402, b: 0.5751458, a: 1}
+  m_IndirectSpecularColor: {r: 0.18072999, g: 0.22624692, b: 0.3071591, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 6880208}
   - component: {fileID: 6880210}
   - component: {fileID: 6880209}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,6 +151,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1599096967}
   m_RootOrder: 2
@@ -166,6 +167,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -308,12 +310,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 26186442}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 26186442}
+  m_maskType: 0
 --- !u!23 &26186442
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -325,6 +327,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -365,6 +368,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -1.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 1
@@ -385,7 +389,7 @@ GameObject:
   - component: {fileID: 35913033}
   - component: {fileID: 35913035}
   - component: {fileID: 35913034}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,6 +406,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 905857497}
   m_RootOrder: 5
@@ -417,6 +422,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -466,7 +472,7 @@ GameObject:
   - component: {fileID: 38229885}
   - component: {fileID: 38229887}
   - component: {fileID: 38229886}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,6 +489,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1115319174}
   m_RootOrder: 4
@@ -498,6 +505,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -547,7 +555,7 @@ GameObject:
   - component: {fileID: 41288063}
   - component: {fileID: 41288065}
   - component: {fileID: 41288064}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,6 +572,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1215612205}
   m_RootOrder: 4
@@ -579,6 +588,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -628,7 +638,7 @@ GameObject:
   - component: {fileID: 42713189}
   - component: {fileID: 42713191}
   - component: {fileID: 42713190}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,6 +655,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 660115011}
   m_RootOrder: 4
@@ -660,6 +671,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -709,7 +721,7 @@ GameObject:
   - component: {fileID: 43753668}
   - component: {fileID: 43753670}
   - component: {fileID: 43753669}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -726,6 +738,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 874081645}
   m_RootOrder: 3
@@ -741,6 +754,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -887,12 +901,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 43789304}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 43789304}
+  m_maskType: 0
 --- !u!23 &43789304
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -904,6 +918,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -944,6 +959,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 14.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 13
@@ -964,6 +980,7 @@ GameObject:
   - component: {fileID: 50237607}
   - component: {fileID: 50237609}
   - component: {fileID: 50237608}
+  - component: {fileID: 50237610}
   m_Layer: 0
   m_Name: Point Light (2)
   m_TagString: Untagged
@@ -981,6 +998,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.03, y: 1.7, z: 9.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 907847744}
   - {fileID: 346138077}
@@ -1063,6 +1081,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &50237610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50237606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &51925551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,12 +1205,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 51925553}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 51925553}
+  m_maskType: 0
 --- !u!23 &51925553
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1184,6 +1222,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1224,6 +1263,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 2.7200003}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 5
@@ -1337,12 +1377,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 56919092}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 56919092}
+  m_maskType: 0
 --- !u!23 &56919092
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1354,6 +1394,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1394,6 +1435,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 2.7200003}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 3
@@ -1414,7 +1456,7 @@ GameObject:
   - component: {fileID: 60946731}
   - component: {fileID: 60946733}
   - component: {fileID: 60946732}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1431,6 +1473,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 905857497}
   m_RootOrder: 2
@@ -1446,6 +1489,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1495,7 +1539,7 @@ GameObject:
   - component: {fileID: 68643854}
   - component: {fileID: 68643856}
   - component: {fileID: 68643855}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1512,6 +1556,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 971610645}
   m_RootOrder: 0
@@ -1527,6 +1572,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1576,7 +1622,7 @@ GameObject:
   - component: {fileID: 87070523}
   - component: {fileID: 87070525}
   - component: {fileID: 87070524}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1593,6 +1639,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 971610645}
   m_RootOrder: 5
@@ -1608,6 +1655,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1750,12 +1798,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 93958111}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 93958111}
+  m_maskType: 0
 --- !u!23 &93958111
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1767,6 +1815,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1807,6 +1856,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -1.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 2
@@ -1827,7 +1877,7 @@ GameObject:
   - component: {fileID: 95445795}
   - component: {fileID: 95445797}
   - component: {fileID: 95445796}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1844,6 +1894,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1299221553}
   m_RootOrder: 0
@@ -1859,6 +1910,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1908,7 +1960,7 @@ GameObject:
   - component: {fileID: 96216135}
   - component: {fileID: 96216137}
   - component: {fileID: 96216136}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1925,6 +1977,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 874081645}
   m_RootOrder: 1
@@ -1940,6 +1993,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2040,6 +2094,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -2053,7 +2108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 121423742}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2ToneCustom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2070,6 +2125,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.008770227, y: -0.099999994, z: 9.277608}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1226562156}
   - {fileID: 391096578}
@@ -2091,7 +2147,7 @@ GameObject:
   - component: {fileID: 124542709}
   - component: {fileID: 124542711}
   - component: {fileID: 124542710}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2108,6 +2164,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1936883927}
   m_RootOrder: 3
@@ -2123,6 +2180,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2172,7 +2230,7 @@ GameObject:
   - component: {fileID: 129583559}
   - component: {fileID: 129583561}
   - component: {fileID: 129583560}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2189,6 +2247,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1215612205}
   m_RootOrder: 2
@@ -2204,6 +2263,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2251,7 +2311,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 138579115}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2Toon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2268,6 +2328,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.008770227, y: -0.099999994, z: -6.722392}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1088436366}
   - {fileID: 1749854442}
@@ -2289,7 +2350,7 @@ GameObject:
   - component: {fileID: 151559554}
   - component: {fileID: 151559556}
   - component: {fileID: 151559555}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2306,6 +2367,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 692970375}
   m_RootOrder: 3
@@ -2321,6 +2383,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2370,7 +2433,7 @@ GameObject:
   - component: {fileID: 156548967}
   - component: {fileID: 156548969}
   - component: {fileID: 156548968}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2387,6 +2450,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1475649172}
   m_RootOrder: 2
@@ -2402,6 +2466,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2451,7 +2516,7 @@ GameObject:
   - component: {fileID: 180743640}
   - component: {fileID: 180743642}
   - component: {fileID: 180743641}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2468,6 +2533,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 660115011}
   m_RootOrder: 2
@@ -2483,6 +2549,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2532,7 +2599,7 @@ GameObject:
   - component: {fileID: 186820958}
   - component: {fileID: 186820960}
   - component: {fileID: 186820959}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2549,6 +2616,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1235142429}
   m_RootOrder: 2
@@ -2564,6 +2632,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2613,7 +2682,7 @@ GameObject:
   - component: {fileID: 201852307}
   - component: {fileID: 201852309}
   - component: {fileID: 201852308}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2630,6 +2699,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1115319174}
   m_RootOrder: 5
@@ -2645,6 +2715,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2694,7 +2765,7 @@ GameObject:
   - component: {fileID: 250419868}
   - component: {fileID: 250419870}
   - component: {fileID: 250419869}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2711,6 +2782,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 848826152}
   m_RootOrder: 4
@@ -2726,6 +2798,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2775,7 +2848,7 @@ GameObject:
   - component: {fileID: 253438777}
   - component: {fileID: 253438779}
   - component: {fileID: 253438778}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2792,6 +2865,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1115319174}
   m_RootOrder: 3
@@ -2807,6 +2881,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2856,7 +2931,7 @@ GameObject:
   - component: {fileID: 261737912}
   - component: {fileID: 261737914}
   - component: {fileID: 261737913}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2873,6 +2948,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 121423742}
   m_RootOrder: 2
@@ -2888,6 +2964,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2937,7 +3014,7 @@ GameObject:
   - component: {fileID: 279808304}
   - component: {fileID: 279808306}
   - component: {fileID: 279808305}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2954,6 +3031,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1299221553}
   m_RootOrder: 1
@@ -2969,6 +3047,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3018,7 +3097,7 @@ GameObject:
   - component: {fileID: 285747359}
   - component: {fileID: 285747361}
   - component: {fileID: 285747360}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3035,6 +3114,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1936883927}
   m_RootOrder: 4
@@ -3050,6 +3130,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3099,7 +3180,7 @@ GameObject:
   - component: {fileID: 296093594}
   - component: {fileID: 296093596}
   - component: {fileID: 296093595}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3116,6 +3197,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 660115011}
   m_RootOrder: 0
@@ -3131,6 +3213,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3180,7 +3263,7 @@ GameObject:
   - component: {fileID: 315658926}
   - component: {fileID: 315658928}
   - component: {fileID: 315658927}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3197,6 +3280,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 692970375}
   m_RootOrder: 5
@@ -3212,6 +3296,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3261,7 +3346,7 @@ GameObject:
   - component: {fileID: 319422094}
   - component: {fileID: 319422096}
   - component: {fileID: 319422095}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3278,6 +3363,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 971610645}
   m_RootOrder: 1
@@ -3293,6 +3379,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3342,7 +3429,7 @@ GameObject:
   - component: {fileID: 320911239}
   - component: {fileID: 320911241}
   - component: {fileID: 320911240}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3359,6 +3446,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1215612205}
   m_RootOrder: 0
@@ -3374,6 +3462,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3440,6 +3529,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 50237607}
   m_RootOrder: 1
@@ -3535,12 +3625,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 346138079}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 346138079}
+  m_maskType: 0
 --- !u!23 &346138079
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3552,6 +3642,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3593,7 +3684,7 @@ GameObject:
   - component: {fileID: 371645453}
   - component: {fileID: 371645455}
   - component: {fileID: 371645454}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3610,6 +3701,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 874081645}
   m_RootOrder: 2
@@ -3625,6 +3717,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3767,12 +3860,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 376431041}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 376431041}
+  m_maskType: 0
 --- !u!23 &376431041
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3784,6 +3877,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3824,6 +3918,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 6.7200003}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 7
@@ -3844,7 +3939,7 @@ GameObject:
   - component: {fileID: 376532594}
   - component: {fileID: 376532596}
   - component: {fileID: 376532595}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3861,6 +3956,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1599096967}
   m_RootOrder: 3
@@ -3876,6 +3972,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3925,7 +4022,7 @@ GameObject:
   - component: {fileID: 378907999}
   - component: {fileID: 378908001}
   - component: {fileID: 378908000}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3942,6 +4039,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1940861564}
   m_RootOrder: 0
@@ -3957,6 +4055,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4006,7 +4105,7 @@ GameObject:
   - component: {fileID: 380049459}
   - component: {fileID: 380049461}
   - component: {fileID: 380049460}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4023,6 +4122,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1172290284}
   m_RootOrder: 5
@@ -4038,6 +4138,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4087,7 +4188,7 @@ GameObject:
   - component: {fileID: 391096578}
   - component: {fileID: 391096580}
   - component: {fileID: 391096579}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4104,6 +4205,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 121423742}
   m_RootOrder: 1
@@ -4119,6 +4221,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4168,7 +4271,7 @@ GameObject:
   - component: {fileID: 392965613}
   - component: {fileID: 392965615}
   - component: {fileID: 392965614}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4185,6 +4288,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1936883927}
   m_RootOrder: 1
@@ -4200,6 +4304,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4342,12 +4447,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 403498311}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 403498311}
+  m_maskType: 0
 --- !u!23 &403498311
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4359,6 +4464,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4399,6 +4505,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 22.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 19
@@ -4436,6 +4543,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 676811103}
   m_RootOrder: 0
@@ -4451,6 +4559,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4532,6 +4641,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4580,6 +4690,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.99, y: 1.64, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 550630566}
   m_Father: {fileID: 0}
@@ -4596,7 +4707,7 @@ GameObject:
   - component: {fileID: 427157295}
   - component: {fileID: 427157297}
   - component: {fileID: 427157296}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4613,6 +4724,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 848826152}
   m_RootOrder: 2
@@ -4628,6 +4740,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4677,7 +4790,7 @@ GameObject:
   - component: {fileID: 427773154}
   - component: {fileID: 427773156}
   - component: {fileID: 427773155}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4694,6 +4807,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1402638985}
   m_RootOrder: 2
@@ -4709,6 +4823,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4758,7 +4873,7 @@ GameObject:
   - component: {fileID: 428305495}
   - component: {fileID: 428305497}
   - component: {fileID: 428305496}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4775,6 +4890,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 138579115}
   m_RootOrder: 5
@@ -4790,6 +4906,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -4839,7 +4956,7 @@ GameObject:
   - component: {fileID: 432075590}
   - component: {fileID: 432075592}
   - component: {fileID: 432075591}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4856,6 +4973,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1940861564}
   m_RootOrder: 4
@@ -4871,6 +4989,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5017,12 +5136,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 483219364}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 483219364}
+  m_maskType: 0
 --- !u!23 &483219364
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5034,6 +5153,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5074,6 +5194,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 10.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 9
@@ -5111,6 +5232,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1544190959}
   m_RootOrder: 1
@@ -5206,12 +5328,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 490779949}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 490779949}
+  m_maskType: 0
 --- !u!23 &490779949
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5223,6 +5345,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5264,7 +5387,7 @@ GameObject:
   - component: {fileID: 493337315}
   - component: {fileID: 493337317}
   - component: {fileID: 493337316}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5281,6 +5404,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 874081645}
   m_RootOrder: 0
@@ -5296,6 +5420,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5345,7 +5470,7 @@ GameObject:
   - component: {fileID: 494987062}
   - component: {fileID: 494987064}
   - component: {fileID: 494987063}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5362,6 +5487,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1475649172}
   m_RootOrder: 1
@@ -5377,6 +5503,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5519,6 +5646,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 963194228}
   m_RootOrder: 0
@@ -5534,7 +5662,7 @@ GameObject:
   - component: {fileID: 505470707}
   - component: {fileID: 505470709}
   - component: {fileID: 505470708}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5551,6 +5679,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 660115011}
   m_RootOrder: 5
@@ -5566,6 +5695,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5615,7 +5745,7 @@ GameObject:
   - component: {fileID: 516274893}
   - component: {fileID: 516274895}
   - component: {fileID: 516274894}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5632,6 +5762,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1363056859}
   m_RootOrder: 2
@@ -5647,6 +5778,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5696,7 +5828,7 @@ GameObject:
   - component: {fileID: 524549838}
   - component: {fileID: 524549840}
   - component: {fileID: 524549839}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5713,6 +5845,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 692970375}
   m_RootOrder: 4
@@ -5728,6 +5861,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5777,7 +5911,7 @@ GameObject:
   - component: {fileID: 544120858}
   - component: {fileID: 544120860}
   - component: {fileID: 544120859}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5794,6 +5928,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1599096967}
   m_RootOrder: 0
@@ -5809,6 +5944,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5858,7 +5994,7 @@ GameObject:
   - component: {fileID: 548900729}
   - component: {fileID: 548900731}
   - component: {fileID: 548900730}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5875,6 +6011,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 874081645}
   m_RootOrder: 4
@@ -5890,6 +6027,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5956,6 +6094,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1907250482}
   m_RootOrder: 1
@@ -6051,12 +6190,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 549872128}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 549872128}
+  m_maskType: 0
 --- !u!23 &549872128
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6068,6 +6207,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6125,6 +6265,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.73, y: -0.01999998, z: 0.985}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 413335697}
   m_RootOrder: 0
@@ -6202,7 +6343,7 @@ GameObject:
   - component: {fileID: 552751688}
   - component: {fileID: 552751690}
   - component: {fileID: 552751689}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6219,6 +6360,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1517739624}
   m_RootOrder: 0
@@ -6234,6 +6376,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6283,7 +6426,7 @@ GameObject:
   - component: {fileID: 572847595}
   - component: {fileID: 572847597}
   - component: {fileID: 572847596}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6300,6 +6443,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 848826152}
   m_RootOrder: 0
@@ -6315,6 +6459,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6364,7 +6509,7 @@ GameObject:
   - component: {fileID: 600594980}
   - component: {fileID: 600594982}
   - component: {fileID: 600594981}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6381,6 +6526,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1936883927}
   m_RootOrder: 0
@@ -6396,6 +6542,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6445,7 +6592,7 @@ GameObject:
   - component: {fileID: 619017718}
   - component: {fileID: 619017720}
   - component: {fileID: 619017719}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6462,6 +6609,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 660115011}
   m_RootOrder: 3
@@ -6477,6 +6625,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6526,7 +6675,7 @@ GameObject:
   - component: {fileID: 624661740}
   - component: {fileID: 624661742}
   - component: {fileID: 624661741}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6543,6 +6692,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1115319174}
   m_RootOrder: 2
@@ -6558,6 +6708,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6605,7 +6756,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 660115011}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3ToneCustomShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6622,6 +6773,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.9912298, y: -0.099999994, z: 1.2776079}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 296093594}
   - {fileID: 1855948892}
@@ -6660,6 +6812,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1840145772}
   m_RootOrder: 0
@@ -6675,6 +6828,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6724,7 +6878,7 @@ GameObject:
   - component: {fileID: 668447424}
   - component: {fileID: 668447426}
   - component: {fileID: 668447425}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6741,6 +6895,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1340577793}
   m_RootOrder: 1
@@ -6756,6 +6911,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6838,6 +6994,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6886,6 +7043,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -0, y: -0.39999962, z: 0}
   m_LocalScale: {x: 20, y: 20, z: 20}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -6901,7 +7059,7 @@ GameObject:
   - component: {fileID: 673653741}
   - component: {fileID: 673653743}
   - component: {fileID: 673653742}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6918,6 +7076,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1215612205}
   m_RootOrder: 5
@@ -6933,6 +7092,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -6982,6 +7142,7 @@ GameObject:
   - component: {fileID: 676811103}
   - component: {fileID: 676811105}
   - component: {fileID: 676811104}
+  - component: {fileID: 676811106}
   m_Layer: 0
   m_Name: Point Light (6)
   m_TagString: Untagged
@@ -6999,6 +7160,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.4499998, y: 2.39, z: 12.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 409456910}
   - {fileID: 1660197884}
@@ -7081,6 +7243,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &676811106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676811102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &692970374
 GameObject:
   m_ObjectHideFlags: 0
@@ -7090,7 +7272,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 692970375}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StylizedSpec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7107,6 +7289,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.008770227, y: -0.099999994, z: 13.277608}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1365670223}
   - {fileID: 2014567792}
@@ -7127,6 +7310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
+  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -7206,10 +7390,31 @@ Transform:
   m_LocalRotation: {x: 0.35006922, y: 0.47202513, z: -0.2115921, w: 0.78094345}
   m_LocalPosition: {x: 0, y: 7.7, z: 10.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 48.29, y: 62.3, z: 0}
+--- !u!114 &705507996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &712879718
 GameObject:
   m_ObjectHideFlags: 0
@@ -7221,7 +7426,7 @@ GameObject:
   - component: {fileID: 712879719}
   - component: {fileID: 712879721}
   - component: {fileID: 712879720}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7238,6 +7443,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1172290284}
   m_RootOrder: 1
@@ -7253,6 +7459,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -7302,7 +7509,7 @@ GameObject:
   - component: {fileID: 739335557}
   - component: {fileID: 739335559}
   - component: {fileID: 739335558}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7319,6 +7526,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1115319174}
   m_RootOrder: 1
@@ -7334,6 +7542,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -7383,7 +7592,7 @@ GameObject:
   - component: {fileID: 740341518}
   - component: {fileID: 740341520}
   - component: {fileID: 740341519}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7400,6 +7609,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1940861564}
   m_RootOrder: 1
@@ -7415,6 +7625,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -7482,6 +7693,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 877551609}
   m_Father: {fileID: 1100325629}
@@ -7553,7 +7765,7 @@ GameObject:
   - component: {fileID: 808594068}
   - component: {fileID: 808594070}
   - component: {fileID: 808594069}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7570,6 +7782,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 138579115}
   m_RootOrder: 3
@@ -7585,6 +7798,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -7634,7 +7848,7 @@ GameObject:
   - component: {fileID: 816177145}
   - component: {fileID: 816177147}
   - component: {fileID: 816177146}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7651,6 +7865,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1299221553}
   m_RootOrder: 3
@@ -7666,6 +7881,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -7808,12 +8024,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 829092074}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 829092074}
+  m_maskType: 0
 --- !u!23 &829092074
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7825,6 +8041,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -7865,6 +8082,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 2.7200003}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 4
@@ -7883,7 +8101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 848826152}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2ToneCustomShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7900,6 +8118,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.008770227, y: -0.099999994, z: 1.2776079}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 572847595}
   - {fileID: 994516530}
@@ -7936,6 +8155,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -1.427421, y: -39.177074, z: 33.030357}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -7949,7 +8169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 874081645}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2GradientCustomShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7966,6 +8186,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.008770227, y: -0.099999994, z: 5.277608}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 493337315}
   - {fileID: 96216135}
@@ -8004,6 +8225,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 789548190}
   m_RootOrder: 0
@@ -8134,7 +8356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 905857497}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 5Tone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8151,6 +8373,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.99123, y: -0.099999994, z: -6.722392}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1084564141}
   - {fileID: 1032589796}
@@ -8172,7 +8395,7 @@ GameObject:
   - component: {fileID: 906800888}
   - component: {fileID: 906800890}
   - component: {fileID: 906800889}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8189,6 +8412,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1115319174}
   m_RootOrder: 0
@@ -8204,6 +8428,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8270,6 +8495,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 50237607}
   m_RootOrder: 0
@@ -8285,6 +8511,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8334,7 +8561,7 @@ GameObject:
   - component: {fileID: 956222324}
   - component: {fileID: 956222326}
   - component: {fileID: 956222325}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8351,6 +8578,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1340577793}
   m_RootOrder: 2
@@ -8366,6 +8594,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8508,12 +8737,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 960264528}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 960264528}
+  m_maskType: 0
 --- !u!23 &960264528
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8525,6 +8754,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8565,6 +8795,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 22.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 20
@@ -8655,6 +8886,7 @@ Transform:
   m_LocalRotation: {x: 0.31796658, y: 0, z: 0, w: 0.94810194}
   m_LocalPosition: {x: 0, y: 5.51, z: -4.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 495548876}
   m_Father: {fileID: 0}
@@ -8720,7 +8952,7 @@ GameObject:
   - component: {fileID: 964681848}
   - component: {fileID: 964681850}
   - component: {fileID: 964681849}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8737,6 +8969,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 971610645}
   m_RootOrder: 4
@@ -8752,6 +8985,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8801,7 +9035,7 @@ GameObject:
   - component: {fileID: 967385091}
   - component: {fileID: 967385093}
   - component: {fileID: 967385092}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8818,6 +9052,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1299221553}
   m_RootOrder: 2
@@ -8833,6 +9068,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8880,7 +9116,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 971610645}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 5ToneCustom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8897,6 +9133,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.99123, y: -0.099999994, z: 9.277608}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 68643854}
   - {fileID: 319422094}
@@ -8918,7 +9155,7 @@ GameObject:
   - component: {fileID: 994516530}
   - component: {fileID: 994516532}
   - component: {fileID: 994516531}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8935,6 +9172,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 848826152}
   m_RootOrder: 1
@@ -8950,6 +9188,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -8999,7 +9238,7 @@ GameObject:
   - component: {fileID: 998513178}
   - component: {fileID: 998513180}
   - component: {fileID: 998513179}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9016,6 +9255,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1363056859}
   m_RootOrder: 4
@@ -9031,6 +9271,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9080,6 +9321,7 @@ GameObject:
   - component: {fileID: 1005934247}
   - component: {fileID: 1005934249}
   - component: {fileID: 1005934248}
+  - component: {fileID: 1005934250}
   m_Layer: 0
   m_Name: Point Light (7)
   m_TagString: Untagged
@@ -9097,6 +9339,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.06, y: 2.39, z: 18.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2049535236}
   - {fileID: 1793763765}
@@ -9179,6 +9422,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1005934250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005934246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &1012931701
 GameObject:
   m_ObjectHideFlags: 0
@@ -9190,7 +9453,7 @@ GameObject:
   - component: {fileID: 1012931702}
   - component: {fileID: 1012931704}
   - component: {fileID: 1012931703}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9207,6 +9470,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1363056859}
   m_RootOrder: 5
@@ -9222,6 +9486,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9271,7 +9536,7 @@ GameObject:
   - component: {fileID: 1015960492}
   - component: {fileID: 1015960494}
   - component: {fileID: 1015960493}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9288,6 +9553,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1402638985}
   m_RootOrder: 0
@@ -9303,6 +9569,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9352,7 +9619,7 @@ GameObject:
   - component: {fileID: 1022405579}
   - component: {fileID: 1022405581}
   - component: {fileID: 1022405580}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9369,6 +9636,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1363056859}
   m_RootOrder: 0
@@ -9384,6 +9652,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9526,12 +9795,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1026658147}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1026658147}
+  m_maskType: 0
 --- !u!23 &1026658147
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9543,6 +9812,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9583,6 +9853,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -1.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 0
@@ -9603,7 +9874,7 @@ GameObject:
   - component: {fileID: 1032589796}
   - component: {fileID: 1032589798}
   - component: {fileID: 1032589797}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9620,6 +9891,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 905857497}
   m_RootOrder: 1
@@ -9635,6 +9907,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9684,7 +9957,7 @@ GameObject:
   - component: {fileID: 1049780588}
   - component: {fileID: 1049780590}
   - component: {fileID: 1049780589}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9701,6 +9974,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1235142429}
   m_RootOrder: 4
@@ -9716,6 +9990,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9765,7 +10040,7 @@ GameObject:
   - component: {fileID: 1067002992}
   - component: {fileID: 1067002994}
   - component: {fileID: 1067002993}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9782,6 +10057,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 874081645}
   m_RootOrder: 5
@@ -9797,6 +10073,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9846,7 +10123,7 @@ GameObject:
   - component: {fileID: 1074226965}
   - component: {fileID: 1074226967}
   - component: {fileID: 1074226966}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9863,6 +10140,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1402638985}
   m_RootOrder: 5
@@ -9878,6 +10156,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -9927,7 +10206,7 @@ GameObject:
   - component: {fileID: 1076957126}
   - component: {fileID: 1076957128}
   - component: {fileID: 1076957127}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9944,6 +10223,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1340577793}
   m_RootOrder: 0
@@ -9959,6 +10239,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10008,7 +10289,7 @@ GameObject:
   - component: {fileID: 1084564141}
   - component: {fileID: 1084564143}
   - component: {fileID: 1084564142}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10025,6 +10306,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 905857497}
   m_RootOrder: 0
@@ -10040,6 +10322,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10089,7 +10372,7 @@ GameObject:
   - component: {fileID: 1088436366}
   - component: {fileID: 1088436368}
   - component: {fileID: 1088436367}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10106,6 +10389,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 138579115}
   m_RootOrder: 0
@@ -10121,6 +10405,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10170,7 +10455,7 @@ GameObject:
   - component: {fileID: 1096738483}
   - component: {fileID: 1096738485}
   - component: {fileID: 1096738484}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10187,6 +10472,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 121423742}
   m_RootOrder: 4
@@ -10202,6 +10488,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10251,7 +10538,7 @@ GameObject:
   - component: {fileID: 1098468287}
   - component: {fileID: 1098468289}
   - component: {fileID: 1098468288}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10268,6 +10555,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 971610645}
   m_RootOrder: 3
@@ -10283,6 +10571,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10411,6 +10700,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1905355769}
   - {fileID: 789548190}
@@ -10431,7 +10721,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1115319174}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CustomPBR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10448,6 +10738,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.9912298, y: -0.099999994, z: -10.722392}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 906800888}
   - {fileID: 739335557}
@@ -10469,7 +10760,7 @@ GameObject:
   - component: {fileID: 1137722264}
   - component: {fileID: 1137722266}
   - component: {fileID: 1137722265}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10486,6 +10777,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 138579115}
   m_RootOrder: 4
@@ -10501,6 +10793,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10550,7 +10843,7 @@ GameObject:
   - component: {fileID: 1140547390}
   - component: {fileID: 1140547392}
   - component: {fileID: 1140547391}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10567,6 +10860,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1172290284}
   m_RootOrder: 2
@@ -10582,6 +10876,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10710,6 +11005,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1738136734}
   m_Father: {fileID: 0}
@@ -10824,12 +11120,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1141274112}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1141274112}
+  m_maskType: 0
 --- !u!23 &1141274112
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10841,6 +11137,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10881,6 +11178,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 6.7200003}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 6
@@ -10901,7 +11199,7 @@ GameObject:
   - component: {fileID: 1166730037}
   - component: {fileID: 1166730039}
   - component: {fileID: 1166730038}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10918,6 +11216,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1402638985}
   m_RootOrder: 1
@@ -10933,6 +11232,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -10980,7 +11280,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1172290284}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PBR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10997,6 +11297,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.008770227, y: -0.099999994, z: -10.722392}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1998224220}
   - {fileID: 712879719}
@@ -11018,7 +11319,7 @@ GameObject:
   - component: {fileID: 1181309903}
   - component: {fileID: 1181309905}
   - component: {fileID: 1181309904}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11035,6 +11336,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1599096967}
   m_RootOrder: 5
@@ -11050,6 +11352,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -11192,12 +11495,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1184782912}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1184782912}
+  m_maskType: 0
 --- !u!23 &1184782912
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11209,6 +11512,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -11249,6 +11553,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 18.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 16
@@ -11267,7 +11572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1215612205}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 5Gradient
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11284,6 +11589,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.99123, y: -0.099999994, z: -2.722392}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 320911239}
   - {fileID: 1576024905}
@@ -11322,6 +11628,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1473716204}
   m_RootOrder: 1
@@ -11417,12 +11724,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1216146002}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1216146002}
+  m_maskType: 0
 --- !u!23 &1216146002
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11434,6 +11741,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -11475,7 +11783,7 @@ GameObject:
   - component: {fileID: 1222624353}
   - component: {fileID: 1222624355}
   - component: {fileID: 1222624354}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11492,6 +11800,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1340577793}
   m_RootOrder: 4
@@ -11507,6 +11816,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -11556,7 +11866,7 @@ GameObject:
   - component: {fileID: 1226562156}
   - component: {fileID: 1226562158}
   - component: {fileID: 1226562157}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11573,6 +11883,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 121423742}
   m_RootOrder: 0
@@ -11588,6 +11899,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -11635,7 +11947,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1235142429}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3Gradient
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11652,6 +11964,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.9912298, y: -0.099999994, z: -2.722392}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1719533299}
   - {fileID: 1852168348}
@@ -11671,7 +11984,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1299221553}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rim3Tone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11688,6 +12001,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.9912298, y: -0.099999994, z: 13.277608}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 95445795}
   - {fileID: 279808304}
@@ -11709,7 +12023,7 @@ GameObject:
   - component: {fileID: 1321275432}
   - component: {fileID: 1321275434}
   - component: {fileID: 1321275433}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11726,6 +12040,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1940861564}
   m_RootOrder: 5
@@ -11741,6 +12056,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -11788,7 +12104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1340577793}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3Toon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11805,6 +12121,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.9912298, y: -0.099999994, z: -6.722392}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1076957126}
   - {fileID: 668447424}
@@ -11826,7 +12143,7 @@ GameObject:
   - component: {fileID: 1343628022}
   - component: {fileID: 1343628024}
   - component: {fileID: 1343628023}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11843,6 +12160,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1235142429}
   m_RootOrder: 5
@@ -11858,6 +12176,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -11907,7 +12226,7 @@ GameObject:
   - component: {fileID: 1344994775}
   - component: {fileID: 1344994777}
   - component: {fileID: 1344994776}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11924,6 +12243,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1402638985}
   m_RootOrder: 3
@@ -11939,6 +12259,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12003,6 +12324,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.22, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 50237607}
   - {fileID: 1473716204}
@@ -12025,7 +12347,7 @@ GameObject:
   - component: {fileID: 1350454078}
   - component: {fileID: 1350454080}
   - component: {fileID: 1350454079}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12042,6 +12364,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1599096967}
   m_RootOrder: 1
@@ -12057,6 +12380,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12104,7 +12428,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1363056859}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 5GradientCustomShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12121,6 +12445,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.99123, y: -0.099999994, z: 5.277608}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1022405579}
   - {fileID: 1533741938}
@@ -12142,7 +12467,7 @@ GameObject:
   - component: {fileID: 1365670223}
   - component: {fileID: 1365670225}
   - component: {fileID: 1365670224}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12159,6 +12484,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 692970375}
   m_RootOrder: 0
@@ -12174,6 +12500,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12221,7 +12548,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1402638985}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 5ToneCustomShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12238,6 +12565,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.99123, y: -0.099999994, z: 1.2776079}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1015960492}
   - {fileID: 1166730037}
@@ -12259,7 +12587,7 @@ GameObject:
   - component: {fileID: 1416954411}
   - component: {fileID: 1416954413}
   - component: {fileID: 1416954412}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12276,6 +12604,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 971610645}
   m_RootOrder: 2
@@ -12291,6 +12620,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12340,7 +12670,7 @@ GameObject:
   - component: {fileID: 1433116791}
   - component: {fileID: 1433116793}
   - component: {fileID: 1433116792}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12357,6 +12687,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1517739624}
   m_RootOrder: 2
@@ -12372,6 +12703,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12421,7 +12753,7 @@ GameObject:
   - component: {fileID: 1447730327}
   - component: {fileID: 1447730329}
   - component: {fileID: 1447730328}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12438,6 +12770,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1363056859}
   m_RootOrder: 3
@@ -12453,6 +12786,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12502,6 +12836,7 @@ GameObject:
   - component: {fileID: 1473716204}
   - component: {fileID: 1473716206}
   - component: {fileID: 1473716205}
+  - component: {fileID: 1473716207}
   m_Layer: 0
   m_Name: Point Light (3)
   m_TagString: Untagged
@@ -12519,6 +12854,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.4499998, y: 2.39, z: -0.73000026}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1921305475}
   - {fileID: 1216146000}
@@ -12601,6 +12937,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1473716207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473716203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &1475649171
 GameObject:
   m_ObjectHideFlags: 0
@@ -12610,7 +12966,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1475649172}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12627,6 +12983,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.99123, y: -0.099999994, z: 13.277608}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1748658682}
   - {fileID: 494987062}
@@ -12648,7 +13005,7 @@ GameObject:
   - component: {fileID: 1504723334}
   - component: {fileID: 1504723336}
   - component: {fileID: 1504723335}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12665,6 +13022,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1940861564}
   m_RootOrder: 2
@@ -12680,6 +13038,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12727,7 +13086,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1517739624}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3GradientCustomShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12744,6 +13103,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.9912298, y: -0.099999994, z: 5.277608}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 552751688}
   - {fileID: 1777023966}
@@ -12765,7 +13125,7 @@ GameObject:
   - component: {fileID: 1533741938}
   - component: {fileID: 1533741940}
   - component: {fileID: 1533741939}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12782,6 +13142,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1363056859}
   m_RootOrder: 1
@@ -12797,6 +13158,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -12846,6 +13208,7 @@ GameObject:
   - component: {fileID: 1544190959}
   - component: {fileID: 1544190961}
   - component: {fileID: 1544190960}
+  - component: {fileID: 1544190962}
   m_Layer: 0
   m_Name: Point Light (8)
   m_TagString: Untagged
@@ -12863,6 +13226,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.35000038, y: 2.39, z: 14.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1814176019}
   - {fileID: 490779947}
@@ -12945,6 +13309,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1544190962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544190958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &1553665112
 GameObject:
   m_ObjectHideFlags: 0
@@ -12956,7 +13340,7 @@ GameObject:
   - component: {fileID: 1553665113}
   - component: {fileID: 1553665115}
   - component: {fileID: 1553665114}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12973,6 +13357,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1936883927}
   m_RootOrder: 5
@@ -12988,6 +13373,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -13130,12 +13516,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1568268239}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1568268239}
+  m_maskType: 0
 --- !u!23 &1568268239
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13147,6 +13533,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -13187,6 +13574,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 6.7200003}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 8
@@ -13207,7 +13595,7 @@ GameObject:
   - component: {fileID: 1576024905}
   - component: {fileID: 1576024907}
   - component: {fileID: 1576024906}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13224,6 +13612,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1215612205}
   m_RootOrder: 1
@@ -13239,6 +13628,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -13288,7 +13678,7 @@ GameObject:
   - component: {fileID: 1589410596}
   - component: {fileID: 1589410598}
   - component: {fileID: 1589410597}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13305,6 +13695,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 905857497}
   m_RootOrder: 4
@@ -13320,6 +13711,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -13369,7 +13761,7 @@ GameObject:
   - component: {fileID: 1598935336}
   - component: {fileID: 1598935338}
   - component: {fileID: 1598935337}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13386,6 +13778,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 121423742}
   m_RootOrder: 3
@@ -13401,6 +13794,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -13448,7 +13842,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1599096967}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CustomPBR_TOON_0.5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13465,6 +13859,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.99123, y: -0.099999994, z: -10.722392}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 544120858}
   - {fileID: 1350454078}
@@ -13486,7 +13881,7 @@ GameObject:
   - component: {fileID: 1610878725}
   - component: {fileID: 1610878727}
   - component: {fileID: 1610878726}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13503,6 +13898,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 848826152}
   m_RootOrder: 5
@@ -13518,6 +13914,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -13567,7 +13964,7 @@ GameObject:
   - component: {fileID: 1641768075}
   - component: {fileID: 1641768077}
   - component: {fileID: 1641768076}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13584,6 +13981,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1475649172}
   m_RootOrder: 5
@@ -13599,6 +13997,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -13648,7 +14047,7 @@ GameObject:
   - component: {fileID: 1650202040}
   - component: {fileID: 1650202042}
   - component: {fileID: 1650202041}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13665,6 +14064,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 121423742}
   m_RootOrder: 5
@@ -13680,6 +14080,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -13729,7 +14130,7 @@ GameObject:
   - component: {fileID: 1652471269}
   - component: {fileID: 1652471271}
   - component: {fileID: 1652471270}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13746,6 +14147,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1475649172}
   m_RootOrder: 3
@@ -13761,6 +14163,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -13827,6 +14230,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 676811103}
   m_RootOrder: 1
@@ -13922,12 +14326,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1660197886}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1660197886}
+  m_maskType: 0
 --- !u!23 &1660197886
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13939,6 +14343,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -13980,7 +14385,7 @@ GameObject:
   - component: {fileID: 1696458908}
   - component: {fileID: 1696458910}
   - component: {fileID: 1696458909}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13997,6 +14402,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1940861564}
   m_RootOrder: 3
@@ -14012,6 +14418,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -14061,7 +14468,7 @@ GameObject:
   - component: {fileID: 1709810930}
   - component: {fileID: 1709810932}
   - component: {fileID: 1709810931}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14078,6 +14485,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1340577793}
   m_RootOrder: 5
@@ -14093,6 +14501,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -14159,6 +14568,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1840145772}
   m_RootOrder: 1
@@ -14254,12 +14664,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1714704872}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1714704872}
+  m_maskType: 0
 --- !u!23 &1714704872
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14271,6 +14681,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -14312,7 +14723,7 @@ GameObject:
   - component: {fileID: 1719533299}
   - component: {fileID: 1719533301}
   - component: {fileID: 1719533300}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14329,6 +14740,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1235142429}
   m_RootOrder: 0
@@ -14344,6 +14756,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -14410,6 +14823,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1141026401}
   m_RootOrder: 0
@@ -14527,7 +14941,7 @@ GameObject:
   - component: {fileID: 1748658682}
   - component: {fileID: 1748658684}
   - component: {fileID: 1748658683}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14544,6 +14958,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1475649172}
   m_RootOrder: 0
@@ -14559,6 +14974,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -14608,7 +15024,7 @@ GameObject:
   - component: {fileID: 1749854442}
   - component: {fileID: 1749854444}
   - component: {fileID: 1749854443}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14625,6 +15041,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 138579115}
   m_RootOrder: 1
@@ -14640,6 +15057,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -14786,12 +15204,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1776597288}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1776597288}
+  m_maskType: 0
 --- !u!23 &1776597288
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14803,6 +15221,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -14843,6 +15262,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 14.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 12
@@ -14863,7 +15283,7 @@ GameObject:
   - component: {fileID: 1777023966}
   - component: {fileID: 1777023968}
   - component: {fileID: 1777023967}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14880,6 +15300,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1517739624}
   m_RootOrder: 1
@@ -14895,6 +15316,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -14959,6 +15381,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1026658148}
   - {fileID: 26186443}
@@ -15012,6 +15435,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1005934247}
   m_RootOrder: 1
@@ -15107,12 +15531,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1793763767}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1793763767}
+  m_maskType: 0
 --- !u!23 &1793763767
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15124,6 +15548,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -15163,7 +15588,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1806603796}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15180,6 +15605,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.9912298, y: -0.3, z: 10.722392}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1172290284}
   - {fileID: 1115319174}
@@ -15233,6 +15659,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1544190959}
   m_RootOrder: 0
@@ -15248,6 +15675,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -15394,12 +15822,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1814833971}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1814833971}
+  m_maskType: 0
 --- !u!23 &1814833971
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15411,6 +15839,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -15451,6 +15880,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 10.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 11
@@ -15471,7 +15901,7 @@ GameObject:
   - component: {fileID: 1818389282}
   - component: {fileID: 1818389284}
   - component: {fileID: 1818389283}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15488,6 +15918,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1172290284}
   m_RootOrder: 4
@@ -15503,6 +15934,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -15552,6 +15984,7 @@ GameObject:
   - component: {fileID: 1840145772}
   - component: {fileID: 1840145774}
   - component: {fileID: 1840145773}
+  - component: {fileID: 1840145775}
   m_Layer: 0
   m_Name: Point Light (4)
   m_TagString: Untagged
@@ -15569,6 +16002,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.35000038, y: 2.39, z: 1.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 667872797}
   - {fileID: 1714704870}
@@ -15651,6 +16085,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1840145775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840145771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &1852168347
 GameObject:
   m_ObjectHideFlags: 0
@@ -15662,7 +16116,7 @@ GameObject:
   - component: {fileID: 1852168348}
   - component: {fileID: 1852168350}
   - component: {fileID: 1852168349}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15679,6 +16133,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1235142429}
   m_RootOrder: 1
@@ -15694,6 +16149,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -15743,7 +16199,7 @@ GameObject:
   - component: {fileID: 1855948892}
   - component: {fileID: 1855948894}
   - component: {fileID: 1855948893}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15760,6 +16216,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 660115011}
   m_RootOrder: 1
@@ -15775,6 +16232,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -15824,7 +16282,7 @@ GameObject:
   - component: {fileID: 1857791212}
   - component: {fileID: 1857791214}
   - component: {fileID: 1857791213}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15841,6 +16299,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1340577793}
   m_RootOrder: 3
@@ -15856,6 +16315,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -15905,7 +16365,7 @@ GameObject:
   - component: {fileID: 1873051708}
   - component: {fileID: 1873051710}
   - component: {fileID: 1873051709}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15922,6 +16382,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1517739624}
   m_RootOrder: 5
@@ -15937,6 +16398,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -16083,12 +16545,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1881651260}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1881651260}
+  m_maskType: 0
 --- !u!23 &1881651260
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16100,6 +16562,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -16140,6 +16603,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 14.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 14
@@ -16160,7 +16624,7 @@ GameObject:
   - component: {fileID: 1890058803}
   - component: {fileID: 1890058805}
   - component: {fileID: 1890058804}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16177,6 +16641,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1402638985}
   m_RootOrder: 4
@@ -16192,6 +16657,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -16258,6 +16724,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1100325629}
   m_RootOrder: 0
@@ -16377,6 +16844,7 @@ GameObject:
   - component: {fileID: 1907250482}
   - component: {fileID: 1907250484}
   - component: {fileID: 1907250483}
+  - component: {fileID: 1907250485}
   m_Layer: 0
   m_Name: Point Light (5)
   m_TagString: Untagged
@@ -16394,6 +16862,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.06, y: 2.39, z: 4.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2034821901}
   - {fileID: 549872126}
@@ -16476,6 +16945,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1907250485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907250481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &1909396425
 GameObject:
   m_ObjectHideFlags: 0
@@ -16487,7 +16976,7 @@ GameObject:
   - component: {fileID: 1909396426}
   - component: {fileID: 1909396428}
   - component: {fileID: 1909396427}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16504,6 +16993,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1517739624}
   m_RootOrder: 4
@@ -16519,6 +17009,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -16568,7 +17059,7 @@ GameObject:
   - component: {fileID: 1914996058}
   - component: {fileID: 1914996060}
   - component: {fileID: 1914996059}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16585,6 +17076,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1517739624}
   m_RootOrder: 3
@@ -16600,6 +17092,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -16666,6 +17159,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1473716204}
   m_RootOrder: 0
@@ -16681,6 +17175,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -16730,7 +17225,7 @@ GameObject:
   - component: {fileID: 1932406622}
   - component: {fileID: 1932406624}
   - component: {fileID: 1932406623}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16747,6 +17242,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 692970375}
   m_RootOrder: 2
@@ -16762,6 +17258,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -16809,7 +17306,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1936883927}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2Gradient
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16826,6 +17323,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.008770227, y: -0.099999994, z: -2.722392}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 600594980}
   - {fileID: 392965613}
@@ -16845,7 +17343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1940861564}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3ToneCustom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16862,6 +17360,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.9912298, y: -0.099999994, z: 9.277608}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 378907999}
   - {fileID: 740341518}
@@ -16883,7 +17382,7 @@ GameObject:
   - component: {fileID: 1942928751}
   - component: {fileID: 1942928753}
   - component: {fileID: 1942928752}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16900,6 +17399,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 138579115}
   m_RootOrder: 2
@@ -16915,6 +17415,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -16964,7 +17465,7 @@ GameObject:
   - component: {fileID: 1963870955}
   - component: {fileID: 1963870957}
   - component: {fileID: 1963870956}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16981,6 +17482,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1475649172}
   m_RootOrder: 4
@@ -16996,6 +17498,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -17045,7 +17548,7 @@ GameObject:
   - component: {fileID: 1967524062}
   - component: {fileID: 1967524064}
   - component: {fileID: 1967524063}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17062,6 +17565,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 848826152}
   m_RootOrder: 3
@@ -17077,6 +17581,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -17126,7 +17631,7 @@ GameObject:
   - component: {fileID: 1985193951}
   - component: {fileID: 1985193953}
   - component: {fileID: 1985193952}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17143,6 +17648,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1215612205}
   m_RootOrder: 3
@@ -17158,6 +17664,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -17300,12 +17807,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1991210608}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1991210608}
+  m_maskType: 0
 --- !u!23 &1991210608
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17317,6 +17824,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -17357,6 +17865,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 18.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 15
@@ -17377,7 +17886,7 @@ GameObject:
   - component: {fileID: 1998224220}
   - component: {fileID: 1998224222}
   - component: {fileID: 1998224221}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17394,6 +17903,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1172290284}
   m_RootOrder: 0
@@ -17409,6 +17919,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -17458,7 +17969,7 @@ GameObject:
   - component: {fileID: 2014567792}
   - component: {fileID: 2014567794}
   - component: {fileID: 2014567793}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17475,6 +17986,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 692970375}
   m_RootOrder: 1
@@ -17490,6 +18002,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -17539,7 +18052,7 @@ GameObject:
   - component: {fileID: 2017485533}
   - component: {fileID: 2017485535}
   - component: {fileID: 2017485534}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17556,6 +18069,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1235142429}
   m_RootOrder: 3
@@ -17571,6 +18085,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -17620,7 +18135,7 @@ GameObject:
   - component: {fileID: 2022016466}
   - component: {fileID: 2022016468}
   - component: {fileID: 2022016467}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17637,6 +18152,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1299221553}
   m_RootOrder: 5
@@ -17652,6 +18168,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -17794,12 +18311,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 2027155731}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 2027155731}
+  m_maskType: 0
 --- !u!23 &2027155731
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17811,6 +18328,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -17851,6 +18369,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 22.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 18
@@ -17888,6 +18407,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1907250482}
   m_RootOrder: 0
@@ -17903,6 +18423,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -17969,6 +18490,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1005934247}
   m_RootOrder: 0
@@ -17984,6 +18506,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -18033,7 +18556,7 @@ GameObject:
   - component: {fileID: 2060675848}
   - component: {fileID: 2060675850}
   - component: {fileID: 2060675849}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrayInlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18050,6 +18573,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1936883927}
   m_RootOrder: 2
@@ -18065,6 +18589,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -18207,12 +18732,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 2069302853}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 2069302853}
+  m_maskType: 0
 --- !u!23 &2069302853
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18224,6 +18749,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -18264,6 +18790,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 18.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 17
@@ -18284,7 +18811,7 @@ GameObject:
   - component: {fileID: 2086646284}
   - component: {fileID: 2086646286}
   - component: {fileID: 2086646285}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18301,6 +18828,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1599096967}
   m_RootOrder: 4
@@ -18316,6 +18844,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -18365,7 +18894,7 @@ GameObject:
   - component: {fileID: 2087750624}
   - component: {fileID: 2087750626}
   - component: {fileID: 2087750625}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18382,6 +18911,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1172290284}
   m_RootOrder: 3
@@ -18397,6 +18927,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -18446,7 +18977,7 @@ GameObject:
   - component: {fileID: 2105225033}
   - component: {fileID: 2105225035}
   - component: {fileID: 2105225034}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18463,6 +18994,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 905857497}
   m_RootOrder: 3
@@ -18478,6 +19010,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -18624,12 +19157,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 2109771659}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 2109771659}
+  m_maskType: 0
 --- !u!23 &2109771659
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18641,6 +19174,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -18681,6 +19215,7 @@ RectTransform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 10.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793458157}
   m_RootOrder: 10
@@ -18701,7 +19236,7 @@ GameObject:
   - component: {fileID: 2110203711}
   - component: {fileID: 2110203713}
   - component: {fileID: 2110203712}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MaterialBaseInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18718,6 +19253,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1299221553}
   m_RootOrder: 4
@@ -18733,6 +19269,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
