@@ -28,11 +28,6 @@ namespace Inventory.UI
         [Tooltip("Slot that show current equip item")]
         [SerializeField] private EquipInventorySlot equipInventorySlot;
 
-        /// <summary>
-        /// Controls map
-        /// </summary>
-        private InputControls _inputControls;
-
         protected override void AwakeSingleton()
         {
             // Initialize the slots
@@ -43,20 +38,6 @@ namespace Inventory.UI
             {
                 equipInventorySlot = GetComponentInChildren<EquipInventorySlot>();
             }
-
-            // Binding inventory key
-            _inputControls = new();
-            _inputControls.UI.Inventory.started += ToggleInventoryUI;
-            _inputControls.UI.Inventory.Enable();
-        }
-
-        /// <summary>
-        /// Toggle the invnetory UI to show the player
-        /// </summary>
-        /// <param name="context"></param>
-        private void ToggleInventoryUI(InputAction.CallbackContext context)
-        {
-            Instance.ToggleInventory();
         }
 
         //private void OnDestroy()
@@ -87,7 +68,7 @@ namespace Inventory.UI
                 _itemSlots[i].SetId(i);
             }
             //ToggleInventory(false);
-            GameMenu.Instance.CloseGameMenu();
+            GameMenu.Instance.InitializeGameMenu();
         }
 
         /// <summary>

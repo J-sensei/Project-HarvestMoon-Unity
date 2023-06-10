@@ -312,12 +312,50 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Character"",
+                    ""type"": ""Button"",
+                    ""id"": ""923d7e95-e5a4-4b85-b1eb-9b60ec3e5625"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Setting"",
+                    ""type"": ""Button"",
+                    ""id"": ""5da48ac8-b71b-4855-b73e-8de217ca64b4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Game"",
+                    ""type"": ""Button"",
+                    ""id"": ""506a7e61-6785-489c-a0e3-944b73568c71"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""cf3d8ca5-08c8-47a7-97ef-6883f183266a"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b7276289-2f2f-4cf0-b2b1-a3dca01d1217"",
                     ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -334,6 +372,50 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Mouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d619cd9b-2956-48f7-aefc-a98673c7e5eb"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Character"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0051e7ec-87a5-4c88-b681-9af192a3e1b0"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Setting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c3b9177-1b2f-4f59-9e4d-5ba59206c102"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Game"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c7b2a3b7-ab92-4404-ba24-abb94c8b7eb6"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Game"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -404,6 +486,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
         m_UI_Mouse = m_UI.FindAction("Mouse", throwIfNotFound: true);
+        m_UI_Character = m_UI.FindAction("Character", throwIfNotFound: true);
+        m_UI_Setting = m_UI.FindAction("Setting", throwIfNotFound: true);
+        m_UI_Game = m_UI.FindAction("Game", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Zoom = m_Camera.FindAction("Zoom", throwIfNotFound: true);
@@ -567,12 +652,18 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private IUIActions m_UIActionsCallbackInterface;
     private readonly InputAction m_UI_Inventory;
     private readonly InputAction m_UI_Mouse;
+    private readonly InputAction m_UI_Character;
+    private readonly InputAction m_UI_Setting;
+    private readonly InputAction m_UI_Game;
     public struct UIActions
     {
         private @InputControls m_Wrapper;
         public UIActions(@InputControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Inventory => m_Wrapper.m_UI_Inventory;
         public InputAction @Mouse => m_Wrapper.m_UI_Mouse;
+        public InputAction @Character => m_Wrapper.m_UI_Character;
+        public InputAction @Setting => m_Wrapper.m_UI_Setting;
+        public InputAction @Game => m_Wrapper.m_UI_Game;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -588,6 +679,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Mouse.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMouse;
                 @Mouse.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMouse;
                 @Mouse.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMouse;
+                @Character.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCharacter;
+                @Character.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCharacter;
+                @Character.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCharacter;
+                @Setting.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSetting;
+                @Setting.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSetting;
+                @Setting.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSetting;
+                @Game.started -= m_Wrapper.m_UIActionsCallbackInterface.OnGame;
+                @Game.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnGame;
+                @Game.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnGame;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -598,6 +698,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Mouse.started += instance.OnMouse;
                 @Mouse.performed += instance.OnMouse;
                 @Mouse.canceled += instance.OnMouse;
+                @Character.started += instance.OnCharacter;
+                @Character.performed += instance.OnCharacter;
+                @Character.canceled += instance.OnCharacter;
+                @Setting.started += instance.OnSetting;
+                @Setting.performed += instance.OnSetting;
+                @Setting.canceled += instance.OnSetting;
+                @Game.started += instance.OnGame;
+                @Game.performed += instance.OnGame;
+                @Game.canceled += instance.OnGame;
             }
         }
     }
@@ -659,6 +768,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     {
         void OnInventory(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
+        void OnCharacter(InputAction.CallbackContext context);
+        void OnSetting(InputAction.CallbackContext context);
+        void OnGame(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {

@@ -5,11 +5,17 @@ using UnityEngine;
 using Utilities;
 using DG.Tweening;
 using GameDateTime;
+using UnityEngine.InputSystem;
 
 public class GameMenu : Singleton<GameMenu>
 {
     [Tooltip("Tab group to switch the tab when game menu is called to open/close")]
     [SerializeField] private TabGroup tabGroup;
+
+    /// <summary>
+    /// Controls map
+    /// </summary>
+    private InputControls _inputControls;
 
     private CanvasGroup _canvasGroup;
     private Vector3 _originalPosition;
@@ -19,9 +25,22 @@ public class GameMenu : Singleton<GameMenu>
     {
         _canvasGroup = GetComponent<CanvasGroup>();
         _originalPosition = transform.position;
+
+        // Binding inventory key
+        _inputControls = new();
+        _inputControls.UI.Character.started += ToggleCharacter;
+        _inputControls.UI.Inventory.started += ToggleInventory;
+        _inputControls.UI.Setting.started += ToggleSetting;
+        _inputControls.UI.Game.started += ToggleGame;
+        _inputControls.UI.Enable();
     }
 
-    public void ToggleGameMenu(bool v)
+    private void ToggleCharacter(InputAction.CallbackContext context) => ToggleGameMenu(!gameObject.activeSelf, 0);
+    private void ToggleInventory(InputAction.CallbackContext context) => ToggleGameMenu(!gameObject.activeSelf, 1);
+    private void ToggleSetting(InputAction.CallbackContext context) => ToggleGameMenu(!gameObject.activeSelf, 2);
+    private void ToggleGame(InputAction.CallbackContext context) => ToggleGameMenu(!gameObject.activeSelf, 3);
+
+    public void ToggleGameMenu(bool v, int tabIndex = 0)
     {
         TooltipManager.Instance.Hide(); // Reset the tooltip tp solve any tooltip ui bug (not active/deactive correctly)
         if (!v) // Close
@@ -46,7 +65,7 @@ public class GameMenu : Singleton<GameMenu>
         }
         else if (v && tabGroup)  // Open
         {
-            tabGroup.SetTab(0); // 0 => First Tab
+            tabGroup.SetTab(tabIndex); // 0 => First Tab
             AudioManager.Instance.PlaySFX(AudioManager.Instance.menuOpen, 1);
             GameManager.Instance.Player.Disable();
             GameTimeManager.Instance.PauseTime(true); // Stop time ticking
@@ -70,14 +89,12 @@ public class GameMenu : Singleton<GameMenu>
 
     public void ToggleInventory(bool v)
     {
-        ToggleGameMenu(v);
-        if (v && tabGroup)
-        {
-            tabGroup.SetTab(1); // 1 => Inventory Tab
-        }
+        ToggleGameMenu(v, 1);
     }
 
-    public void CloseGameMenu()
+    public void CloseGameMenu() => ToggleGameMenu(false);
+
+    public void InitializeGameMenu()
     {
         TooltipManager.Instance.Hide();
         InventoryUIManager.Instance.ResetInventorySlots();
