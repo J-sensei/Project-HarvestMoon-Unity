@@ -2,6 +2,7 @@ using Interactable;
 using Inventory;
 using UnityEngine;
 using Utilities;
+using QuickOutline;
 
 namespace Item
 {

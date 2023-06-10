@@ -1,7 +1,6 @@
 using Interactable;
 using Inventory;
-using System.Collections;
-using System.Collections.Generic;
+using QuickOutline;
 using UnityEngine;
 using Utilities;
 

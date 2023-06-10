@@ -2,6 +2,7 @@ using GameDateTime;
 using UI.UIScreen;
 using UnityEngine;
 using Utilities;
+using QuickOutline;
 
 namespace Interactable
 {

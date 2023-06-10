@@ -1,10 +1,9 @@
 using GameDateTime;
 using Interactable;
 using Inventory;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
+using QuickOutline;
 
 namespace Farming
 {
