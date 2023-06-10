@@ -118,6 +118,8 @@ namespace Farming
         /// </summary>
         public void Grow()
         {
+            if (currentState == CropState.Wilted) return;
+
             day++;
             UpdateCropPrefab();
             if(day >= _growData[_growData.Length - 1].day)
@@ -132,6 +134,7 @@ namespace Farming
         public void Wilt()
         {
             currentState = CropState.Wilted;
+            detectCollider.enabled = false;
             UpdateCropPrefab();
         }
 
