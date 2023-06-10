@@ -244,14 +244,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseEvent: 1
   itemType: 0
-  background: {fileID: 0}
-  image: {fileID: 0}
+  background: {fileID: 2346788494616548377}
+  image: {fileID: 6316137648678361635}
+  quantityText: {fileID: 6230663276614645914}
   itemThumbnailName: Item Thumbnail
   idleColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColor: {r: 0.6666667, g: 0.6509804, b: 0.6156863, a: 1}
   activeColor: {r: 0.5176471, g: 0.5058824, b: 0.47843137, a: 1}
   hoverScaleMultiplier: 1.2
-  tweenDuration: 0.05
+  tweenDuration: 0.15
 --- !u!1 &7217427658533694981
 GameObject:
   m_ObjectHideFlags: 0

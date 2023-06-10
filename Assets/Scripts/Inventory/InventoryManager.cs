@@ -12,8 +12,13 @@ namespace Inventory
         protected override void AwakeSingleton()
         {
             // If there is no items set, then initialize it all empty
-            if(_items.Length == 0)
-                _items = new ItemData[itemSlot];
+            if (_itemSlots == null || _itemSlots.Length == 0)
+                _itemSlots = new ItemSlot[itemSlot];
+
+            for (int i = 0; i < _itemSlots.Length; i++)
+            {
+                Debug.Log(_itemSlots[i]);
+            }
         }
 
         [Header("Inventory Slot")]
@@ -22,21 +27,29 @@ namespace Inventory
 
         [Header("Inventory")]
         [Tooltip("Items stored in the inventory")]
-        [SerializeField] private ItemData[] _items;
+        [SerializeField] private ItemSlot[] _itemSlots;
 
         /// <summary>
         /// Items that player is holding
         /// </summary>
-        public ItemData[] Items { get { return _items; } }
+        public ItemSlot[] ItemSlots { get { return _itemSlots; } }
 
         /// <summary>
         /// Item holding by the player
         /// </summary>
-        [SerializeField] private ItemData _holdingItem; // Exposed for debug purposes
+        [SerializeField] private ItemSlot _holdingItemSlot; // Exposed for debug purposes
         /// <summary>
         /// Item holding by the player
         /// </summary>
-        public ItemData HoldingItem { get { return _holdingItem; } }
+        public ItemSlot HoldingItemSlot { get { return _holdingItemSlot; } }
+
+        public ItemData GetHoldingItem()
+        {
+            if (_holdingItemSlot == null) 
+                return null;
+            else
+                return _holdingItemSlot.ItemData;
+        }
 
         /// <summary>
         /// Equip the item to the player
@@ -46,40 +59,55 @@ namespace Inventory
         public void Equip(int slotId, ItemType itemType)
         {
             // Cache
-            ItemData itemToEquip = InventoryManager.Instance._items[slotId];
-            _items[slotId] = null; // Take out from the inventory
+            ItemSlot itemToEquip = InventoryManager.Instance._itemSlots[slotId];
+            _itemSlots[slotId] = null; // Take out from the inventory
 
             // Replace the holding item to the corresponding inventory id if the type is same
             // Else just put it back to corresponding inventory and take the item out from current inventory
-            if (_holdingItem != null)
+            if (_holdingItemSlot != null)
             {
-                PutBackItem(_holdingItem); // Put back to its corresponding inventory
+                PutBackItem(_holdingItemSlot); // Put back to its corresponding inventory
             }
 
             // Change holding slot to inventory slot
-            _holdingItem = itemToEquip;
+            _holdingItemSlot = itemToEquip;
 
             // Update changes of the UI
             InventoryUIManager.Instance.UpdateInventoryUI();
         }
 
+        /// <summary>
+        /// Pickup the item to the holding item slot
+        /// </summary>
+        /// <param name="item"></param>
         public void Pickup(ItemData item)
         {
-            // Do somthing with the new item
-            PutBackItem(_holdingItem);
-            _holdingItem = item;
+            ItemSlot itemSlot = new ItemSlot(item);
+            if (_holdingItemSlot != null && _holdingItemSlot.Stackable(itemSlot))
+            {
+                _holdingItemSlot.Stack(itemSlot);
+            }
+            else
+            {
+                // Do somthing with the new item
+                PutBackItem(_holdingItemSlot);
+                _holdingItemSlot = itemSlot;
+            }
 
             InventoryUIManager.Instance.UpdateInventoryUI();
         }
 
+        /// <summary>
+        /// Unload the current holding item
+        /// </summary>
         public void Unload()
         {
-            if(_holdingItem == null)
+            if(_holdingItemSlot == null)
             {
                 Debug.Log("[Inventory Manager] Cannot unload as holding item is null!");
             }
 
-            _holdingItem = null;
+            _holdingItemSlot = null;
             InventoryUIManager.Instance.UpdateInventoryUI();
         }
 
@@ -90,9 +118,9 @@ namespace Inventory
         /// <returns></returns>
         public bool CheckHoldingItemType(ItemType type)
         {
-            if (_holdingItem == null) return false; // False if player not holding anything
+            if (_holdingItemSlot == null) return false; // False if player not holding anything
 
-            if (_holdingItem.type == type) // Type is matching
+            if (_holdingItemSlot.ItemData.type == type) // Type is matching
                 return true;
             else 
                 return false;
@@ -101,12 +129,12 @@ namespace Inventory
         /// <summary>
         /// Unquip the item from player to the inventory
         /// </summary>
-        public void Unequip(ItemData item)
+        public void Unequip(ItemSlot item)
         {
             if (item == null) return; // If there is nothing in the equip slot, just do nothing
             if (PutBackItem(item))
             {
-                _holdingItem = null; // Player are not holding anything if successfully putting the item back to the inventory
+                _holdingItemSlot = null; // Player are not holding anything if successfully putting the item back to the inventory
             }
 
             // Update changes of the UI
@@ -116,16 +144,22 @@ namespace Inventory
         /// <summary>
         /// Put the item back to the inventory, it will find the first empty slot. Return false if unable to put it back
         /// </summary>
-        /// <param name="item">Is item successfully put into the inventory</param>
+        /// <param name="itemSlot">Is item successfully put into the inventory</param>
         /// <returns></returns>
-        private bool PutBackItem(ItemData item)
+        private bool PutBackItem(ItemSlot itemSlot)
         {
-            if (item == null) return false;
-            for(int i = 0; i < _items.Length; i++)
+            if (itemSlot == null) return false;
+
+            for(int i = 0; i < _itemSlots.Length; i++)
             {
-                if (_items[i] == null)
+                if (_itemSlots[i] != null && _itemSlots[i].Stackable(itemSlot))
                 {
-                    _items[i] = item;
+                    ItemSlot s = _itemSlots[i].Stack(itemSlot);
+                    if (s == null) return true;
+                }
+                else if(_itemSlots[i] == null)
+                {
+                    _itemSlots[i] = itemSlot;
                     return true;
                 }
             }

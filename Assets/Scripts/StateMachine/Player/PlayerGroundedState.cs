@@ -131,7 +131,7 @@ namespace StateMachine.Player
             switch (interactable.GetInteractableType())
             {
                 case InteractableType.Farm:
-                    ItemData item = InventoryManager.Instance.HoldingItem; // Get current holding item data
+                    ItemData item = InventoryManager.Instance.GetHoldingItem(); // Get current holding item data
                     // Check what item is currently holding
                     if (item != null && item is ToolData)
                     {
@@ -160,7 +160,7 @@ namespace StateMachine.Player
         private void PlantEvent()
         {
             FarmLand farm = this.Context.PlayerInteractor.SelectedtInteractable as FarmLand;
-            ItemData item = InventoryManager.Instance.HoldingItem;
+            ItemData item = InventoryManager.Instance.GetHoldingItem();
             if (item == null) return;
 
             SeedData seedData = (SeedData)item;
@@ -177,7 +177,7 @@ namespace StateMachine.Player
         private void FarmEvent()
         {
             FarmLand farm = this.Context.PlayerInteractor.SelectedtInteractable as FarmLand;
-            ItemData item = InventoryManager.Instance.HoldingItem;
+            ItemData item = InventoryManager.Instance.GetHoldingItem();
             if (item == null) return;
 
             if (item != null && item is ToolData)

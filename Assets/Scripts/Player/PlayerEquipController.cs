@@ -33,7 +33,7 @@ namespace Player
         {
             // TODO: Optimise this to call when player is picking, equip, unequip item
             // Check data for current holding item
-            ItemData data = InventoryManager.Instance.HoldingItem; // Constantly check the current holding item and responded to it
+            ItemData data = InventoryManager.Instance.GetHoldingItem(); // Constantly check the current holding item and responded to it
 
             // Player is not holding anything
             if(data == null)
@@ -110,7 +110,7 @@ namespace Player
                 player.PickingItem = false;
             }
 
-            if (player.DroppingItem)
+            if (player.DroppingItem && player.CurrentState != player.StateFactory.DroppingItem())
             {
                 player.SwitchState(player.StateFactory.Grounded());
                 player.DroppingItem = false;
@@ -130,15 +130,33 @@ namespace Player
             }
         }
 
+        public void DetachItem()
+        {
+            DetachItem(false);
+        }
         /// <summary>
         /// Detach current carrying item from the player
         /// </summary>
-        public void DetachItem()
+        public void DetachItem(bool fall = false)
         {
             if(_currentItem != null)
             {
-                _currentItem.GetComponent<PickableItem>().OnThrow();
+                if(fall)
+                    _currentItem.GetComponent<PickableItem>().OnThrow(1, 1);
+                else
+                    _currentItem.GetComponent<PickableItem>().OnThrow();
                 _currentItem.transform.parent = null;
+
+                // Instantiate if qty is creater than one
+                if (InventoryManager.Instance.HoldingItemSlot.Quantity > 1)
+                {
+                    int duplicate = InventoryManager.Instance.HoldingItemSlot.Quantity - 1;
+                    for (int i = 0; i < duplicate; i++)
+                    {
+                        Instantiate(_currentItem, itemAttachPoint.position, itemAttachPoint.rotation);
+                    }
+                }
+
                 _currentItem = null;
                 InventoryManager.Instance.Unload();
             }

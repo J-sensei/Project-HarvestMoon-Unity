@@ -1,3 +1,5 @@
+using Inventory;
+
 namespace Interactable
 {
     /// <summary>
@@ -48,5 +50,10 @@ namespace Interactable
         /// </summary>
         /// <returns></returns>
         public InteractableType GetInteractableType();
+        /// <summary>
+        /// Return item data of the interactable object, if any, return null if dont have item data
+        /// </summary>
+        /// <returns></returns>
+        public ItemData GetItemData();
     }
 }

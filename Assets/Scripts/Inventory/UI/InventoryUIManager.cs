@@ -85,14 +85,14 @@ namespace Inventory.UI
         {
             // Get the item data
             //ItemData[] tools = InventoryManager.Instance.Tools;
-            ItemData[] items = InventoryManager.Instance.Items;
+            ItemSlot[] items = InventoryManager.Instance.ItemSlots;
 
             // Update the inventory slot using the items data
             //UpdateInventory(tools, _toolSlots);
             UpdateInventory(items, _itemSlots);
 
             // Update Equip Item
-            ItemData equipItem = InventoryManager.Instance.HoldingItem;
+            ItemSlot equipItem = InventoryManager.Instance.HoldingItemSlot;
             GameUIManager.Instance.UpdateEquipedItem(equipItem);
 
             if(equipInventorySlot != null)
@@ -111,7 +111,7 @@ namespace Inventory.UI
         /// </summary>
         /// <param name="data"></param>
         /// <param name="slots"></param>
-        private void UpdateInventory(ItemData[] data, InventorySlot[] slots)
+        private void UpdateInventory(ItemSlot[] data, InventorySlot[] slots)
         {
             // Assume that item data and slot has same length, this will not give any trouble
             //Debug.Log(data + "    " + slots);

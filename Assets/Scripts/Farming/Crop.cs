@@ -175,5 +175,10 @@ namespace Farming
             if (currentState == CropState.Harvest && _outline != null)
                 _outline.enabled = v;
         }
+
+        public ItemData GetItemData()
+        {
+            return seed;
+        }
     }
 }

@@ -1,8 +1,6 @@
 using GameDateTime;
 using Inventory;
 using Inventory.UI;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Utilities;
@@ -20,7 +18,7 @@ public class GameUIManager : Singleton<GameUIManager>, ITimeChecker
         GameTimeManager.Instance.AddListener(this);
     }
 
-    public void UpdateEquipedItem(ItemData data)
+    public void UpdateEquipedItem(ItemSlot data)
     {
         if(equipedItem != null)
         {

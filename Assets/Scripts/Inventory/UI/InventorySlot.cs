@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UI.Tooltip;
 using Utilities;
+using TMPro;
 
 namespace Inventory.UI
 {
@@ -20,7 +21,11 @@ namespace Inventory.UI
         /// Current item in the inventory slot
         /// </summary>
         private ItemData _item;
+        private int _quantity;
+        private ItemSlot _itemSlot;
+
         protected ItemData Item { get { return _item; } }
+        protected ItemSlot ItemSlot { get { return _itemSlot; } }
         /// <summary>
         /// Unique identifier of the inventory slot to find the corresponding slot in Inventory Manager
         /// </summary>
@@ -32,9 +37,12 @@ namespace Inventory.UI
         [Tooltip("Which item type should this slot to correspond to? Invalid for EquipInventorySlot")]
         [SerializeField] private ItemType itemType = ItemType.Tool;
 
-        [Tooltip("Reference to the image responsible to display the item thumbnail")]
+        [Tooltip("Image for the background")]
         [SerializeField] private Image background;
+        [Tooltip("Reference to the image responsible to display the item thumbnail")]
         [SerializeField] private Image image;
+        [Tooltip("Text to show the current quantity of the item slot")]
+        [SerializeField] private TextMeshProUGUI quantityText;
         [Tooltip("Use to search for item thumbnail object is its null")]
         [SerializeField] private string itemThumbnailName = "Item Thumbnail";
 
@@ -66,29 +74,45 @@ namespace Inventory.UI
         /// To update an display item to the inventory slot UI
         /// </summary>
         /// <param name="item"></param>
-        public void Display(ItemData item)
+        public void Display(ItemSlot itemSlot)
         {
             // We want to set the item if its not null and the thumbnail also not null
-            if(item != null)
+            if(itemSlot != null && itemSlot.ItemData != null)
             {
-                if (item.thumnail != null)
-                    image.sprite = item.thumnail;
-                else
-                    Debug.LogWarning("[Inventory Slot] Item thumbnail is null!");
+                _itemSlot = itemSlot;
+                _item = itemSlot.ItemData;
+                _quantity = itemSlot.Quantity;
 
-                _item = item;
+                if (_item.thumnail != null)
+                    image.sprite = _item.thumnail;
+                else
+                    Debug.LogWarning("[Inventory Slot] ("+name+") Item thumbnail is null!");
+
+                // Display quantity if more than 1
+                if (quantityText != null && _quantity > 1)
+                {
+                    quantityText.text = _quantity.ToString();
+                    quantityText.gameObject.SetActive(true);
+                }
+                else
+                {
+                    quantityText.gameObject.SetActive(false);
+                }       
+
                 image.gameObject.SetActive(true);
 
                 // Update the tooltip if the slot is currently having the tooltip showing
-                if(_mousePointing)
+                if (_mousePointing)
                 {
                     TooltipManager.Instance.Show(_item.description, _item.name);
                 }
             }
             else
             {
+                _itemSlot = null;
                 _item = null; // As item is null, put it as null
                 image.gameObject.SetActive(false); // Active false for the image not to display anything is the item is empty
+                quantityText.gameObject.SetActive(false);
 
                 // Hide tooltip is showing anything
                 if(_mousePointing && TooltipManager.Instance.ShowingTooltip)

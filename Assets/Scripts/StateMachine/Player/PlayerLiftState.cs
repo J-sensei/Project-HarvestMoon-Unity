@@ -70,11 +70,27 @@ namespace StateMachine.Player
             }
             else if (!this.Context.CharacterController.isGrounded)
             {
-                this.Context.EquipController.DetachItem(); // TODO: Check if this work properly
+                this.Context.EquipController.DetachItem(true); // TODO: Check if this work properly
                 this.SwitchState(this.StateFactory.Fall());
             }
             else if (this.Context.PickupInputPress && !this.Context.PickingItem) // Prevent bug happen when pressing pickup when picking an item
             {
+                if (this.Context.PlayerInteractor.SelectedtInteractable != null && this.Context.PlayerInteractor.SelectedtInteractable.GetItemData() != null)
+                {
+                    ItemData itemData = this.Context.PlayerInteractor.SelectedtInteractable.GetItemData();
+                    ItemSlot slot = new ItemSlot(itemData);
+                    if (InventoryManager.Instance.HoldingItemSlot != null && InventoryManager.Instance.HoldingItemSlot.Stackable(slot))
+                    {
+                        this.Context.PlayerInteractor.SelectedtInteractable.Interact();
+
+                        this.Context.PickingItem = true;
+                        PlayerBaseState state = state = this.StateFactory.PickingItem();
+                        state.Enter();
+                        this.SetSubState(state);
+                        return;
+                    }
+                }
+
                 //this.Context.PickingItem = true; // Use same variable for dropping
                 this.Context.DroppingItem = true;
                 this.Context.PickupInputPress = false; // Set to false to make sure it only trigger once

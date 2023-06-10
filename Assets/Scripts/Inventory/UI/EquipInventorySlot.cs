@@ -1,6 +1,5 @@
-using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using Utilities;
 
 namespace Inventory.UI
 {
@@ -12,7 +11,9 @@ namespace Inventory.UI
         public override void OnPointerClick(PointerEventData eventData)
         {
             if(this.mouseEvent)
-                InventoryManager.Instance.Unequip(this.Item);
+                InventoryManager.Instance.Unequip(this.ItemSlot);
+
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.menuClick);
         }
     }
 }

@@ -3,6 +3,7 @@ using UI.UIScreen;
 using UnityEngine;
 using Utilities;
 using QuickOutline;
+using Inventory;
 
 namespace Interactable
 {
@@ -61,6 +62,11 @@ namespace Interactable
                 GameManager.Instance.Player.Enable(); // Allow player to move after finish sleep
                 _sleeping = false; // Player finish sleep
             });
+        }
+
+        public ItemData GetItemData()
+        {
+            return null;
         }
         #endregion
     }

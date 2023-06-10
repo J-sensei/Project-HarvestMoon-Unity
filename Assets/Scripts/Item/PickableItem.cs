@@ -20,6 +20,10 @@ namespace Item
         [Tooltip("Outline to show the item is selected")]
         [SerializeField] private Outline outline;
 
+        [Header("Physics")]
+        [Tooltip("Distance before hit something on the ground to determine is grounded or not")]
+        [SerializeField] private float groundedDistance = 0.1f;
+
         /// <summary>
         /// Item data of the pickable item object
         /// </summary>
@@ -58,6 +62,18 @@ namespace Item
             StartCoroutine(OutlineHelper.InitializeOutline(outline));
         }
 
+        private void FixedUpdate()
+        {
+            if(rb && !rb.isKinematic)
+            {
+                if(!Physics.Raycast(transform.position, -Vector3.up, groundedDistance))
+                {
+                    rb.drag = 1;
+                    rb.angularDrag = 1;
+                }
+            }
+        }
+
         /// <summary>
         /// When player request to hold the item
         /// </summary>
@@ -85,10 +101,12 @@ namespace Item
             }
         }
 
-        public void OnThrow()
+        public void OnThrow(float drag = float.MaxValue, float angularDrag = float.MaxValue)
         {
             if (rb != null)
             {
+                rb.drag = drag;
+                rb.angularDrag = angularDrag;
                 rb.isKinematic = false;
             }
             else
@@ -129,6 +147,11 @@ namespace Item
         {
             if (outline != null)
                 outline.enabled = v;
+        }
+
+        public ItemData GetItemData()
+        {
+            return itemData;
         }
     }
 }

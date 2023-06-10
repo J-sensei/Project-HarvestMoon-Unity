@@ -251,6 +251,11 @@ namespace Farming
         {
             return InteractableType.Farm;
         }
+
+        public ItemData GetItemData()
+        {
+            return null;
+        }
         #endregion
     }
 }
