@@ -17,6 +17,11 @@ namespace Utilities
         [SerializeField] private PlayerStateMachine player;
         [SerializeField] private EventSystem eventSystem;
 
+        private void Awake()
+        {
+            
+        }
+
         private void Start()
         {
             if(gameMenu != null && !gameMenu.gameObject.activeSelf)
@@ -35,7 +40,7 @@ namespace Utilities
             {
                 Transform spawnPos = StartLocationManager.Instance.GetTransform(defaultScene);
                 Instantiate(player, spawnPos.position, spawnPos.rotation);
-                GameManager.Instance.Camera.UpdateTarget(GameManager.Instance.Player.transform);
+                GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform);
             }
         }
 
@@ -47,6 +52,16 @@ namespace Utilities
             if(eventSystem != null && GameObject.FindObjectOfType<EventSystem>() == null)
             {
                 Instantiate(eventSystem, Vector3.zero, Quaternion.identity);
+            }
+
+            if (GameManager.Instance.Player == null)
+            {
+                Debug.Log("[Game Initializer] Trying to reintialize player:" + GameManager.Instance.Player);
+            }
+
+            if (GameManager.Instance.Camera == null)
+            {
+                Debug.Log("[Game Initializer] Trying to reintialize main camera:" + GameManager.Instance.Camera);
             }
         }
     }

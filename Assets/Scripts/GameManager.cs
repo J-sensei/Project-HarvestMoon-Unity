@@ -30,7 +30,8 @@ public class GameManager : Singleton<GameManager>
         {
             if(_topDownCamera == null)
             {
-                _topDownCamera = UnityEngine.Camera.main.GetComponent<TopDownCamera.TopDownCamera>();
+                //_topDownCamera = UnityEngine.Camera.main.GetComponent<TopDownCamera.TopDownCamera>();
+                _topDownCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<TopDownCamera.TopDownCamera>();
             }
             return _topDownCamera;
         }

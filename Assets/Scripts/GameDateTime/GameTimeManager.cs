@@ -66,7 +66,7 @@ namespace GameDateTime
 
             StartCoroutine(UpdateTime()); // Start the time update
             LoadSunTransform(); // Rotate the sun instantly
-            currentSkybox = skyboxTimes[0];
+            //currentSkybox = skyboxTimes[0];
         }
 
         private void Update()

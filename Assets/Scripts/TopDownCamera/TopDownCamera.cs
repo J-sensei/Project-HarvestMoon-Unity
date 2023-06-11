@@ -45,6 +45,7 @@ namespace TopDownCamera
 
         public void UpdateTargetAndInitialize(Transform target)
         {
+            Debug.Log("Target: " + target);
             UpdateTarget(target);
             InitializeCameraPos();
         }
@@ -84,6 +85,7 @@ namespace TopDownCamera
             if (target == null)
             {
                 Debug.LogWarning("[TopDownCamera] Target is null");
+                GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform);
                 return;
             }
 

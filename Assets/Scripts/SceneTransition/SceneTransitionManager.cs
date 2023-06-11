@@ -65,6 +65,7 @@ namespace SceneTransition
 
         public void OnLocationLoad(Scene scene, LoadSceneMode mode)
         {
+            gameInitializer.Ensure();
             // Fade screen on start
             if (FadeScreenManager.Instance.FadePanel.FadeOnStart)
             {
@@ -76,6 +77,7 @@ namespace SceneTransition
             // Load scene location
             SceneLocation oldLocation = _currentLocation;
             SceneLocation location = (SceneLocation)Enum.Parse(typeof(SceneLocation), scene.name);
+            Debug.Log("Old Location: " + oldLocation.ToString() + " Location: " + location.ToString());
 
             if (oldLocation == location) return; // If location same then no need to do anything
 
@@ -83,16 +85,22 @@ namespace SceneTransition
             Transform startPoint = StartLocationManager.Instance.GetTransform(oldLocation);
             for(int i = 0; i < _holdingObjects.Count; i++)
             {
-                _holdingObjects[i].transform.parent = null;
+                if (_holdingObjects[i] == null || _holdingObjects[i].transform == null)
+                {
+                    Debug.Log("[Scene Transition Manager] Holding Object (" + _holdingObjects[i].name + "::" + i + ") is null");
+                    continue;
+                }
+                Debug.Log("Transform: " + _holdingObjects[i].transform + " Old Location: " + oldLocation.ToString());
                 _holdingObjects[i].transform.position = startPoint.position;
                 _holdingObjects[i].transform.rotation = startPoint.rotation;
+                _holdingObjects[i].transform.parent = null;
             }
             _holdingObjects.Clear();
-            GameManager.Instance.Camera.UpdateTarget(GameManager.Instance.Player.transform);
+            Debug.Log(GameManager.Instance.Player);
+            Debug.Log(GameManager.Instance.Camera);
+            GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform);
             StartCoroutine(EnablePlayer());
             _currentLocation = location;
-
-            gameInitializer.Ensure();
         }
 
         private IEnumerator EnablePlayer()

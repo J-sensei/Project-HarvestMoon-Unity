@@ -13,5 +13,7 @@
         /// Scene where player can do crafting, sleep, save and load the game
         /// </summary>
         Home,
+        Farm,
+        Outside
     }
 }

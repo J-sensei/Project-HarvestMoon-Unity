@@ -13,7 +13,6 @@ Material:
   - _HALFTONESHAPE_DOT
   - _METALLICSPECGLOSSMAP
   - _OUTLINE
-  - _RIMLIGHTING_ON
   - _TOON_SHADING_ON
   m_InvalidKeywords:
   - _METALLICGLOSSMAP
@@ -171,7 +170,7 @@ Material:
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimEnabled: 1
+    - _RimEnabled: 0
     - _RimLightAlign: 0
     - _RimLightSmoothness: 0
     - _RimPower: 0.1

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781b7bccb0f7d914b941a022b5cdac4b, type: 3}
   m_Name: Default Farm Land Config
   m_EditorClassIdentifier: 
-  soil: {fileID: 2100000, guid: 7f985dbb3532ae343bc8d23e2ab3858c, type: 2}
-  water: {fileID: 2100000, guid: 8ce800136a348414fbbb7020020df06c, type: 2}
+  soil: {fileID: 2100000, guid: 548ea05c671ca3548acfcf6fc7554cd8, type: 2}
+  water: {fileID: 2100000, guid: 8fd776f6a2553b640a6ff5ee4564df48, type: 2}
