@@ -1,5 +1,7 @@
 using Farming;
+using GameDateTime;
 using Inventory;
+using UnityEngine;
 
 namespace GameSave
 {
@@ -47,9 +49,39 @@ namespace GameSave
             this.crop = crop;
         }
 
+        /// <summary>
+        /// Check if this farm land has crop planted to it
+        /// </summary>
+        /// <returns></returns>
         public bool HasCrop()
         {
             return crop.seedData != null;
+        }
+
+        /// <summary>
+        /// Make changes to the data to update the farm and crop state
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public void NewDay(GameTime gameTime)
+        {
+            // Make the water dry out in the next day
+            if (state == FarmLandState.Watered)
+            {
+                // If crop is available, do something with it
+                // Only want to grow the crop if player remember to water it
+                if (HasCrop())
+                {
+                    crop.Grow();
+                }
+                state = FarmLandState.Farmland;
+            }
+            else if (state != FarmLandState.Watered)
+            {
+                if (HasCrop())
+                {
+                    crop.Wilt();
+                }
+            }
         }
     }
 
@@ -68,6 +100,22 @@ namespace GameSave
             this.seedData = seedData;
             this.growDay = growDay;
             this.state = state;
+        }
+
+        public void Grow()
+        {
+            if (state == CropState.Wilted) return; // No need to grow anymore as already wilted
+
+            growDay++; // Grow up by one day
+            if (growDay >= seedData.grows[seedData.grows.Length - 1].day) // Check if the plant are fully grown
+            {
+                state = CropState.Harvest; // Crop are ready to harvest
+            }
+        }
+
+        public void Wilt()
+        {
+            state = CropState.Wilted;
         }
     }
 }

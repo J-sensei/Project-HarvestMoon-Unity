@@ -15,16 +15,16 @@ public class GameUIManager : Singleton<GameUIManager>, ITimeChecker
 
     protected override void AwakeSingleton()
     {
-        GameTimeManager.Instance.AddListener(this);
+        GameTimeManager.Instance.AddListener(this); // No need to remove as it will persists throughout the game
     }
 
     /// <summary>
     /// Reinitialize after scene changes
     /// </summary>
-    public void Reinitialize()
-    {
-        GameTimeManager.Instance.AddListener(this);
-    }
+    //public void Reinitialize()
+    //{
+    //    GameTimeManager.Instance.AddListener(this);
+    //}
 
     public void UpdateEquipedItem(ItemSlot data)
     {

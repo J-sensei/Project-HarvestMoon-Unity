@@ -1,3 +1,4 @@
+using GameDateTime;
 using GameSave;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,6 +51,22 @@ namespace Farming
             }
         }
 
+        /// <summary>
+        /// Update farm land state outside of the farm scene
+        /// </summary>
+        public void UpdateFarmLandState(GameTime gameTime)
+        {
+            if(SaveData != null)
+            {
+                for (int i = 0; i < SaveData.Count; i++)
+                {
+                    FarmSaveData saveData = SaveData[i]; // Get the save data struct (This step is essential to change the structure data)
+                    saveData.NewDay(gameTime);
+                    SaveData[i] = saveData; // Put back the updated data
+                }
+            }
+        }
+
         private void LoadSaveData(List<FarmSaveData> saves)
         {
             for(int i = 0; i < saves.Count; i++)
@@ -64,8 +81,7 @@ namespace Farming
         /// </summary>
         public void OnDestroy()
         {
-            //SaveData = new List<FarmSaveData>(_farmSaves); // Save to SaveData static variables to hold it throught out the game session
-            //Debug.Log("Save all farmland to SaveData");
+            
         }
 
         /// <summary>
@@ -81,6 +97,7 @@ namespace Farming
 
             _farmSaves[saveData.id] = saveData;
 
+            // Save to static variable to keep the changes
             if(SaveData == null)
             {
                 SaveData = new List<FarmSaveData>(_farmSaves);

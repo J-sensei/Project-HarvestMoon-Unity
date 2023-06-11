@@ -144,7 +144,6 @@ namespace GameDateTime
             gameTime.Reset(); // Reset the date time
             Tick(); // Explicitly call tick to update the date time
             LoadSunTransform();
-            Debug.Log("[Game Time Manager] Sleep is called");
         }
 
         /// <summary>
@@ -182,8 +181,6 @@ namespace GameDateTime
         {
             timeCheckerListeners.Remove(listener);
         }
-
-        public void ClearListener() => timeCheckerListeners.Clear();
 
         public void UpdateListener()
         {

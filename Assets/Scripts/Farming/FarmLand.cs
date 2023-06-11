@@ -75,6 +75,7 @@ namespace Farming
         {
             // Save the data before destroy
             FarmLandSaveManager.Instance.Save(SaveData);
+            GameTimeManager.Instance.RemoveListener(this); // Make sure remove the ITimeChecker listener to prevent any null reference exception
         }
 
         private void Awake()

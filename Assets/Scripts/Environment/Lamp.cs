@@ -12,6 +12,12 @@ namespace Environment
             GameTimeManager.Instance.AddListener(this);
         }
 
+        private void OnDestroy()
+        {
+            // Make sure remove the ITimeChecker listener to prevent any null reference exception
+            GameTimeManager.Instance.RemoveListener(this);
+        }
+
         #region ITimeChecker
         public void ClockUpdate(GameTime gameTime)
         {

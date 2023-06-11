@@ -1,4 +1,3 @@
-using Farming;
 using GameDateTime;
 using System;
 using System.Collections;
@@ -16,6 +15,7 @@ namespace SceneTransition
         [SerializeField] private GameInitializer gameInitializer;
 
         [SerializeField] private SceneLocation _currentLocation = SceneLocation.Farm;
+        public SceneLocation CurrentLocation { get { return _currentLocation; } }
         private List<GameObject> _holdingObjects = new();
         private AsyncOperation _operation;
         public List<GameObject> HoldingObjects { 
@@ -77,10 +77,6 @@ namespace SceneTransition
             SceneLocation location = (SceneLocation)Enum.Parse(typeof(SceneLocation), scene.name);
 
             if (oldLocation == location) return; // If location same then no need to do anything
-
-            // Make sure ITimeChecker listener will reset properly and not potentially having null gameobjects
-            GameTimeManager.Instance.ClearListener();
-            GameUIManager.Instance.Reinitialize();
 
             // Change player position unload it
             Transform startPoint = StartLocationManager.Instance.GetTransform(oldLocation);
