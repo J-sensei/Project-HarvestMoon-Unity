@@ -42,7 +42,7 @@ namespace Utilities
         }
 
         /// <summary>
-        /// Events to trigger when create an instance
+        /// Events to trigger when create an instance, this is called in awake function
         /// </summary>
         protected abstract void AwakeSingleton();
     }

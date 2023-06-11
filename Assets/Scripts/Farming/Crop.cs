@@ -1,3 +1,4 @@
+using GameSave;
 using Interactable;
 using Inventory;
 using QuickOutline;
@@ -38,7 +39,14 @@ namespace Farming
         private GameObject _currentDisplayObject;
         private Outline _outline;
 
-        private void Start()
+        public SeedData Seed
+        {
+            get { return seed; }
+        }
+        public int GrowDay { get { return day; } }
+        public CropState State { get { return currentState; } }
+
+        private void Awake()
         {
             if(detectCollider == null)
             {
@@ -66,12 +74,28 @@ namespace Farming
             _growData = seed.grows;
         }
 
-        /// <summary>
-        /// Update to decide which gameobject to show based on the current state
-        /// </summary>
-        public void UpdateCropPrefab()
+        public void Load(CropSaveData saveData, Transform transform)
         {
-            if (day > _growData.Length) return; // No need to instantiate / destroy the display prefab as plant is fullly grown
+            Initialize(saveData.seedData, transform);
+            currentState = saveData.state;
+            day = saveData.growDay;
+            UpdateCropPrefab(false); // Update currentDisplayObjects, false set to force instantiate a currentDisplayObject
+
+            if (currentState == CropState.Harvest)
+            {
+                detectCollider.enabled = true; // Allow player to detect the crop to harvest it
+                _outline = _currentDisplayObject.GetComponent<Outline>(); // Get the outline for the current display object
+                StartCoroutine(OutlineHelper.InitializeOutline(_outline));
+            }
+        }
+
+        /// <summary>
+        ///  Update to decide which gameobject to show based on the current state
+        /// </summary>
+        /// <param name="ignoreDay">Ignore day to prevent instantiate same object again</param>
+        public void UpdateCropPrefab(bool ignoreDay = true)
+        {
+            if (day > _growData.Length && ignoreDay) return; // No need to instantiate / destroy the display prefab as plant is fullly grown
             if(currentState == CropState.Wilted)
             {
                 InstantiatePlant(wiltedCrop);

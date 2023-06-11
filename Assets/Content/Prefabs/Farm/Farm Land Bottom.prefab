@@ -344,6 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2d80cd2cc023b4a973a6903ce8700f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: -1
   config: {fileID: 11400000, guid: 32bf9fea8623dbe40b34144b77b51f3b, type: 2}
   currentState: 0
   dirt: {fileID: 7267683121647005055}

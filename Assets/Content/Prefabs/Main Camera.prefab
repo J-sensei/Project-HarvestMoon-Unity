@@ -137,6 +137,8 @@ MonoBehaviour:
   distance: 5
   angle: 0
   smoothTime: 0.5
+  _minCamDistance: 0
+  _maxCamDistance: Infinity
 --- !u!114 &7663488035140472179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,5 +151,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f993cc6182070c46b7148e8bc76667e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateMultiplier: 60
+  rotateMultiplier: 6.5
   rotateSmoothTime: 0.05

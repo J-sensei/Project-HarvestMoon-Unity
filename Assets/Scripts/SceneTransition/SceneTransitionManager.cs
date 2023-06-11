@@ -1,3 +1,4 @@
+using Farming;
 using GameDateTime;
 using System;
 using System.Collections;
@@ -77,9 +78,12 @@ namespace SceneTransition
             // Load scene location
             SceneLocation oldLocation = _currentLocation;
             SceneLocation location = (SceneLocation)Enum.Parse(typeof(SceneLocation), scene.name);
-            Debug.Log("Old Location: " + oldLocation.ToString() + " Location: " + location.ToString());
+            //Debug.Log("Old Location: " + oldLocation.ToString() + " Location: " + location.ToString());
 
             if (oldLocation == location) return; // If location same then no need to do anything
+
+            GameTimeManager.Instance.ClearListener();
+            GameUIManager.Instance.Reinitialize();
 
             // Change player position unload it
             Transform startPoint = StartLocationManager.Instance.GetTransform(oldLocation);
@@ -90,14 +94,14 @@ namespace SceneTransition
                     Debug.Log("[Scene Transition Manager] Holding Object (" + _holdingObjects[i].name + "::" + i + ") is null");
                     continue;
                 }
-                Debug.Log("Transform: " + _holdingObjects[i].transform + " Old Location: " + oldLocation.ToString());
+                //Debug.Log("Transform: " + _holdingObjects[i].transform + " Old Location: " + oldLocation.ToString());
                 _holdingObjects[i].transform.position = startPoint.position;
                 _holdingObjects[i].transform.rotation = startPoint.rotation;
                 _holdingObjects[i].transform.parent = null;
             }
             _holdingObjects.Clear();
-            Debug.Log(GameManager.Instance.Player);
-            Debug.Log(GameManager.Instance.Camera);
+            //Debug.Log(GameManager.Instance.Player);
+            //Debug.Log(GameManager.Instance.Camera);
             GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform);
             StartCoroutine(EnablePlayer());
             _currentLocation = location;

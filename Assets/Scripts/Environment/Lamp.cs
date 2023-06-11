@@ -6,7 +6,6 @@ namespace Environment
     public class Lamp : MonoBehaviour, ITimeChecker
     {
         [SerializeField] private GameObject[] lightSources;
-
         private void Start()
         {
             // Add listener to the game time manager to get call when game time is update
@@ -16,7 +15,8 @@ namespace Environment
         #region ITimeChecker
         public void ClockUpdate(GameTime gameTime)
         {
-            if((gameTime.Hour >= 19 && gameTime.Hour <= 23) || (gameTime.Hour >= 0 && gameTime.Hour <= 8))
+            // 6pm to 11pm or 12am to 8am
+            if((gameTime.Hour >= 18 && gameTime.Hour <= 23) || (gameTime.Hour >= 0 && gameTime.Hour <= 7))
             {
                 foreach(GameObject lightSource in lightSources)
                 {

@@ -4,6 +4,7 @@ using Inventory;
 using UnityEngine;
 using Utilities;
 using QuickOutline;
+using GameSave;
 
 namespace Farming
 {
@@ -28,6 +29,9 @@ namespace Farming
     /// </summary>
     public class FarmLand : MonoBehaviour, ITimeChecker, IInteractable
     {
+        [Header("Data")]
+        [SerializeField] private int id = -1;
+
         [Header("Configuration")]
         [SerializeField] FarmLandConfig config;
         [SerializeField] private FarmLandState currentState;
@@ -46,6 +50,26 @@ namespace Farming
         [SerializeField] private Transform cropTransform;
 
         public FarmLandState CurrentState { get { return currentState; } }
+        public int ID { get { return id; } set { id = value; } }
+        public FarmSaveData SaveData
+        {
+            get
+            {
+                //Debug.Log("Crop NULL: " + (crop == null).ToString());
+                FarmSaveData data;
+                if(crop == null)
+                {
+                    data = new FarmSaveData(ID, currentState);
+                }
+                else
+                {
+                    CropSaveData cropData = new CropSaveData(crop.Seed, crop.GrowDay, crop.State);
+                    data = new FarmSaveData(ID, currentState, cropData);
+                }
+
+                return data;
+            }
+        }
 
         private void Awake()
         {
@@ -112,6 +136,8 @@ namespace Farming
                     _dirtRenderer.material = config.water;
                     break;
             }
+
+            FarmLandSaveManager.Instance.Save(SaveData);
         }
 
         /// <summary>
@@ -163,6 +189,8 @@ namespace Farming
                 crop = Instantiate(seedData.cropPrefab, cropTransform);
                 crop.Initialize(seedData, cropTransform);
                 crop.UpdateCropPrefab();
+
+                FarmLandSaveManager.Instance.Save(SaveData);
                 return true;
             }
             else
@@ -170,6 +198,23 @@ namespace Farming
                 Debug.Log("[Farm Land] Not able to plant as condition are not valid");
                 return false;
             }
+        }
+
+        public void Load(FarmSaveData saveData)
+        {
+            if(id != saveData.id)
+            {
+                Debug.LogWarning("[Farm Land] Farm ID: " + id + " trying to laod from invalid save data id: " + saveData.id);
+                return;
+            }
+            currentState = saveData.state;
+            if (saveData.HasCrop())
+            {
+                CropSaveData cropData = saveData.crop;
+                crop = Instantiate(cropData.seedData.cropPrefab, cropTransform);
+                crop.Load(cropData, cropTransform);
+            }
+            SwitchState(currentState);
         }
 
         /// <summary>
@@ -219,6 +264,7 @@ namespace Farming
                 if (crop != null)
                 {
                     crop.Grow();
+                    FarmLandSaveManager.Instance.Save(SaveData);
                 }
 
                 SwitchState(FarmLandState.Farmland); // Back to farm land for the player to water again
@@ -228,6 +274,7 @@ namespace Farming
                 if (crop != null)
                 {
                     crop.Wilt();
+                    FarmLandSaveManager.Instance.Save(SaveData);
                 }
             }
         }

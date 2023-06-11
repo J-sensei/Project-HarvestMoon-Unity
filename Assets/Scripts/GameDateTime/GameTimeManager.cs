@@ -183,6 +183,8 @@ namespace GameDateTime
             timeCheckerListeners.Remove(listener);
         }
 
+        public void ClearListener() => timeCheckerListeners.Clear();
+
         public void UpdateListener()
         {
             timeCheckerListeners.RemoveAll(x => x == null);

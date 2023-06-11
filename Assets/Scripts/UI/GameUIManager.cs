@@ -18,6 +18,14 @@ public class GameUIManager : Singleton<GameUIManager>, ITimeChecker
         GameTimeManager.Instance.AddListener(this);
     }
 
+    /// <summary>
+    /// Reinitialize after scene changes
+    /// </summary>
+    public void Reinitialize()
+    {
+        GameTimeManager.Instance.AddListener(this);
+    }
+
     public void UpdateEquipedItem(ItemSlot data)
     {
         if(equipedItem != null)

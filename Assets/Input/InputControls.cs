@@ -442,6 +442,24 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RotateLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""89346eab-4aac-4bfb-8102-fa529bad296e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RotateRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e555b80-48fa-4576-a0eb-4556f3e2e9ab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -464,6 +482,28 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0273a5d2-68fa-4065-ab9e-2102c6a50b9e"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c4684c1-60e4-4b3f-bfb8-2ac602c14292"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -493,6 +533,8 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Zoom = m_Camera.FindAction("Zoom", throwIfNotFound: true);
         m_Camera_MousePosition = m_Camera.FindAction("MousePosition", throwIfNotFound: true);
+        m_Camera_RotateLeft = m_Camera.FindAction("RotateLeft", throwIfNotFound: true);
+        m_Camera_RotateRight = m_Camera.FindAction("RotateRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -717,12 +759,16 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private ICameraActions m_CameraActionsCallbackInterface;
     private readonly InputAction m_Camera_Zoom;
     private readonly InputAction m_Camera_MousePosition;
+    private readonly InputAction m_Camera_RotateLeft;
+    private readonly InputAction m_Camera_RotateRight;
     public struct CameraActions
     {
         private @InputControls m_Wrapper;
         public CameraActions(@InputControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Zoom => m_Wrapper.m_Camera_Zoom;
         public InputAction @MousePosition => m_Wrapper.m_Camera_MousePosition;
+        public InputAction @RotateLeft => m_Wrapper.m_Camera_RotateLeft;
+        public InputAction @RotateRight => m_Wrapper.m_Camera_RotateRight;
         public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -738,6 +784,12 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @MousePosition.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnMousePosition;
                 @MousePosition.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnMousePosition;
                 @MousePosition.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnMousePosition;
+                @RotateLeft.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateLeft;
+                @RotateLeft.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateLeft;
+                @RotateLeft.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateLeft;
+                @RotateRight.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateRight;
+                @RotateRight.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateRight;
+                @RotateRight.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateRight;
             }
             m_Wrapper.m_CameraActionsCallbackInterface = instance;
             if (instance != null)
@@ -748,6 +800,12 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @MousePosition.started += instance.OnMousePosition;
                 @MousePosition.performed += instance.OnMousePosition;
                 @MousePosition.canceled += instance.OnMousePosition;
+                @RotateLeft.started += instance.OnRotateLeft;
+                @RotateLeft.performed += instance.OnRotateLeft;
+                @RotateLeft.canceled += instance.OnRotateLeft;
+                @RotateRight.started += instance.OnRotateRight;
+                @RotateRight.performed += instance.OnRotateRight;
+                @RotateRight.canceled += instance.OnRotateRight;
             }
         }
     }
@@ -776,5 +834,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     {
         void OnZoom(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
+        void OnRotateLeft(InputAction.CallbackContext context);
+        void OnRotateRight(InputAction.CallbackContext context);
     }
 }

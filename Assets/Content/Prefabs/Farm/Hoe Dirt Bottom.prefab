@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 231821587674546261}
   - component: {fileID: 238991676632077765}
   - component: {fileID: 249350586096294905}
-  - component: {fileID: 271742193205318735}
   m_Layer: 10
   m_Name: Hoe Dirt Bottom
   m_TagString: Untagged
@@ -84,17 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &271742193205318735
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 226651424564107879}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 5ea733c7f4d2f824f9e986b189e70a2a, type: 3}
