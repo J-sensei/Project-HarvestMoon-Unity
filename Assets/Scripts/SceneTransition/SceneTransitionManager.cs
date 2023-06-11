@@ -33,11 +33,9 @@ namespace SceneTransition
         public void SwitchScene(SceneLocation location)
         {
             GameTimeManager.Instance.PauseTime(true);
-            //_operation = SceneManager.LoadSceneAsync(location.ToString());
-            //_operation.allowSceneActivation = false;
             FadeScreenManager.Instance.FadePanel.FadeOut(() =>
             {
-                FadeScreenManager.Instance.Loading(true);
+                FadeScreenManager.Instance.Loading(true); // Scene loading start
                 StartCoroutine(LoadSceneAsync(location.ToString()));
             });
             AddHoldObject(GameManager.Instance.Player.transform);
@@ -49,11 +47,9 @@ namespace SceneTransition
         {
             _operation = SceneManager.LoadSceneAsync(sceneName);
             _operation.allowSceneActivation = true;
-            //operation.allowSceneActivation = false;
             while (!_operation.isDone)
             {
                 float progress = Mathf.Clamp01(_operation.progress / 0.9f);
-                //Debug.Log("Scene Loading Progress: " + progress * 100 + "%");
                 yield return null;
             }
         }
@@ -66,11 +62,12 @@ namespace SceneTransition
 
         public void OnLocationLoad(Scene scene, LoadSceneMode mode)
         {
-            gameInitializer.Ensure();
+            gameInitializer.Ensure(); // To ensure game initialize properly
+
             // Fade screen on start
             if (FadeScreenManager.Instance.FadePanel.FadeOnStart)
             {
-                FadeScreenManager.Instance.FadePanel.OnStart.AddListener(() => FadeScreenManager.Instance.Loading(false));
+                FadeScreenManager.Instance.FadePanel.OnStart.AddListener(() => FadeScreenManager.Instance.Loading(false)); // Scene loading start
                 FadeScreenManager.Instance.FadePanel.FadeIn();
             }
             GameTimeManager.Instance.LoadSunTransform();
@@ -78,10 +75,10 @@ namespace SceneTransition
             // Load scene location
             SceneLocation oldLocation = _currentLocation;
             SceneLocation location = (SceneLocation)Enum.Parse(typeof(SceneLocation), scene.name);
-            //Debug.Log("Old Location: " + oldLocation.ToString() + " Location: " + location.ToString());
 
             if (oldLocation == location) return; // If location same then no need to do anything
 
+            // Make sure ITimeChecker listener will reset properly and not potentially having null gameobjects
             GameTimeManager.Instance.ClearListener();
             GameUIManager.Instance.Reinitialize();
 
@@ -103,15 +100,16 @@ namespace SceneTransition
             //Debug.Log(GameManager.Instance.Player);
             //Debug.Log(GameManager.Instance.Camera);
             GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform);
+            GameTimeManager.Instance.PauseTime(false); // Resume the time pause
+
             StartCoroutine(EnablePlayer());
             _currentLocation = location;
         }
 
         private IEnumerator EnablePlayer()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.1f);
             GameManager.Instance.Player.Enable();
-            GameTimeManager.Instance.PauseTime(false);
         }
     }
 }

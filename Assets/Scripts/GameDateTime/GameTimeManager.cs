@@ -211,5 +211,17 @@ namespace GameDateTime
         {
             pause = v;
         }
+
+        /// <summary>
+        /// Manually update the tick timechecker clock (Only use when scene is finish loaded to smooth the scene environments)
+        /// </summary>
+        public void UpdateClock()
+        {
+            foreach (ITimeChecker listener in timeCheckerListeners)
+            {
+                if (listener != null)
+                    listener.ClockUpdate(gameTime);
+            }
+        }
     }
 }
