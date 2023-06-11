@@ -13,14 +13,12 @@ namespace Utilities
         [SerializeField] private SceneLocation defaultScene = SceneLocation.Home;
 
         [Header("Initialize Objects")]
+        [Tooltip("Intiialize Game Menu")]
         [SerializeField] private GameMenu gameMenu;
+        [Tooltip("Initialize Player object")]
         [SerializeField] private PlayerStateMachine player;
+        [Tooltip("Initialize event system")]
         [SerializeField] private EventSystem eventSystem;
-
-        private void Awake()
-        {
-            
-        }
 
         private void Start()
         {
@@ -42,6 +40,9 @@ namespace Utilities
                 Instantiate(player, spawnPos.position, spawnPos.rotation);
                 GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform);
             }
+
+            // Incase
+            Ensure();
         }
 
         /// <summary>

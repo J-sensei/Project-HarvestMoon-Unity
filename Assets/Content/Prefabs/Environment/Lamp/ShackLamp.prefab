@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 8942093753547909147}
   - component: {fileID: 8942093753546910427}
   - component: {fileID: 2717846564273566378}
+  - component: {fileID: 2102780683112754371}
   m_Layer: 0
   m_Name: ShackLamp
   m_TagString: Untagged
@@ -314,3 +315,16 @@ MonoBehaviour:
   lightSources:
   - {fileID: 1189825655619402813}
   - {fileID: 7925350575752372607}
+--- !u!65 &2102780683112754371
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942093753544717339}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.54741454, y: 0.403777, z: 0.15010834}
+  m_Center: {x: 0.0362643, y: -0.024659753, z: 0}

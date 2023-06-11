@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 2210530352079787550}
   - component: {fileID: 2199882566803610314}
   - component: {fileID: 2221798696721373876}
+  - component: {fileID: 6330400833899762616}
   m_Layer: 10
   m_Name: Lamp
   m_TagString: Untagged
@@ -315,3 +316,16 @@ MonoBehaviour:
   lightSources:
   - {fileID: 2221347638966501530}
   - {fileID: 2220574675143490574}
+--- !u!65 &6330400833899762616
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222163188076039790}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.083856665, y: 0.9149504, z: 0.10019644}
+  m_Center: {x: -0.0012651682, y: 0.4574752, z: -0.0015921991}

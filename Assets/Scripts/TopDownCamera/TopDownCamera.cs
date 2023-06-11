@@ -43,9 +43,12 @@ namespace TopDownCamera
 
         public void UpdateTarget(Transform target) => this.target = target;
 
+        /// <summary>
+        /// Update target transform and immediately update the camera position to the target
+        /// </summary>
+        /// <param name="target"></param>
         public void UpdateTargetAndInitialize(Transform target)
         {
-            Debug.Log("Target: " + target);
             UpdateTarget(target);
             InitializeCameraPos();
         }
@@ -85,7 +88,6 @@ namespace TopDownCamera
             if (target == null)
             {
                 Debug.LogWarning("[TopDownCamera] Target is null");
-                GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform);
                 return;
             }
 
@@ -101,8 +103,6 @@ namespace TopDownCamera
             Vector3 targetPos = target.position;
             //targetPos.y = 0;
             Vector3 finalPos = targetPos + rotatedVector;
-
-            // Debug.DrawLine(target.position, finalPos, Color.blue);
 
             // Smooth values
             transform.position = Vector3.SmoothDamp(transform.position, finalPos, ref refVelocity, smoothTime);

@@ -14,7 +14,7 @@ namespace SceneTransition
         [Tooltip("Ensure game is properly initialize every scene load")]
         [SerializeField] private GameInitializer gameInitializer;
 
-        private SceneLocation _currentLocation;
+        [SerializeField] private SceneLocation _currentLocation = SceneLocation.Farm;
         private List<GameObject> _holdingObjects = new();
         private AsyncOperation _operation;
         public List<GameObject> HoldingObjects { 
