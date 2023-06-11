@@ -71,6 +71,12 @@ namespace Farming
             }
         }
 
+        private void OnDestroy()
+        {
+            // Save the data before destroy
+            FarmLandSaveManager.Instance.Save(SaveData);
+        }
+
         private void Awake()
         {
             // Getting the reference based on the game object placement.
@@ -137,7 +143,7 @@ namespace Farming
                     break;
             }
 
-            FarmLandSaveManager.Instance.Save(SaveData);
+            //FarmLandSaveManager.Instance.Save(SaveData);
         }
 
         /// <summary>
@@ -190,7 +196,7 @@ namespace Farming
                 crop.Initialize(seedData, cropTransform);
                 crop.UpdateCropPrefab();
 
-                FarmLandSaveManager.Instance.Save(SaveData);
+                //FarmLandSaveManager.Instance.Save(SaveData);
                 return true;
             }
             else
@@ -264,7 +270,7 @@ namespace Farming
                 if (crop != null)
                 {
                     crop.Grow();
-                    FarmLandSaveManager.Instance.Save(SaveData);
+                    //FarmLandSaveManager.Instance.Save(SaveData);
                 }
 
                 SwitchState(FarmLandState.Farmland); // Back to farm land for the player to water again
@@ -274,7 +280,7 @@ namespace Farming
                 if (crop != null)
                 {
                     crop.Wilt();
-                    FarmLandSaveManager.Instance.Save(SaveData);
+                    //FarmLandSaveManager.Instance.Save(SaveData);
                 }
             }
         }

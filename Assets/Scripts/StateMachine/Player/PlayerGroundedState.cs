@@ -174,8 +174,10 @@ namespace StateMachine.Player
             SeedData seedData = (SeedData)item;
             if (seedData != null)
             {
-                farm.Plant(seedData);
-                InventoryManager.Instance.Consume();
+                if (farm.Plant(seedData))
+                {
+                    InventoryManager.Instance.Consume();
+                }
             }
             else
             {

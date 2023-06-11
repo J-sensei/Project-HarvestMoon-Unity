@@ -64,7 +64,8 @@ namespace Farming
         /// </summary>
         public void OnDestroy()
         {
-            SaveData = new List<FarmSaveData>(_farmSaves); // Save to SaveData static variables to hold it throught out the game session
+            //SaveData = new List<FarmSaveData>(_farmSaves); // Save to SaveData static variables to hold it throught out the game session
+            //Debug.Log("Save all farmland to SaveData");
         }
 
         /// <summary>
@@ -75,11 +76,19 @@ namespace Farming
         {
             if(saveData.id < 0 || saveData.id > _farmLands.Count)
             {
-                Debug.LogWarning("[Farm Land Save Manager] Invalid save data id: " + saveData.id);
                 return;
             }
 
             _farmSaves[saveData.id] = saveData;
+
+            if(SaveData == null)
+            {
+                SaveData = new List<FarmSaveData>(_farmSaves);
+            }
+            else
+            {
+                SaveData[saveData.id] = saveData;
+            }
         }
     }
 }
