@@ -1,6 +1,7 @@
 using GameDateTime;
 using Inventory;
 using Inventory.UI;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using Utilities;
@@ -15,16 +16,23 @@ public class GameUIManager : Singleton<GameUIManager>, ITimeChecker
 
     protected override void AwakeSingleton()
     {
-        GameTimeManager.Instance.AddListener(this); // No need to remove as it will persists throughout the game
+        //GameTimeManager.Instance.AddListener(this); // No need to remove as it will persists throughout the game
+        StartCoroutine(Initialize());
     }
 
     /// <summary>
-    /// Reinitialize after scene changes
+    /// Make sure the game time manager is initialized before subcribe to the ITimeChecker
     /// </summary>
-    //public void Reinitialize()
-    //{
-    //    GameTimeManager.Instance.AddListener(this);
-    //}
+    /// <returns></returns>
+    private IEnumerator Initialize()
+    {
+        yield return new WaitForEndOfFrame();
+        if (GameTimeManager.Instance != null)
+        {
+            GameTimeManager.Instance.AddListener(this);
+        }
+
+    }
 
     public void UpdateEquipedItem(ItemSlot data)
     {

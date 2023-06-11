@@ -30,7 +30,10 @@ namespace Farming
     public class FarmLand : MonoBehaviour, ITimeChecker, IInteractable
     {
         [Header("Data")]
+        [Tooltip("Unique Identifier of the farm")]
         [SerializeField] private int id = -1;
+        [Tooltip("Prevent this farm land save to the game")]
+        [SerializeField] private bool doNotSave = false;
 
         [Header("Configuration")]
         [SerializeField] FarmLandConfig config;
@@ -74,7 +77,9 @@ namespace Farming
         private void OnDestroy()
         {
             // Save the data before destroy
-            FarmLandSaveManager.Instance.Save(SaveData);
+            if(!doNotSave)
+                FarmLandSaveManager.Instance.Save(SaveData);
+
             GameTimeManager.Instance.RemoveListener(this); // Make sure remove the ITimeChecker listener to prevent any null reference exception
         }
 
