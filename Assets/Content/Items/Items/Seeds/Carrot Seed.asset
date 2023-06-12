@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ee973ab18582d4f8ab3693ce4d6f1a, type: 3}
   m_Name: Carrot Seed
   m_EditorClassIdentifier: 
+  id: 200
   itemName: Carrot Seed
   description: Grow a carrot
   type: 0

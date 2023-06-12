@@ -21,6 +21,8 @@ namespace Inventory
     public class ItemData : ScriptableObject
     {
         [Header("Details")]
+        [Tooltip("Unique Identifier of the item, make sure its not -1 and unique from other items")]
+        public int id = -1;
         [Tooltip("Name of the item")]
         public string itemName = "Item";
         [Tooltip("Description of the item")]

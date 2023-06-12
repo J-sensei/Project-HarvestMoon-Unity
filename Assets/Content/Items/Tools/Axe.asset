@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61549e5258e8de46a45cd1a2e5f666e, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
+  id: 0
   itemName: Axe
   description: A tool to chop the tree into wood (Can be use to remove crop)
   type: 0

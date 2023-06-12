@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 
 namespace UI.UIScreen
 {
@@ -29,6 +31,10 @@ namespace UI.UIScreen
         public bool Finish { get; private set; } = false;
         public bool FadeOnStart { get { return fadeOnStart; } }
 
+        /// <summary>
+        /// Reference current fade tween
+        /// </summary>
+        private TweenerCore<float, float, FloatOptions> _fadeTween;
 
         private void Awake()
         {
@@ -46,6 +52,7 @@ namespace UI.UIScreen
         /// </summary>
         public void FadeIn(TweenCallback callback = null)
         {
+            //UnityEngine.Debug.Log("Fade In");
             image.gameObject.SetActive(true);
             Finish = false;
             Fade(1, 0, callback);
@@ -56,6 +63,7 @@ namespace UI.UIScreen
         /// </summary>
         public void FadeOut(TweenCallback callback = null)
         {
+            //UnityEngine.Debug.Log("Fade Out");
             image.gameObject.SetActive(true);
             Finish = false;
             Fade(0, 1, callback);
@@ -80,12 +88,19 @@ namespace UI.UIScreen
         /// <param name="callback">Callback function when tween is completed</param>
         public void Fade(float alphaIn, float alphaOut, TweenCallback callback = null)
         {
+            // If previous fade tween is still present kill it
+            if(_fadeTween != null)
+            {
+                _fadeTween.Complete();
+                DOTween.Kill(_fadeTween);
+                _fadeTween = null;
+            }
+
             // Start events invoke
             OnStart?.Invoke();
             OnStart.RemoveAllListeners();
-
             _canvasGroup.alpha = alphaIn;
-            _canvasGroup.DOFade(alphaOut, fadeDuration).SetEase(Ease.Linear).OnComplete(() => {
+            _fadeTween = _canvasGroup.DOFade(alphaOut, fadeDuration).SetEase(Ease.Linear).OnComplete(() => {
                 // Finish events invoke
                 OnFinish?.Invoke();
                 OnFinish.RemoveAllListeners();

@@ -12,6 +12,17 @@ namespace Farming
         /// Save data for the farms
         /// </summary>
         private static List<FarmSaveData> SaveData = null;
+        public static List<FarmSaveData> CurrentSaveData
+        {
+            get
+            {
+                return SaveData;
+            }
+        }
+        public static void Load(FarmSaveData[] farmSaveDatas)
+        {
+            SaveData = new List<FarmSaveData>(farmSaveDatas);
+        }
 
         [Header("Farm Lands")]
         [SerializeField] private GameObject farm;
@@ -23,6 +34,7 @@ namespace Farming
 
         protected override void AwakeSingleton()
         {
+            Debug.Log("Farm Land Save Manager is awake");
             // Initialize farm and farm save data
             if(farm != null)
             {
@@ -54,7 +66,7 @@ namespace Farming
         /// <summary>
         /// Update farm land state outside of the farm scene
         /// </summary>
-        public void UpdateFarmLandState(GameTime gameTime)
+        public static void UpdateFarmLandState(GameTime gameTime)
         {
             if(SaveData != null)
             {

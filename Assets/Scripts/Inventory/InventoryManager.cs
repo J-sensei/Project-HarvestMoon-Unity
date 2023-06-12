@@ -32,11 +32,23 @@ namespace Inventory
         /// <summary>
         /// Item holding by the player
         /// </summary>
-        [SerializeField] private ItemSlot _holdingItemSlot; // Exposed for debug purposes
+        [SerializeField] private ItemSlot _holdingItemSlot = null; // Exposed for debug purposes
         /// <summary>
         /// Item holding by the player
         /// </summary>
         public ItemSlot HoldingItemSlot { get { return _holdingItemSlot; } }
+
+        /// <summary>
+        /// Load data into the inventory
+        /// </summary>
+        public void Load(ItemSlot[] itemSlots, ItemSlot holdingItemSlot)
+        {
+            _itemSlots = itemSlots;
+            _holdingItemSlot = holdingItemSlot;
+
+            // Update changes of the UI
+            InventoryUIManager.Instance.UpdateInventoryUI();
+        }
 
         public ItemData GetHoldingItem()
         {

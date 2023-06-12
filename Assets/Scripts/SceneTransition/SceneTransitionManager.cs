@@ -26,6 +26,12 @@ namespace SceneTransition
             } 
         }
 
+        /// <summary>
+        /// Explictly set the scene location (Only use in load game function)
+        /// </summary>
+        /// <param name="scene"></param>
+        public void SetSceneLocation(SceneLocation scene) => _currentLocation = scene;
+
         protected override void AwakeSingleton()
         {
             SceneManager.sceneLoaded += OnLocationLoad;
@@ -102,7 +108,6 @@ namespace SceneTransition
             // Load scene location
             SceneLocation oldLocation = _currentLocation;
             SceneLocation location = (SceneLocation)Enum.Parse(typeof(SceneLocation), scene.name);
-
             if (oldLocation == location) return; // If location same then no need to do anything
 
             // Change player position unload it
@@ -114,25 +119,23 @@ namespace SceneTransition
                     Debug.Log("[Scene Transition Manager] Holding Object (" + _holdingObjects[i].name + "::" + i + ") is null");
                     continue;
                 }
-                //Debug.Log("Transform: " + _holdingObjects[i].transform + " Old Location: " + oldLocation.ToString());
+                //Debug.Log("Transform: " + _holdingObjects[i].transform.position + " Old Location: " + oldLocation.ToString() + " Start Pos: " + startPoint.position);
                 _holdingObjects[i].transform.position = startPoint.position;
                 _holdingObjects[i].transform.rotation = startPoint.rotation;
                 _holdingObjects[i].transform.parent = null;
             }
             _holdingObjects.Clear();
-            //Debug.Log(GameManager.Instance.Player);
-            //Debug.Log(GameManager.Instance.Camera);
             GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform);
             GameTimeManager.Instance.PauseTime(false); // Resume the time pause
 
             StartCoroutine(EnablePlayer());
             _currentLocation = location;
         }
-
         private IEnumerator EnablePlayer()
         {
             yield return new WaitForSeconds(0.1f);
             GameManager.Instance.Player.Enable();
+            //Debug.Log("Player Pos: " + GameManager.Instance.Player.transform.position);
         }
     }
 }

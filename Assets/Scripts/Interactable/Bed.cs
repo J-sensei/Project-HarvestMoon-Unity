@@ -28,7 +28,8 @@ namespace Interactable
         #region IInteractable
         public void OnSelect(bool v)
         {
-            outline.enabled = v;
+            if(outline != null)
+                outline.enabled = v;
         }
 
         public InteractableType GetInteractableType()

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe392b30be19c34ca6e6558effcc9f1, type: 3}
   m_Name: Carrot
   m_EditorClassIdentifier: 
+  id: 100
   itemName: Carrot
   description: Generally biennial plant of the Apiaceae family that produces an edible
     taproot

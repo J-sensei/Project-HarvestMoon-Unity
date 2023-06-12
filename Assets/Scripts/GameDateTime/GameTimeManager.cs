@@ -27,6 +27,8 @@ namespace GameDateTime
         [SerializeField] private bool pause = false;
         [SerializeField] private SkyboxTime[] skyboxTimes;
 
+        public GameTime GameTime { get { return gameTime; } }
+
         [Header("Sun")]
         [SerializeField] private Transform sunTransform;
         private Transform SunTransform
@@ -67,6 +69,16 @@ namespace GameDateTime
             StartCoroutine(UpdateTime()); // Start the time update
             LoadSunTransform(); // Rotate the sun instantly
             //currentSkybox = skyboxTimes[0];
+        }
+
+        /// <summary>
+        /// Pause and load the game time
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public void Load(GameTime gameTime)
+        {
+            PauseTime(true);
+            this.gameTime = gameTime;
         }
 
         private void Update()

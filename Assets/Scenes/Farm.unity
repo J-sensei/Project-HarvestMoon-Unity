@@ -5559,7 +5559,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 136.755, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &349744801
@@ -7085,6 +7085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultScene: 1
   gameMenu: {fileID: 718693115}
+  gameSaveUI: {fileID: 0}
   player: {fileID: 4276041091708204884, guid: 107357079ce82844697935e610a403fa, type: 3}
   eventSystem: {fileID: 7368216358942948095, guid: 14ab7bd9021f6de458effa27fc2ef564,
     type: 3}
@@ -16738,7 +16739,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071667788}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -9.323, y: 0, z: 6.126}
+  m_LocalPosition: {x: -9.323, y: 0.1128811, z: 6.126}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23126,7 +23127,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 71.975, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1510952794
@@ -25215,6 +25216,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
   itemSlot: 28
+  _itemSlots: []
+  _holdingItemSlot:
+    _itemData: {fileID: 0}
+    _quantity: 0
 --- !u!4 &1630306522
 Transform:
   m_ObjectHideFlags: 0

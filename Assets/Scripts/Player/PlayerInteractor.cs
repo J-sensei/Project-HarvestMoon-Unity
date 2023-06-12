@@ -33,9 +33,13 @@ namespace Player
         #region Item Interaction
         private IInteractable _selectedInteractable;
         public IInteractable SelectedtInteractable { get { return _selectedInteractable; } }
+
+        private bool _pausing = false;
         #endregion
         private void Update()
         {
+            if (_pausing) return;
+
             // Draw raycast below
             RaycastHit hit;
             if(Physics.Raycast(transform.position, Vector3.down, out hit, maxInteractionRay))
@@ -53,6 +57,16 @@ namespace Player
                 // Draw ray to show how the ray cast work
                 Debug.DrawRay(transform.position, Vector3.down * maxInteractionRay, _debugLineColor, 0f, false);
             }
+        }
+
+        public void Enable()
+        {
+            _pausing = false;
+        }
+        public void Disable()
+        {
+            _pausing = true;
+            Deselect();
         }
 
         /// <summary>

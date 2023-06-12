@@ -1,5 +1,6 @@
 using Inventory;
 using QuickOutline;
+using UI.GameSave;
 using UnityEngine;
 using Utilities;
 
@@ -37,7 +38,8 @@ namespace Interactable
 
         public void OnSelect(bool v)
         {
-            outline.enabled = v;
+            if(outline != null)
+                outline.enabled = v;
         }
 
         public ItemData GetItemData()

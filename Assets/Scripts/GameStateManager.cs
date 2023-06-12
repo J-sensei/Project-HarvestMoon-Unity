@@ -39,7 +39,7 @@ public class GameStateManager : Singleton<GameStateManager>, ITimeChecker
         // When current scene is not farm, update the farm land data
         if(SceneTransitionManager.Instance.CurrentLocation != SceneLocation.Farm)
         {
-            FarmLandSaveManager.Instance.UpdateFarmLandState(gameTime);
+            FarmLandSaveManager.UpdateFarmLandState(gameTime);
         }
     }
 }

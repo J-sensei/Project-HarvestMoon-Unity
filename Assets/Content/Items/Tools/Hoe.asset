@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61549e5258e8de46a45cd1a2e5f666e, type: 3}
   m_Name: Hoe
   m_EditorClassIdentifier: 
+  id: 1
   itemName: Hoe
   description: A tool to tilling the land
   type: 0
