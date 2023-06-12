@@ -5,6 +5,7 @@ using DG.Tweening;
 using UI.Tooltip;
 using Utilities;
 using TMPro;
+using static UnityEngine.EventSystems.PointerEventData;
 
 namespace Inventory.UI
 {
@@ -170,6 +171,7 @@ namespace Inventory.UI
 
         public virtual void OnPointerClick(PointerEventData eventData)
         {
+            if (eventData.button != InputButton.Left) return;
             if (mouseEvent)
                 InventoryManager.Instance.Equip(_id, itemType);
 

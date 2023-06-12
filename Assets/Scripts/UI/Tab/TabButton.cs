@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UI.Tooltip;
 using Utilities;
+using static UnityEngine.EventSystems.PointerEventData;
 
 namespace UI.Tab
 {
@@ -39,6 +40,7 @@ namespace UI.Tab
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            if (eventData.button != InputButton.Left) return;
             tabGroup.OnTabSelect(this);
             AudioManager.Instance.PlaySFX(AudioManager.Instance.menuClick);
         }

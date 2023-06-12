@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Utilities;
+using static UnityEngine.EventSystems.PointerEventData;
 
 namespace UI
 {
@@ -36,7 +37,8 @@ namespace UI
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if(!GameMenu.Instance.gameObject.activeSelf)
+            if (eventData.button != InputButton.Left) return;
+            if (!GameMenu.Instance.gameObject.activeSelf)
                 GameMenu.Instance.ToggleGameMenu(true);
         }
 

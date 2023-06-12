@@ -1,4 +1,5 @@
 using UnityEngine.EventSystems;
+using static UnityEngine.EventSystems.PointerEventData;
 
 namespace Inventory.UI
 {
@@ -9,6 +10,7 @@ namespace Inventory.UI
     {
         public override void OnPointerClick(PointerEventData eventData)
         {
+            if (eventData.button != InputButton.Left) return;
             InventoryUIManager.Instance.ToggleInventory();
         }
     }

@@ -5,6 +5,7 @@ using Inventory;
 using SceneTransition;
 using UI.UIScreen;
 using UnityEngine.EventSystems;
+using static UnityEngine.EventSystems.PointerEventData;
 
 namespace UI.GameSave
 {
@@ -12,6 +13,9 @@ namespace UI.GameSave
     {
         public override void OnPointerClick(PointerEventData eventData)
         {
+            if (eventData.button != InputButton.Left) return;
+            base.OnPointerClick(eventData);
+
             GameMenu.Instance.ToggleGameMenu(false);
             FadeScreenManager.Instance.Loading(true);
             GameManager.Instance.Player.Disable();
@@ -31,8 +35,6 @@ namespace UI.GameSave
 
             // Load Game Time
             GameTimeManager.Instance.Load(saveData.gameTime);
-
-            base.OnPointerClick(eventData);
 
             SceneTransitionManager.Instance.SetSceneLocation(SceneLocation.MainMenu);
             SceneTransitionManager.Instance.SwitchScene(SceneLocation.Home); // Always back to home after load a save
