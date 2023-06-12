@@ -12,9 +12,10 @@ namespace SceneTransition
 {
     public class SceneTransitionManager : Singleton<SceneTransitionManager>
     {
+        [Header("Scene Transition Manager")]
         [Tooltip("Ensure game is properly initialize every scene load")]
         [SerializeField] private GameInitializer gameInitializer;
-
+        [Tooltip("Which scene location belong to in this scene (Refer to scene name)")]
         [SerializeField] private SceneLocation _currentLocation = SceneLocation.Farm;
         public SceneLocation CurrentLocation { get { return _currentLocation; } }
         private List<GameObject> _holdingObjects = new();

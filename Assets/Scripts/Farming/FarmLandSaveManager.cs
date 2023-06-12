@@ -34,7 +34,6 @@ namespace Farming
 
         protected override void AwakeSingleton()
         {
-            Debug.Log("Farm Land Save Manager is awake");
             // Initialize farm and farm save data
             if(farm != null)
             {

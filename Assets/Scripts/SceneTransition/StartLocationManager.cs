@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
@@ -10,6 +9,7 @@ namespace SceneTransition
     /// </summary>
     public class StartLocationManager : Singleton<StartLocationManager>
     {
+        [Tooltip("List of start points where player can spawn to when enter this scene, minimum required one to make it work")]
         [SerializeField] private List<StartPoint> startPoints = new List<StartPoint>();
 
         protected override void AwakeSingleton()

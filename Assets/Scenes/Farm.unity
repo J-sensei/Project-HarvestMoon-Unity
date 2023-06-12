@@ -13813,7 +13813,7 @@ PrefabInstance:
     - target: {fileID: 2249435327757668229, guid: 2efbe56b839f6b0469a5904b5a8d4b34,
         type: 3}
       propertyPath: startPoints.Array.data[0].enterFrom
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2249435327757668229, guid: 2efbe56b839f6b0469a5904b5a8d4b34,
         type: 3}
@@ -24443,7 +24443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
   gameInitializer: {fileID: 405030119}
-  _currentLocation: 2
+  _currentLocation: 3
 --- !u!4 &1584304674
 Transform:
   m_ObjectHideFlags: 0
@@ -27965,7 +27965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74645b1569199145a7d1fb3e77aea91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: 1
+  location: 2
 --- !u!4 &1787574633
 Transform:
   m_ObjectHideFlags: 0

@@ -205,8 +205,7 @@ namespace GameSave
             if (saveData.id < 0)
                 item = new ItemSlot(null);
             else
-                item = new ItemSlot(Array.Find(ItemCollection.items, x => x.id == saveData.id));
-
+                item = new ItemSlot(Array.Find(ItemCollection.items, x => x.id == saveData.id), saveData.quantity);
             return item;
         }
 

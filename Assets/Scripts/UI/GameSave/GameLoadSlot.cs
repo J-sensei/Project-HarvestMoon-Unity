@@ -34,7 +34,7 @@ namespace UI.GameSave
 
             base.OnPointerClick(eventData);
 
-            SceneTransitionManager.Instance.SetSceneLocation(SceneLocation.Farm);
+            SceneTransitionManager.Instance.SetSceneLocation(SceneLocation.MainMenu);
             SceneTransitionManager.Instance.SwitchScene(SceneLocation.Home); // Always back to home after load a save
         }
     }

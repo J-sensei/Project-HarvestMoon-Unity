@@ -5,6 +5,7 @@
     /// </summary>
     public enum SceneLocation
     {
+        MainMenu,
         /// <summary>
         /// Debug scene
         /// </summary>
