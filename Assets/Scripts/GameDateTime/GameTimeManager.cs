@@ -1,3 +1,4 @@
+using SceneTransition;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,10 @@ namespace GameDateTime
 
         [Header("Sun")]
         [SerializeField] private Transform sunTransform;
+        [Tooltip("Speed of the sun transform rotation to smooth the things")]
+        [SerializeField] private float sunRotateSpeed = 1f;
+        [Tooltip("Angle for the sun when player is inside indoor scene")]
+        [SerializeField] private float indoorSunAngle = 40f;
         private Transform SunTransform
         {
             get
@@ -84,7 +89,7 @@ namespace GameDateTime
         private void Update()
         {
             // Smooth rotate the sun (Directional light)
-            SunTransform.rotation = Quaternion.Slerp(SunTransform.rotation, _targetSunAngle, Time.deltaTime);
+            SunTransform.rotation = Quaternion.Slerp(SunTransform.rotation, _targetSunAngle, sunRotateSpeed * Time.deltaTime);
         }
 
         /// <summary>
@@ -152,6 +157,7 @@ namespace GameDateTime
         /// </summary>
         public void Sleep()
         {
+            LoadSunTransform();
             _updateNewDay = false;
             gameTime.Reset(); // Reset the date time
             Tick(); // Explicitly call tick to update the date time
@@ -163,6 +169,7 @@ namespace GameDateTime
         /// </summary>
         public void LoadSunTransform()
         {
+            UpdateSunTransform();
             SunTransform.rotation = _targetSunAngle; // Rotate the sun instantly
         }
 
@@ -171,10 +178,16 @@ namespace GameDateTime
         /// </summary>
         private void UpdateSunTransform()
         {
-            int minutes = GameTime.HoursToMinutes(gameTime.Hour) + gameTime.Minute;
-            float sunAngle = _sunMoveAngle * minutes - 90;
+            if (SceneTransitionManager.Instance != null && SceneTransitionManager.Instance.Indoor)
+            {
+                _targetSunAngle = Quaternion.Euler(indoorSunAngle, 0f, 0f);
+                return;
+            }
 
-            _targetSunAngle = Quaternion.Euler(sunAngle, 0, 0);
+            int minutes = GameTime.HoursToMinutes(gameTime.Hour) + gameTime.Minute;
+            float sunAngle = _sunMoveAngle * minutes - 90f;
+
+            _targetSunAngle = Quaternion.Euler(sunAngle, 0f, 0f);
         }
 
         /// <summary>

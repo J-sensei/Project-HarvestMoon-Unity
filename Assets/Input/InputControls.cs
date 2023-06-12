@@ -339,6 +339,24 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TabLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""1735b65f-81b6-4ef8-a085-415b825dcb07"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TabRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""b6e0acca-ba58-46a7-a2fe-b94c404d31ec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -416,6 +434,28 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Game"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98371a50-8601-4b3c-83a2-40e1a4fad186"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TabLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5857dbdc-234e-4fd8-99d1-04a1ad4cd8b7"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TabRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -529,6 +569,8 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_UI_Character = m_UI.FindAction("Character", throwIfNotFound: true);
         m_UI_Setting = m_UI.FindAction("Setting", throwIfNotFound: true);
         m_UI_Game = m_UI.FindAction("Game", throwIfNotFound: true);
+        m_UI_TabLeft = m_UI.FindAction("TabLeft", throwIfNotFound: true);
+        m_UI_TabRight = m_UI.FindAction("TabRight", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Zoom = m_Camera.FindAction("Zoom", throwIfNotFound: true);
@@ -697,6 +739,8 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Character;
     private readonly InputAction m_UI_Setting;
     private readonly InputAction m_UI_Game;
+    private readonly InputAction m_UI_TabLeft;
+    private readonly InputAction m_UI_TabRight;
     public struct UIActions
     {
         private @InputControls m_Wrapper;
@@ -706,6 +750,8 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @Character => m_Wrapper.m_UI_Character;
         public InputAction @Setting => m_Wrapper.m_UI_Setting;
         public InputAction @Game => m_Wrapper.m_UI_Game;
+        public InputAction @TabLeft => m_Wrapper.m_UI_TabLeft;
+        public InputAction @TabRight => m_Wrapper.m_UI_TabRight;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -730,6 +776,12 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Game.started -= m_Wrapper.m_UIActionsCallbackInterface.OnGame;
                 @Game.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnGame;
                 @Game.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnGame;
+                @TabLeft.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTabLeft;
+                @TabLeft.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTabLeft;
+                @TabLeft.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTabLeft;
+                @TabRight.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTabRight;
+                @TabRight.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTabRight;
+                @TabRight.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTabRight;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -749,6 +801,12 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Game.started += instance.OnGame;
                 @Game.performed += instance.OnGame;
                 @Game.canceled += instance.OnGame;
+                @TabLeft.started += instance.OnTabLeft;
+                @TabLeft.performed += instance.OnTabLeft;
+                @TabLeft.canceled += instance.OnTabLeft;
+                @TabRight.started += instance.OnTabRight;
+                @TabRight.performed += instance.OnTabRight;
+                @TabRight.canceled += instance.OnTabRight;
             }
         }
     }
@@ -829,6 +887,8 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnCharacter(InputAction.CallbackContext context);
         void OnSetting(InputAction.CallbackContext context);
         void OnGame(InputAction.CallbackContext context);
+        void OnTabLeft(InputAction.CallbackContext context);
+        void OnTabRight(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {

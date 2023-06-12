@@ -49,6 +49,7 @@ public class GameMenu : Singleton<GameMenu>
             AudioManager.Instance.PlaySFX(AudioManager.Instance.menuClose, 1);
             GameManager.Instance.Player.Enable();
             GameTimeManager.Instance.PauseTime(false); // Resume time ticking
+            tabGroup.Close();
 
             // Tween
             Vector3 pos = _originalPosition;

@@ -4860,10 +4860,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contents:
-  - {fileID: 1801255869}
-  - {fileID: 1666440556}
-  - {fileID: 853678755}
-  - {fileID: 575172937}
+  - {fileID: 1801255871}
+  - {fileID: 1666440559}
+  - {fileID: 853678757}
+  - {fileID: 575172940}
   idle: {fileID: 0}
   hover: {fileID: 0}
   active: {fileID: 0}
@@ -5555,6 +5555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 575172938}
   - component: {fileID: 575172939}
+  - component: {fileID: 575172940}
   m_Layer: 5
   m_Name: 'Game Content '
   m_TagString: Untagged
@@ -5610,6 +5611,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &575172940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575172937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e054a2d3e972a4fa7c943eedb95a63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &580574297
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5802,6 +5815,7 @@ GameObject:
   - component: {fileID: 594543998}
   - component: {fileID: 594544000}
   - component: {fileID: 594543999}
+  - component: {fileID: 594544001}
   m_Layer: 5
   m_Name: Unity Chan Character Art Shadow
   m_TagString: Untagged
@@ -5867,6 +5881,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594543997}
   m_CullTransparentMesh: 1
+--- !u!225 &594544001
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594543997}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &598651096
 GameObject:
   m_ObjectHideFlags: 0
@@ -7631,6 +7657,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 853678756}
+  - component: {fileID: 853678757}
   m_Layer: 5
   m_Name: 'Setting Content '
   m_TagString: Untagged
@@ -7659,6 +7686,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &853678757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853678755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 575f90ac970417543852f5e74d40ab50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  view: {fileID: 1089796422}
+  tweenDuration: 0.15
+  tweenDistance: -150
 --- !u!1001 &862919664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8024,6 +8066,7 @@ GameObject:
   - component: {fileID: 929715904}
   - component: {fileID: 929715903}
   - component: {fileID: 929715902}
+  - component: {fileID: 929715906}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -8142,6 +8185,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929715900}
   m_CullTransparentMesh: 1
+--- !u!225 &929715906
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929715900}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &945870763
 GameObject:
   m_ObjectHideFlags: 0
@@ -8153,6 +8208,7 @@ GameObject:
   - component: {fileID: 945870764}
   - component: {fileID: 945870766}
   - component: {fileID: 945870765}
+  - component: {fileID: 945870767}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -8278,6 +8334,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945870763}
   m_CullTransparentMesh: 1
+--- !u!225 &945870767
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945870763}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &951675673
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9276,7 +9344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
-  timeScale: 10
+  timeScale: 5
   gameTime:
     _currentSeason: 0
     _year: 0
@@ -9294,6 +9362,8 @@ MonoBehaviour:
   - material: {fileID: 2100000, guid: d1fdb8e44b28da34d9e922cca0bc740e, type: 2}
     time: 20
   sunTransform: {fileID: 0}
+  sunRotateSpeed: 10
+  indoorSunAngle: 40
 --- !u!4 &1058399736
 Transform:
   m_ObjectHideFlags: 0
@@ -9696,6 +9766,7 @@ GameObject:
   - component: {fileID: 1089796420}
   - component: {fileID: 1089796419}
   - component: {fileID: 1089796418}
+  - component: {fileID: 1089796422}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -9814,6 +9885,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089796416}
   m_CullTransparentMesh: 1
+--- !u!225 &1089796422
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089796416}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1100009130
 GameObject:
   m_ObjectHideFlags: 0
@@ -13374,6 +13457,7 @@ GameObject:
   - component: {fileID: 1476771682}
   - component: {fileID: 1476771684}
   - component: {fileID: 1476771683}
+  - component: {fileID: 1476771685}
   m_Layer: 5
   m_Name: Unity Chan Character Art
   m_TagString: Untagged
@@ -13439,6 +13523,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1476771681}
   m_CullTransparentMesh: 1
+--- !u!225 &1476771685
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476771681}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1492123587
 GameObject:
   m_ObjectHideFlags: 0
@@ -15338,6 +15434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1666440557}
   - component: {fileID: 1666440558}
+  - component: {fileID: 1666440559}
   m_Layer: 5
   m_Name: Inventory Content
   m_TagString: Untagged
@@ -15393,6 +15490,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1666440559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666440556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9da065fe90b07643bb26909cbb8a3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleCanvas: {fileID: 1810081364}
+  scrollView: {fileID: 929715906}
+  tweenDuration: 0.15
+  rotateAngle: 6.5
 --- !u!1 &1671747410
 GameObject:
   m_ObjectHideFlags: 0
@@ -17171,6 +17284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1801255870}
+  - component: {fileID: 1801255871}
   m_Layer: 5
   m_Name: Character Content
   m_TagString: Untagged
@@ -17201,6 +17315,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1801255871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801255869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3af4aa4a5460544c9f1c355bcb9f616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterImage: {fileID: 594543999}
+  characterBackground: {fileID: 1476771683}
+  titleText: {fileID: 945870765}
+  tweenDuration: 0.15
+  tweenDistance: -150
+  titleTweenDistance: 60
 --- !u!1 &1810081358
 GameObject:
   m_ObjectHideFlags: 0
@@ -17214,6 +17346,7 @@ GameObject:
   - component: {fileID: 1810081362}
   - component: {fileID: 1810081361}
   - component: {fileID: 1810081360}
+  - component: {fileID: 1810081364}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -17327,6 +17460,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810081358}
   m_CullTransparentMesh: 1
+--- !u!225 &1810081364
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810081358}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1826515155
 GameObject:
   m_ObjectHideFlags: 0
@@ -17826,6 +17971,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   gameInitializer: {fileID: 377203691}
   _currentLocation: 2
+  indoorLocations: 02000000
 --- !u!1 &1854844000
 GameObject:
   m_ObjectHideFlags: 0

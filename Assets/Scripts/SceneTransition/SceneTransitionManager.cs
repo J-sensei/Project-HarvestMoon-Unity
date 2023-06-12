@@ -3,6 +3,7 @@ using Item;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UI.UIScreen;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,6 +26,19 @@ namespace SceneTransition
             {
                 return _holdingObjects;
             } 
+        }
+
+        [Header("Indoor locations")]
+        [SerializeField] private SceneLocation[] indoorLocations = { SceneLocation.Home };
+        /// <summary>
+        /// Check if player is currently indoor
+        /// </summary>
+        public bool Indoor
+        {
+            get
+            {
+                return indoorLocations.Contains(_currentLocation);
+            }
         }
 
         /// <summary>
@@ -102,9 +116,8 @@ namespace SceneTransition
             if (FadeScreenManager.Instance.FadePanel.FadeOnStart)
             {
                 FadeScreenManager.Instance.FadePanel.OnStart.AddListener(() => FadeScreenManager.Instance.Loading(false)); // Scene loading start
-                FadeScreenManager.Instance.FadePanel.FadeIn();
+                FadeScreenManager.Instance.FadePanel.FadeIn(() => { GameTimeManager.Instance.LoadSunTransform(); });
             }
-            GameTimeManager.Instance.LoadSunTransform();
 
             // Load scene location
             SceneLocation oldLocation = _currentLocation;
@@ -131,7 +144,13 @@ namespace SceneTransition
 
             StartCoroutine(EnablePlayer());
             _currentLocation = location;
+            GameTimeManager.Instance.LoadSunTransform(); // Update sun transform
         }
+
+        /// <summary>
+        /// Enable player back to control
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator EnablePlayer()
         {
             yield return new WaitForSeconds(0.1f);

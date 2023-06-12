@@ -1,12 +1,16 @@
 using System.Collections.Generic;
+using UI.Tab.Content;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Utilities;
 
 namespace UI.Tab
 {
     public class TabGroup : MonoBehaviour
     {
         private List<TabButton> _tabButtons;
-        [SerializeField] private List<GameObject> contents;
+        [SerializeField] private List<TabContent> contents;
+        private TabContent _previousContent;
 
         [Header("Tab States UI")]
         [SerializeField] private Sprite idle;
@@ -16,7 +20,9 @@ namespace UI.Tab
         [SerializeField] private Color hoverColor = Color.white;
         [SerializeField] private Color activeColor = Color.white;
 
+        private InputControls _inputControls;
         private TabButton _selectedTab;
+        private int _selectedIndex;
 
         private void Start()
         {
@@ -28,6 +34,47 @@ namespace UI.Tab
             //        break;
             //    }
             //}
+        }
+
+        private void Awake()
+        {
+            _inputControls = new();
+            _inputControls.UI.TabLeft.started += OnTabLeft;
+            _inputControls.UI.TabRight.started += OnTabRight;
+        }
+
+        private void OnTabRight(InputAction.CallbackContext context)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.menuClick);
+            _selectedIndex++;
+            if (_selectedIndex > contents.Count - 1) _selectedIndex = 0;
+
+            SetTab(_selectedIndex);
+        }
+        private void OnTabLeft(InputAction.CallbackContext context)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.menuClick);
+            _selectedIndex--;
+            if (_selectedIndex < 0) _selectedIndex = contents.Count - 1;
+
+            SetTab(_selectedIndex);
+        }
+
+        private void OnEnable()
+        {
+            _inputControls.UI.TabLeft.Enable();
+            _inputControls.UI.TabRight.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _inputControls.UI.TabLeft.Disable();
+            _inputControls.UI.TabRight.Disable();
+        }
+
+        public void Close()
+        {
+            _previousContent = null;
         }
 
         public void SetTab(int index)
@@ -97,15 +144,32 @@ namespace UI.Tab
             button.SetColor(activeColor);
 
             int index = button.transform.GetSiblingIndex();
-            for(int i = 0; i < contents.Count; i++)
+            _selectedIndex = index;
+
+            int prevIndex = -1;
+            if (_previousContent != null && _previousContent.transform.GetSiblingIndex() != index)
             {
+                prevIndex = _previousContent.transform.GetSiblingIndex();
+                _previousContent.Close();
+            }
+
+            // Change contents
+            for (int i = 0; i < contents.Count; i++)
+            {
+                if(_previousContent != null && contents[i] == _previousContent)
+                {
+                    if (i == index) 
+                        continue;
+                }
+
                 if(i == index)
                 {
-                    contents[i].SetActive(true);
+                    contents[i].Open();
+                    _previousContent = contents[i];
                 }
-                else
+                else if((prevIndex >= 0 && prevIndex != i) || prevIndex < 0)
                 {
-                    contents[i].SetActive(false);
+                    contents[i].gameObject.SetActive(false);
                 }
             }
         }
