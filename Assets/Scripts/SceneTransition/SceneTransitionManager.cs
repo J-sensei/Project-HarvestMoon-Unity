@@ -1,4 +1,5 @@
 using GameDateTime;
+using Item;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,19 +31,41 @@ namespace SceneTransition
             SceneManager.sceneLoaded += OnLocationLoad;
         }
 
+        private void OnDestroy()
+        {
+            SceneManager.sceneLoaded -= OnLocationLoad;
+        }
+
+        /// <summary>
+        /// Switch to the scene to the location available in the game
+        /// </summary>
+        /// <param name="location"></param>
         public void SwitchScene(SceneLocation location)
         {
-            GameTimeManager.Instance.PauseTime(true);
+            // In case there is any left over pickable item set to DontDestroy (Player hold before)
+            // Need to destroy to prevent it stay change player switch scene
+            PickableItem[] items = GameObject.FindObjectsOfType<PickableItem>();
+            foreach(PickableItem item in items)
+            {
+                Destroy(item.gameObject);
+            }
+
+            GameTimeManager.Instance.PauseTime(true); // Pause the time when loading scene
+            // Fade out transition
             FadeScreenManager.Instance.FadePanel.FadeOut(() =>
             {
                 FadeScreenManager.Instance.Loading(true); // Scene loading start
-                StartCoroutine(LoadSceneAsync(location.ToString()));
+                StartCoroutine(LoadSceneAsync(location.ToString())); // Start to load the scene after fade finish
             });
-            AddHoldObject(GameManager.Instance.Player.transform);
+            AddHoldObject(GameManager.Instance.Player.transform); // Add player instance to move it to other scene (DontDestroyObject)
             GameManager.Instance.Player.Disable();
         }
 
-
+        /// <summary>
+        /// Load the scene asynchronys
+        /// </summary>
+        /// <param name="sceneName">Name of the scene (Refer to scene project folder and inside the build settings)</param>
+        /// <returns></returns>
         IEnumerator LoadSceneAsync(string sceneName)
         {
             _operation = SceneManager.LoadSceneAsync(sceneName);
@@ -54,6 +77,10 @@ namespace SceneTransition
             }
         }
 
+        /// <summary>
+        /// Make the object as dont destroy as assign it sa child of the transition manager and detach it after scene is loaded
+        /// </summary>
+        /// <param name="tr"></param>
         public void AddHoldObject(Transform tr)
         {
             tr.parent = transform;

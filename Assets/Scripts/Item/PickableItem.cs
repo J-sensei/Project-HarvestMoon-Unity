@@ -37,6 +37,11 @@ namespace Item
         /// </summary>
         private Quaternion _attachRot;
 
+        /// <summary>
+        /// Is the item attaching is player
+        /// </summary>
+        public bool Attaching { get; private set; } = false;
+
         private void Awake()
         {
             if(rb == null)
@@ -99,6 +104,8 @@ namespace Item
             {
                 Debug.Log("[Pickable Item]" + name + " item collider is not defined!");
             }
+
+            Attaching = true;
         }
 
         public void OnThrow(float drag = float.MaxValue, float angularDrag = float.MaxValue)
@@ -123,6 +130,8 @@ namespace Item
             {
                 Debug.Log("[Pickable Item]" + name + " item collider is not defined!");
             }
+
+            Attaching = false;
         }
 
         public void Interact()

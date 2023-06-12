@@ -13,8 +13,12 @@ namespace Utilities
         [SerializeField] private SceneLocation defaultScene = SceneLocation.Home;
 
         [Header("Initialize Objects")]
+        [Header("UI")]
         [Tooltip("Intiialize Game Menu")]
         [SerializeField] private GameMenu gameMenu;
+        [SerializeField] private GameSaveUI gameSaveUI;
+
+        [Header("OTher")]
         [Tooltip("Initialize Player object")]
         [SerializeField] private PlayerStateMachine player;
         [Tooltip("Initialize event system")]
@@ -32,6 +36,12 @@ namespace Utilities
                 {
                     audioSetting.InitializeVolume();
                 }
+            }
+
+            if(gameSaveUI != null && !gameSaveUI.gameObject.activeSelf)
+            {
+                gameSaveUI.gameObject.SetActive(true);
+                gameSaveUI.gameObject.SetActive(false);
             }
 
             if (player != null && GameManager.Instance.Player == null)

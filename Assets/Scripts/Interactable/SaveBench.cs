@@ -32,7 +32,7 @@ namespace Interactable
 
         public void Interact()
         {
-            Debug.Log("Interact Save!");
+            GameSaveUI.Instance.ToggleGameMenu(true);
         }
 
         public void OnSelect(bool v)

@@ -12,8 +12,8 @@ namespace Inventory
         protected override void AwakeSingleton()
         {
             // If there is no items set, then initialize it all empty
-            if (_itemSlots == null || _itemSlots.Length == 0)
-                _itemSlots = new ItemSlot[itemSlot];
+            //if (_itemSlots == null || _itemSlots.Length == 0)
+            _itemSlots = new ItemSlot[itemSlot];
         }
 
         [Header("Inventory Slot")]
@@ -55,11 +55,11 @@ namespace Inventory
         {
             // Cache
             ItemSlot itemToEquip = InventoryManager.Instance._itemSlots[slotId];
-            _itemSlots[slotId] = null; // Take out from the inventory
+            _itemSlots[slotId] = null; // Take out from the inventory (Dangerous as it will create null pointer reference, should use empty instead)
 
             // Replace the holding item to the corresponding inventory id if the type is same
             // Else just put it back to corresponding inventory and take the item out from current inventory
-            if (_holdingItemSlot != null)
+            if (_holdingItemSlot != null && !_holdingItemSlot.EmptyItem())
             {
                 PutBackItem(_holdingItemSlot); // Put back to its corresponding inventory
             }
@@ -138,7 +138,7 @@ namespace Inventory
         {
             if (_holdingItemSlot == null) return false; // False if player not holding anything
 
-            if (_holdingItemSlot.ItemData.type == type) // Type is matching
+            if (!_holdingItemSlot.EmptyItem() && _holdingItemSlot.ItemData.type == type) // Type is matching
                 return true;
             else 
                 return false;
@@ -154,6 +154,10 @@ namespace Inventory
             {
                 _holdingItemSlot = null; // Player are not holding anything if successfully putting the item back to the inventory
             }
+            else
+            {
+                Debug.LogWarning("[Inventory Manager] Failed to unqeuip: " + item.ItemData.name);
+            }
 
             // Update changes of the UI
             InventoryUIManager.Instance.UpdateInventoryUI();
@@ -166,16 +170,16 @@ namespace Inventory
         /// <returns></returns>
         private bool PutBackItem(ItemSlot itemSlot)
         {
-            if (itemSlot == null) return false;
+            if (itemSlot == null || itemSlot.EmptyItem()) return false;
 
             for(int i = 0; i < _itemSlots.Length; i++)
             {
-                if (_itemSlots[i] != null && _itemSlots[i].Stackable(itemSlot))
+                if (_itemSlots[i] != null && !_itemSlots[i].EmptyItem() && _itemSlots[i].Stackable(itemSlot))
                 {
                     ItemSlot s = _itemSlots[i].Stack(itemSlot);
                     if (s == null) return true;
                 }
-                else if(_itemSlots[i] == null)
+                else if (_itemSlots[i] == null || _itemSlots[i].EmptyItem())
                 {
                     _itemSlots[i] = itemSlot;
                     return true;

@@ -1,15 +1,17 @@
 using System;
+using UnityEngine;
 
 namespace Inventory
 {
+    [System.Serializable]
     /// <summary>
     /// An individual item slot
     /// </summary>
     public class ItemSlot
     {
         private const int MAX_QUANTITY = 9; // Maximum quantity for a slot
-        private ItemData _itemData;
-        private int _quantity;
+        [SerializeField] private ItemData _itemData;
+        [SerializeField]private int _quantity;
 
         public ItemData ItemData { get { return _itemData; } }
         public int Quantity { get { return _quantity; } }
@@ -35,7 +37,17 @@ namespace Inventory
         /// <returns></returns>
         public bool Stackable(ItemSlot slot)
         {
+            if(_itemData == null) return false;
             return _itemData.Equals(slot._itemData) && _quantity < MAX_QUANTITY && _itemData.stacktable;
+        }
+
+        /// <summary>
+        /// If the item slot empty (No item inside)
+        /// </summary>
+        /// <returns></returns>
+        public bool EmptyItem()
+        {
+            return _itemData == null;
         }
 
         /// <summary>

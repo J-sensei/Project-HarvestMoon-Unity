@@ -2321,6 +2321,7 @@ GameObject:
   m_Component:
   - component: {fileID: 269925949}
   - component: {fileID: 269925950}
+  - component: {fileID: 269925951}
   m_Layer: 5
   m_Name: Save Game Panel
   m_TagString: Untagged
@@ -2362,6 +2363,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &269925951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269925948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0643d90d4dd0f2e4ea2900653f5e6699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
+  _tweenMoveDistance: 40
+  _duration: 0.15
 --- !u!1 &276514968
 GameObject:
   m_ObjectHideFlags: 0
@@ -3446,7 +3462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: 100
-  m_MinHeight: -1
+  m_MinHeight: 325
   m_PreferredWidth: 1800
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -3573,7 +3589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: 100
-  m_MinHeight: -1
+  m_MinHeight: 325
   m_PreferredWidth: 1800
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -4231,6 +4247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultScene: 2
   gameMenu: {fileID: 1769474228}
+  gameSaveUI: {fileID: 269925951}
   player: {fileID: 4276041091708204884, guid: 107357079ce82844697935e610a403fa, type: 3}
   eventSystem: {fileID: 7368216358942948095, guid: 14ab7bd9021f6de458effa27fc2ef564,
     type: 3}
@@ -5644,7 +5661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: 100
-  m_MinHeight: -1
+  m_MinHeight: 325
   m_PreferredWidth: 1800
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -9172,7 +9189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: 100
-  m_MinHeight: -1
+  m_MinHeight: 325
   m_PreferredWidth: 1800
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -11291,7 +11308,7 @@ GameObject:
   - component: {fileID: 1190795287}
   - component: {fileID: 1190795286}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas Master
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11937,7 +11954,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1214600332}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 269925951}
+        m_TargetAssemblyTypeName: GameSaveUI, Assembly-CSharp
+        m_MethodName: ToggleGameMenu
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1214600332
 MonoBehaviour:
   m_ObjectHideFlags: 0

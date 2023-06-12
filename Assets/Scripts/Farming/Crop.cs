@@ -202,7 +202,8 @@ namespace Farming
 
         public ItemData GetItemData()
         {
-            return seed;
+            //return seed;
+            return yieldItem;
         }
     }
 }
