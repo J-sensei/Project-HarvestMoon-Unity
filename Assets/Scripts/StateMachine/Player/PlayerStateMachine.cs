@@ -432,12 +432,14 @@ namespace StateMachine.Player
         }
         public void Disable()
         {
+            EquipController.enabled = false;
             _inputControls.CharacterControls.Disable(); // Disable when object is not active to not listen to any events
             _pause = true;
             _animator.speed = 0;
         }
         public void Enable()
         {
+            EquipController.enabled = true;
             _inputControls.CharacterControls.Enable(); // Enable to listen to the events
             _pause = false;
             _animator.speed = 1f;

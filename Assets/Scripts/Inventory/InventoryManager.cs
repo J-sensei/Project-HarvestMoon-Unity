@@ -69,15 +69,33 @@ namespace Inventory
             ItemSlot itemToEquip = InventoryManager.Instance._itemSlots[slotId];
             _itemSlots[slotId] = null; // Take out from the inventory (Dangerous as it will create null pointer reference, should use empty instead)
 
+            if(itemToEquip == null || itemToEquip.EmptyItem()) // If the slot clicked is empty just simply switch between / put back to the slot
+            {
+                _itemSlots[slotId] = _holdingItemSlot;
+                _holdingItemSlot = null;
+            }
+            // If stackable then stack to the holding item slot
+            else if(_holdingItemSlot != null && _holdingItemSlot.Stackable(itemToEquip))
+            {
+                ItemSlot itemLeft = _holdingItemSlot.Stack(itemToEquip);
+                if(itemLeft != null)
+                {
+                    _itemSlots[slotId] = itemLeft; // Put back the item remain back to the original slot
+                }
+            }
             // Replace the holding item to the corresponding inventory id if the type is same
             // Else just put it back to corresponding inventory and take the item out from current inventory
-            if (_holdingItemSlot != null && !_holdingItemSlot.EmptyItem())
+            else if (_holdingItemSlot != null && !_holdingItemSlot.EmptyItem())
             {
                 PutBackItem(_holdingItemSlot); // Put back to its corresponding inventory
-            }
 
-            // Change holding slot to inventory slot
-            _holdingItemSlot = itemToEquip;
+                // Change holding slot to inventory slot
+                _holdingItemSlot = itemToEquip; // Swap the item slot
+            }
+            else if(_holdingItemSlot == null || _holdingItemSlot.EmptyItem())
+            {
+                _holdingItemSlot = itemToEquip; // Just move the item to the holding slot
+            }
 
             // Update changes of the UI
             InventoryUIManager.Instance.UpdateInventoryUI();
