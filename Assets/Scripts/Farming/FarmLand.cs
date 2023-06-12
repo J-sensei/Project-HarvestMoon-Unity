@@ -295,11 +295,11 @@ namespace Farming
         #region IInteractable
         public void OnSelect(bool v)
         {
-            selectObject.SetActive(v);
+            if(selectObject != null)
+                selectObject.SetActive(v);
+
             if(outline != null)
-            {
                 outline.enabled = v;
-            }
         }
         public void Interact()
         {

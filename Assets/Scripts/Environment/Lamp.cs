@@ -21,8 +21,8 @@ namespace Environment
         #region ITimeChecker
         public void ClockUpdate(GameTime gameTime)
         {
-            // 6pm to 11pm or 12am to 8am
-            if((gameTime.Hour >= 18 && gameTime.Hour <= 23) || (gameTime.Hour >= 0 && gameTime.Hour <= 7))
+            // 5pm to 11pm or 12am to 7am
+            if((gameTime.Hour >= 17 && gameTime.Hour <= 23) || (gameTime.Hour >= 0 && gameTime.Hour <= 7))
             {
                 foreach(GameObject lightSource in lightSources)
                 {
