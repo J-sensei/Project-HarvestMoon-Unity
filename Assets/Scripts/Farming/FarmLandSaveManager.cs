@@ -88,7 +88,7 @@ namespace Farming
         {
             for(int i = 0; i < saves.Count; i++)
             {
-                Debug.Log("FarmSave(" + saves[i].id +"): " + saves[i].state.ToString());
+                //Debug.Log("FarmSave(" + saves[i].id +"): " + saves[i].state.ToString());
                 _farmLands[i].Load(saves[i]);
                 _farmSaves[i] = saves[i];
             }

@@ -1,5 +1,44 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8389003374867430867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
+  m_Name: Shilhourtte Hidden Enemy
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    passTag: Shilhourtte Hidden Enemy
+    Event: 300
+    filterSettings:
+      RenderQueueType: 0
+      LayerMask:
+        serializedVersion: 2
+        m_Bits: 2048
+      PassNames: []
+    overrideMaterial: {fileID: 2100000, guid: e3d9483ef0001dd42aaaa387be7a84cf, type: 2}
+    overrideMaterialPassIndex: 0
+    overrideDepthState: 1
+    depthCompareFunction: 5
+    enableWrite: 0
+    stencilSettings:
+      overrideStencilState: 0
+      stencilReference: 0
+      stencilCompareFunction: 8
+      passOperation: 0
+      failOperation: 0
+      zFailOperation: 0
+    cameraSettings:
+      overrideCamera: 0
+      restoreCamera: 1
+      offset: {x: 0, y: 0, z: 0, w: 0}
+      cameraFieldOfView: 60
 --- !u!114 &-5010705236282090187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,12 +178,13 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
   - {fileID: 864213444311948149}
+  - {fileID: -8389003374867430867}
   - {fileID: -5010705236282090187}
   - {fileID: 2088416569761792358}
   - {fileID: 786791804312501455}
   - {fileID: -3334446372748914223}
   - {fileID: -896314955810310795}
-  m_RendererFeatureMap: adc0de57c6d2eee5759b547e8c4dfe0b355d37ad226676ba6601b127ce8bfb1ccf3c3c38fa3eeb0ad111b6cdb0aab9d175750eec4ba68ff3
+  m_RendererFeatureMap: adc0de57c6d2eee5759b547e8c4dfe0b2d42799de045948b355d37ad226676ba6601b127ce8bfb1ccf3c3c38fa3eeb0ad111b6cdb0aab9d175750eec4ba68ff3
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -221,7 +261,7 @@ MonoBehaviour:
       RenderQueueType: 0
       LayerMask:
         serializedVersion: 2
-        m_Bits: 2500
+        m_Bits: 452
       PassNames: []
     overrideMaterial: {fileID: 2100000, guid: d48175758cd818947bace33675863ed5, type: 2}
     overrideMaterialPassIndex: 0
