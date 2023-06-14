@@ -22,6 +22,9 @@ namespace Entity
         public int MaxHP { get { return maxHP; } }
         public int HP { get { return _hp; } }
         public int Speed { get { return speed; } }
+        /// <summary>
+        /// When character get hit
+        /// </summary>
         public Action OnDamage { get; set; }
 
         private void Awake()
