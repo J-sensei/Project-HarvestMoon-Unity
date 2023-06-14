@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace TopDownCamera
@@ -13,6 +14,11 @@ namespace TopDownCamera
         [Range(0f, 360f)]
         [SerializeField] private float angle = 45f;
         [SerializeField] private float smoothTime = 0.5f;
+
+        [Header("Shake")]
+        [SerializeField] private float shakeDuration = 1f;
+        [SerializeField] private AnimationCurve shakeCurve;
+        [SerializeField] private bool testShake = false;
 
         public Transform Target { get { return target; } }
         public float Height 
@@ -42,6 +48,12 @@ namespace TopDownCamera
         {
             //CheckCameraOcclusionAndCollision(_camTransform);
             CameraHandler();
+
+            if (testShake)
+            {
+                testShake = false;
+                StartCoroutine(Shaking());
+            }
         }
 
         private void LateUpdate()
@@ -128,6 +140,24 @@ namespace TopDownCamera
             }
 
             Gizmos.DrawSphere(transform.position, 0.5f);
+        }
+
+        public void Shake() => StartCoroutine(Shaking());
+
+        private IEnumerator Shaking()
+        {
+            Vector3 startPos = transform.position;
+            float elapsed = 0f;
+
+            while(elapsed < shakeDuration)
+            {
+                elapsed += Time.deltaTime;
+                float strength = shakeCurve.Evaluate(elapsed / shakeDuration);
+                transform.position = startPos + Random.insideUnitSphere * strength;
+                yield return null;
+            }
+
+            transform.position = startPos;
         }
     }
 }

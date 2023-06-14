@@ -47,16 +47,22 @@ namespace Combat
         [Tooltip("Spawn the particle when hit the target")]
         [SerializeField] private ParticleSystem hitParticle;
 
+        [Header("Die")]
+        [Tooltip("Time to destroy the gameobject after declared as die, negative will not delete it")]
+        [SerializeField] private float timeToDestroy = -1f;
+
         #region Animation Hash
         private const string IDLE = "Idle";
         private const string RUN = "Run";
         private const string ATTACK = "Attack";
         private const string HURT = "Hurt";
+        private const string DIE = "Die";
 
         public int IdleAnimationHash { get; private set; }
         public int RunAnimationHash { get; private set; }
         public int AttackAnimationHash { get; private set; }
         public int HurtAnimationHash { get; private set; }
+        public int DieAnimationHash { get; private set; }
         #endregion
 
         private Vector3 _originalPos;
@@ -66,12 +72,14 @@ namespace Combat
         private CombatCharacterState state = CombatCharacterState.Idle;
         [SerializeField] private Outline _outline;
         private bool _selecting = false;
+        private bool _die = false;
 
         public bool Attacking { get { return _attacking; } }
         public CharacterStatusBase CharacterStatus { get { return characterStatus; } }
         public CombatCharacterType Type { get { return type; } }
 
         private CharacterStatusBase _attackTarget;
+        public bool Die { get { return _die; } }
 
         private void Awake()
         {
@@ -79,6 +87,7 @@ namespace Combat
             RunAnimationHash = Animator.StringToHash(RUN);
             AttackAnimationHash = Animator.StringToHash(ATTACK);
             HurtAnimationHash = Animator.StringToHash(HURT);
+            DieAnimationHash = Animator.StringToHash(DIE);
 
             _originalPos = transform.position;
 
@@ -99,6 +108,7 @@ namespace Combat
             animationController.OnAttack += OnAttack;
             animationController.OnHurtFinish += HurtFinish;
             characterStatus.OnDamage += OnHurt;
+            characterStatus.OnDie += OnDie;
         }
 
         public void Select()
@@ -116,6 +126,16 @@ namespace Combat
             {
                 _outline.enabled = false;
                 _selecting = false;
+            }
+        }
+
+        private void OnDie()
+        {
+            _die = true;
+            animator.SetBool(DieAnimationHash, true);
+            if(timeToDestroy > 0f)
+            {
+                Destroy(gameObject, timeToDestroy);
             }
         }
 
@@ -155,6 +175,7 @@ namespace Combat
             animationController.OnAttack -= OnAttack;
             animationController.OnAttack -= HurtFinish;
             characterStatus.OnDamage -= OnHurt;
+            characterStatus.OnDie -= OnDie;
         }
 
         private void OnHurt()

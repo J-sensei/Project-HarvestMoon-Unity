@@ -17,6 +17,14 @@ namespace Combat
         /// 
         /// </summary>
         Busy,
+        /// <summary>
+        /// Player Win
+        /// </summary>
+        Win,
+        /// <summary>
+        /// Player Lose
+        /// </summary>
+        Lose
     }
 
     [System.Serializable]
@@ -36,9 +44,10 @@ namespace Combat
 
     public class CombatManager : Singleton<CombatManager>
     {
+        [SerializeField] private TopDownCamera.TopDownCamera topDownCamera;
         [SerializeField] private CombatState state = CombatState.DecidingTurn;
         [SerializeField] private CombatCharacterBase player;
-        [SerializeField] private CombatCharacterBase[] enemies;
+        [SerializeField] private List<CombatCharacterBase> enemies;
         private CombatCharacterBase _currentBusyCharacter;
 
         [Header("Turns")]
@@ -48,9 +57,11 @@ namespace Combat
         [SerializeField] private Transform endAction;
         [SerializeField] private Transform startAction;
         [SerializeField] private Transform playerActionUI;
-        [SerializeField] private Transform[] enemyActionUIs;
+        [SerializeField] private List<Transform> enemyActionUIs;
 
         private CombatCharacterBase _selectedCharacter;
+
+        public TopDownCamera.TopDownCamera Camera { get { return topDownCamera; } }
 
         protected override void AwakeSingleton()
         {
@@ -59,7 +70,7 @@ namespace Combat
             // Create CharacterTurns
             characterTurns.Add(new(player, playerActionUI, player.Type));
 
-            for(int i = 0; i < enemies.Length; i++)
+            for(int i = 0; i < enemies.Count; i++)
             {
                 characterTurns.Add(new(enemies[i], enemyActionUIs[i], enemies[i].Type));
             }
@@ -85,6 +96,39 @@ namespace Combat
                 if (!_currentBusyCharacter.Attacking)
                 {
                     state = CombatState.DecidingTurn;
+                    if(_currentBusyCharacter.Type == CombatCharacterType.Player)
+                    {
+                        // Get the remove index?
+                        List<int> removeIndex = new();
+                        for (int i = 0; i < enemies.Count; i++)
+                        {
+                            if (enemies[i] == null || enemies[i].Die)
+                            {
+                                removeIndex.Add(i);
+                            }
+                        }
+
+                        // Remove die enemy
+                        for (int i = 0; i < removeIndex.Count; i++)
+                        {
+                            int index = removeIndex[i];
+                            enemies.RemoveAt(index);
+                            Destroy(enemyActionUIs[index].gameObject);
+                            enemyActionUIs.RemoveAt(index);
+                            characterTurns.RemoveAt(index + 1); // + 1 for player
+                        }
+
+                        if (enemies.Count == 0)
+                        {
+                            // TODO: WIN
+                            state = CombatState.Win;
+                            Debug.Log("Player WIN!!!!");
+                        }
+                        else
+                        {
+                            Select(enemies[0]);
+                        }
+                    }
                 }
             }
             else if(state == CombatState.DecidingTurn)
