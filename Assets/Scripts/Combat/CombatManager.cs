@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
 using DG.Tweening;
+using UI.Combat;
 
 namespace Combat
 {
@@ -76,10 +77,10 @@ namespace Combat
             {
                 UpdateTurn();
             }
-            else if (state == CombatState.Waiting && Input.GetKeyDown(KeyCode.Space))
-            {
-                PlayerAttack();
-            }
+            //else if (state == CombatState.Waiting && Input.GetKeyDown(KeyCode.Space))
+            //{
+            //    PlayerAttack();
+            //}
         }
 
         /// <summary>
@@ -101,6 +102,7 @@ namespace Combat
                     if(characterTurns[i].type == CombatCharacterType.Player)
                     {
                         state = CombatState.Waiting;
+                        CombatUIManager.Instance.ToggleActionUI(true); // Show UI for the player to choose
                         return; // Prevent any bug happen 
                     }
                     else
@@ -121,7 +123,7 @@ namespace Combat
         /// <returns></returns>
         public bool PlayerAttack()
         {
-            if (!player.Attacking)
+            if (state == CombatState.Waiting && !player.Attacking)
             {
                 state = CombatState.Busy;
                 player.Attack(enemies[0]); // TODO£º Update to selected enemy

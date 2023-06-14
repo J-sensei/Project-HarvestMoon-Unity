@@ -1,13 +1,20 @@
+using Entity;
 using GameDateTime;
 using Inventory;
 using Inventory.UI;
 using System.Collections;
 using TMPro;
+using UI;
 using UnityEngine;
 using Utilities;
 
 public class GameUIManager : Singleton<GameUIManager>, ITimeChecker
 {
+    [Header("Player Status")]
+    [SerializeField] private ProgressBar hpProgress;
+    [SerializeField] private ProgressBar staminaProgress;
+
+    [Header("Inventory")]
     [SerializeField] private InventorySlot equipedItem;
 
     [Header("Texts")]
@@ -31,7 +38,7 @@ public class GameUIManager : Singleton<GameUIManager>, ITimeChecker
         {
             GameTimeManager.Instance.AddListener(this);
         }
-
+        UpdatePlayerStatusUI(GameManager.Instance.Player.PlayerStatus);
     }
 
     public void UpdateEquipedItem(ItemSlot data)
@@ -44,6 +51,15 @@ public class GameUIManager : Singleton<GameUIManager>, ITimeChecker
         {
             Debug.LogWarning("[Game UI Manager] Equiped Item Slot is null");
         }
+    }
+
+    public void UpdatePlayerStatusUI(PlayerStatus playerStatus)
+    {
+        hpProgress.UpdateValues(0, playerStatus.MaxHP);
+        staminaProgress.UpdateValues(0, playerStatus.MaxStamina);
+
+        hpProgress.UpdateValue(playerStatus.HP);
+        staminaProgress.UpdateValue(playerStatus.Stamina);
     }
 
     #region ITimeChecker

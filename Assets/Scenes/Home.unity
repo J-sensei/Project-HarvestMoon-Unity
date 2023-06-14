@@ -760,6 +760,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
+  hpProgress: {fileID: 1519462241}
+  staminaProgress: {fileID: 323240224}
   equipedItem: {fileID: 2067196772}
   seasonText: {fileID: 247065106}
   timeText: {fileID: 2132234136}
@@ -1551,7 +1553,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 71.975, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &247065105
@@ -2897,6 +2899,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &323240224 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5707783826411615798, guid: e4212842ac624dd4b9ff492be1114a97,
+    type: 3}
+  m_PrefabInstance: {fileID: 430343669}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84052101e02314a49b6afa4a841706c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &334293783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4120,6 +4134,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Chracter UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868378218213894431, guid: e4212842ac624dd4b9ff492be1114a97,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1868378218239729057, guid: e4212842ac624dd4b9ff492be1114a97,
         type: 3}
@@ -13731,6 +13750,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499168553}
   m_CullTransparentMesh: 1
+--- !u!114 &1519462241 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1868378218531466474, guid: e4212842ac624dd4b9ff492be1114a97,
+    type: 3}
+  m_PrefabInstance: {fileID: 430343669}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84052101e02314a49b6afa4a841706c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1528035318
 GameObject:
   m_ObjectHideFlags: 0
@@ -20632,7 +20663,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 136.755, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2132234135

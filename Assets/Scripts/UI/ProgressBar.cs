@@ -10,14 +10,14 @@ namespace UI
     [ExecuteInEditMode]
     public class ProgressBar : MonoBehaviour
     {
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         [MenuItem("GameObject/UI/Linear Progress Bar")]
         public static void AddLinearProgressBar()
         {
             GameObject go = Instantiate(Resources.Load<GameObject>("UI/Progress Bar/Linear Progress Bar"));
             go.transform.SetParent(Selection.activeGameObject.transform, false);
         }
-#endif
+        #endif
 
         [Header("Values")]
         [Tooltip("Minimum value consider as 'zero' in the progress bar")]
@@ -38,6 +38,20 @@ namespace UI
             {
                 UpdateFill();
             }
+        }
+
+        public void UpdateValues(int minValue, int maxValue)
+        {
+            this.minValue = minValue;
+            this.maxValue = maxValue;
+
+            UpdateFill();
+        }
+
+        public void UpdateValue(int currentValue)
+        {
+            this.currentValue = currentValue;
+            UpdateFill();
         }
 
         private void UpdateFill()

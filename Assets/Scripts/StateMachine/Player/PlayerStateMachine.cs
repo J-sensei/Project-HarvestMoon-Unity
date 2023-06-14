@@ -1,3 +1,4 @@
+using Entity;
 using Player;
 using UnityEngine;
 using UnityEngine.Events;
@@ -82,6 +83,7 @@ namespace StateMachine.Player
         /// Player interactor to have interaction with interactable objects such as farm and tools
         /// </summary>
         public PlayerInteractor PlayerInteractor { get; private set; }
+        public PlayerStatus PlayerStatus { get; private set; }
 
         #region Move
         /// <summary>
@@ -384,6 +386,7 @@ namespace StateMachine.Player
             ParticleController = GetComponentInChildren<PlayerParticleController>();
             PlayerInteractor = GetComponentInChildren<PlayerInteractor>();
             EquipController = GetComponentInChildren<PlayerEquipController>();
+            PlayerStatus = GetComponent<PlayerStatus>();
 
             // Define animation hash
             #region Animation Hash Values
