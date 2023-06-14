@@ -3,6 +3,10 @@ using UnityEngine;
 using DG.Tweening;
 using System.Collections;
 using System;
+using QuickOutline;
+using Utilities;
+using UnityEngine.EventSystems;
+using UI.Combat;
 
 namespace Combat
 {
@@ -20,7 +24,7 @@ namespace Combat
     }
 
     [RequireComponent(typeof(CharacterStatusBase))]
-    public class CombatCharacterBase : MonoBehaviour
+    public class CombatCharacterBase : MonoBehaviour, IPointerClickHandler
     {
         [Header("Configuration")]
         [Tooltip("Type of the combat character in the scene")]
@@ -60,6 +64,8 @@ namespace Combat
         private bool _attackAnimationPlay = false;
         private bool _hurtAnimationPlay = false;
         private CombatCharacterState state = CombatCharacterState.Idle;
+        [SerializeField] private Outline _outline;
+        private bool _selecting = false;
 
         public bool Attacking { get { return _attacking; } }
         public CharacterStatusBase CharacterStatus { get { return characterStatus; } }
@@ -84,9 +90,33 @@ namespace Combat
                 if (animationController == null) animationController = GetComponentInChildren<CombatAnimationController>();
             }
 
+            if(type == CombatCharacterType.Enemy)
+            {
+                if(_outline == null) _outline = GetComponent<Outline>();
+                //StartCoroutine(OutlineHelper.InitializeOutline(_outline));
+            }
+
             animationController.OnAttack += OnAttack;
             animationController.OnHurtFinish += HurtFinish;
             characterStatus.OnDamage += OnHurt;
+        }
+
+        public void Select()
+        {
+            if(_outline != null)
+            {
+                _outline.enabled = true;
+                _selecting = true;
+            }
+        }
+
+        public void Deselect()
+        {
+            if(_outline != null)
+            {
+                _outline.enabled = false;
+                _selecting = false;
+            }
         }
 
         private void Update()
@@ -181,5 +211,16 @@ namespace Combat
                 _attackAnimationPlay = true;
             });
         }
+
+        #region IPointerEvents
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if(eventData.button == PointerEventData.InputButton.Left && type == CombatCharacterType.Enemy)
+            {
+                Debug.Log("Click: " + name);
+                CombatManager.Instance.Select(this);
+            }
+        }
+        #endregion
     }
 }

@@ -33,21 +33,8 @@ namespace TopDownCamera
 
         private Vector3 _refVelocity;
 
-        // Camera Collision
-        [Header("Camera Collision")]
-        private Vector3 _camDirection;
-        private float _camDistance;
-        [SerializeField] private float _minCamDistance = 0.5f;
-        [SerializeField] private float _maxCamDistance = 5f;
-        private Transform _camTransform;
-        private bool _blocking = false;
-
         private void Start()
         {
-            _camTransform = transform;
-            _camDirection = _camTransform.localPosition.normalized;
-            _camDistance = _maxCamDistance;
-
             InitializeCameraPos(); // Instantly teleport to the target position
         }
 
@@ -141,29 +128,6 @@ namespace TopDownCamera
             }
 
             Gizmos.DrawSphere(transform.position, 0.5f);
-        }
-
-        private void CheckCameraOcclusionAndCollision(Transform camTransform)
-        {
-            float distance = 2f;
-            Vector3 desiredPos = transform.TransformPoint(_camDirection * _maxCamDistance);
-            RaycastHit hit;
-            if(Physics.Raycast(transform.position, target.position, out hit, distance))
-            {
-                // If any objects in between
-                //_camDistance = Mathf.Clamp(hit.distance, _minCamDistance, _maxCamDistance);
-                _camDistance = distance * 1.5f;
-                _blocking = true;
-            }
-            else
-            {
-                _camDistance = _maxCamDistance;
-                _blocking = false;
-            }
-
-            Debug.DrawRay(transform.position, (target.position - transform.position).normalized * distance, Color.red, 0f, false);
-
-            //_camTransform.localPosition = _camDirection * _camDistance;
         }
     }
 }

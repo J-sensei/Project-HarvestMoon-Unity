@@ -1,4 +1,5 @@
 using System;
+using UI.Combat;
 using UnityEngine;
 
 namespace Entity
@@ -13,6 +14,9 @@ namespace Entity
         [SerializeField] private int attack = 1;
         [SerializeField] private int defense = 1;
         [SerializeField] private int speed = 1;
+
+        [Header("UI")]
+        [SerializeField] private DamageUI damageUI;
 
         /// <summary>
         /// Current hp
@@ -50,6 +54,12 @@ namespace Entity
             // TODO: Calculate something
             defender._hp -= attack;
             defender.OnDamage?.Invoke(); // Call action to make when defender is on damage
+
+            if(damageUI != null)
+            {
+                DamageUI d = Instantiate(damageUI, transform.position, Quaternion.identity);
+                d.Play(transform.position, attack);
+            }
         }
 
         /// <summary>

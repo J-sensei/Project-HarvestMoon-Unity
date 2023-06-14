@@ -1,4 +1,3 @@
-using Entity;
 using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
@@ -51,6 +50,8 @@ namespace Combat
         [SerializeField] private Transform playerActionUI;
         [SerializeField] private Transform[] enemyActionUIs;
 
+        private CombatCharacterBase _selectedCharacter;
+
         protected override void AwakeSingleton()
         {
             // TODO: Instantiate combat characters
@@ -62,6 +63,19 @@ namespace Combat
             {
                 characterTurns.Add(new(enemies[i], enemyActionUIs[i], enemies[i].Type));
             }
+
+            Select(enemies[0]);
+        }
+
+        public void Select(CombatCharacterBase character)
+        {
+            if(_selectedCharacter != null)
+            {
+                _selectedCharacter.Deselect();
+                _selectedCharacter = null;
+            }
+            _selectedCharacter = character;
+            _selectedCharacter.Select();
         }
 
         private void Update()
@@ -126,7 +140,7 @@ namespace Combat
             if (state == CombatState.Waiting && !player.Attacking)
             {
                 state = CombatState.Busy;
-                player.Attack(enemies[0]); // TODO£º Update to selected enemy
+                player.Attack(_selectedCharacter); // TODO£º Update to selected enemy
 
                 _currentBusyCharacter = player;
                 return true;

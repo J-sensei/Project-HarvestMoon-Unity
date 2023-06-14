@@ -16,12 +16,14 @@ namespace Utilities
         /// </summary>
         /// <param name="outline">Outline component reference</param>
         /// <returns></returns>
-        public static IEnumerator InitializeOutline(Outline outline)
+        public static IEnumerator InitializeOutline(Outline outline, bool disable = true)
         {
             yield return new WaitForSeconds(OUTLINE_INIT_TIME);
             outline.enabled = true;
             yield return new WaitForSeconds(OUTLINE_INIT_TIME);
-            outline.enabled = false;
+
+            if(disable)
+                outline.enabled = false;
         }
     }
 }
