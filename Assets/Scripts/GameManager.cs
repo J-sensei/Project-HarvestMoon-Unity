@@ -2,6 +2,7 @@ using StateMachine.Player;
 using UnityEngine;
 using Utilities;
 using TopDownCamera;
+using SceneTransition;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -35,6 +36,13 @@ public class GameManager : Singleton<GameManager>
             }
             return _topDownCamera;
         }
+    }
+
+    public void EnterCombat()
+    {
+        // TODO: Save current scene && player position
+        SceneTransitionManager.Instance.Combat = true;
+        SceneTransitionManager.Instance.SwitchScene(SceneLocation.Combat);
     }
 
     protected override void AwakeSingleton()

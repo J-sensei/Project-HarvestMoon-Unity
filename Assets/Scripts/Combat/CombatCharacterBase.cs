@@ -107,6 +107,7 @@ namespace Combat
 
             animationController.OnAttack += OnAttack;
             animationController.OnHurtFinish += HurtFinish;
+            animationController.OnAttackFinish += OnAttackFinish;
             characterStatus.OnDamage += OnHurt;
             characterStatus.OnDie += OnDie;
         }
@@ -142,22 +143,27 @@ namespace Combat
         private void Update()
         {
             // Wait animation finish and then go back
-            if(_attackAnimationPlay && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0))
-            {
-                // Affect target character status
+            //if(_attackAnimationPlay && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0))
+            //{
+            //    OnAttackFinish();
+            //}
+        }
 
-                _attackAnimationPlay = false;
-                animator.SetBool(AttackAnimationHash, false); // Stop attack animation
-                // Run back to orignal position
-                // Rotate 180
-                transform.DORotate(new Vector3(0f, frontRotation + 180), rotateDuration);
-                transform.DOMove(_originalPos, runDuration).OnComplete(() => {
-                    animator.SetBool(RunAnimationHash, false); // Stop run animation
-                    _attacking = false;
-                    state = CombatCharacterState.Idle;
-                    transform.DORotate(new Vector3(0f, frontRotation), rotateDuration);
-                });
-            }
+        private void OnAttackFinish()
+        {
+            // Affect target character status
+
+            _attackAnimationPlay = false;
+            animator.SetBool(AttackAnimationHash, false); // Stop attack animation
+                                                          // Run back to orignal position
+                                                          // Rotate 180
+            transform.DORotate(new Vector3(0f, frontRotation + 180), rotateDuration);
+            transform.DOMove(_originalPos, runDuration).OnComplete(() => {
+                animator.SetBool(RunAnimationHash, false); // Stop run animation
+                _attacking = false;
+                state = CombatCharacterState.Idle;
+                transform.DORotate(new Vector3(0f, frontRotation), rotateDuration);
+            });
         }
 
         public IEnumerator CheckAnimationCompleted(string currentStateName, Action onComplete)
@@ -230,6 +236,7 @@ namespace Combat
             {
                 animator.SetBool(AttackAnimationHash, true); // Start attack animation
                 _attackAnimationPlay = true;
+                Debug.Log("Reached Destination");
             });
         }
 

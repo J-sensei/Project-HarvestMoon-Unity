@@ -45,6 +45,7 @@ namespace Utilities
                 gameSaveUI.gameObject.SetActive(false);
             }
 
+            // Spawn player to the scene
             if (player != null && GameManager.Instance.Player == null)
             {
                 Transform spawnPos = StartLocationManager.Instance.GetTransform(defaultScene);
@@ -52,6 +53,7 @@ namespace Utilities
                 GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform);
             }
 
+            Debug.Log("Call Again");
             // Incase
             Ensure();
         }
@@ -61,7 +63,7 @@ namespace Utilities
         /// </summary>
         public void Ensure()
         {
-            if(eventSystem != null && GameObject.FindObjectOfType<EventSystem>() == null)
+            if (eventSystem != null && GameObject.FindObjectOfType<EventSystem>() == null)
             {
                 Instantiate(eventSystem, Vector3.zero, Quaternion.identity);
             }

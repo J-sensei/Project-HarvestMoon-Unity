@@ -29,6 +29,11 @@ namespace SceneTransition
             } 
         }
 
+        /// <summary>
+        /// Determine if scene transition to go to battle scene
+        /// </summary>
+        public bool Combat { get; set; } = false;
+
         [Header("Indoor locations")]
         [SerializeField] private SceneLocation[] indoorLocations = { SceneLocation.Home };
         /// <summary>
@@ -79,7 +84,10 @@ namespace SceneTransition
                 FadeScreenManager.Instance.Loading(true); // Scene loading start
                 StartCoroutine(LoadSceneAsync(location.ToString())); // Start to load the scene after fade finish
             });
-            AddHoldObject(GameManager.Instance.Player.transform); // Add player instance to move it to other scene (DontDestroyObject)
+
+            if(!Combat)
+                AddHoldObject(GameManager.Instance.Player.transform); // Add player instance to move it to other scene (DontDestroyObject)
+
             GameManager.Instance.Player.Disable();
         }
 
@@ -111,7 +119,8 @@ namespace SceneTransition
 
         public void OnLocationLoad(Scene scene, LoadSceneMode mode)
         {
-            gameInitializer.Ensure(); // To ensure game initialize properly
+            if(!Combat)
+                gameInitializer.Ensure(); // To ensure game initialize properly
 
             // Fade screen on start
             if (FadeScreenManager.Instance.FadePanel.FadeOnStart)
@@ -123,7 +132,6 @@ namespace SceneTransition
             // Change BGM
             if (BGMPlayer.Instance != null && BGMPlayer.Instance.BGMData != null)
             {
-                Debug.Log("Play");
                 AudioManager.Instance.PlayMusic(BGMPlayer.Instance.BGMData);
             }
 
@@ -134,25 +142,39 @@ namespace SceneTransition
 
             // Change player position unload it
             Transform startPoint = StartLocationManager.Instance.GetTransform(oldLocation);
-            for(int i = 0; i < _holdingObjects.Count; i++)
+            if(startPoint != null)
             {
-                if (_holdingObjects[i] == null || _holdingObjects[i].transform == null)
+                for (int i = 0; i < _holdingObjects.Count; i++)
                 {
-                    Debug.Log("[Scene Transition Manager] Holding Object (" + _holdingObjects[i].name + "::" + i + ") is null");
-                    continue;
+                    if (_holdingObjects[i] == null || _holdingObjects[i].transform == null)
+                    {
+                        Debug.Log("[Scene Transition Manager] Holding Object (" + _holdingObjects[i].name + "::" + i + ") is null");
+                        continue;
+                    }
+                    //Debug.Log("Transform: " + _holdingObjects[i].transform.position + " Old Location: " + oldLocation.ToString() + " Start Pos: " + startPoint.position);
+                    _holdingObjects[i].transform.position = startPoint.position;
+                    _holdingObjects[i].transform.rotation = startPoint.rotation;
+                    _holdingObjects[i].transform.parent = null;
                 }
-                //Debug.Log("Transform: " + _holdingObjects[i].transform.position + " Old Location: " + oldLocation.ToString() + " Start Pos: " + startPoint.position);
-                _holdingObjects[i].transform.position = startPoint.position;
-                _holdingObjects[i].transform.rotation = startPoint.rotation;
-                _holdingObjects[i].transform.parent = null;
             }
-            _holdingObjects.Clear();
-            GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform);
-            GameTimeManager.Instance.PauseTime(false); // Resume the time pause
+            else
+            {
+                Debug.LogWarning("[Scene Transition Manager] Start Point is null and not able to find in this scene: " + location.ToString());
+            }
 
-            StartCoroutine(EnablePlayer());
+            _holdingObjects.Clear();
+
+            if (!Combat)
+            {
+                GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform); // Set Camera, TODO: Dont run this if enter to combat scene
+                GameTimeManager.Instance.PauseTime(false); // Resume the time pause
+                StartCoroutine(EnablePlayer());
+            }
+
             _currentLocation = location;
             GameTimeManager.Instance.LoadSunTransform(); // Update sun transform
+
+            Combat = false;
         }
 
         /// <summary>

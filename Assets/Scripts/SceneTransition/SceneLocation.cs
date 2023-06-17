@@ -15,6 +15,7 @@
         /// </summary>
         Home,
         Farm,
-        Outside
+        Outside,
+        Combat,
     }
 }

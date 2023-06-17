@@ -103,7 +103,6 @@ namespace Utilities
                 {
                     StartCoroutine(Fade(false, bgmSources[i], FADE_DURATION, 0f)); // Fade out
                     _audioToggle = 1 - i;
-                    Debug.Log("BINGO");
                 }
                 else
                 {
