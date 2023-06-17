@@ -133,6 +133,7 @@ MonoBehaviour:
   equipedItem: {fileID: 6645241617316173236}
   seasonText: {fileID: 6645241615378732226}
   timeText: {fileID: 6645241617251070280}
+  timePanel: {fileID: 6645241616389888398}
 --- !u!1 &6645241615245204491
 GameObject:
   m_ObjectHideFlags: 0

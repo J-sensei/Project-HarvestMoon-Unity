@@ -53,7 +53,6 @@ namespace Utilities
                 GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform);
             }
 
-            Debug.Log("Call Again");
             // Incase
             Ensure();
         }

@@ -12,6 +12,8 @@ public class GameMenu : Singleton<GameMenu>
     [Tooltip("Tab group to switch the tab when game menu is called to open/close")]
     [SerializeField] private TabGroup tabGroup;
 
+    private bool _disableMenu = false;
+
     /// <summary>
     /// Controls map
     /// </summary>
@@ -42,6 +44,7 @@ public class GameMenu : Singleton<GameMenu>
 
     public void ToggleGameMenu(bool v, int tabIndex = 0)
     {
+        if (_disableMenu) return;
         TooltipManager.Instance.Hide(); // Reset the tooltip tp solve any tooltip ui bug (not active/deactive correctly)
         if (!v) // Close
         {
@@ -101,5 +104,20 @@ public class GameMenu : Singleton<GameMenu>
         InventoryUIManager.Instance.ResetInventorySlots();
         GameManager.Instance.Player.Enable();
         gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Disable game menu and prevent player open it
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    public void DisableGameMenu(bool v)
+    {
+        if (v && gameObject.activeSelf)
+        {
+            ToggleGameMenu(false);
+        }
+
+        _disableMenu = v;
     }
 }

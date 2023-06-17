@@ -1,8 +1,9 @@
 using StateMachine.Player;
 using UnityEngine;
 using Utilities;
-using TopDownCamera;
 using SceneTransition;
+using GameSave;
+using Entity.Enemy;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -40,7 +41,23 @@ public class GameManager : Singleton<GameManager>
 
     public void EnterCombat()
     {
+        // Pause enemy
+        Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>();
+        foreach(Enemy enemy in enemies)
+        {
+            Debug.Log("Pause enemy");
+            enemy.Pause = true;
+        }
+
         // TODO: Save current scene && player position
+        // Save temp data
+        TempSceneData temp = new(SceneTransitionManager.Instance.CurrentLocation, Player.transform.position);
+        GameStateManager.Instance.SaveTempData(temp);
+
+        GameMenu.Instance.DisableGameMenu(true);
+        GameUIManager.Instance.DisableMenu(true);
+
+        // Go to combat scene
         SceneTransitionManager.Instance.Combat = true;
         SceneTransitionManager.Instance.SwitchScene(SceneLocation.Combat);
     }

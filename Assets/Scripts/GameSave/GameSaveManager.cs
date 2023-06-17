@@ -35,6 +35,12 @@ namespace GameSave
     {
         SceneLocation location;
         Vector3 playerPosition;
+
+        public TempSceneData(SceneLocation location, Vector3 playerPosition)
+        {
+            this.location = location;
+            this.playerPosition = playerPosition;
+        }
     }
 
     public enum GameSaveLoadType

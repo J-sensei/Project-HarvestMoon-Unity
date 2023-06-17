@@ -1,5 +1,6 @@
 using Farming;
 using GameDateTime;
+using GameSave;
 using SceneTransition;
 using System.Collections;
 using UnityEngine;
@@ -10,6 +11,29 @@ using Utilities;
 /// </summary>
 public class GameStateManager : Singleton<GameStateManager>, ITimeChecker
 {
+    private static TempSceneData _TempSceneData;
+    public static TempSceneData TempSceneData { get { return _TempSceneData; } }
+    public bool _hasTempSceneData = false;
+
+    public void SaveTempData(TempSceneData tempSceneData)
+    {
+        _TempSceneData = tempSceneData;
+        _hasTempSceneData = true;
+    }
+
+    public TempSceneData LoadTempData()
+    {
+        if (_hasTempSceneData)
+        {
+            _hasTempSceneData = false;
+            return _TempSceneData;
+        }
+        else
+        {
+            return new TempSceneData();
+        }
+    }
+
     protected override void AwakeSingleton()
     {
         StartCoroutine(Initialize());
@@ -26,7 +50,6 @@ public class GameStateManager : Singleton<GameStateManager>, ITimeChecker
         {
             GameTimeManager.Instance.AddListener(this);
         }
-        
     }
 
     public void ClockUpdate(GameTime gameTime)

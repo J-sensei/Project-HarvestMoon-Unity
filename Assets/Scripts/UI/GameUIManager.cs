@@ -21,6 +21,9 @@ public class GameUIManager : Singleton<GameUIManager>, ITimeChecker
     [SerializeField] private TMP_Text seasonText;
     [SerializeField] private TMP_Text timeText;
 
+    [Header("GameObject")]
+    [SerializeField] private GameObject timePanel;
+
     protected override void AwakeSingleton()
     {
         //GameTimeManager.Instance.AddListener(this); // No need to remove as it will persists throughout the game
@@ -60,6 +63,18 @@ public class GameUIManager : Singleton<GameUIManager>, ITimeChecker
 
         hpProgress.UpdateValue(playerStatus.HP);
         staminaProgress.UpdateValue(playerStatus.Stamina);
+    }
+
+    public void UpdatePlayerStatusUI(CharacterStatusBase playerStatus)
+    {
+        hpProgress.UpdateValues(0, playerStatus.MaxHP);
+
+        hpProgress.UpdateValue(playerStatus.HP);
+    }
+
+    public void DisableMenu(bool v)
+    {
+        timePanel.SetActive(!v);
     }
 
     #region ITimeChecker

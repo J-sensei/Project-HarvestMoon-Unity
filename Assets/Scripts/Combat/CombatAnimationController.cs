@@ -1,3 +1,4 @@
+using Entity;
 using System;
 using UnityEngine;
 
@@ -16,6 +17,9 @@ namespace Combat
         public void AttackFrame()
         {
             _onAttack?.Invoke();
+
+            if(GameUIManager.Instance != null)
+                GameUIManager.Instance.UpdatePlayerStatusUI((PlayerStatus)CombatManager.Instance.Player.CharacterStatus);
         }
 
         public void HurtFinishFrame()

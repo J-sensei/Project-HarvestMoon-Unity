@@ -3,6 +3,9 @@ using UnityEngine;
 using Utilities;
 using DG.Tweening;
 using UI.Combat;
+using StateMachine.Player;
+using Utilities.Audio;
+using TopDownCamera;
 
 namespace Combat
 {
@@ -54,10 +57,23 @@ namespace Combat
         private const float TURN_DISTANCE_TO_RESET = 1f;
         [SerializeField] private List<CharacterTurn> characterTurns = new();
         [Header("Turn UI")]
+        [SerializeField] private GameObject combatUI;
         [SerializeField] private Transform endAction;
         [SerializeField] private Transform startAction;
         [SerializeField] private Transform playerActionUI;
         [SerializeField] private List<Transform> enemyActionUIs;
+
+        [SerializeField] private bool start = true;
+
+        [Header("UI")]
+        [SerializeField] private GameObject winUI;
+
+        [Header("Audio")]
+        [SerializeField] private BGMData victoryBGM;
+        [SerializeField] private BGMData loseBGM;
+
+        public bool Start { get { return start; } set { start = value; } }
+        public CombatCharacterBase Player { get { return player; } }
 
         private CombatCharacterBase _selectedCharacter;
 
@@ -65,6 +81,13 @@ namespace Combat
 
         protected override void AwakeSingleton()
         {
+            // Delete player state machine
+            PlayerStateMachine previousPlayer = GameObject.FindObjectOfType<PlayerStateMachine>();
+            if(previousPlayer != null)
+            {
+                Destroy(previousPlayer.gameObject);
+            }
+
             // TODO: Instantiate combat characters
 
             // Create CharacterTurns
@@ -76,6 +99,17 @@ namespace Combat
             }
 
             Select(enemies[0]);
+
+            // Init win UI
+            if (winUI.activeSelf)
+            {
+                winUI.SetActive(false);
+            }
+            else
+            {
+                winUI.SetActive(true);
+                winUI.SetActive(false);
+            }
         }
 
         public void Select(CombatCharacterBase character)
@@ -91,6 +125,8 @@ namespace Combat
 
         private void Update()
         {
+            if (!start) return;
+
             if(state == CombatState.Busy)
             {
                 if (!_currentBusyCharacter.Attacking)
@@ -99,12 +135,14 @@ namespace Combat
                     if(_currentBusyCharacter.Type == CombatCharacterType.Player)
                     {
                         // Get the remove index?
+                        bool remove = false;
                         List<int> removeIndex = new();
                         for (int i = 0; i < enemies.Count; i++)
                         {
                             if (enemies[i] == null || enemies[i].Die)
                             {
                                 removeIndex.Add(i);
+                                remove = true;
                             }
                         }
 
@@ -120,13 +158,16 @@ namespace Combat
 
                         if (enemies.Count == 0)
                         {
-                            // TODO: WIN
+                            // TODO: Open Win Screen and click to go back to previous scene :)
                             state = CombatState.Win;
                             Debug.Log("Player WIN!!!!");
+                            //Win();
+                            CinematicCamera.Instance.WinCamera();
                         }
                         else
                         {
-                            Select(enemies[0]);
+                            if(remove)
+                                Select(enemies[0]);
                         }
                     }
                 }
@@ -173,6 +214,29 @@ namespace Combat
                     // Enemy AI do actions
                 }
             }
+        }
+
+        public void Win()
+        {
+            // Hide battle ui
+            combatUI.SetActive(false);
+
+            // Show win screen
+            Vector3 pos = winUI.transform.position;
+            float endVal = pos.y;
+            pos.y += 100;
+            winUI.gameObject.SetActive(true);
+            winUI.transform.position = pos;
+            winUI.transform.DOMoveY(endVal, 0.15f);
+
+            player.WinAnimation();
+            AudioManager.Instance.PlayMusic(victoryBGM, false);
+            //CinematicCamera.Instance.WinCamera();
+        }
+
+        public void BackToScene()
+        {
+            // TODO: Load back to previous scene
         }
 
         /// <summary>

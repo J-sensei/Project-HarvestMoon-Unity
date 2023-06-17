@@ -94,14 +94,22 @@ namespace Utilities
             _audioToggle = 1 - _audioToggle;
         }
 
-        public void PlayMusic(BGMData bgmData)
+        public void PlayMusic(BGMData bgmData, bool fade = true)
         {
             StopAllCoroutines();
             for (int i = 0; i < bgmSources.Length; i++)
             {
                 if (bgmSources[i].clip != null && bgmSources[i].isPlaying)
                 {
-                    StartCoroutine(Fade(false, bgmSources[i], FADE_DURATION, 0f)); // Fade out
+                    if (fade)
+                        StartCoroutine(Fade(false, bgmSources[i], FADE_DURATION, 0f)); // Fade out
+                    else
+                    {
+                        bgmSources[i].volume = 1f;
+                        bgmSources[i].Stop();
+                        bgmSources[i].clip = null;
+                    }
+                        
                     _audioToggle = 1 - i;
                 }
                 else
@@ -119,7 +127,10 @@ namespace Utilities
             bgmSources[_audioToggle].SetScheduledEndTime(_goalTime); // Set the next bgm loop
 
             bgmSources[_audioToggle].volume = 0f;
-            StartCoroutine(Fade(true, bgmSources[_audioToggle], FADE_DURATION, 1f));
+            if(fade)
+                StartCoroutine(Fade(true, bgmSources[_audioToggle], FADE_DURATION, 1f));
+            else
+                bgmSources[_audioToggle].volume = 1f;
 
             _audioToggle = 1 - _audioToggle; // Toggle audio source
             _currentBGM = bgmData;

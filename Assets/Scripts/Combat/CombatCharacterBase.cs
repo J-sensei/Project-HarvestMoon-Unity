@@ -57,12 +57,16 @@ namespace Combat
         private const string ATTACK = "Attack";
         private const string HURT = "Hurt";
         private const string DIE = "Die";
+        private const string WIN = "Win";
+        private const string LOSE = "Lose";
 
         public int IdleAnimationHash { get; private set; }
         public int RunAnimationHash { get; private set; }
         public int AttackAnimationHash { get; private set; }
         public int HurtAnimationHash { get; private set; }
         public int DieAnimationHash { get; private set; }
+        public int WinAnimationHash { get; private set; }
+        public int LoseAnimationHash { get; private set; }
         #endregion
 
         private Vector3 _originalPos;
@@ -88,6 +92,8 @@ namespace Combat
             AttackAnimationHash = Animator.StringToHash(ATTACK);
             HurtAnimationHash = Animator.StringToHash(HURT);
             DieAnimationHash = Animator.StringToHash(DIE);
+            WinAnimationHash = Animator.StringToHash(WIN);
+            LoseAnimationHash = Animator.StringToHash(LOSE);
 
             _originalPos = transform.position;
 
@@ -105,6 +111,7 @@ namespace Combat
                 //StartCoroutine(OutlineHelper.InitializeOutline(_outline));
             }
 
+            // Subcribe to events
             animationController.OnAttack += OnAttack;
             animationController.OnHurtFinish += HurtFinish;
             animationController.OnAttackFinish += OnAttackFinish;
@@ -238,6 +245,14 @@ namespace Combat
                 _attackAnimationPlay = true;
                 Debug.Log("Reached Destination");
             });
+        }
+
+        /// <summary>
+        /// Player win animation (Only for player)
+        /// </summary>
+        public void WinAnimation()
+        {
+            animator.SetBool(WinAnimationHash, true);
         }
 
         #region IPointerEvents

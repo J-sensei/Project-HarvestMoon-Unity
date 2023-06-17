@@ -78,6 +78,7 @@ namespace SceneTransition
             }
 
             GameTimeManager.Instance.PauseTime(true); // Pause the time when loading scene
+            FadeScreenManager.Instance.FadePanel.FadeDuration = 0.5f;
             // Fade out transition
             FadeScreenManager.Instance.FadePanel.FadeOut(() =>
             {
@@ -125,6 +126,7 @@ namespace SceneTransition
             // Fade screen on start
             if (FadeScreenManager.Instance.FadePanel.FadeOnStart)
             {
+                FadeScreenManager.Instance.FadePanel.FadeDuration = 0.5f;
                 FadeScreenManager.Instance.FadePanel.OnStart.AddListener(() => FadeScreenManager.Instance.Loading(false)); // Scene loading start
                 FadeScreenManager.Instance.FadePanel.FadeIn(() => { GameTimeManager.Instance.LoadSunTransform(); });
             }

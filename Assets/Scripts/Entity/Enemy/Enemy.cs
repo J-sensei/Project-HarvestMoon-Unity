@@ -46,6 +46,8 @@ namespace Entity.Enemy
         private bool _roar = false;
         private float _pathfindTimer = 0f;
 
+        public bool Pause { get; set; } = false;
+
         private void Awake()
         {
             _animator = GetComponent<Animator>();
@@ -68,6 +70,13 @@ namespace Entity.Enemy
 
         private void Update()
         {
+            if (Pause)
+            {
+                _agent.isStopped = true;
+                _animator.speed = 0;
+                return;
+            }
+
             switch (enemyState)
             {
                 case EnemyBehaviorState.Idle:
