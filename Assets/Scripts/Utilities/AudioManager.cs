@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using Utilities.Audio;
 
@@ -8,6 +9,12 @@ namespace Utilities
     /// </summary>
     public class AudioManager : Singleton<AudioManager>
     {
+        /// <summary>
+        /// Early time to set schedule play to loop the BGM (in seconds)
+        /// </summary>
+        private const double SCHEDULE_EARLY = 5f;
+        private const float FADE_DURATION = 2f;
+
         [Header("Audio Sources")]
         [Tooltip("Audio Source for BGM")]
         [SerializeField] private AudioSource[] bgmSources;
@@ -41,6 +48,7 @@ namespace Utilities
 
         private double _musicDuration;
         private double _goalTime = 0;
+        private BGMData _currentBGM = null;
 
         /// <summary>
         /// Play sound effect audio clip on channel 0
@@ -86,17 +94,57 @@ namespace Utilities
             _audioToggle = 1 - _audioToggle;
         }
 
+        public void PlayMusic(BGMData bgmData)
+        {
+            StopAllCoroutines();
+            for (int i = 0; i < bgmSources.Length; i++)
+            {
+                if (bgmSources[i].clip != null && bgmSources[i].isPlaying)
+                {
+                    StartCoroutine(Fade(false, bgmSources[i], FADE_DURATION, 0f)); // Fade out
+                    _audioToggle = 1 - i;
+                    Debug.Log("BINGO");
+                }
+                else
+                {
+                    bgmSources[i].Stop(); // Clear any bgm are playing right now
+                }
+            }
+            _goalTime = AudioSettings.dspTime;
+            bgmSources[_audioToggle].clip = bgmData.clip;
+            bgmSources[_audioToggle].PlayScheduled(_goalTime);
+            bgmSources[_audioToggle].time = bgmData.initialSkip;
+
+            _musicDuration = (double)bgmData.clip.samples / bgmData.clip.frequency;
+            _goalTime = _goalTime + (bgmData.endTime - bgmData.initialSkip);
+            bgmSources[_audioToggle].SetScheduledEndTime(_goalTime); // Set the next bgm loop
+
+            bgmSources[_audioToggle].volume = 0f;
+            StartCoroutine(Fade(true, bgmSources[_audioToggle], FADE_DURATION, 1f));
+
+            _audioToggle = 1 - _audioToggle; // Toggle audio source
+            _currentBGM = bgmData;
+        }
+
         private void Start()
         {
-            PlayMusic(musicClip); // Test play music at the begining
+            //PlayMusic(musicClip); // Test play music at the begining
+            //PlayMusic(bgmList[0]);
         }
 
 
         private void Update()
         {
-            if(AudioSettings.dspTime > _goalTime - 1)
+            if(AudioSettings.dspTime > _goalTime - SCHEDULE_EARLY)
             {
-                PlayScheduleClip();
+                if(_currentBGM != null)
+                {
+                    PlayScheduleClip(_currentBGM);
+                }
+                else
+                {
+                    Debug.LogWarning("[Audio Manager] Current BGM is null");
+                }
             }
         }
 
@@ -111,6 +159,38 @@ namespace Utilities
             bgmSources[_audioToggle].SetScheduledEndTime(_goalTime);
 
             _audioToggle = 1 - _audioToggle;
+        }
+
+        private void PlayScheduleClip(BGMData bgmData)
+        {
+            bgmSources[_audioToggle].clip = bgmData.clip;
+            bgmSources[_audioToggle].PlayScheduled(_goalTime);
+            bgmSources[_audioToggle].time = bgmData.startTime;
+
+            _goalTime = _goalTime + (bgmData.endTime - bgmData.startTime);
+            bgmSources[_audioToggle].SetScheduledEndTime(_goalTime);
+
+            _audioToggle = 1 - _audioToggle;
+        }
+
+        private IEnumerator Fade(bool fadeIn, AudioSource source, float duration, float targetVolume)
+        {
+            float time = 0f;
+            float startVol = source.volume;
+            while(time < duration)
+            {
+                time += Time.deltaTime;
+                source.volume = Mathf.Lerp(startVol, targetVolume, time / duration);
+                yield return null;
+            }
+
+            if(targetVolume == 0f)
+            {
+                source.Stop();
+                source.volume = 1f;
+                source.clip = null;
+            }
+            yield break;
         }
 
         protected override void AwakeSingleton()

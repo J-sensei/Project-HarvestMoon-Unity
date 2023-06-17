@@ -637,8 +637,7 @@ MonoBehaviour:
   musicEndTime: 181.75
   initialSkip: 0
   musicClip: {fileID: 8300000, guid: 64b80cf392796d14e97f819963b9d6e6, type: 3}
-  bgmList:
-  - {fileID: 11400000, guid: 600c253f5c6381f42845f0a9389126d8, type: 2}
+  bgmList: []
   wateringAudio: {fileID: 8300000, guid: 52b9c49f81afed1409e4b134b29f9370, type: 3}
   hoeAudio: {fileID: 8300000, guid: ab1533fe2e720264db6584039aa1604c, type: 3}
   plantAudio: {fileID: 8300000, guid: 7e98da97235fb584eaa192de07f14efe, type: 3}

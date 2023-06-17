@@ -8,6 +8,7 @@ using UI.UIScreen;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utilities;
+using Utilities.Audio;
 
 namespace SceneTransition
 {
@@ -117,6 +118,13 @@ namespace SceneTransition
             {
                 FadeScreenManager.Instance.FadePanel.OnStart.AddListener(() => FadeScreenManager.Instance.Loading(false)); // Scene loading start
                 FadeScreenManager.Instance.FadePanel.FadeIn(() => { GameTimeManager.Instance.LoadSunTransform(); });
+            }
+
+            // Change BGM
+            if (BGMPlayer.Instance != null && BGMPlayer.Instance.BGMData != null)
+            {
+                Debug.Log("Play");
+                AudioManager.Instance.PlayMusic(BGMPlayer.Instance.BGMData);
             }
 
             // Load scene location
