@@ -77,6 +77,17 @@ namespace Utilities
                 Debug.Log("[Game Initializer] Trying to reintialize main camera:" + GameManager.Instance.Camera);
             }
         }
+
+        public PlayerStateMachine SpawnPlayer(Vector3 position)
+        {
+            if (player != null && GameManager.Instance.Player == null)
+            {
+                return Instantiate(player, position, Quaternion.identity);
+                //GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform);
+            }
+
+            return null;
+        }
     }
 
 }

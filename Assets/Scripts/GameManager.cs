@@ -45,7 +45,6 @@ public class GameManager : Singleton<GameManager>
         Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>();
         foreach(Enemy enemy in enemies)
         {
-            Debug.Log("Pause enemy");
             enemy.Pause = true;
         }
 
@@ -60,6 +59,17 @@ public class GameManager : Singleton<GameManager>
         // Go to combat scene
         SceneTransitionManager.Instance.Combat = true;
         SceneTransitionManager.Instance.SwitchScene(SceneLocation.Combat);
+    }
+
+    public void ExitCombat()
+    {
+        // Enable back the UI
+        GameMenu.Instance.DisableGameMenu(false);
+        GameUIManager.Instance.DisableMenu(false);
+
+        // TODO: Load back the scene and put back the player to original position
+        SceneLocation data = GameStateManager.Instance.GetLastLocation();
+        SceneTransitionManager.Instance.SwitchScene(data);
     }
 
     protected override void AwakeSingleton()

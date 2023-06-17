@@ -6,6 +6,7 @@ using UI.Combat;
 using StateMachine.Player;
 using Utilities.Audio;
 using TopDownCamera;
+using GameDateTime;
 
 namespace Combat
 {
@@ -237,6 +238,7 @@ namespace Combat
         public void BackToScene()
         {
             // TODO: Load back to previous scene
+            GameManager.Instance.ExitCombat();
         }
 
         /// <summary>

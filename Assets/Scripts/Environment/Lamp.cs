@@ -10,6 +10,8 @@ namespace Environment
         {
             // Add listener to the game time manager to get call when game time is update
             GameTimeManager.Instance.AddListener(this);
+
+            ClockUpdate(GameTimeManager.Instance.GameTime);
         }
 
         private void OnDestroy()

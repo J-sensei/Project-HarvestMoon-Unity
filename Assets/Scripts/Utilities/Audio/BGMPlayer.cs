@@ -10,6 +10,9 @@ namespace Utilities.Audio
         /// </summary>
         public BGMData BGMData { get { return bgmData; } }
 
+        [SerializeField] private bool fade = true;
+        public bool Fade { get { return fade; } }
+
         protected override void AwakeSingleton()
         {
            

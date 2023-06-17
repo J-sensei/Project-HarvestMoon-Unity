@@ -13,12 +13,18 @@ public class GameStateManager : Singleton<GameStateManager>, ITimeChecker
 {
     private static TempSceneData _TempSceneData;
     public static TempSceneData TempSceneData { get { return _TempSceneData; } }
-    public bool _hasTempSceneData = false;
+    private bool _hasTempSceneData = false;
+    public bool HasTempSceneData { get { return _hasTempSceneData; } }
 
     public void SaveTempData(TempSceneData tempSceneData)
     {
         _TempSceneData = tempSceneData;
         _hasTempSceneData = true;
+    }
+
+    public SceneLocation GetLastLocation()
+    {
+        return _TempSceneData.location;
     }
 
     public TempSceneData LoadTempData()

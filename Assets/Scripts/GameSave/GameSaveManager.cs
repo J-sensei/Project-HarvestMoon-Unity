@@ -33,8 +33,10 @@ namespace GameSave
     [System.Serializable]
     public struct TempSceneData
     {
-        SceneLocation location;
-        Vector3 playerPosition;
+        public SceneLocation location;
+        public Vector3 playerPosition;
+
+        // TODO: Add enemy list
 
         public TempSceneData(SceneLocation location, Vector3 playerPosition)
         {

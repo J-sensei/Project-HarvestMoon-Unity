@@ -72,7 +72,7 @@ namespace Entity.Enemy
         {
             if (Pause)
             {
-                _agent.isStopped = true;
+                _agent.enabled = false;
                 _animator.speed = 0;
                 return;
             }

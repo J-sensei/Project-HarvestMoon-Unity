@@ -1,4 +1,5 @@
 using GameDateTime;
+using GameSave;
 using Item;
 using System;
 using System.Collections;
@@ -86,10 +87,11 @@ namespace SceneTransition
                 StartCoroutine(LoadSceneAsync(location.ToString())); // Start to load the scene after fade finish
             });
 
-            if(!Combat)
+            if(!Combat && GameManager.Instance.Player != null)
                 AddHoldObject(GameManager.Instance.Player.transform); // Add player instance to move it to other scene (DontDestroyObject)
 
-            GameManager.Instance.Player.Disable();
+            if(GameManager.Instance.Player != null)
+                GameManager.Instance.Player.Disable();
         }
 
         /// <summary>
@@ -134,7 +136,7 @@ namespace SceneTransition
             // Change BGM
             if (BGMPlayer.Instance != null && BGMPlayer.Instance.BGMData != null)
             {
-                AudioManager.Instance.PlayMusic(BGMPlayer.Instance.BGMData);
+                AudioManager.Instance.PlayMusic(BGMPlayer.Instance.BGMData, BGMPlayer.Instance.Fade);
             }
 
             // Load scene location
@@ -168,6 +170,12 @@ namespace SceneTransition
 
             if (!Combat)
             {
+                if (GameStateManager.Instance.HasTempSceneData)
+                {
+                    TempSceneData data = GameStateManager.Instance.LoadTempData();
+                    var player = gameInitializer.SpawnPlayer(data.playerPosition);
+                    player.Disable();
+                }
                 GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform); // Set Camera, TODO: Dont run this if enter to combat scene
                 GameTimeManager.Instance.PauseTime(false); // Resume the time pause
                 StartCoroutine(EnablePlayer());
