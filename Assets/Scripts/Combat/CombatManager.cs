@@ -8,6 +8,7 @@ using Utilities.Audio;
 using TopDownCamera;
 using GameDateTime;
 using Inventory;
+using Entity;
 
 namespace Combat
 {
@@ -76,7 +77,7 @@ namespace Combat
         [SerializeField] private BGMData victoryBGM;
         [SerializeField] private BGMData loseBGM;
 
-        public bool Start { get { return start; } set { start = value; } }
+        public bool CombatStart { get { return start; } set { start = value; } }
         public CombatCharacterBase Player { get { return player; } }
 
         private CombatCharacterBase _selectedCharacter;
@@ -133,6 +134,12 @@ namespace Combat
                 itemUI.SetActive(true);
                 itemUI.SetActive(false);
             }
+        }
+
+        private void Start()
+        {
+            // Load player status
+            ((PlayerStatus)player.CharacterStatus).Load(GameStateManager.Instance.LoadTempData().playerStatus);
         }
 
         public void Select(CombatCharacterBase character)

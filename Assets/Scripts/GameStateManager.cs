@@ -15,7 +15,7 @@ public class GameStateManager : Singleton<GameStateManager>, ITimeChecker
     private static TempSceneData _TempSceneData;
     public static TempSceneData TempSceneData { get { return _TempSceneData; } }
     private bool _hasTempSceneData = false;
-    public bool HasTempSceneData { get { return _hasTempSceneData; } }
+    public bool HasTempSceneData { get { return _hasTempSceneData; } set { _hasTempSceneData = value; } }
     private float _playTime = 0f;
     public float PlayTime
     {
@@ -94,15 +94,16 @@ public class GameStateManager : Singleton<GameStateManager>, ITimeChecker
 
     public TempSceneData LoadTempData()
     {
-        if (_hasTempSceneData)
-        {
-            _hasTempSceneData = false;
-            return _TempSceneData;
-        }
-        else
-        {
-            return new TempSceneData();
-        }
+        //if (_hasTempSceneData)
+        //{
+        //    _hasTempSceneData = false;
+        //    return _TempSceneData;
+        //}
+        //else
+        //{
+        //    return new TempSceneData();
+        //}
+        return _TempSceneData;
     }
 
     protected override void AwakeSingleton()

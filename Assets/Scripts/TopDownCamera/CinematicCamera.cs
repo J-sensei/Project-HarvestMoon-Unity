@@ -104,7 +104,7 @@ namespace TopDownCamera
                         {
                             _pause = false;
                             _finishIntro = true;
-                            CombatManager.Instance.Start = true;
+                            CombatManager.Instance.CombatStart = true;
                         });
                         return;
                     }
@@ -116,7 +116,7 @@ namespace TopDownCamera
                     topDownCamera.UpdateTargetAndInitialize(normal.target);
 
                     _finishIntro = true;
-                    CombatManager.Instance.Start = true;
+                    CombatManager.Instance.CombatStart = true;
                 }
             }
         }

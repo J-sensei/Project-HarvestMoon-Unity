@@ -1,3 +1,4 @@
+using Entity;
 using Farming;
 using GameDateTime;
 using Inventory;
@@ -37,13 +38,15 @@ namespace GameSave
     {
         public SceneLocation location;
         public Vector3 playerPosition;
+        public PlayerStatusSave playerStatus;
 
         // TODO: Add enemy list
 
-        public TempSceneData(SceneLocation location, Vector3 playerPosition)
+        public TempSceneData(SceneLocation location, Vector3 playerPosition, PlayerStatusSave playerStatus)
         {
             this.location = location;
             this.playerPosition = playerPosition;
+            this.playerStatus = playerStatus;
         }
     }
 

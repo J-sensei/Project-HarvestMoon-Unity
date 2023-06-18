@@ -32,7 +32,7 @@ namespace Entity
         /// <summary>
         /// Current hp
         /// </summary>
-        private int _hp;
+        protected int _hp;
 
         /// <summary>
         /// Maximum HP of the character
@@ -67,6 +67,11 @@ namespace Entity
         protected virtual void CharacterStatusAwake()
         {
 
+        }
+
+        public virtual void Load(CharacterStatusBase source)
+        {
+            _hp = source._hp; // Currently on hp is using
         }
 
         /// <summary>

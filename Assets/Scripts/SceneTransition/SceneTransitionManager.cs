@@ -1,3 +1,4 @@
+using Entity;
 using GameDateTime;
 using GameSave;
 using Item;
@@ -211,6 +212,9 @@ namespace SceneTransition
                     TempSceneData data = GameStateManager.Instance.LoadTempData();
                     var player = gameInitializer.SpawnPlayer(data.playerPosition);
                     player.Disable();
+                    player.GetComponent<PlayerStatus>().Load(data.playerStatus);
+
+                    GameStateManager.Instance.HasTempSceneData = false;
                 }
 
                 // Set Camera

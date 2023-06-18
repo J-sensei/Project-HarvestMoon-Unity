@@ -4,6 +4,8 @@ using Utilities;
 using SceneTransition;
 using GameSave;
 using Entity.Enemy;
+using Entity;
+using Combat;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -50,7 +52,7 @@ public class GameManager : Singleton<GameManager>
 
         // TODO: Save current scene && player position
         // Save temp data
-        TempSceneData temp = new(SceneTransitionManager.Instance.CurrentLocation, Player.transform.position);
+        TempSceneData temp = new(SceneTransitionManager.Instance.CurrentLocation, Player.transform.position, Player.GetComponent<PlayerStatus>().StatusSave);
         GameStateManager.Instance.SaveTempData(temp);
 
         GameMenu.Instance.DisableGameMenu(true);
@@ -66,6 +68,11 @@ public class GameManager : Singleton<GameManager>
         // Enable back the UI
         GameMenu.Instance.DisableGameMenu(false);
         GameUIManager.Instance.DisableMenu(false);
+
+        // Update player status
+        TempSceneData tempData = GameStateManager.Instance.LoadTempData();
+        tempData.playerStatus = ((PlayerStatus)CombatManager.Instance.Player.CharacterStatus).StatusSave;
+        GameStateManager.Instance.SaveTempData(tempData);
 
         // TODO: Load back the scene and put back the player to original position
         SceneLocation data = GameStateManager.Instance.GetLastLocation();
