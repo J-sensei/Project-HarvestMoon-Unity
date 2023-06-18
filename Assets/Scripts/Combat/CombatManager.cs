@@ -69,6 +69,7 @@ namespace Combat
 
         [Header("UI")]
         [SerializeField] private GameObject winUI;
+        [SerializeField] private GameObject loseUI;
         [SerializeField] private GameObject itemUI;
 
         [Header("Audio")]
@@ -107,12 +108,15 @@ namespace Combat
             if (winUI.activeSelf)
             {
                 winUI.SetActive(false);
+                loseUI.SetActive(false);
                 itemUI.SetActive(false);
             }
             else
             {
                 winUI.SetActive(true);
                 winUI.SetActive(false);
+                loseUI.SetActive(true);
+                loseUI.SetActive(false);
                 itemUI.SetActive(true);
                 itemUI.SetActive(false);
             }
@@ -132,6 +136,12 @@ namespace Combat
         private void Update()
         {
             if (!start) return;
+            if (player.Die)
+            {
+                CinematicCamera.Instance.LoseCamera();
+                start = false;
+                return;
+            }
 
             // Busy state, check when character is finish attacking
             if(state == CombatState.Busy)
@@ -241,6 +251,22 @@ namespace Combat
             //CinematicCamera.Instance.WinCamera();
         }
 
+        public void Lose()
+        {
+            // Hide battle ui
+            combatUI.SetActive(false);
+
+            // Show lose screen
+            Vector3 pos = loseUI.transform.position;
+            float endVal = pos.y;
+            pos.y += 100;
+            loseUI.gameObject.SetActive(true);
+            loseUI.transform.position = pos;
+            loseUI.transform.DOMoveY(endVal, 0.15f);
+
+            AudioManager.Instance.PlayMusic(loseBGM, false);
+        }
+
         public void BackToScene()
         {
             // TODO: Load back to previous scene
@@ -277,6 +303,11 @@ namespace Combat
                 return true;
             }
             return false;
+        }
+
+        public void Skip()
+        {
+            state = CombatState.DecidingTurn;
         }
 
         /// <summary>

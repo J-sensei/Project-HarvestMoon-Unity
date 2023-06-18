@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623b09f2bc7652b47b4864cb5e20c704, type: 3}
+  m_Name: Lose BGM
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 8957483ea18457e4ea7256c88d46b465, type: 3}
+  id: 5
+  bgmName: Lose BGM
+  startTime: 8.65
+  endTime: 40.65
+  initialSkip: 0

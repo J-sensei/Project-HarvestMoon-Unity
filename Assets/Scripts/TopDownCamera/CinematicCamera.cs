@@ -143,6 +143,29 @@ namespace TopDownCamera
                 return;
             }
         }
+
+        public void LoseCamera()
+        {
+            if (win.fade)
+            {
+                _pause = true;
+                FadeScreenManager.Instance.FadePanel.FadeDuration = 1.25f;
+                FadeScreenManager.Instance.FadePanel.OnFinish.AddListener(() =>
+                {
+                    topDownCamera.Height = win.height;
+                    topDownCamera.Distance = win.distance;
+                    topDownCamera.Angle = win.angle;
+                    _timer = win.stayTime;
+                    topDownCamera.UpdateTargetAndInitialize(win.target);
+                    CombatManager.Instance.Lose();
+                });
+                FadeScreenManager.Instance.FadePanel.FadeOutIn(() =>
+                {
+                    _win = true;
+                });
+                return;
+            }
+        }
     }
 
 }
