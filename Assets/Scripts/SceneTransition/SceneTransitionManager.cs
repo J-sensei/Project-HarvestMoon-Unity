@@ -140,9 +140,17 @@ namespace SceneTransition
                 GameLoadSlot.RequestLoad = false;
 
                 if (GameManager.Instance.Player == null)
-                    OnPlayerSpawn.AddListener(() => GameLoadSlot.RequestLoadFile(GameLoadSlot.LoadFilename));
+                {
+                    OnPlayerSpawn.AddListener(() =>
+                    {
+                        GameLoadSlot.RequestLoadFile(GameLoadSlot.LoadFilename);
+                        GameTimeManager.Instance.PauseTime(false);
+                    });
+                }
                 else
+                {
                     GameLoadSlot.RequestLoadFile(GameLoadSlot.LoadFilename);
+                }
             }
 
             if (!Combat)

@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour
 
     [Header("Reset Target")]
     [SerializeField] private GameButton settingBackButton;
+    [SerializeField] private GameButton loadGameBackButton;
     [SerializeField] private GameLoadSlot[] loadSlots;
 
     [Header("Tween")]
@@ -120,6 +121,7 @@ public class MainMenu : MonoBehaviour
         {
             loadSlots[i].Reset();
         }
+        loadGameBackButton?.ResetUI();
     }
 
     public void QuitGame()
