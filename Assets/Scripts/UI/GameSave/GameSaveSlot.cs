@@ -14,7 +14,9 @@ namespace UI.GameSave
             // Save Game
             //UnityEngine.Debug.Log(GameSaveManager.Instance.ExportSaveData());
             GameSaveData saveData = GameSaveManager.Instance.ExportSaveData();
-            GameSaveManager.Instance.Save(saveData);
+            GameSaveManager.Instance.Save(saveData, Filename);
+
+            LoadSaveDetails();
         }
     }
 }

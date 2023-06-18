@@ -2,6 +2,7 @@ using Farming;
 using GameDateTime;
 using GameSave;
 using SceneTransition;
+using System;
 using System.Collections;
 using UnityEngine;
 using Utilities;
@@ -15,6 +16,71 @@ public class GameStateManager : Singleton<GameStateManager>, ITimeChecker
     public static TempSceneData TempSceneData { get { return _TempSceneData; } }
     private bool _hasTempSceneData = false;
     public bool HasTempSceneData { get { return _hasTempSceneData; } }
+    private float _playTime = 0f;
+    public float PlayTime
+    {
+        get
+        {
+            return _playTime;
+        }
+    }
+    public string PlayTimeString
+    {
+        get
+        {
+            TimeSpan timeSpan = TimeSpan.FromSeconds(_playTime);
+
+            return ((int)timeSpan.TotalHours).ToString("D2") + ":" + timeSpan.Minutes.ToString("D2") + ":" + timeSpan.Seconds.ToString("D2");
+        }
+    }
+    public static string GetPlayTimeString(float playtime)
+    {
+        TimeSpan timeSpan = TimeSpan.FromSeconds(playtime);
+
+        return ((int)timeSpan.TotalHours).ToString("D2") + ":" + timeSpan.Minutes.ToString("D2") + ":" + timeSpan.Seconds.ToString("D2");
+    }
+
+    public Action OnPlayTimeRecord { get; set; }
+    private Coroutine _recordTimeCoroutine;
+
+    private IEnumerator RecordTimeRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            _playTime += 1;
+            OnPlayTimeRecord?.Invoke();
+            Debug.Log("Playtime: " + PlayTimeString);
+        }
+    }
+
+    public void StopRecordTime()
+    {
+        if(_recordTimeCoroutine != null)
+        {
+            StopCoroutine(_recordTimeCoroutine);
+        }
+    }
+
+    public void RecordTime()
+    {
+        _playTime = 0f;
+        if(_recordTimeCoroutine != null)
+        {
+            StopCoroutine(_recordTimeCoroutine);
+        }
+        _recordTimeCoroutine = StartCoroutine(RecordTimeRoutine());
+    }
+
+    public void LoadRecordTime(float time)
+    {
+        _playTime = time;
+        if (_recordTimeCoroutine != null)
+        {
+            StopCoroutine(_recordTimeCoroutine);
+        }
+        StartCoroutine(RecordTimeRoutine());
+    }
 
     public void SaveTempData(TempSceneData tempSceneData)
     {
@@ -60,9 +126,11 @@ public class GameStateManager : Singleton<GameStateManager>, ITimeChecker
     private IEnumerator Initialize()
     {
         yield return new WaitForEndOfFrame();
+
+        // Only happen when game fresh start
         if(GameTimeManager.Instance != null && !GameTimeManager.Instance.ExistListener(this))
         {
-            Debug.Log("Game State Manager subcribe to game time manager");
+            Debug.Log("initialize gamestatemanager");
             GameTimeManager.Instance.AddListener(this);
         }
     }

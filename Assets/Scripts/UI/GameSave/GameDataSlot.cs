@@ -3,21 +3,40 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Utilities;
 using DG.Tweening;
+using TMPro;
+using GameSave;
 
 namespace UI.GameSave
 {
     public abstract class GameDataSlot : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
     {
+        [Header("Configuration")]
+        [SerializeField] private string filename;
+        protected string Filename { get { return filename; } }
+
+        [Header("Color")]
         [SerializeField] private Color idleColor = Color.white;
         [SerializeField] private Color hoverColor = Color.white;
         [SerializeField] private float tweenDuration = 0.15f;
 
+        [Header("Reference")]
         [SerializeField] private Image image;
+
+        [Header("Text Details")]
+        [Tooltip("Title of the save including save name and order number")]
+        [SerializeField] private TextMeshProUGUI title;
+        [Tooltip("In game date time")]
+        [SerializeField] private TextMeshProUGUI dateTime;
+        [Tooltip("Playtime")]
+        [SerializeField] private TextMeshProUGUI playTime;
+
         private void Awake()
         {
             if(image == null)
                 image = GetComponent<Image>();
         }
+
+        public void SetFilename(string filename) => this.filename = filename;
 
         public virtual void OnPointerClick(PointerEventData eventData)
         {
@@ -39,6 +58,23 @@ namespace UI.GameSave
         {
             if(image != null)
                 image.color = idleColor;
+        }
+
+        public void LoadSaveDetails()
+        {
+            if (GameSaveManager.Instance.SaveExist(filename))
+            {
+                GameSaveData data = GameSaveManager.Instance.Load(filename);
+                title.text = filename;
+                dateTime.text = data.gameTime.Preview();
+                playTime.text = "Playtime: " + GameStateManager.GetPlayTimeString(data.playtime);
+            }
+            else
+            {
+                title.text = "Empty Save File";
+                dateTime.text = "Date Time";
+                playTime.text = "Playtime: 00:00:00";
+            }
         }
     }
 }

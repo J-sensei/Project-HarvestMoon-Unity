@@ -144,6 +144,9 @@ MonoBehaviour:
   hoverColor: {r: 0.6666667, g: 0.6509804, b: 0.6156863, a: 1}
   tweenDuration: 0.15
   image: {fileID: 2271505074868477654}
+  title: {fileID: 2271505075709921667}
+  dateTime: {fileID: 2271505075640198209}
+  playTime: {fileID: 2271505075331947179}
 --- !u!1 &2271505075331947191
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,10 +14,16 @@ namespace UI.GameSave
         [SerializeField] private float _tweenMoveDistance = 40f;
         [Tooltip("Tween duration")]
         [SerializeField] private float _duration = 0.15f;
+        [SerializeField] private GameSaveSlot[] saveSlots;
         protected override void AwakeSingleton()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
             _originalPosition = transform.position;
+
+            for (int i = 0; i < saveSlots.Length; i++)
+            {
+                saveSlots[i].SetFilename("Save" + (i + 1).ToString()); // Load the save details
+            }
         }
 
         public void ToggleGameMenu(bool v)
@@ -44,6 +50,11 @@ namespace UI.GameSave
             }
             else // Open
             {
+                for(int i = 0; i < saveSlots.Length; i++)
+                {
+                    saveSlots[i].LoadSaveDetails(); // Load the save details
+                }
+
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.menuOpen, 1);
                 GameManager.Instance.Player.Disable();
                 GameTimeManager.Instance.PauseTime(true); // Stop time ticking

@@ -25,6 +25,10 @@ namespace UI
         private void Awake()
         {
             loadGameView.gameObject.SetActive(false);
+            for(int i = 0; i < saveSlots.Length; i++)
+            {
+                saveSlots[i].SetFilename("Save" + (i + 1).ToString());
+            }
         }
 
         public void OpenMasterView()
@@ -54,6 +58,10 @@ namespace UI
             loadGameView.DOFade(1f, tweenDuration);
 
             // TODO: Load preview save
+            for (int i = 0; i < saveSlots.Length; i++)
+            {
+                saveSlots[i].LoadSaveDetails();
+            }
 
             ResetMasterView();
         }
@@ -89,6 +97,7 @@ namespace UI
         {
             GameMenu.Instance.DisableShortcuts();
             GameMenu.Instance.ToggleGameMenu(false); // Makesure game menu are close
+            GameStateManager.Instance.StopRecordTime();
             SceneTransitionManager.Instance.DontEnablePlayer = true;
             SceneTransitionManager.Instance.SwitchScene(SceneLocation.MainMenu);
         }

@@ -16,6 +16,10 @@ namespace UI.GameSave
             if (eventData.button != InputButton.Left) return;
             base.OnPointerClick(eventData);
 
+            if (!GameSaveManager.Instance.SaveExist(Filename))
+            {
+                return;
+            }
             GameMenu.Instance.ToggleGameMenu(false);
             FadeScreenManager.Instance.Loading(true);
             GameManager.Instance.Player.Disable();

@@ -132,6 +132,11 @@ namespace GameDateTime
             return hrs.ToString("00") + ":" + min.ToString("00") + " " + prefix;
         }
 
+        public string Preview()
+        {
+            return "Year " + _year + " Day" + _day + " " + _currentSeason.ToString() + " " + TimeString();
+        }
+
         #region Convertion
         public static int HoursToMinutes(int hours)
         {

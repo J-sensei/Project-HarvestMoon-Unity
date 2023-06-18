@@ -52,6 +52,7 @@ public class MainMenu : MonoBehaviour
             GameMenu.Instance.EnableShortcuts();
         }
         FarmLandSaveManager.Reset();
+        GameStateManager.Instance.RecordTime();
         
         SceneTransitionManager.Instance.SwitchScene(SceneLocation.Home);
     }

@@ -17,13 +17,15 @@ namespace GameSave
         public ItemSaveData[] items;
         public ItemSaveData holdingSlot;
         public GameTime gameTime;
+        public float playtime;
 
-        public GameSaveData(FarmBinarySaveData[] farmSaveDatas, ItemSaveData[] items, ItemSaveData holdingSlot, GameTime gameTime)
+        public GameSaveData(FarmBinarySaveData[] farmSaveDatas, ItemSaveData[] items, ItemSaveData holdingSlot, GameTime gameTime, float playtime)
         {
             this.farmSaveDatas = farmSaveDatas;
             this.items = items;
             this.holdingSlot = holdingSlot;
             this.gameTime = gameTime;
+            this.playtime = playtime;
         }
     }
 
@@ -102,6 +104,23 @@ namespace GameSave
             Debug.Log("[Game Save Manager] Game Save to " + path);
         }
 
+        public bool SaveExist(string filename, GameSaveLoadType type = GameSaveLoadType.BINARY)
+        {
+            string path = Application.persistentDataPath + FOLDER + "/" + filename;
+            if (type == GameSaveLoadType.JSON)
+                path += JSON_EXTENSION;
+            else
+                path += BINARY_EXTENSION;
+            if (File.Exists(path))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public GameSaveData Load(string filename = null, GameSaveLoadType type = GameSaveLoadType.BINARY)
         {
             GameSaveData saveData;
@@ -144,6 +163,10 @@ namespace GameSave
             return saveData;
         }
 
+        /// <summary>
+        /// Get the game save data of the current game state
+        /// </summary>
+        /// <returns></returns>
         public GameSaveData ExportSaveData()
         {
             FarmBinarySaveData[] farmSaves = null;
@@ -155,8 +178,9 @@ namespace GameSave
             ItemSaveData holdingSlot = GameSaveManager.SerializeData(InventoryManager.Instance.HoldingItemSlot);
             Debug.Log(items.Length);
             GameTime gameTime = GameTimeManager.Instance.GameTime;
+            float playtime = GameStateManager.Instance.PlayTime;
 
-            GameSaveData saveData = new GameSaveData(farmSaves, items, holdingSlot, gameTime);
+            GameSaveData saveData = new GameSaveData(farmSaves, items, holdingSlot, gameTime, playtime);
             return saveData;
         }
 
