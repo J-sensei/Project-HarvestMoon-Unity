@@ -38,9 +38,9 @@ namespace UI.Tab.Content
         public override void Open()
         {
             base.Open();
-            characterImage.transform.position = new Vector3(_originalPositions[0].x + tweenDistance, _originalPositions[0].y, _originalPositions[0].z);
-            characterBackground.transform.position = new Vector3(_originalPositions[1].x + tweenDistance, _originalPositions[1].y, _originalPositions[1].z);
-            titleText.transform.position = new Vector3(_originalPositions[2].x, _originalPositions[2].y + titleTweenDistance, _originalPositions[2].z);
+            characterImage.transform.localPosition = new Vector3(_originalPositions[0].x + tweenDistance, _originalPositions[0].y, _originalPositions[0].z);
+            characterBackground.transform.localPosition = new Vector3(_originalPositions[1].x + tweenDistance, _originalPositions[1].y, _originalPositions[1].z);
+            titleText.transform.localPosition = new Vector3(_originalPositions[2].x, _originalPositions[2].y + titleTweenDistance, _originalPositions[2].z);
 
             characterImage.transform.DOLocalMove(_originalPositions[0], tweenDuration);
             characterBackground.transform.DOLocalMove(_originalPositions[1], tweenDuration);
@@ -62,7 +62,10 @@ namespace UI.Tab.Content
 
             _canvasGroups[0].alpha = 1f;
             _canvasGroups[1].alpha = 1f;
-            _canvasGroups[0].DOFade(0f, tweenDuration).OnComplete(() => base.Close());
+            _canvasGroups[0].DOFade(0f, tweenDuration).OnComplete(() =>
+            {
+                base.Close();
+            });
             _canvasGroups[1].DOFade(0f, tweenDuration);
             _canvasGroups[2].DOFade(0f, tweenDuration);
         }

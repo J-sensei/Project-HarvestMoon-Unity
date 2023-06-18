@@ -46,14 +46,23 @@ public class GameStateManager : Singleton<GameStateManager>, ITimeChecker
     }
 
     /// <summary>
+    /// To ensure game state manager is subcribe to
+    /// </summary>
+    public void Ensure()
+    {
+        StartCoroutine(Initialize());
+    }   
+
+    /// <summary>
     /// Make sure the game time manager is initialized before subcribe to the ITimeChecker
     /// </summary>
     /// <returns></returns>
     private IEnumerator Initialize()
     {
         yield return new WaitForEndOfFrame();
-        if(GameTimeManager.Instance != null)
+        if(GameTimeManager.Instance != null && !GameTimeManager.Instance.ExistListener(this))
         {
+            Debug.Log("Game State Manager subcribe to game time manager");
             GameTimeManager.Instance.AddListener(this);
         }
     }

@@ -22,7 +22,7 @@ namespace UI.Tab.Content
         {
             base.Open();
 
-            view.transform.position = new Vector3(_viewPos.x, _viewPos.y + tweenDistance, _viewPos.z);
+            view.transform.localPosition = new Vector3(_viewPos.x, _viewPos.y + tweenDistance, _viewPos.z);
             view.transform.DOLocalMove(_viewPos, tweenDuration);
 
             view.alpha = 0f;

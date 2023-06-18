@@ -60,6 +60,11 @@ namespace GameDateTime
         private float skyboxTransitionTime = 1f;
         private float skyboxTimer = 0f;
 
+        public void Reset()
+        {
+            gameTime = new(0, Season.Spring, 1, 6, 0); // 6am
+        }
+
         protected override void AwakeSingleton()
         {
             gameTime = new(0, Season.Spring, 1, 6, 0); // 6am
@@ -205,6 +210,10 @@ namespace GameDateTime
         public void RemoveListener(ITimeChecker listener)
         {
             timeCheckerListeners.Remove(listener);
+        }
+        public bool ExistListener(ITimeChecker listener)
+        {
+            return timeCheckerListeners.Exists(x => x.Equals(listener));
         }
 
         public void UpdateListener()

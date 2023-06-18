@@ -50,6 +50,12 @@ namespace Inventory
             InventoryUIManager.Instance.UpdateInventoryUI();
         }
 
+        public void Reset()
+        {
+            _itemSlots = new ItemSlot[itemSlot];
+            _holdingItemSlot = null;
+        }
+
         public ItemData GetHoldingItem()
         {
             if (_holdingItemSlot == null) 

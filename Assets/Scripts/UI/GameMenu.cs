@@ -40,6 +40,16 @@ public class GameMenu : Singleton<GameMenu>
         _inputControls.UI.Enable();
     }
 
+    public void DisableShortcuts()
+    {
+        _inputControls.UI.Disable();
+    }
+
+    public void EnableShortcuts()
+    {
+        _inputControls.UI.Enable();
+    }
+
     private void ToggleCharacter(InputAction.CallbackContext context) => ToggleGameMenu(!gameObject.activeSelf, 0);
     private void ToggleInventory(InputAction.CallbackContext context) => ToggleGameMenu(!gameObject.activeSelf, 1);
     private void ToggleSetting(InputAction.CallbackContext context) => ToggleGameMenu(!gameObject.activeSelf, 2);

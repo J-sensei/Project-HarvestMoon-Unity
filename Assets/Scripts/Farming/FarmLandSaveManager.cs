@@ -30,6 +30,11 @@ namespace Farming
             }
         }
 
+        public static void Reset()
+        {
+            SaveData = null;
+        }
+
         [Header("Farm Lands")]
         [SerializeField] private GameObject farm;
         [SerializeField] private List<FarmLand> _farmLands = new();

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UI.Tab.Content;
+using UI.Tooltip;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utilities;
@@ -51,6 +52,7 @@ namespace UI.Tab
             if (_selectedIndex > contents.Count - 1) _selectedIndex = 0;
 
             SetTab(_selectedIndex);
+            TooltipManager.Instance.Hide();
         }
         private void OnTabLeft(InputAction.CallbackContext context)
         {
@@ -59,6 +61,7 @@ namespace UI.Tab
             if (_selectedIndex < 0) _selectedIndex = contents.Count - 1;
 
             SetTab(_selectedIndex);
+            TooltipManager.Instance.Hide();
         }
 
         private void OnEnable()

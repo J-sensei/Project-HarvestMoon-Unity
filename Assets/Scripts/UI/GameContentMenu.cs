@@ -1,4 +1,5 @@
 using DG.Tweening;
+using SceneTransition;
 using UI.GameSave;
 using UnityEngine;
 
@@ -82,6 +83,19 @@ namespace UI
 
             if(loadGameView != null)
                 loadViewCloseButton.ResetUI();
+        }
+
+        public void MainMenu()
+        {
+            GameMenu.Instance.DisableShortcuts();
+            GameMenu.Instance.ToggleGameMenu(false); // Makesure game menu are close
+            SceneTransitionManager.Instance.DontEnablePlayer = true;
+            SceneTransitionManager.Instance.SwitchScene(SceneLocation.MainMenu);
+        }
+
+        public void QuitGame()
+        {
+            Application.Quit();
         }
     }
 }

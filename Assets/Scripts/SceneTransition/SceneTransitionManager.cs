@@ -34,6 +34,7 @@ namespace SceneTransition
         /// Determine if scene transition to go to battle scene
         /// </summary>
         public bool Combat { get; set; } = false;
+        public bool DontEnablePlayer { get; set; } = false;
 
         [Header("Indoor locations")]
         [SerializeField] private SceneLocation[] indoorLocations = { SceneLocation.Home };
@@ -124,6 +125,10 @@ namespace SceneTransition
 
         public void OnLocationLoad(Scene scene, LoadSceneMode mode)
         {
+            if(GameStateManager.Instance != null)
+            {
+                GameStateManager.Instance.Ensure();
+            }
             if (!Combat)
             {
                 if (gameInitializer != null)
@@ -206,7 +211,9 @@ namespace SceneTransition
                 if (GameTimeManager.Instance != null)
                 {
                     GameTimeManager.Instance.PauseTime(false); // Resume the time pause
-                    StartCoroutine(EnablePlayer());
+
+                    if(!DontEnablePlayer)
+                        StartCoroutine(EnablePlayer());
                 }
             }
 
@@ -216,6 +223,7 @@ namespace SceneTransition
                 GameTimeManager.Instance.LoadSunTransform(); // Update sun transform
 
             Combat = false;
+            DontEnablePlayer = false;
         }
 
         /// <summary>
