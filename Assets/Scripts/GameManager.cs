@@ -79,6 +79,18 @@ public class GameManager : Singleton<GameManager>
         SceneTransitionManager.Instance.SwitchScene(data);
     }
 
+    /// <summary>
+    /// GO back to main menu
+    /// </summary>
+    public void MainMenu()
+    {
+        GameMenu.Instance.DisableShortcuts();
+        GameMenu.Instance.ToggleGameMenu(false); // Makesure game menu are close
+        GameStateManager.Instance.StopRecordTime();
+        SceneTransitionManager.Instance.DontEnablePlayer = true;
+        SceneTransitionManager.Instance.SwitchScene(SceneLocation.MainMenu);
+    }
+
     protected override void AwakeSingleton()
     {
         if (player == null)

@@ -348,6 +348,13 @@ namespace Combat
 
             return false;
         }
+
+        public void MainMenu()
+        {
+            GameMenu.Instance.DisableGameMenu(false); // TO display back the game menu
+            GameUIManager.Instance.DisableMenu(false);
+            GameManager.Instance.MainMenu();
+        }
     }
 
 }

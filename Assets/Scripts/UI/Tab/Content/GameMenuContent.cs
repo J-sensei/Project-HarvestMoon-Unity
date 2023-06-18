@@ -109,11 +109,12 @@ namespace UI.Tab.Content
 
         public void MainMenu()
         {
-            GameMenu.Instance.DisableShortcuts();
-            GameMenu.Instance.ToggleGameMenu(false); // Makesure game menu are close
-            GameStateManager.Instance.StopRecordTime();
-            SceneTransitionManager.Instance.DontEnablePlayer = true;
-            SceneTransitionManager.Instance.SwitchScene(SceneLocation.MainMenu);
+            //GameMenu.Instance.DisableShortcuts();
+            //GameMenu.Instance.ToggleGameMenu(false); // Makesure game menu are close
+            //GameStateManager.Instance.StopRecordTime();
+            //SceneTransitionManager.Instance.DontEnablePlayer = true;
+            //SceneTransitionManager.Instance.SwitchScene(SceneLocation.MainMenu);
+            GameManager.Instance.MainMenu();
         }
 
         public void QuitGame()

@@ -51,5 +51,11 @@ namespace Entity
 
             GameUIManager.Instance.UpdatePlayerStatusUI(this);
         }
+
+        public void Reset()
+        {
+            _hp = MaxHP;
+            _stamina = maxStamina;
+        }
     }
 }

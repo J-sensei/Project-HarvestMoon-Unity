@@ -260,6 +260,7 @@ namespace SceneTransition
         {
             yield return new WaitForSeconds(0.1f);
             GameManager.Instance.Player.Enable();
+            GameUIManager.Instance.UpdatePlayerStatusUI(GameManager.Instance.Player.PlayerStatus);
             //Debug.Log("Player Pos: " + GameManager.Instance.Player.transform.position);
         }
     }

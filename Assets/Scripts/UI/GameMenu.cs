@@ -63,7 +63,7 @@ public class GameMenu : Singleton<GameMenu>
         {
             InventoryUIManager.Instance.ResetInventorySlots();
             AudioManager.Instance.PlaySFX(AudioManager.Instance.menuClose, 1);
-            GameManager.Instance.Player.Enable();
+            GameManager.Instance.Player?.Enable();
             GameTimeManager.Instance.PauseTime(false); // Resume time ticking
             tabGroup.Close();
             onClose?.Invoke();

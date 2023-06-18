@@ -62,6 +62,12 @@ public class MainMenu : MonoBehaviour
         }
         FarmLandSaveManager.Reset();
         GameStateManager.Instance.RecordTime();
+
+        // When player already started the game before, make sure to reset the hp and stamina back to normal when start a new game
+        if(GameManager.Instance.Player != null)
+        {
+            GameManager.Instance.Player.PlayerStatus.Reset();
+        }
         
         SceneTransitionManager.Instance.SwitchScene(SceneLocation.Home);
     }
