@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UI.GameSave;
 using UI.UIScreen;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -129,6 +130,14 @@ namespace SceneTransition
             {
                 GameStateManager.Instance.Ensure();
             }
+
+            // Request Load
+            if (GameLoadSlot.RequestLoad)
+            {
+                GameLoadSlot.RequestLoad = false;
+                GameLoadSlot.RequestLoadFile(GameLoadSlot.LoadFilename);
+            }
+
             if (!Combat)
             {
                 if (gameInitializer != null)
