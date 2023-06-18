@@ -12,10 +12,11 @@ namespace UI.GameSave
         [SerializeField] private Color hoverColor = Color.white;
         [SerializeField] private float tweenDuration = 0.15f;
 
-        private Image image;
+        [SerializeField] private Image image;
         private void Awake()
         {
-            image = GetComponent<Image>();
+            if(image == null)
+                image = GetComponent<Image>();
         }
 
         public virtual void OnPointerClick(PointerEventData eventData)
@@ -36,7 +37,8 @@ namespace UI.GameSave
 
         public void Reset()
         {
-            image.color = idleColor;
+            if(image != null)
+                image.color = idleColor;
         }
     }
 }

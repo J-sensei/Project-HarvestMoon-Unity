@@ -6,6 +6,7 @@ using Utilities;
 using DG.Tweening;
 using GameDateTime;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class GameMenu : Singleton<GameMenu>
 {
@@ -23,6 +24,8 @@ public class GameMenu : Singleton<GameMenu>
     private Vector3 _originalPosition;
     private float _duration = 0.15f;
     private float _tweenMoveDistance = 40f;
+
+    [SerializeField] private UnityEvent onClose;
     protected override void AwakeSingleton()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
@@ -53,6 +56,7 @@ public class GameMenu : Singleton<GameMenu>
             GameManager.Instance.Player.Enable();
             GameTimeManager.Instance.PauseTime(false); // Resume time ticking
             tabGroup.Close();
+            onClose?.Invoke();
 
             // Tween
             Vector3 pos = _originalPosition;

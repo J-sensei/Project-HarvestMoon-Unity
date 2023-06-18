@@ -15,7 +15,7 @@ namespace UI.Tab.Content
 
         private void Awake()
         {
-            _viewPos = view.transform.position;
+            _viewPos = view.transform.localPosition;
         }
 
         public override void Open()
@@ -23,7 +23,7 @@ namespace UI.Tab.Content
             base.Open();
 
             view.transform.position = new Vector3(_viewPos.x, _viewPos.y + tweenDistance, _viewPos.z);
-            view.transform.DOMove(_viewPos, tweenDuration);
+            view.transform.DOLocalMove(_viewPos, tweenDuration);
 
             view.alpha = 0f;
             view.DOFade(1f, tweenDuration);
@@ -31,7 +31,7 @@ namespace UI.Tab.Content
 
         public override void Close()
         {
-            view.transform.DOMove(new Vector3(_viewPos.x, _viewPos.y + tweenDistance, _viewPos.z), tweenDuration);
+            view.transform.DOLocalMove(new Vector3(_viewPos.x, _viewPos.y + tweenDistance, _viewPos.z), tweenDuration);
 
             view.alpha = 1f;
             view.DOFade(0f, tweenDuration).OnComplete(() => base.Close());

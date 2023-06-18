@@ -24,17 +24,18 @@ namespace UI.Tab
         private TabButton _selectedTab;
         private int _selectedIndex;
 
-        private void Start()
-        {
-            //for(int i = 0; i < contents.Count; i++)
-            //{
-            //    if (contents[i].activeSelf)
-            //    {
-            //        OnTabSelect(_tabButtons[i]);
-            //        break;
-            //    }
-            //}
-        }
+        //private void Start()
+        //{
+        //    for (int i = 0; i < contents.Count; i++)
+        //    {
+        //        if (!contents[i].gameObject.activeSelf)
+        //        {
+        //            contents[i].gameObject.SetActive(true);
+        //            contents[i].gameObject.SetActive(false);
+        //            break;
+        //        }
+        //    }
+        //}
 
         private void Awake()
         {
