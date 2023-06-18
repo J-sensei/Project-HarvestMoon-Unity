@@ -13,7 +13,7 @@ namespace Utilities
         /// Early time to set schedule play to loop the BGM (in seconds)
         /// </summary>
         private const double SCHEDULE_EARLY = 5f;
-        private const float FADE_DURATION = 2f;
+        private const float FADE_DURATION = 0.8f;
 
         [Header("Audio Sources")]
         [Tooltip("Audio Source for BGM")]

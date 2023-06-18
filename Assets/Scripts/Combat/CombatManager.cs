@@ -93,6 +93,19 @@ namespace Combat
             }
 
             // TODO: Instantiate combat characters
+            // Random decide delete 1 - 2 enemy
+            int rand = Random.Range(0, 3); // Delete 0, 1 or 2 enemy when battle start
+            Debug.Log("Rand: " + rand);
+            for(int i = 0; i < rand; i++)
+            {
+                // Destroy
+                Destroy(enemies[enemies.Count - 1].gameObject);
+                Destroy(enemyActionUIs[enemyActionUIs.Count - 1].gameObject);
+
+                // Remove
+                enemies.RemoveAt(enemies.Count - 1);
+                enemyActionUIs.RemoveAt(enemyActionUIs.Count - 1);
+            }
 
             // Create CharacterTurns
             characterTurns.Add(new(player, playerActionUI, player.Type));

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623b09f2bc7652b47b4864cb5e20c704, type: 3}
   m_Name: Main Menu BGM
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 9ed84a28f30b7d042a82ea63feadf247, type: 3}
+  clip: {fileID: 8300000, guid: 14c05991c0673bf40a53fefcfef5d2c5, type: 3}
   id: 6
   bgmName: Battle Win BGM
-  startTime: 22.6975
-  endTime: 55.4
+  startTime: 1.15
+  endTime: 86.125
   initialSkip: 0

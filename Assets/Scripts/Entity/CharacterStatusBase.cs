@@ -104,8 +104,8 @@ namespace Entity
         {
             if (damageUI != null)
             {
-                DamageUI d = Instantiate(damageUI, transform.position, Quaternion.identity);
-                d.Play(transform.position, damage);
+                DamageUI d = Instantiate(damageUI, defender.transform.position, Quaternion.identity);
+                d.Play(defender.transform.position, damage);
             }
 
             CombatManager.Instance.Camera.Shake();

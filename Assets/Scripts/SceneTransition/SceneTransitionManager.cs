@@ -78,7 +78,9 @@ namespace SceneTransition
                 Destroy(item.gameObject);
             }
 
-            GameTimeManager.Instance.PauseTime(true); // Pause the time when loading scene
+            if(GameTimeManager.Instance != null)
+                GameTimeManager.Instance.PauseTime(true); // Pause the time when loading scene
+
             FadeScreenManager.Instance.FadePanel.FadeDuration = 0.5f;
             // Fade out transition
             FadeScreenManager.Instance.FadePanel.FadeOut(() =>
@@ -122,15 +124,25 @@ namespace SceneTransition
 
         public void OnLocationLoad(Scene scene, LoadSceneMode mode)
         {
-            if(!Combat)
-                gameInitializer.Ensure(); // To ensure game initialize properly
+            if (!Combat)
+            {
+                if (gameInitializer != null)
+                    gameInitializer.Ensure(); // To ensure game initialize properly
+                else
+                    Debug.LogWarning("[Screen Transition Manager] Game Initializer is null");
+            }
 
             // Fade screen on start
             if (FadeScreenManager.Instance.FadePanel.FadeOnStart)
             {
                 FadeScreenManager.Instance.FadePanel.FadeDuration = 0.5f;
                 FadeScreenManager.Instance.FadePanel.OnStart.AddListener(() => FadeScreenManager.Instance.Loading(false)); // Scene loading start
-                FadeScreenManager.Instance.FadePanel.FadeIn(() => { GameTimeManager.Instance.LoadSunTransform(); });
+                FadeScreenManager.Instance.FadePanel.FadeIn(() => {
+                    if (GameTimeManager.Instance != null)
+                        GameTimeManager.Instance.LoadSunTransform();
+                    else
+                        Debug.LogWarning("[Scene Transition Manager] Game Time Manager is null");
+                });
             }
 
             // Change BGM
@@ -144,9 +156,19 @@ namespace SceneTransition
             SceneLocation location = (SceneLocation)Enum.Parse(typeof(SceneLocation), scene.name);
             if (oldLocation == location) return; // If location same then no need to do anything
 
+
+            Transform startPoint = null;
+            if (StartLocationManager.Instance != null)
+            {
+                startPoint = StartLocationManager.Instance.GetTransform(oldLocation);
+            }
+            else
+            {
+                Debug.LogWarning("[Screen Transition Manager] Start Location Manager is null");
+            }
+
             // Change player position unload it
-            Transform startPoint = StartLocationManager.Instance.GetTransform(oldLocation);
-            if(startPoint != null)
+            if (startPoint != null)
             {
                 for (int i = 0; i < _holdingObjects.Count; i++)
                 {
@@ -176,13 +198,22 @@ namespace SceneTransition
                     var player = gameInitializer.SpawnPlayer(data.playerPosition);
                     player.Disable();
                 }
-                GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform); // Set Camera, TODO: Dont run this if enter to combat scene
-                GameTimeManager.Instance.PauseTime(false); // Resume the time pause
-                StartCoroutine(EnablePlayer());
+
+                // Set Camera
+                if(GameManager.Instance.Camera != null)
+                    GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform); // Set Camera, TODO: Dont run this if enter to combat scene
+                // Set Game time
+                if (GameTimeManager.Instance != null)
+                {
+                    GameTimeManager.Instance.PauseTime(false); // Resume the time pause
+                    StartCoroutine(EnablePlayer());
+                }
             }
 
             _currentLocation = location;
-            GameTimeManager.Instance.LoadSunTransform(); // Update sun transform
+
+            if (GameTimeManager.Instance != null)
+                GameTimeManager.Instance.LoadSunTransform(); // Update sun transform
 
             Combat = false;
         }
