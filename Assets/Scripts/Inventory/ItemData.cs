@@ -41,5 +41,9 @@ namespace Inventory
         public bool stacktable = true;
         [Tooltip("Will this item descrease the quantity after consumed")]
         public bool consumable = false;
+
+        // All item are throwable (easier to do)
+        [Header("Combat")]
+        public int damage = 1; // Damage of the item
     }
 }

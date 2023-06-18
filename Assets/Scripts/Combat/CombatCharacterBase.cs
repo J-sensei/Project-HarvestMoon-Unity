@@ -7,6 +7,8 @@ using QuickOutline;
 using Utilities;
 using UnityEngine.EventSystems;
 using UI.Combat;
+using Inventory;
+using Item;
 
 namespace Combat
 {
@@ -38,6 +40,13 @@ namespace Combat
         [Tooltip("Distance gap move to the target position")]
         [SerializeField] private float distanceGap = 1f;
 
+        [Header("Throw Configuration")]
+        [Tooltip("Transform where the item should attach to")]
+        [SerializeField] private Transform attachPoint;
+        private Vector3 _throwPos;
+        private GameObject _currentThrowItem;
+        private ItemData _currentThrowItemData;
+
         [Header("Reference")]
         [SerializeField] private CharacterStatusBase characterStatus;
         [SerializeField] private CombatAnimationController animationController;
@@ -55,6 +64,7 @@ namespace Combat
         private const string IDLE = "Idle";
         private const string RUN = "Run";
         private const string ATTACK = "Attack";
+        private const string THROW = "Throw";
         private const string HURT = "Hurt";
         private const string DIE = "Die";
         private const string WIN = "Win";
@@ -63,6 +73,7 @@ namespace Combat
         public int IdleAnimationHash { get; private set; }
         public int RunAnimationHash { get; private set; }
         public int AttackAnimationHash { get; private set; }
+        public int ThrowAnimationHash { get; private set; }
         public int HurtAnimationHash { get; private set; }
         public int DieAnimationHash { get; private set; }
         public int WinAnimationHash { get; private set; }
@@ -90,6 +101,7 @@ namespace Combat
             IdleAnimationHash = Animator.StringToHash(IDLE);
             RunAnimationHash = Animator.StringToHash(RUN);
             AttackAnimationHash = Animator.StringToHash(ATTACK);
+            ThrowAnimationHash = Animator.StringToHash(THROW);
             HurtAnimationHash = Animator.StringToHash(HURT);
             DieAnimationHash = Animator.StringToHash(DIE);
             WinAnimationHash = Animator.StringToHash(WIN);
@@ -115,6 +127,8 @@ namespace Combat
             animationController.OnAttack += OnAttack;
             animationController.OnHurtFinish += HurtFinish;
             animationController.OnAttackFinish += OnAttackFinish;
+            animationController.OnThrow += OnThrow;
+
             characterStatus.OnDamage += OnHurt;
             characterStatus.OnDie += OnDie;
         }
@@ -141,9 +155,14 @@ namespace Combat
         {
             _die = true;
             animator.SetBool(DieAnimationHash, true);
-            if(timeToDestroy > 0f)
+            if(timeToDestroy > 0f && type != CombatCharacterType.Player)
             {
                 Destroy(gameObject, timeToDestroy);
+            }
+
+            if(type == CombatCharacterType.Player)
+            {
+                // TODO: Lose screen
             }
         }
 
@@ -244,6 +263,45 @@ namespace Combat
                 animator.SetBool(AttackAnimationHash, true); // Start attack animation
                 _attackAnimationPlay = true;
                 Debug.Log("Reached Destination");
+            });
+        }
+
+        public void Throw(CombatCharacterBase character, ItemData item)
+        {
+            _attacking = true;
+            // Instantiate item attached to the point
+            _currentThrowItem = Instantiate(item.itemPrefab, attachPoint);
+            _currentThrowItem.GetComponent<PickableItem>().OnHold();
+            _currentThrowItem.transform.parent = attachPoint;
+            _throwPos = character.transform.position;
+            _attackTarget = character.characterStatus; // Get the target status
+            _currentThrowItemData = item;
+
+            Debug.Log("Throw Start");
+            animator.SetBool(ThrowAnimationHash, true); // Start attack animation
+        }
+
+        private void OnThrow()
+        {
+            Debug.Log("Throw The Item");
+            _currentThrowItem.transform.parent = null;
+            _currentThrowItem.transform.DOJump(_throwPos, 2f, 1, runDuration).OnComplete(() =>
+            {
+                Debug.Log("Throw Hit the target");
+                if (_attackTarget != null)
+                {
+                    characterStatus.Attack(_attackTarget, _currentThrowItemData.damage);
+                    if (hitParticle != null)
+                    {
+                        Instantiate(hitParticle, _attackTarget.transform.position, Quaternion.identity);
+                    }
+                    _attackTarget = null;
+                }
+
+                Destroy(_currentThrowItem);
+                _currentThrowItem = null;
+                animator.SetBool(ThrowAnimationHash, false);
+                _attacking = false;
             });
         }
 

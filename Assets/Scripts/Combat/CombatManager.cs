@@ -7,6 +7,7 @@ using StateMachine.Player;
 using Utilities.Audio;
 using TopDownCamera;
 using GameDateTime;
+using Inventory;
 
 namespace Combat
 {
@@ -68,6 +69,7 @@ namespace Combat
 
         [Header("UI")]
         [SerializeField] private GameObject winUI;
+        [SerializeField] private GameObject itemUI;
 
         [Header("Audio")]
         [SerializeField] private BGMData victoryBGM;
@@ -101,15 +103,18 @@ namespace Combat
 
             Select(enemies[0]);
 
-            // Init win UI
+            // Init UI
             if (winUI.activeSelf)
             {
                 winUI.SetActive(false);
+                itemUI.SetActive(false);
             }
             else
             {
                 winUI.SetActive(true);
                 winUI.SetActive(false);
+                itemUI.SetActive(true);
+                itemUI.SetActive(false);
             }
         }
 
@@ -128,6 +133,7 @@ namespace Combat
         {
             if (!start) return;
 
+            // Busy state, check when character is finish attacking
             if(state == CombatState.Busy)
             {
                 if (!_currentBusyCharacter.Attacking)
@@ -250,12 +256,26 @@ namespace Combat
             if (state == CombatState.Waiting && !player.Attacking)
             {
                 state = CombatState.Busy;
-                player.Attack(_selectedCharacter); // TODO£º Update to selected enemy
+                player.Attack(_selectedCharacter); // Attack selected enemy
 
                 _currentBusyCharacter = player;
                 return true;
             }
 
+            return false;
+        }
+
+        public bool PlayerThrow(ItemData item)
+        {
+
+            if (state == CombatState.Waiting && !player.Attacking)
+            {
+                state = CombatState.Busy;
+                player.Throw(_selectedCharacter, item);
+
+                _currentBusyCharacter = player;
+                return true;
+            }
             return false;
         }
 

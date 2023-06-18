@@ -7338,6 +7338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   bgmData: {fileID: 11400000, guid: 600c253f5c6381f42845f0a9389126d8, type: 2}
+  fade: 1
 --- !u!4 &926223501
 Transform:
   m_ObjectHideFlags: 0

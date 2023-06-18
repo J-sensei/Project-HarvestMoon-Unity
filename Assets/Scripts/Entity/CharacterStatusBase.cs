@@ -96,6 +96,33 @@ namespace Entity
         }
 
         /// <summary>
+        /// Attack with specific damage 
+        /// </summary>
+        /// <param name="defender"></param>
+        /// <param name="damage"></param>
+        public virtual void Attack(CharacterStatusBase defender, int damage)
+        {
+            if (damageUI != null)
+            {
+                DamageUI d = Instantiate(damageUI, transform.position, Quaternion.identity);
+                d.Play(transform.position, damage);
+            }
+
+            CombatManager.Instance.Camera.Shake();
+
+            // TODO: Calculate something
+            defender._hp -= damage;
+
+            if (defender._hp <= 0)
+            {
+                defender.OnDie?.Invoke();
+                return;
+            }
+
+            defender.OnDamage?.Invoke(); // Call action to make when defender is on damage
+        }
+
+        /// <summary>
         /// Defense an target
         /// </summary>
         /// <param name="attacker"></param>

@@ -10,6 +10,8 @@ namespace Combat
         public Action OnAttack { get { return _onAttack; } set { _onAttack = value; } }
         public Action OnHurtFinish { get; set; }
         public Action OnAttackFinish { get; set; }
+        public Action OnThrow { get; set; }
+        public Action OnThrowFinish { get; set; }
 
         /// <summary>
         /// Call when certain attack frame is played
@@ -31,6 +33,16 @@ namespace Combat
         {
             OnAttackFinish?.Invoke();
             Debug.Log("Attack Finish Frame");
+        }
+
+        public void ThrowFrame()
+        {
+            OnThrow?.Invoke();
+        }
+
+        public void ThrowFinish()
+        {
+            OnHurtFinish?.Invoke();
         }
     }
 }
