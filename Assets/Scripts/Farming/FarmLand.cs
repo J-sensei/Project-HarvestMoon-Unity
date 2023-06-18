@@ -34,6 +34,7 @@ namespace Farming
         [SerializeField] private int id = -1;
         [Tooltip("Prevent this farm land save to the game")]
         [SerializeField] private bool doNotSave = false;
+        public bool DoNotSave { get { return doNotSave; } set { doNotSave = value; } }
 
         [Header("Configuration")]
         [SerializeField] FarmLandConfig config;

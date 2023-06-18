@@ -21,12 +21,17 @@ namespace Farming
         }
         public static void Load(FarmSaveData[] farmSaveDatas)
         {
+            if(SaveData != null) SaveData.Clear();
             SaveData = new List<FarmSaveData>(farmSaveDatas);
 
             // Update the save data if instance is created (When play is in farm scene)
             if(Instance != null)
             {
                 Instance.LoadSaveData(SaveData);
+                for(int i = 0; i < Instance._farmLands.Count; i++)
+                {
+                    Instance._farmLands[i].DoNotSave = true;
+                }
             }
         }
 
@@ -93,7 +98,6 @@ namespace Farming
         {
             for(int i = 0; i < saves.Count; i++)
             {
-                //Debug.Log("FarmSave(" + saves[i].id +"): " + saves[i].state.ToString());
                 _farmLands[i].Load(saves[i]);
                 _farmSaves[i] = saves[i];
             }

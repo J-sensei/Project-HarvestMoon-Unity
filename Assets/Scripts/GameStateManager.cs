@@ -50,7 +50,6 @@ public class GameStateManager : Singleton<GameStateManager>, ITimeChecker
             yield return new WaitForSeconds(1);
             _playTime += 1;
             OnPlayTimeRecord?.Invoke();
-            Debug.Log("Playtime: " + PlayTimeString);
         }
     }
 

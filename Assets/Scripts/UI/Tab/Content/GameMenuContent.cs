@@ -3,12 +3,12 @@ using SceneTransition;
 using UI.GameSave;
 using UnityEngine;
 
-namespace UI
+namespace UI.Tab.Content
 {
     /// <summary>
     /// Menu for game content menu in the game menu
     /// </summary>
-    public class GameContentMenu : MonoBehaviour
+    public class GameMenuContent : TabContent
     {
         [Header("Sub Contents")]
         [SerializeField] private CanvasGroup masterView;
@@ -29,6 +29,17 @@ namespace UI
             {
                 saveSlots[i].SetFilename("Save" + (i + 1).ToString());
             }
+        }
+
+        public override void Open()
+        {
+            OpenMasterView();
+            base.Open();
+        }
+
+        public override void Close()
+        {
+            base.Close();
         }
 
         public void OpenMasterView()
@@ -57,13 +68,16 @@ namespace UI
             loadGameView.alpha = 0f;
             loadGameView.DOFade(1f, tweenDuration);
 
-            // TODO: Load preview save
+            LoadSaveSlotDetails();
+            ResetMasterView();
+        }
+
+        public void LoadSaveSlotDetails()
+        {
             for (int i = 0; i < saveSlots.Length; i++)
             {
                 saveSlots[i].LoadSaveDetails();
             }
-
-            ResetMasterView();
         }
 
         public void Reset()

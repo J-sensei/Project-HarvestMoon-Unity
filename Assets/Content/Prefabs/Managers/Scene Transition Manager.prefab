@@ -3863,7 +3863,7 @@ MonoBehaviour:
   - {fileID: 6645241617046291823}
   - {fileID: 6645241616911098815}
   - {fileID: 6645241616113149045}
-  - {fileID: 6645241615855865756}
+  - {fileID: 1921728301895917313}
   idle: {fileID: 0}
   hover: {fileID: 0}
   active: {fileID: 0}
@@ -4070,7 +4070,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6645241615855865754}
-  - component: {fileID: 6645241615855865756}
   - component: {fileID: 1921728301895917313}
   m_Layer: 5
   m_Name: 'Game Content '
@@ -4101,18 +4100,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6645241615855865756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6645241615855865753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54e054a2d3e972a4fa7c943eedb95a63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1921728301895917313
 MonoBehaviour:
   m_ObjectHideFlags: 0
