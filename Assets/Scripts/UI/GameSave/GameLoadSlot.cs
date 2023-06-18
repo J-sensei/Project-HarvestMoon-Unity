@@ -42,6 +42,10 @@ namespace UI.GameSave
             // Load Game Time
             GameTimeManager.Instance.Load(saveData.gameTime);
             GameStateManager.Instance.LoadRecordTime(saveData.playtime);
+
+
+            // Load player status
+            GameManager.Instance.Player.PlayerStatus.Load(saveData.playerStatus);
         }
 
         public override void OnPointerClick(PointerEventData eventData)
@@ -87,6 +91,9 @@ namespace UI.GameSave
             // Load Game Time
             GameTimeManager.Instance.Load(saveData.gameTime);
             GameStateManager.Instance.LoadRecordTime(saveData.playtime);
+
+            // Load player status
+            GameManager.Instance.Player.PlayerStatus.Load(saveData.playerStatus);
 
             SceneTransitionManager.Instance.SetSceneLocation(SceneLocation.MainMenu);
             SceneTransitionManager.Instance.SwitchScene(SceneLocation.Home); // Always back to home after load a save

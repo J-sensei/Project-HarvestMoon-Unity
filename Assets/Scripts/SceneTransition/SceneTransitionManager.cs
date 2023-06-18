@@ -9,6 +9,7 @@ using System.Linq;
 using UI.GameSave;
 using UI.UIScreen;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using Utilities;
 using Utilities.Audio;
@@ -31,6 +32,7 @@ namespace SceneTransition
                 return _holdingObjects;
             } 
         }
+        public UnityEvent OnPlayerSpawn { get; set; } = new();
 
         /// <summary>
         /// Determine if scene transition to go to battle scene
@@ -136,7 +138,11 @@ namespace SceneTransition
             if (GameLoadSlot.RequestLoad)
             {
                 GameLoadSlot.RequestLoad = false;
-                GameLoadSlot.RequestLoadFile(GameLoadSlot.LoadFilename);
+
+                if (GameManager.Instance.Player == null)
+                    OnPlayerSpawn.AddListener(() => GameLoadSlot.RequestLoadFile(GameLoadSlot.LoadFilename));
+                else
+                    GameLoadSlot.RequestLoadFile(GameLoadSlot.LoadFilename);
             }
 
             if (!Combat)
@@ -170,7 +176,6 @@ namespace SceneTransition
             SceneLocation oldLocation = _currentLocation;
             SceneLocation location = (SceneLocation)Enum.Parse(typeof(SceneLocation), scene.name);
             if (oldLocation == location) return; // If location same then no need to do anything
-
 
             Transform startPoint = null;
             if (StartLocationManager.Instance != null)

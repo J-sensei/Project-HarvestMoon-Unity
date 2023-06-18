@@ -19,14 +19,16 @@ namespace GameSave
         public ItemSaveData holdingSlot;
         public GameTime gameTime;
         public float playtime;
+        public PlayerStatusSave playerStatus;
 
-        public GameSaveData(FarmBinarySaveData[] farmSaveDatas, ItemSaveData[] items, ItemSaveData holdingSlot, GameTime gameTime, float playtime)
+        public GameSaveData(FarmBinarySaveData[] farmSaveDatas, ItemSaveData[] items, ItemSaveData holdingSlot, GameTime gameTime, float playtime, PlayerStatusSave playerStatus)
         {
             this.farmSaveDatas = farmSaveDatas;
             this.items = items;
             this.holdingSlot = holdingSlot;
             this.gameTime = gameTime;
             this.playtime = playtime;
+            this.playerStatus = playerStatus;
         }
     }
 
@@ -183,7 +185,7 @@ namespace GameSave
             GameTime gameTime = GameTimeManager.Instance.GameTime;
             float playtime = GameStateManager.Instance.PlayTime;
 
-            GameSaveData saveData = new GameSaveData(farmSaves, items, holdingSlot, gameTime, playtime);
+            GameSaveData saveData = new GameSaveData(farmSaves, items, holdingSlot, gameTime, playtime, GameManager.Instance.Player.PlayerStatus.StatusSave);
             return saveData;
         }
 

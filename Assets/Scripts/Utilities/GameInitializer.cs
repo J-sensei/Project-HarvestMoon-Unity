@@ -51,6 +51,9 @@ namespace Utilities
                 Transform spawnPos = StartLocationManager.Instance.GetTransform(defaultScene);
                 Instantiate(player, spawnPos.position, spawnPos.rotation);
                 GameManager.Instance.Camera.UpdateTargetAndInitialize(GameManager.Instance.Player.transform);
+
+                SceneTransitionManager.Instance.OnPlayerSpawn?.Invoke();
+                SceneTransitionManager.Instance.OnPlayerSpawn.RemoveAllListeners();
             }
 
             // Incase
