@@ -1,4 +1,5 @@
-﻿using Inventory;
+﻿using GameDateTime;
+using Inventory;
 
 namespace StateMachine.Player
 {
@@ -63,8 +64,16 @@ namespace StateMachine.Player
 
         public override void CheckSwitchState()
         {
+            // Its 2AM !! Force to sleep
+            if ((GameTimeManager.Instance.GameTime.Hour == 2 && GameTimeManager.Instance.GameTime.Minute == 0))
+            {
+                GameTimeManager.Instance.PauseTime(true);
+                this.Context.EquipController.DetachItem();
+                this.SwitchState(this.StateFactory.Sleep());
+            }
+
             // Not Grounded or After dropped item will change to grounded state
-            if(!InventoryManager.Instance.CheckHoldingItemType(ItemType.Item))
+            if (!InventoryManager.Instance.CheckHoldingItemType(ItemType.Item))
             {
                 this.SwitchState(this.StateFactory.Grounded());
             }

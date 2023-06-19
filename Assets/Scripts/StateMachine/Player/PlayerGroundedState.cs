@@ -1,4 +1,5 @@
 ﻿using Farming;
+using GameDateTime;
 using Interactable;
 using Inventory;
 using UnityEngine;
@@ -74,8 +75,10 @@ namespace StateMachine.Player
                 * Pickup item has higher priority than farm interaction (e.g. item drop on farm land, player should able to pick it up)
                 * If stamina is drop to 0, go to sleep state (Force player to sleep)
             */
-            if(this.Context.PlayerStatus.Stamina <= 0)
+            // Force sleep if stamina is use up and its 2am
+            if(this.Context.PlayerStatus.Stamina <= 0 || (GameTimeManager.Instance.GameTime.Hour == 2 && GameTimeManager.Instance.GameTime.Minute == 0))
             {
+                GameTimeManager.Instance.PauseTime(true);
                 this.SwitchState(this.StateFactory.Sleep());
             }
 
