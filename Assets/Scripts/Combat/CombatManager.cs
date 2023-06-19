@@ -57,7 +57,7 @@ namespace Combat
         private CombatCharacterBase _currentBusyCharacter;
 
         [Header("Turns")]
-        private const float TURN_DISTANCE_TO_RESET = 1f;
+        private const float TURN_DISTANCE_TO_RESET = 0f;
         [SerializeField] private List<CharacterTurn> characterTurns = new();
         [Header("Turn UI")]
         [SerializeField] private GameObject combatUI;
@@ -230,10 +230,13 @@ namespace Combat
         {
             for(int i = 0; i < characterTurns.Count; i++)
             {
-                Vector3 move = (endAction.position - characterTurns[i].uiTransform.position).normalized * characterTurns[i].character.CharacterStatus.Speed * Time.deltaTime;
-                characterTurns[i].uiTransform.position += move;
-
-                if(Vector3.Distance(characterTurns[i].uiTransform.position, endAction.position) <= TURN_DISTANCE_TO_RESET)
+                // TODO: Check again
+                //Vector3 move = (endAction.position - characterTurns[i].uiTransform.position).normalized * characterTurns[i].character.CharacterStatus.Speed * Time.deltaTime;
+                //Debug.Log(move);
+                characterTurns[i].uiTransform.position += Vector3.up * characterTurns[i].character.CharacterStatus.Speed * Time.deltaTime;
+                //Debug.Log(Vector3.Distance(characterTurns[i].uiTransform.position, endAction.position));
+                //if(Vector3.Distance(characterTurns[i].uiTransform.position, endAction.position) <= TURN_DISTANCE_TO_RESET)
+                if (characterTurns[i].uiTransform.position.y > endAction.position.y)
                 {
                     characterTurns[i].uiTransform.position = startAction.position;
 
