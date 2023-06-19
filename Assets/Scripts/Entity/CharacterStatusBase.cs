@@ -33,6 +33,7 @@ namespace Entity
         /// Current hp
         /// </summary>
         protected int _hp;
+        private bool _requestDefense = false;
 
         /// <summary>
         /// Maximum HP of the character
@@ -42,6 +43,17 @@ namespace Entity
         /// Current HP of the character
         /// </summary>
         public int HP { get { return _hp; } }
+        /// <summary>
+        /// Get the HP value within 0 and 1 range
+        /// </summary>
+        public float HP01
+        {
+            get
+            {
+                return (float)((float)_hp / (float)maxHP);
+            }
+        }
+
         /// <summary>
         /// Speed value of the character
         /// </summary>
@@ -69,6 +81,18 @@ namespace Entity
 
         }
 
+        /// <summary>
+        /// Get defense for the next attack
+        /// </summary>
+        public void RequestDefense()
+        {
+            _requestDefense = true;
+        }
+        public void CancelDefense()
+        {
+            _requestDefense = false;
+        }
+
         public virtual void Load(CharacterStatusBase source)
         {
             _hp = source._hp; // Currently on hp is using
@@ -80,16 +104,27 @@ namespace Entity
         /// <param name="defender"></param>
         public virtual void Attack(CharacterStatusBase defender)
         {
+            CombatManager.Instance.Camera.Shake();
+
+            int attackPoint = 0;
+            if (defender._requestDefense)
+            {
+                attackPoint = Math.Clamp((attack - defender.defense), 0, int.MaxValue);
+                defender._hp -= attackPoint; // Minus the defense point
+                defender._requestDefense = false; // Reset
+            }
+            else
+            {
+                attackPoint = attack;
+                defender._hp -= attackPoint;
+            }
+
             if (damageUI != null)
             {
                 DamageUI d = Instantiate(damageUI, transform.position, Quaternion.identity);
-                d.Play(transform.position, attack);
+                d.Play(transform.position, attackPoint);
             }
 
-            CombatManager.Instance.Camera.Shake();
-
-            // TODO: Calculate something
-            defender._hp -= attack;
             defender.OnDamage?.Invoke(); // Call action to make when defender is on damage
 
             if (defender._hp <= 0)
@@ -106,16 +141,26 @@ namespace Entity
         /// <param name="damage"></param>
         public virtual void Attack(CharacterStatusBase defender, int damage)
         {
+            CombatManager.Instance.Camera.Shake();
+
+            int attackPoint = 0;
+            if (defender._requestDefense)
+            {
+                attackPoint = Math.Clamp((damage - defender.defense), 0, int.MaxValue);
+                defender._hp -= attackPoint; // Minus the defense point
+                defender._requestDefense = false; // Reset
+            }
+            else
+            {
+                attackPoint = damage;
+                defender._hp -= attackPoint;
+            }
             if (damageUI != null)
             {
                 DamageUI d = Instantiate(damageUI, defender.transform.position, Quaternion.identity);
-                d.Play(defender.transform.position, damage);
+                d.Play(defender.transform.position, attackPoint);
             }
 
-            CombatManager.Instance.Camera.Shake();
-
-            // TODO: Calculate something
-            defender._hp -= damage;
             defender.OnDamage?.Invoke(); // Call action to make when defender is on damage
 
             if (defender._hp <= 0)

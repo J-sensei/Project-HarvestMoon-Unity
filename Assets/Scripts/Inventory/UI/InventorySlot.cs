@@ -31,6 +31,7 @@ namespace Inventory.UI
         /// Unique identifier of the inventory slot to find the corresponding slot in Inventory Manager
         /// </summary>
         private int _id = -1;
+        protected int ID { get { return _id; } }
 
         [Header("Configuration")]
         [Tooltip("Does this inventory slot allow player to click and do something")]
@@ -46,18 +47,25 @@ namespace Inventory.UI
         [SerializeField] private TextMeshProUGUI quantityText;
         [Tooltip("Use to search for item thumbnail object is its null")]
         [SerializeField] private string itemThumbnailName = "Item Thumbnail";
+        protected Image Background { get { return background; } }
+        protected Image Image { get { return image; } }
 
         [Header("Color")]
         [SerializeField] private Color idleColor = Color.white;
         [SerializeField] private Color hoverColor = Color.white;
         [SerializeField] private Color activeColor = Color.white;
+        protected Color IdleColor { get { return idleColor; } }
+        protected Color HoverColor { get { return hoverColor; } }
+        protected Color ActiveColor { get { return activeColor; } }
 
         [Header("UI Tween")]
         [SerializeField] private float hoverScaleMultiplier = 1.35f;
         [SerializeField] private float tweenDuration = 0.05f;
-        private Vector3 _scale;
+        protected float TweenDuration { get { return tweenDuration; } }
+        protected float HoverScaleMultiplier { get { return hoverScaleMultiplier; } }
+        protected Vector3 _scale;
 
-        private bool _mousePointing = false;
+        protected bool _mousePointing = false;
 
         private void Awake()
         {
@@ -141,7 +149,7 @@ namespace Inventory.UI
         }
 
         #region Mouse Events
-        public void OnPointerEnter(PointerEventData eventData)
+        public virtual void OnPointerEnter(PointerEventData eventData)
         {
             background.DOColor(hoverColor, tweenDuration).SetEase(Ease.Linear);
             image.DOColor(hoverColor, tweenDuration).SetEase(Ease.Linear);
@@ -159,7 +167,7 @@ namespace Inventory.UI
             AudioManager.Instance.PlaySFX(AudioManager.Instance.menuSelect);
         }
 
-        public void OnPointerExit(PointerEventData eventData)
+        public virtual void OnPointerExit(PointerEventData eventData)
         {
             background.DOColor(idleColor, tweenDuration).SetEase(Ease.Linear);
             image.DOColor(idleColor, tweenDuration).SetEase(Ease.Linear);

@@ -131,6 +131,24 @@ namespace Inventory
         }
 
         /// <summary>
+        /// Consume target slot
+        /// </summary>
+        /// <param name="slotId"></param>
+        public void Consume(int slotId)
+        {
+            Debug.Log("Consume Start: " + slotId);
+            if(_itemSlots[slotId] != null && !_itemSlots[slotId].EmptyItem())
+            {
+                _itemSlots[slotId].Remove();
+                Debug.Log("Consume Success Qty: " + _itemSlots[slotId].Quantity);
+                if (_itemSlots[slotId].Quantity <= 0)
+                {
+                    _itemSlots[slotId] = null;
+                }
+            }
+        }
+
+        /// <summary>
         /// Pickup the item to the holding item slot
         /// </summary>
         /// <param name="item"></param>

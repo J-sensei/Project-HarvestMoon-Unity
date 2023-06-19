@@ -21,4 +21,5 @@ MonoBehaviour:
     type: 3}
   stacktable: 0
   consumable: 0
+  damage: 10
   toolType: 1

@@ -68,6 +68,11 @@ namespace Combat
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioClip hurtAudio;
         [SerializeField] private AudioClip attackAudio;
+        [SerializeField] private AudioClip defenseAudio;
+        [SerializeField] private AudioClip defenseBreakAudio;
+
+        [Header("Particle")]
+        [SerializeField] private ParticleSystem defenseParticle;
 
         #region Animation Hash
         private const string IDLE = "Idle";
@@ -146,6 +151,11 @@ namespace Combat
 
             characterStatus.OnDamage += OnHurt;
             characterStatus.OnDie += OnDie;
+
+            if (defenseParticle != null)
+            {
+                defenseParticle.gameObject.SetActive(false);
+            }
         }
 
         public void Select()
@@ -253,6 +263,14 @@ namespace Combat
                 state = CombatCharacterState.Hurt;
             }
 
+            // Defense is break as attacked by the attacker
+            if (defenseParticle.gameObject.activeSelf)
+            {
+                PlaySFX(defenseBreakAudio);
+                defenseParticle.Stop();
+                defenseParticle.gameObject.SetActive(false);
+            }
+
             PlaySFX(hurtAudio);
         }
 
@@ -315,6 +333,27 @@ namespace Combat
             });
         }
 
+        public void Defense()
+        {
+            PlaySFX(defenseAudio);
+            defenseParticle.gameObject.SetActive(true);
+            defenseParticle.Play();
+            characterStatus.RequestDefense();
+        }
+
+        /// <summary>
+        /// Cancel the defense (if any)
+        /// </summary>
+        public void ResetDefense()
+        {
+            if (defenseParticle.gameObject.activeSelf)
+            {
+                defenseParticle.Stop();
+                defenseParticle.gameObject.SetActive(false);
+            }
+            characterStatus.CancelDefense();
+        }
+
         public void Throw(CombatCharacterBase character, ItemData item)
         {
             _attacking = true;
@@ -328,19 +367,15 @@ namespace Combat
             _hurtTarget = character; // Get the hit target reference
 
             _currentThrowItemData = item;
-
-
-            Debug.Log("Throw Start");
+            
             animator.SetBool(ThrowAnimationHash, true); // Start attack animation
         }
 
         private void OnThrow()
         {
-            Debug.Log("Throw The Item");
             _currentThrowItem.transform.parent = null;
             _currentThrowItem.transform.DOJump(_throwPos, 2f, 1, runDuration).OnComplete(() =>
             {
-                Debug.Log("Throw Hit the target");
                 if (_attackTarget != null)
                 {
                     characterStatus.Attack(_attackTarget, _currentThrowItemData.damage);

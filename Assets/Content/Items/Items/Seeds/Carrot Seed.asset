@@ -21,6 +21,7 @@ MonoBehaviour:
     type: 3}
   stacktable: 1
   consumable: 1
+  damage: 1
   growDay: 3
   grows:
   - day: 1

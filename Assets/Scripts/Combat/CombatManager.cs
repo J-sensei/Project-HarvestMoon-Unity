@@ -237,7 +237,7 @@ namespace Combat
                 {
                     characterTurns[i].uiTransform.position = startAction.position;
 
-                    // TODO:
+                    characterTurns[i].character.ResetDefense(); // Incase has any defense will be gone
                     // Player can control
                     if(characterTurns[i].type == CombatCharacterType.Player)
                     {
@@ -247,12 +247,31 @@ namespace Combat
                     }
                     else
                     {
-                        state = CombatState.Busy;
-                        EnemyAttack(characterTurns[i].character);
+                        // Enemy AI do actions
+                        /*
+                         * If enemy is below 50% health, it will randomly start do the defense (50% chance)
+                         */
+                        if (characterTurns[i].character.CharacterStatus.HP01 < 0.5f)
+                        {
+                            if(Random.value > 0.5f)
+                            {
+                                EnemyAttack(characterTurns[i].character);
+                                state = CombatState.Busy;
+                            }
+                            else
+                            {
+                                EnemyDefense(characterTurns[i].character);
+                                state = CombatState.DecidingTurn;
+                            }
+                        }
+                        else
+                        {
+                            EnemyAttack(characterTurns[i].character);
+                            state = CombatState.Busy;
+                        }
+
                         return;
                     }
-
-                    // Enemy AI do actions
                 }
             }
         }
@@ -331,6 +350,18 @@ namespace Combat
 
         public void Skip()
         {
+            state = CombatState.DecidingTurn;
+        }
+
+        public void PlayerDefense()
+        {
+            player.Defense();
+            state = CombatState.DecidingTurn;
+        }
+
+        public void EnemyDefense(CombatCharacterBase character)
+        {
+            character.Defense();
             state = CombatState.DecidingTurn;
         }
 
