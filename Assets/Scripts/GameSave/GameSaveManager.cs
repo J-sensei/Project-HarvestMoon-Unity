@@ -1,4 +1,5 @@
 using Entity;
+using Entity.Enemy;
 using Farming;
 using GameDateTime;
 using Inventory;
@@ -43,12 +44,14 @@ namespace GameSave
         public PlayerStatusSave playerStatus;
 
         // TODO: Add enemy list
+        public Vector3[] enemiesPos;
 
-        public TempSceneData(SceneLocation location, Vector3 playerPosition, PlayerStatusSave playerStatus)
+        public TempSceneData(SceneLocation location, Vector3 playerPosition, PlayerStatusSave playerStatus, Vector3[] enemiesPos)
         {
             this.location = location;
             this.playerPosition = playerPosition;
             this.playerStatus = playerStatus;
+            this.enemiesPos = enemiesPos;
         }
     }
 
@@ -69,6 +72,10 @@ namespace GameSave
         [Header("Item")]
         [Tooltip("Item datas")]
         [SerializeField] private ItemCollection itemCollection;
+
+        [Header("Enemy Reference")]
+        [SerializeField] private Enemy enemy;
+        public Enemy Enemy { get { return enemy; } }
 
         protected override void AwakeSingleton()
         {

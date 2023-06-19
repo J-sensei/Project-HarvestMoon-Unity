@@ -32,7 +32,6 @@ namespace Combat
         public void AttackFinish()
         {
             OnAttackFinish?.Invoke();
-            Debug.Log("Attack Finish Frame");
         }
 
         public void ThrowFrame()

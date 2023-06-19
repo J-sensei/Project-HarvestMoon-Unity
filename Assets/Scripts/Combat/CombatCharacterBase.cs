@@ -312,7 +312,6 @@ namespace Combat
                 animator.SetBool(AttackAnimationHash, true); // Start attack animation
                 _attackAnimationPlay = true;
                 PlaySFX(attackAudio);
-                Debug.Log("Reached Destination");
             });
         }
 
@@ -382,7 +381,6 @@ namespace Combat
         {
             if(eventData.button == PointerEventData.InputButton.Left && type == CombatCharacterType.Enemy)
             {
-                Debug.Log("Click: " + name);
                 CombatManager.Instance.Select(this);
             }
         }

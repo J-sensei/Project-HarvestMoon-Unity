@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
   itemCollection: {fileID: 11400000, guid: 5da5ca0e1a976d4498ff3a13e8f057b2, type: 2}
+  enemy: {fileID: 418011014381701192, guid: 2b1752979f6eed04a993e9fa2848026d, type: 3}

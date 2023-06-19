@@ -51,6 +51,9 @@ namespace Utilities
         private double _goalTime = 0;
         private BGMData _currentBGM = null;
 
+        private Coroutine _fadeOutCoroutine;
+        private Coroutine _fadeInCoroutine;
+
         /// <summary>
         /// Play sound effect audio clip on channel 0
         /// </summary>
@@ -102,13 +105,15 @@ namespace Utilities
 
         public void PlayMusic(BGMData bgmData, bool fade = true)
         {
-            StopAllCoroutines();
+            if (_fadeOutCoroutine != null) StopCoroutine(_fadeOutCoroutine);
+            if (_fadeInCoroutine != null) StopCoroutine(_fadeInCoroutine);
+
             for (int i = 0; i < bgmSources.Length; i++)
             {
                 if (bgmSources[i].clip != null && bgmSources[i].isPlaying)
                 {
                     if (fade)
-                        StartCoroutine(Fade(false, bgmSources[i], FADE_DURATION, 0f)); // Fade out
+                        _fadeOutCoroutine = StartCoroutine(Fade(false, bgmSources[i], FADE_DURATION, 0f)); // Fade out
                     else
                     {
                         bgmSources[i].volume = 1f;
@@ -134,7 +139,7 @@ namespace Utilities
 
             bgmSources[_audioToggle].volume = 0f;
             if(fade)
-                StartCoroutine(Fade(true, bgmSources[_audioToggle], FADE_DURATION, 1f));
+                _fadeInCoroutine = StartCoroutine(Fade(true, bgmSources[_audioToggle], FADE_DURATION, 1f));
             else
                 bgmSources[_audioToggle].volume = 1f;
 

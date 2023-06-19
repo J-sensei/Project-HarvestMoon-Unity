@@ -1,4 +1,5 @@
 using Entity;
+using Entity.Enemy;
 using GameDateTime;
 using GameSave;
 using Item;
@@ -222,10 +223,22 @@ namespace SceneTransition
             {
                 if (GameStateManager.Instance.HasTempSceneData)
                 {
+                    // Destroy enemies as previous temp data save is found
+                    foreach(Enemy e in GameManager.Instance.Enemies)
+                    {
+                        Destroy(e.gameObject);
+                    }
+
                     TempSceneData data = GameStateManager.Instance.LoadTempData();
                     var player = gameInitializer.SpawnPlayer(data.playerPosition);
                     player.Disable();
                     player.GetComponent<PlayerStatus>().Load(data.playerStatus);
+
+                    // Spawn enemies based on the temp data save
+                    foreach(Vector3 v in data.enemiesPos)
+                    {
+                        Instantiate(GameSaveManager.Instance.Enemy, v, Quaternion.identity);
+                    }
 
                     GameStateManager.Instance.HasTempSceneData = false;
                 }

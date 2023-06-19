@@ -202,7 +202,6 @@ namespace Combat
                         {
                             // TODO: Open Win Screen and click to go back to previous scene :)
                             state = CombatState.Win;
-                            Debug.Log("Player WIN!!!!");
                             //Win();
                             CinematicCamera.Instance.WinCamera();
                         }

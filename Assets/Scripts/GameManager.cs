@@ -6,6 +6,7 @@ using GameSave;
 using Entity.Enemy;
 using Entity;
 using Combat;
+using System.Linq;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -70,9 +71,11 @@ public class GameManager : Singleton<GameManager>
         // Pause enemy
         PauseEnemies();
 
-        // TODO: Save current scene && player position
+        // Get enemies that havnt touches the player
+        Vector3[] enemiesPos = Enemies.Where(x => !x.Combat).Select(x => x.transform.position).ToArray();
+
         // Save temp data
-        TempSceneData temp = new(SceneTransitionManager.Instance.CurrentLocation, Player.transform.position, Player.GetComponent<PlayerStatus>().StatusSave);
+        TempSceneData temp = new(SceneTransitionManager.Instance.CurrentLocation, Player.transform.position, Player.GetComponent<PlayerStatus>().StatusSave, enemiesPos);
         GameStateManager.Instance.SaveTempData(temp);
 
         GameMenu.Instance.DisableGameMenu(true);

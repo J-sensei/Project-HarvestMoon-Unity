@@ -46,6 +46,10 @@ namespace Entity.Enemy
         private bool _roar = false;
         private float _pathfindTimer = 0f;
         private bool _pause = false;
+        /// <summary>
+        /// Is this enemy trigger the player enter the combat?
+        /// </summary>
+        public bool Combat { get; private set; } = false;
 
         private void Awake()
         {
@@ -228,6 +232,7 @@ namespace Entity.Enemy
         {
             if(other.gameObject.TryGetComponent(out PlayerStateMachine player))
             {
+                Combat = true;
                 // TOOD: Enter Battle scene
                 Debug.Log("Touch player");
                 GameManager.Instance.EnterCombat();
