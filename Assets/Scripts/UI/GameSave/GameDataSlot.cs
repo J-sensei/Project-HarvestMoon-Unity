@@ -36,6 +36,11 @@ namespace UI.GameSave
                 image = GetComponent<Image>();
         }
 
+        private void OnDestroy()
+        {
+            DOTween.Kill(image);
+        }
+
         public void SetFilename(string filename) => this.filename = filename;
 
         public virtual void OnPointerClick(PointerEventData eventData)

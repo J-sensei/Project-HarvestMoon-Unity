@@ -83,6 +83,9 @@ namespace StateMachine.Player
         /// Player interactor to have interaction with interactable objects such as farm and tools
         /// </summary>
         public PlayerInteractor PlayerInteractor { get; private set; }
+        /// <summary>
+        /// Player status to work with like the HP and Stamina
+        /// </summary>
         public PlayerStatus PlayerStatus { get; private set; }
 
         #region Move

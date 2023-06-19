@@ -183,6 +183,8 @@ namespace StateMachine.Player
             {
                 Debug.LogWarning("[Player Ground State] Unable to cast item into seed data!");
             }
+
+            this.Context.PlayerStatus.UpdateStatus(stamina: 2); // Minus 2 stamina
         }
         
         private void FarmEvent()
@@ -207,6 +209,8 @@ namespace StateMachine.Player
                         break;
                 }
             }
+
+            this.Context.PlayerStatus.UpdateStatus(stamina: 4); // Minus 4 stamina
         }
     }
 }

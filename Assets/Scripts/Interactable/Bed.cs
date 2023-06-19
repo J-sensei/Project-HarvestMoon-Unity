@@ -54,6 +54,7 @@ namespace Interactable
             FadeScreenManager.Instance.FadePanel.OnFinish.AddListener(() =>
             {
                 GameTimeManager.Instance.Sleep(); // Called sleep to past the date time to next day
+                GameManager.Instance.Player.PlayerStatus.Recover();
             });
 
             FadeScreenManager.Instance.FadePanel.FadeOutIn(() =>

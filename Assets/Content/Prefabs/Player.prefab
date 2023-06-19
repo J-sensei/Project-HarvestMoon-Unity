@@ -1382,7 +1382,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.4
+      value: 0.8
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1447,11 +1447,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
+  levelMultiplier: 1.1
   maxHP: 100
+  baseExp: 100
+  expMultiplier: 1.1
   attack: 1
   defense: 1
   speed: 1
-  statmina: 100
+  damageUI: {fileID: 0}
+  maxStamina: 100
 --- !u!1 &4276041091708225669
 GameObject:
   m_ObjectHideFlags: 0

@@ -57,5 +57,35 @@ namespace Entity
             _hp = MaxHP;
             _stamina = maxStamina;
         }
+
+        /// <summary>
+        /// Update the player status and update the the game ui
+        /// </summary>
+        /// <param name="hp">Amount of hp to minus</param>
+        /// <param name="stamina">Amount of stamina to minus</param>
+        public void UpdateStatus(int hp = -1, int stamina = -1)
+        {
+            if(hp > 0)
+            {
+                _hp -= hp;
+            }
+
+            if(stamina > 0)
+            {
+                _stamina -= stamina;
+            }
+
+            GameUIManager.Instance.UpdatePlayerStatusUI(this);
+        }
+
+        /// <summary>
+        /// Fully recover both hp and stamina of the player
+        /// </summary>
+        public void Recover()
+        {
+            _hp = MaxHP;
+            _stamina = MaxStamina;
+            GameUIManager.Instance.UpdatePlayerStatusUI(this);
+        }
     }
 }
