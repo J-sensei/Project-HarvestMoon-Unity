@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33985190994650074}
   - component: {fileID: 23578911639116216}
   - component: {fileID: 64609340476582404}
+  - component: {fileID: 3617221741873172525}
   m_Layer: 10
   m_Name: SM_Env_Road_Dirt_End_01
   m_TagString: Untagged
@@ -98,3 +99,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 5e48bff7392cab7408101d15bd1f7014, type: 3}
+--- !u!114 &3617221741873172525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510007170413012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b049965129f9fa14e93b2eaf949da415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4

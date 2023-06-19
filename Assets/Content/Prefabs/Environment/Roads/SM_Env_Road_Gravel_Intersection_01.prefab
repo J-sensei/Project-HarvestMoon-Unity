@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33750322471609078}
   - component: {fileID: 23677971978083102}
   - component: {fileID: 64911564636360194}
+  - component: {fileID: 4850391592803886056}
   m_Layer: 10
   m_Name: SM_Env_Road_Gravel_Intersection_01
   m_TagString: Untagged
@@ -98,3 +99,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 707c88a89d714fd4d8813204c541f0a6, type: 3}
+--- !u!114 &4850391592803886056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203438018689930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b049965129f9fa14e93b2eaf949da415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4

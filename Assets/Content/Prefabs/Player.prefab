@@ -3131,10 +3131,17 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 0f54680c33f5baf4fb7bc91bd5d07d11, type: 3}
   - type: 1
     footsteps:
-    - {fileID: 8300000, guid: 97836dc2913fd254aa15f229f2a58ce7, type: 3}
-    - {fileID: 8300000, guid: b1b8ea2a2b6896a4f8bed5344014afd6, type: 3}
-    - {fileID: 8300000, guid: 678d066fc640de24ea524a52a6864644, type: 3}
-    - {fileID: 8300000, guid: 0957e083b25184c4086b3e8a46a629c4, type: 3}
+    - {fileID: 8300000, guid: 2e7776a0d0cfe554da6c8baf68dc3733, type: 3}
+    - {fileID: 8300000, guid: 91a7bcefe0fd6ef4bbb1382b5880ca88, type: 3}
+    - {fileID: 8300000, guid: 7a1686e1f9b18624cb3c767d862b6ee4, type: 3}
+  - type: 3
+    footsteps:
+    - {fileID: 8300000, guid: 02dc3dbce1ac7204090c2a7a1af56c0a, type: 3}
+    - {fileID: 8300000, guid: 09388284c053a924682261bc4679830b, type: 3}
+    - {fileID: 8300000, guid: 5f3b00111bd7fd3409bb1f6a6a6f6ac8, type: 3}
+  - type: 4
+    footsteps:
+    - {fileID: 8300000, guid: f8781b1e729b1cf41915765254fa53e1, type: 3}
 --- !u!114 &4276041092653576540
 MonoBehaviour:
   m_ObjectHideFlags: 0

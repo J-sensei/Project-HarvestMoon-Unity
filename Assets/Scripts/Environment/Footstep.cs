@@ -10,6 +10,8 @@ namespace Environment
         Default,
         Dirt,
         Water,
+        Grass,
+        Stone
     }
 
     /// <summary>

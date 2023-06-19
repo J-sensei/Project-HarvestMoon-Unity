@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33623244756004070}
   - component: {fileID: 23474075472535262}
   - component: {fileID: 64208391979105016}
+  - component: {fileID: -229718074726469510}
   m_Layer: 10
   m_Name: SM_Prop_Bench_01
   m_TagString: Untagged
@@ -98,3 +99,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43291372875914096, guid: 8b5391beead8ac642a04acedc6e909ed, type: 2}
+--- !u!114 &-229718074726469510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385524857775532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b049965129f9fa14e93b2eaf949da415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0

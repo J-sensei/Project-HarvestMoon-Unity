@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33423400337263514}
   - component: {fileID: 23602129866026870}
   - component: {fileID: 64143533945081072}
+  - component: {fileID: -7481440105851099035}
   m_Layer: 10
   m_Name: SM_Env_Road_Gravel_Swerve_01
   m_TagString: Untagged
@@ -98,3 +99,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6147835c85483614cb2dc55e6c39f47e, type: 3}
+--- !u!114 &-7481440105851099035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889254671714912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b049965129f9fa14e93b2eaf949da415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33161281112226024}
   - component: {fileID: 23111337631319520}
   - component: {fileID: 64152659680801986}
+  - component: {fileID: 4257576528415427125}
   m_Layer: 10
   m_Name: SM_Prop_Hay_Bale_Square_02_Green
   m_TagString: Untagged
@@ -98,3 +99,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43336934227184482, guid: eaa89945667b21747b16f96565032dce, type: 2}
+--- !u!114 &4257576528415427125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728413744357432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b049965129f9fa14e93b2eaf949da415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3

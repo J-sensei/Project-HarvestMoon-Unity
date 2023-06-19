@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23868376453559962}
   - component: {fileID: 64375873004383626}
   - component: {fileID: 1781851817410226788}
+  - component: {fileID: 1334103054903900401}
   m_Layer: 10
   m_Name: SM_Generic_Small_Rocks_04
   m_TagString: Untagged
@@ -100,6 +101,19 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: 43503172922042112, guid: 75e65f87de80a8043b04cb3d0aa15727, type: 2}
 --- !u!114 &1781851817410226788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893190298336706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b049965129f9fa14e93b2eaf949da415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+--- !u!114 &1334103054903900401
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

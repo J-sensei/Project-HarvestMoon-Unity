@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33476927189588062}
   - component: {fileID: 23652812190076276}
   - component: {fileID: 64832468033234834}
+  - component: {fileID: 8380368867973930566}
   m_Layer: 10
   m_Name: SM_Generic_Ground_Wheat_01
   m_TagString: Untagged
@@ -98,3 +99,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 7a0e476ac8f77e648ae478f556bb2920, type: 3}
+--- !u!114 &8380368867973930566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456193689442792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b049965129f9fa14e93b2eaf949da415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3

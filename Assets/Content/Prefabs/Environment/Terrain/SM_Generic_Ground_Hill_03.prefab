@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33997045787670552}
   - component: {fileID: 23828681956878096}
   - component: {fileID: 64008136477334148}
+  - component: {fileID: -5078141831132804618}
   m_Layer: 10
   m_Name: SM_Generic_Ground_Hill_03
   m_TagString: Untagged
@@ -98,3 +99,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 89dc5eba5fb69fb4abfee9745f62599f, type: 3}
+--- !u!114 &-5078141831132804618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068499105499976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b049965129f9fa14e93b2eaf949da415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3

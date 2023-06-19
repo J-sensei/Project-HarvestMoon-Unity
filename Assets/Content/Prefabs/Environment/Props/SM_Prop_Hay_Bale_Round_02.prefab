@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33221862421410638}
   - component: {fileID: 23203351036973332}
   - component: {fileID: 64095087304393698}
+  - component: {fileID: 5757778793402408574}
   m_Layer: 10
   m_Name: SM_Prop_Hay_Bale_Round_02
   m_TagString: Untagged
@@ -98,3 +99,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43774561333585532, guid: dfd36c47cddd5b442a2c9b76b035ffee, type: 2}
+--- !u!114 &5757778793402408574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064073641818066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b049965129f9fa14e93b2eaf949da415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3

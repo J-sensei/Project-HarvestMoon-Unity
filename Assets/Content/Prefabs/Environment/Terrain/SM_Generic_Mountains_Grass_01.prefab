@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33378828297825732}
   - component: {fileID: 23493660643887410}
   - component: {fileID: 64590528970456672}
+  - component: {fileID: -5679539827046673636}
   m_Layer: 10
   m_Name: SM_Generic_Mountains_Grass_01
   m_TagString: Untagged
@@ -98,3 +99,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: b790f92702525c34f98813ccda80c827, type: 3}
+--- !u!114 &-5679539827046673636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780230329900766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b049965129f9fa14e93b2eaf949da415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3

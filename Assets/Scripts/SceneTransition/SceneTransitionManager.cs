@@ -100,6 +100,8 @@ namespace SceneTransition
 
             if(GameManager.Instance.Player != null)
                 GameManager.Instance.Player.Disable();
+
+            GameManager.Instance.PauseEnemies(); // Incase any enemy is trying to catch the player while scene is loading
         }
 
         /// <summary>
