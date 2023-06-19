@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
+using Utilities;
 
 namespace UI.Combat
 {
@@ -34,6 +35,7 @@ namespace UI.Combat
             background.transform.DOLocalMove(Vector3.zero, tweenDuration);
             background.DOColor(hoverColor, tweenDuration);
             _hovering = true;
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.menuSelect, 1);
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -61,7 +63,7 @@ namespace UI.Combat
 
         public virtual void OnPointerClick(PointerEventData eventData)
         {
-            
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.menuClick, 1);
         }
     }
 

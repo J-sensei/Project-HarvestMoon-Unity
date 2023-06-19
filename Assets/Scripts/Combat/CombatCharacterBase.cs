@@ -64,6 +64,11 @@ namespace Combat
         [Header("UI")]
         [SerializeField] private ProgressBar hpBar;
 
+        [Header("Audio")]
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip hurtAudio;
+        [SerializeField] private AudioClip attackAudio;
+
         #region Animation Hash
         private const string IDLE = "Idle";
         private const string RUN = "Run";
@@ -231,17 +236,24 @@ namespace Combat
             characterStatus.OnDie -= OnDie;
         }
 
+        private void PlaySFX(AudioClip clip)
+        {
+            if(audioSource != null && clip != null)
+            {
+                AudioManager.Instance.PlaySFX(audioSource, clip);
+            }
+        }
+
         private void OnHurt()
         {
-            _hurtAnimationPlay = true;
-            animator.SetBool(HurtAnimationHash, true);
-            state = CombatCharacterState.Hurt;
-            //StartCoroutine(CheckAnimationCompleted(HURT, () =>
-            //{
-            //    animator.SetBool(HurtAnimationHash, false);
-            //    _hurtAnimationPlay = false;
-            //    state = CombatCharacterState.Idle;
-            //}));
+            if(characterStatus.HP > 0)
+            {
+                _hurtAnimationPlay = true;
+                animator.SetBool(HurtAnimationHash, true);
+                state = CombatCharacterState.Hurt;
+            }
+
+            PlaySFX(hurtAudio);
         }
 
         public void HurtFinish()
@@ -299,6 +311,7 @@ namespace Combat
             {
                 animator.SetBool(AttackAnimationHash, true); // Start attack animation
                 _attackAnimationPlay = true;
+                PlaySFX(attackAudio);
                 Debug.Log("Reached Destination");
             });
         }
@@ -348,7 +361,11 @@ namespace Combat
                 Destroy(_currentThrowItem);
                 _currentThrowItem = null;
                 animator.SetBool(ThrowAnimationHash, false);
-                _attacking = false;
+
+                LeanTween.delayedCall(1.5f, () =>
+                {
+                    _attacking = false;
+                });
             });
         }
 

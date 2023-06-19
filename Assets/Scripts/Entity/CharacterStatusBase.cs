@@ -90,14 +90,13 @@ namespace Entity
 
             // TODO: Calculate something
             defender._hp -= attack;
+            defender.OnDamage?.Invoke(); // Call action to make when defender is on damage
 
-            if(defender._hp <= 0)
+            if (defender._hp <= 0)
             {
                 defender.OnDie?.Invoke();
                 return;
             }
-
-            defender.OnDamage?.Invoke(); // Call action to make when defender is on damage
         }
 
         /// <summary>
@@ -117,14 +116,13 @@ namespace Entity
 
             // TODO: Calculate something
             defender._hp -= damage;
+            defender.OnDamage?.Invoke(); // Call action to make when defender is on damage
 
             if (defender._hp <= 0)
             {
                 defender.OnDie?.Invoke();
                 return;
             }
-
-            defender.OnDamage?.Invoke(); // Call action to make when defender is on damage
         }
 
         /// <summary>

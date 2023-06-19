@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1966d12196a271b47a30fc2c30405923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  filename: 
   idleColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColor: {r: 0.6666667, g: 0.6509804, b: 0.6156863, a: 1}
   tweenDuration: 0.15
@@ -147,6 +148,7 @@ MonoBehaviour:
   title: {fileID: 3475341914554682759}
   dateTime: {fileID: 3475341914623369285}
   playTime: {fileID: 3475341914881482415}
+  requestLoad: 0
 --- !u!1 &3475341914554682763
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,8 +399,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4286175999
-  m_fontColor: {r: 1, g: 0.85490197, b: 0.4745098, a: 1}
+    rgba: 4281557453
+  m_fontColor: {r: 0.8039216, g: 0.38039216, b: 0.2, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -569,8 +571,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4286175999
-  m_fontColor: {r: 1, g: 0.85490197, b: 0.4745098, a: 1}
+    rgba: 4281557453
+  m_fontColor: {r: 0.8039216, g: 0.38039216, b: 0.2, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

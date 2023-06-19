@@ -646,3 +646,4 @@ MonoBehaviour:
   menuClose: {fileID: 8300000, guid: a60974b88311eb24eac8159bac7af8be, type: 3}
   menuSelect: {fileID: 8300000, guid: 27d538e7d84392f499c690f005ebb5d0, type: 3}
   menuClick: {fileID: 8300000, guid: 42c5655bc2e44cf47b85717ef2915179, type: 3}
+  actionMenuAppear: {fileID: 8300000, guid: 964971f242aff324bb6e83860ac39eca, type: 3}

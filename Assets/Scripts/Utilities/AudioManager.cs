@@ -45,6 +45,7 @@ namespace Utilities
         [SerializeField] public AudioClip menuClose;
         [SerializeField] public AudioClip menuSelect;
         [SerializeField] public AudioClip menuClick;
+        [SerializeField] public AudioClip actionMenuAppear;
 
         private double _musicDuration;
         private double _goalTime = 0;
@@ -70,6 +71,11 @@ namespace Utilities
             }
 
             PlaySFXClip(clip, channel);
+        }
+
+        public void PlaySFX(AudioSource source, AudioClip audioClip)
+        {
+            source.PlayOneShot(audioClip);
         }
 
         private void PlaySFXClip(AudioClip clip, int channel)

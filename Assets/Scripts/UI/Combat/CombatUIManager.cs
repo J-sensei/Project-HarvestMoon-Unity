@@ -53,6 +53,7 @@ namespace UI.Combat
                 actionUI.DOFade(1f, tweenDuration);
                 actionUI.transform.localPosition = new Vector3(_actionUIPos.x - actionUIMove, _actionUIPos.y, _actionUIPos.z);
                 actionUI.transform.DOLocalMove(_actionUIPos, tweenDuration);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.actionMenuAppear);
             }
         }
     }
