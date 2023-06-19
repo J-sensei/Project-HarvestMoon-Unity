@@ -116,7 +116,7 @@ namespace Combat
                 characterTurns.Add(new(enemies[i], enemyActionUIs[i], enemies[i].Type));
             }
 
-            Select(enemies[0]);
+            Select(enemies[0], false);
 
             // Init UI
             if (winUI.activeSelf)
@@ -142,7 +142,7 @@ namespace Combat
             ((PlayerStatus)player.CharacterStatus).Load(GameStateManager.Instance.LoadTempData().playerStatus);
         }
 
-        public void Select(CombatCharacterBase character)
+        public void Select(CombatCharacterBase character, bool audio = true)
         {
             if(_selectedCharacter != null)
             {
@@ -151,6 +151,11 @@ namespace Combat
             }
             _selectedCharacter = character;
             _selectedCharacter.Select();
+
+            if (audio)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.menuClick, 1);
+            }
         }
 
         private void Update()
@@ -204,7 +209,7 @@ namespace Combat
                         else
                         {
                             if(remove)
-                                Select(enemies[0]);
+                                Select(enemies[0], false);
                         }
                     }
                 }

@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 using UI.Combat;
 using Inventory;
 using Item;
+using UI;
 
 namespace Combat
 {
@@ -60,6 +61,9 @@ namespace Combat
         [Tooltip("Time to destroy the gameobject after declared as die, negative will not delete it")]
         [SerializeField] private float timeToDestroy = -1f;
 
+        [Header("UI")]
+        [SerializeField] private ProgressBar hpBar;
+
         #region Animation Hash
         private const string IDLE = "Idle";
         private const string RUN = "Run";
@@ -94,6 +98,7 @@ namespace Combat
         public CombatCharacterType Type { get { return type; } }
 
         private CharacterStatusBase _attackTarget;
+        private CombatCharacterBase _hurtTarget;
         public bool Die { get { return _die; } }
 
         private void Awake()
@@ -106,6 +111,11 @@ namespace Combat
             DieAnimationHash = Animator.StringToHash(DIE);
             WinAnimationHash = Animator.StringToHash(WIN);
             LoseAnimationHash = Animator.StringToHash(LOSE);
+
+            if(hpBar != null)
+            {
+                hpBar.gameObject.SetActive(false);
+            }
 
             _originalPos = transform.position;
 
@@ -140,6 +150,12 @@ namespace Combat
                 _outline.enabled = true;
                 _selecting = true;
             }
+
+            if (hpBar != null)
+            {
+                UpdateHPBar();
+                hpBar.gameObject.SetActive(true);
+            }
         }
 
         public void Deselect()
@@ -148,6 +164,11 @@ namespace Combat
             {
                 _outline.enabled = false;
                 _selecting = false;
+            }
+
+            if (hpBar != null)
+            {
+                hpBar.gameObject.SetActive(false);
             }
         }
 
@@ -230,6 +251,15 @@ namespace Combat
             state = CombatCharacterState.Idle;
         }
 
+        private void UpdateHPBar()
+        {
+            if(hpBar != null)
+            {
+                hpBar.UpdateValues(0, characterStatus.MaxHP);
+                hpBar.UpdateValue(characterStatus.HP);
+            }
+        }
+
         private void OnAttack()
         {
             if (_attackTarget != null)
@@ -245,6 +275,12 @@ namespace Combat
             {
                 Debug.LogWarning("[Combat Character Base] Attack Target is null");
             }
+
+            if (_hurtTarget != null)
+            {
+                _hurtTarget.UpdateHPBar();
+                _hurtTarget = null;
+            }
         }
 
         public void Attack(CombatCharacterBase character)
@@ -255,6 +291,7 @@ namespace Combat
             pos.z -= distanceGap; // Distance
 
             _attackTarget = character.characterStatus; // Get the target status
+            _hurtTarget = character;
 
             // Run
             animator.SetBool(RunAnimationHash, true); // Start run animation
@@ -274,8 +311,12 @@ namespace Combat
             _currentThrowItem.GetComponent<PickableItem>().OnHold();
             _currentThrowItem.transform.parent = attachPoint;
             _throwPos = character.transform.position;
+
             _attackTarget = character.characterStatus; // Get the target status
+            _hurtTarget = character; // Get the hit target reference
+
             _currentThrowItemData = item;
+
 
             Debug.Log("Throw Start");
             animator.SetBool(ThrowAnimationHash, true); // Start attack animation
@@ -296,6 +337,12 @@ namespace Combat
                         Instantiate(hitParticle, _attackTarget.transform.position, Quaternion.identity);
                     }
                     _attackTarget = null;
+                }
+
+                if (_hurtTarget != null)
+                {
+                    _hurtTarget.UpdateHPBar();
+                    _hurtTarget = null;
                 }
 
                 Destroy(_currentThrowItem);
