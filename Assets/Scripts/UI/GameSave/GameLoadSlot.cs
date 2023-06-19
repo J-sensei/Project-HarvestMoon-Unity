@@ -22,7 +22,6 @@ namespace UI.GameSave
         /// <param name="filename"></param>
         public static void RequestLoadFile(string filename)
         {
-            UnityEngine.Debug.Log("Request to load: " + filename);
             GameMenu.Instance?.ToggleGameMenu(false);
             GameManager.Instance?.Player?.Disable();
             // Load Game Save Data

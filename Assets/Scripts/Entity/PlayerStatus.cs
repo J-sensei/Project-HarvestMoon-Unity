@@ -45,7 +45,6 @@ namespace Entity
 
         public void Load(PlayerStatusSave save)
         {
-            Debug.Log("Load Player Status: HP: " + save.hp + " ST: " + save.stamina);
             _hp = save.hp;
             _stamina = save.stamina;
 
@@ -81,10 +80,11 @@ namespace Entity
         /// <summary>
         /// Fully recover both hp and stamina of the player
         /// </summary>
-        public void Recover()
+        /// <param name="multiplier">From 0 - 1, how much hp and stamina need the player to recover from the max value</param>
+        public void Recover(float multiplier = 1f)
         {
-            _hp = MaxHP;
-            _stamina = MaxStamina;
+            _hp = (int)(MaxHP * multiplier);
+            _stamina = (int)(MaxStamina * multiplier);
             GameUIManager.Instance.UpdatePlayerStatusUI(this);
         }
     }

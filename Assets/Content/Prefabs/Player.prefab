@@ -3123,6 +3123,7 @@ MonoBehaviour:
   playerAudioSource: {fileID: 4276041091708204885}
   jump: {fileID: 8300000, guid: 686379fb3a5fb014dab6c22bf0906527, type: 3}
   fallHitGround: {fileID: 8300000, guid: f3a5b8ee00dd62a49b6084ed7188c9ef, type: 3}
+  sleepFall: {fileID: 8300000, guid: 490d9f8fdc8bedd4493982e71ac30314, type: 3}
   groundStanding: 0
   footstepAudios:
   - type: 0

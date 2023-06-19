@@ -4,7 +4,7 @@ namespace StateMachine.Player
 {
     internal enum PlayerState
     {
-        Idle, Walk, Run, Jump, Grounded, Fall, UsingTool, Lift, PickingItem, Dropping
+        Idle, Walk, Run, Jump, Grounded, Fall, UsingTool, Lift, PickingItem, Dropping, Sleep
     }
 
     /// <summary>
@@ -31,6 +31,7 @@ namespace StateMachine.Player
             _states[PlayerState.Lift] = new PlayerLiftState(_context, this);
             _states[PlayerState.PickingItem] = new PlayerPickingItemState(_context, this);
             _states[PlayerState.Dropping] = new PlayerLiftDroppingState(_context, this);
+            _states[PlayerState.Sleep] = new PlayerSleepState(_context, this);
         }
 
         public PlayerBaseState Idle() { return _states[PlayerState.Idle]; }
@@ -43,5 +44,6 @@ namespace StateMachine.Player
         public PlayerBaseState Lift() { return _states[PlayerState.Lift]; }
         public PlayerBaseState PickingItem() { return _states[PlayerState.PickingItem]; }
         public PlayerBaseState DroppingItem() { return _states[PlayerState.Dropping]; }
+        public PlayerBaseState Sleep() { return _states[PlayerState.Sleep]; }
     }
 }

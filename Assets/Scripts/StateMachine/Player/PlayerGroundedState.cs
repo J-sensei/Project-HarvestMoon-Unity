@@ -72,7 +72,13 @@ namespace StateMachine.Player
             /*
                 * Always check jumping and falling first as player cannot interact and do farming when jumping / falling
                 * Pickup item has higher priority than farm interaction (e.g. item drop on farm land, player should able to pick it up)
+                * If stamina is drop to 0, go to sleep state (Force player to sleep)
             */
+            if(this.Context.PlayerStatus.Stamina <= 0)
+            {
+                this.SwitchState(this.StateFactory.Sleep());
+            }
+
             // If player is grounded, pressing jump button will switch to jump state
             if(this.Context.JumpInputPress && !this.Context.RequireJumpAgain)
             {

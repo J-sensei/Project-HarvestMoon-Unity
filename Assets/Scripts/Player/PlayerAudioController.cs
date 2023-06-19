@@ -12,6 +12,7 @@ namespace Player
         [Header("Jump & Fall audio")]
         [SerializeField] private AudioClip jump;
         [SerializeField] private AudioClip fallHitGround;
+        [SerializeField] private AudioClip sleepFall;
 
         [Header("Footstep audio")]
         [SerializeField] private GroundType groundStanding = GroundType.Default;
@@ -35,6 +36,11 @@ namespace Player
             {
                 playerAudioSource.PlayOneShot(_currentFootstep.footsteps[Random.Range(0, _currentFootstep.footsteps.Length)]);
             }
+        }
+
+        public void PlayerSleepFall()
+        {
+            playerAudioSource.PlayOneShot(sleepFall);
         }
 
         /// <summary>

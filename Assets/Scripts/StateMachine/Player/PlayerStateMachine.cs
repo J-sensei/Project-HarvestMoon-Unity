@@ -44,6 +44,8 @@ namespace StateMachine.Player
         /// Hash value for lifting down animation
         /// </summary>
         public int LiftFinishAnimationHash { get; private set; }
+        public int SleepAnimationHash { get; private set; }
+        public int SleepStandAnimationHash { get; private set; }
         #endregion
 
         /// <summary>
@@ -338,6 +340,7 @@ namespace StateMachine.Player
         }
         #endregion
 
+        public bool Sleeping { get; set; } = false;
         private bool _pause = false;
 
         #region Debug Properties
@@ -400,6 +403,8 @@ namespace StateMachine.Player
             ToolAnimationHash = Animator.StringToHash("Tool");
             LiftingAnimationHash = Animator.StringToHash("Lifting");
             LiftFinishAnimationHash = Animator.StringToHash("LiftFinish");
+            SleepAnimationHash = Animator.StringToHash("Sleep");
+            SleepStandAnimationHash = Animator.StringToHash("SleepStand");
             #endregion
 
             InitializeJumpValues(); // Initialize jump variabels
@@ -422,7 +427,7 @@ namespace StateMachine.Player
             OnRotate();
             _currentState.UpdateStates(); // Update the current state
 
-            if (!UsingTool && !PickingItem && !DroppingItem)
+            if (!UsingTool && !PickingItem && !DroppingItem && !Sleeping)
                 PlayerRotation();
             _characterController.Move(_applyMovement * Time.deltaTime);
         }
