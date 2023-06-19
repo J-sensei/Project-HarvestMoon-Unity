@@ -45,8 +45,7 @@ namespace Entity.Enemy
         private float _behaviorTimer;
         private bool _roar = false;
         private float _pathfindTimer = 0f;
-
-        public bool Pause { get; set; } = false;
+        private bool _pause = false;
 
         private void Awake()
         {
@@ -68,14 +67,23 @@ namespace Entity.Enemy
             _agent.isStopped = true;
         }
 
+        public void Disable()
+        {
+            _agent.enabled = false;
+            _animator.speed = 0;
+            _pause = true;
+        }
+
+        public void Enable()
+        {
+            _agent.enabled = true;
+            _animator.speed = 1f;
+            _pause = false;
+        }
+
         private void Update()
         {
-            if (Pause)
-            {
-                _agent.enabled = false;
-                _animator.speed = 0;
-                return;
-            }
+            if (_pause) return;
 
             switch (enemyState)
             {

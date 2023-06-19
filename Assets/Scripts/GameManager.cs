@@ -27,6 +27,14 @@ public class GameManager : Singleton<GameManager>
         } 
     }
 
+    public Enemy[] Enemies
+    {
+        get
+        {
+            return GameObject.FindObjectsOfType<Enemy>();
+        }
+    }
+
     [SerializeField] private TopDownCamera.TopDownCamera _topDownCamera;
     public TopDownCamera.TopDownCamera Camera
     {
@@ -41,14 +49,26 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void PauseEnemies()
+    {
+        foreach (Enemy enemy in Enemies)
+        {
+            enemy.Disable();
+        }
+    }
+
+    public void UnPauseEnemies()
+    {
+        foreach (Enemy enemy in Enemies)
+        {
+            enemy.Enable();
+        }
+    }
+
     public void EnterCombat()
     {
         // Pause enemy
-        Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>();
-        foreach(Enemy enemy in enemies)
-        {
-            enemy.Pause = true;
-        }
+        PauseEnemies();
 
         // TODO: Save current scene && player position
         // Save temp data
