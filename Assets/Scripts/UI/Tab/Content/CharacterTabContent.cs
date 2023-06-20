@@ -10,6 +10,7 @@ namespace UI.Tab.Content
         [SerializeField] private Image characterImage;
         [SerializeField] private Image characterBackground;
         [SerializeField] private TextMeshProUGUI titleText;
+        [SerializeField] private GameObject content;
 
         [Header("Tween")]
         [SerializeField] private float tweenDuration = 0.15f;
@@ -18,6 +19,16 @@ namespace UI.Tab.Content
 
         [SerializeField] private Vector3[] _originalPositions;
         [SerializeField] private CanvasGroup[] _canvasGroups;
+
+        [Header("Details")]
+        [Header("HP")]
+        [SerializeField] private ProgressBar hpBar;
+        [SerializeField] private TextMeshProUGUI hpText;
+        [Header("Stamina")]
+        [SerializeField] private ProgressBar staminaBar;
+        [SerializeField] private TextMeshProUGUI staminaText;
+        [Header("Playtime")]
+        [SerializeField] private TextMeshProUGUI playtimeText;
 
         private void Awake()
         {
@@ -29,10 +40,16 @@ namespace UI.Tab.Content
                 _originalPositions[2] = titleText.transform.localPosition; // 2 => Title text
             //}
 
-            _canvasGroups = new CanvasGroup[3];
+            _canvasGroups = new CanvasGroup[4];
             _canvasGroups[0] = characterImage.GetComponent<CanvasGroup>();
             _canvasGroups[1] = characterBackground.GetComponent<CanvasGroup>();
             _canvasGroups[2] = titleText.GetComponent<CanvasGroup>();
+            _canvasGroups[3] = content.GetComponent<CanvasGroup>();
+        }
+
+        private void Update()
+        {
+            playtimeText.text = "Playtime: " + GameStateManager.Instance.PlayTimeString;
         }
 
         public override void Open()
@@ -49,9 +66,19 @@ namespace UI.Tab.Content
             _canvasGroups[0].alpha = 0f;
             _canvasGroups[1].alpha = 0f;
             _canvasGroups[2].alpha = 0f;
+            _canvasGroups[3].alpha = 0f;
             _canvasGroups[0].DOFade(1f, tweenDuration);
             _canvasGroups[1].DOFade(1f, tweenDuration);
             _canvasGroups[2].DOFade(1f, tweenDuration);
+            _canvasGroups[3].DOFade(1f, tweenDuration);
+
+            hpText.text = "HP: " + GameManager.Instance.Player.PlayerStatus.HP + "/" + GameManager.Instance.Player.PlayerStatus.MaxHP;
+            hpBar.UpdateValues(0, GameManager.Instance.Player.PlayerStatus.MaxHP);
+            hpBar.UpdateValue(GameManager.Instance.Player.PlayerStatus.HP);
+
+            staminaText.text = "Stamina: " + GameManager.Instance.Player.PlayerStatus.Stamina + "/" + GameManager.Instance.Player.PlayerStatus.MaxStamina;
+            staminaBar.UpdateValues(0, GameManager.Instance.Player.PlayerStatus.MaxStamina);
+            staminaBar.UpdateValue(GameManager.Instance.Player.PlayerStatus.Stamina);
         }
 
         public override void Close()
@@ -62,12 +89,15 @@ namespace UI.Tab.Content
 
             _canvasGroups[0].alpha = 1f;
             _canvasGroups[1].alpha = 1f;
+            _canvasGroups[2].alpha = 1f;
+            _canvasGroups[3].alpha = 1f;
             _canvasGroups[0].DOFade(0f, tweenDuration).OnComplete(() =>
             {
                 base.Close();
             });
             _canvasGroups[1].DOFade(0f, tweenDuration);
             _canvasGroups[2].DOFade(0f, tweenDuration);
+            _canvasGroups[3].DOFade(0f, tweenDuration);
         }
     }
 
