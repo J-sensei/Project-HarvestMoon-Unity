@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using Inventory;
 using Inventory.UI;
 using UnityEngine;
 
@@ -47,6 +48,12 @@ namespace UI.Tab.Content
             scrollView.alpha = 1f;
             titleCanvas.DOFade(0f, tweenDuration).OnComplete(() => base.Close());
             scrollView.DOFade(0f, tweenDuration);
+        }
+
+        public void Sort()
+        {
+            InventoryManager.Instance.Sort();
+            InventoryUIManager.Instance.UpdateInventoryUI();
         }
     }
 }

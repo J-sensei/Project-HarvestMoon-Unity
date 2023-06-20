@@ -2181,6 +2181,7 @@ GameObject:
   - component: {fileID: 6645241615376638067}
   - component: {fileID: 6645241615376638066}
   - component: {fileID: 6645241615376638065}
+  - component: {fileID: 7893796335846944237}
   m_Layer: 5
   m_Name: Sort
   m_TagString: Untagged
@@ -2207,7 +2208,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 1270, y: -97.99011}
-  m_SizeDelta: {x: 300, y: 47.02198}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6645241615376638067
 CanvasRenderer:
@@ -2267,7 +2268,40 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 2.5
+  m_PixelsPerUnitMultiplier: 5
+--- !u!114 &7893796335846944237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6645241615376638031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621ee0571dd0f30439894c080eb226e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  background: {fileID: 6645241615376638065}
+  idleColor: {r: 0.96862745, g: 0.94509804, b: 0.8901961, a: 1}
+  hoverColor: {r: 0.81960785, g: 0.8, b: 0.7529412, a: 1}
+  pressedColor: {r: 0.6666667, g: 0.6509804, b: 0.6156863, a: 1}
+  tweenDuration: 0.15
+  scaleMultiplier: 1.2
+  onClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6645241616911098815}
+        m_TargetAssemblyTypeName: UI.Tab.Content.InventoryTabContent, Assembly-CSharp
+        m_MethodName: Sort
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6645241615376712067
 GameObject:
   m_ObjectHideFlags: 0
@@ -2948,8 +2982,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4286218628
+  m_fontColor: {r: 0.5176471, g: 0.5058824, b: 0.47843137, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

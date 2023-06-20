@@ -1,9 +1,40 @@
 using Inventory.UI;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
 
 namespace Inventory
 {
+    /// <summary>
+    /// Comparer to sort the inventory
+    /// </summary>
+    public class ItemSlotComparer : Comparer<ItemSlot>
+    {
+        public override int Compare(ItemSlot s1, ItemSlot s2)
+        {
+            if (s1 == null || s1.EmptyItem()) return 0; // Null, so move the next slot
+            if (s2 == null || s2.EmptyItem()) return -1;
+
+            if(s1.ItemData.id == s2.ItemData.id)
+            {
+                return 0;
+            }
+            else
+            {
+                if (s1.ItemData.id > s2.ItemData.id)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+
+        }
+    }
+
     /// <summary>
     /// Manage all the items available that player holds
     /// </summary>
@@ -54,6 +85,25 @@ namespace Inventory
         {
             _itemSlots = new ItemSlot[itemSlot];
             _holdingItemSlot = null;
+        }
+
+        /// <summary>
+        /// Sort the inventory
+        /// </summary>
+        public void Sort()
+        {
+            ItemSlot[] temp = new ItemSlot[_itemSlots.Length];
+            int index = 0;
+            for (int i = 0; i < _itemSlots.Length; i++)
+            {
+                if (_itemSlots[i] != null && !_itemSlots[i].EmptyItem())
+                {
+                    temp[index++] = _itemSlots[i];
+                }
+            }
+
+            Array.Sort(temp, new ItemSlotComparer());
+            _itemSlots = temp;
         }
 
         public ItemData GetHoldingItem()

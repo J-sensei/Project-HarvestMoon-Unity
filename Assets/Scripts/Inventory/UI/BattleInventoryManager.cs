@@ -93,6 +93,12 @@ namespace Inventory.UI
             }
         }
 
+        public void Sort()
+        {
+            InventoryManager.Instance.Sort();
+            UpdateInventoryUI();
+        }
+
         /// <summary>
         /// Update UI display information
         /// </summary>
