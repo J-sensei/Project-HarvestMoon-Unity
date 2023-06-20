@@ -10,6 +10,7 @@ using UI.Combat;
 using Inventory;
 using Item;
 using UI;
+using UI.Tooltip;
 
 namespace Combat
 {
@@ -27,7 +28,7 @@ namespace Combat
     }
 
     [RequireComponent(typeof(CharacterStatusBase))]
-    public class CombatCharacterBase : MonoBehaviour, IPointerClickHandler
+    public class CombatCharacterBase : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
         [Header("Configuration")]
         [Tooltip("Type of the combat character in the scene")]
@@ -417,6 +418,22 @@ namespace Combat
             if(eventData.button == PointerEventData.InputButton.Left && type == CombatCharacterType.Enemy)
             {
                 CombatManager.Instance.Select(this);
+            }
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (type == CombatCharacterType.Enemy)
+            {
+                TooltipManager.Instance.Show("HP: " + characterStatus.HP + "/" + characterStatus.MaxHP);
+            }
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if (type == CombatCharacterType.Enemy)
+            {
+                TooltipManager.Instance.Hide();
             }
         }
         #endregion

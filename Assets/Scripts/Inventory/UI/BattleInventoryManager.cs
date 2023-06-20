@@ -1,5 +1,5 @@
 ﻿using DG.Tweening;
-using System;
+using UI;
 using UI.Combat;
 using UI.Tooltip;
 using UnityEngine;
@@ -13,6 +13,9 @@ namespace Inventory.UI
         [Header("Inventory System")]
         [Tooltip("Game object that holds multiple inventory slot of items")]
         [SerializeField] private GameObject itemHolder;
+
+        [Header("Reset Targets")]
+        [SerializeField] private GameButton closeButton;
 
         private CanvasGroup _canvasGroup;
         private Vector3 _originalPosition;
@@ -64,6 +67,11 @@ namespace Inventory.UI
                 });
 
                 CombatUIManager.Instance.ToggleActionUI(true);
+                closeButton.ResetUI();
+                for(int i = 0; i < _itemSlots.Length; i++)
+                {
+                    _itemSlots[i].ResetSlotUI();
+                }
             }
             else // Open
             {

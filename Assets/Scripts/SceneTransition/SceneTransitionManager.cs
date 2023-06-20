@@ -256,6 +256,11 @@ namespace SceneTransition
                     if(!DontEnablePlayer)
                         StartCoroutine(EnablePlayer());
                 }
+
+                if (!GameUIManager.Instance.TimePanelActiveSelf)
+                {
+                    GameUIManager.Instance.DisableMenu(false);
+                }
             }
 
             _currentLocation = location;

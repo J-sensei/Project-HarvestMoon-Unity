@@ -90,7 +90,6 @@ public class GameManager : Singleton<GameManager>
     {
         // Enable back the UI
         GameMenu.Instance.DisableGameMenu(false);
-        GameUIManager.Instance.DisableMenu(false);
 
         // Update player status
         TempSceneData tempData = GameStateManager.Instance.LoadTempData();

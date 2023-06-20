@@ -77,6 +77,11 @@ public class GameUIManager : Singleton<GameUIManager>, ITimeChecker
         timePanel.SetActive(!v);
     }
 
+    public bool TimePanelActiveSelf
+    {
+        get { return timePanel.activeSelf; }
+    }
+
     #region ITimeChecker
     public void ClockUpdate(GameTime gameTime)
     {
