@@ -15,6 +15,6 @@ MonoBehaviour:
   clip: {fileID: 8300000, guid: 756433a12f13a0344837fdf53240b432, type: 3}
   id: 2
   bgmName: Outside BGM
-  startTime: 21.5
-  endTime: 96.612
+  startTime: 21.7425
+  endTime: 96.86
   initialSkip: 0

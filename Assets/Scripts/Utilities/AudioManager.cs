@@ -113,7 +113,10 @@ namespace Utilities
                 if (bgmSources[i].clip != null && bgmSources[i].isPlaying)
                 {
                     if (fade)
+                    {
+                        bgmSources[i].volume = 1f;
                         _fadeOutCoroutine = StartCoroutine(Fade(false, bgmSources[i], FADE_DURATION, 0f)); // Fade out
+                    }
                     else
                     {
                         bgmSources[i].volume = 1f;
@@ -122,6 +125,7 @@ namespace Utilities
                     }
                         
                     _audioToggle = 1 - i;
+                    break;
                 }
                 else
                 {
