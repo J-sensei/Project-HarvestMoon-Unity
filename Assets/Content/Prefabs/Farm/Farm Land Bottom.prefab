@@ -345,12 +345,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: -1
+  doNotSave: 0
   config: {fileID: 11400000, guid: 32bf9fea8623dbe40b34144b77b51f3b, type: 2}
   currentState: 0
   dirt: {fileID: 7267683121647005055}
   hoeDirt: {fileID: 2626706393840417807}
   selectObject: {fileID: 5770084017609888398}
   outline: {fileID: 7187956945765406327}
+  _dirtRenderer: {fileID: 2603936830276386193}
   crop: {fileID: 0}
   cropTransform: {fileID: 0}
 --- !u!114 &8409888555476081532
@@ -1047,6 +1049,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e8a1e4044dc11a458e07e6cc95efa23, type: 3}
+--- !u!23 &2603936830276386193 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 249350586096294905, guid: 8e8a1e4044dc11a458e07e6cc95efa23,
+    type: 3}
+  m_PrefabInstance: {fileID: 2834688076064761448}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2621461430653412925 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 231821587674546261, guid: 8e8a1e4044dc11a458e07e6cc95efa23,

@@ -510,12 +510,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2d80cd2cc023b4a973a6903ce8700f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: -1
+  doNotSave: 0
   config: {fileID: 11400000, guid: 32bf9fea8623dbe40b34144b77b51f3b, type: 2}
   currentState: 0
   dirt: {fileID: 7267683121647005055}
   hoeDirt: {fileID: 7043688633101716634}
   selectObject: {fileID: 5770084017609888398}
   outline: {fileID: 7187956945765406327}
+  _dirtRenderer: {fileID: 7031318347750529372}
   crop: {fileID: 0}
   cropTransform: {fileID: 0}
 --- !u!114 &8409888555476081532

@@ -46,7 +46,7 @@ namespace Farming
         [Tooltip("Gameobject to show when the farm land is selected")]
         [SerializeField] private GameObject selectObject;
         [SerializeField] private Outline outline;
-        private Renderer _dirtRenderer;
+        [SerializeField] private Renderer _dirtRenderer;
 
         [Header("Yield")]
         [Tooltip("Determine if any crop is grow on it, empty if its null")]
@@ -114,7 +114,7 @@ namespace Farming
 
         private void Start()
         {
-            _dirtRenderer = hoeDirt.GetComponent<Renderer>();
+            if(_dirtRenderer == null) _dirtRenderer = hoeDirt.GetComponent<Renderer>();
             SwitchState(currentState);
 
             StartCoroutine(OutlineHelper.InitializeOutline(outline));
@@ -141,11 +141,37 @@ namespace Farming
                 case FarmLandState.Farmland:
                     dirt.SetActive(false);
                     hoeDirt.SetActive(true);
+                    if(_dirtRenderer.material == null)
+                    {
+                        Debug.LogError("[Farm Land] Farm" + id + " Dirt Rendere Material is null");
+                    }
+                    else if(config == null)
+                    {
+                        Debug.LogError("[Farm Land] Farm" + id + " Config is null");
+                    }
+                    else if(config.soil == null)
+                    {
+                        Debug.LogError("[Farm Land] Farm" + id + " Config.soil is null");
+                    }
+
                     _dirtRenderer.material = config.soil;
                     break;
                 case FarmLandState.Watered:
                     dirt.SetActive(false);
                     hoeDirt.SetActive(true);
+                    if (_dirtRenderer.material == null)
+                    {
+                        Debug.LogError("[Farm Land] Farm" + id + " Dirt Rendere Material is null");
+                    }
+                    else if (config == null)
+                    {
+                        Debug.LogError("[Farm Land] Farm" + id + " Config is null");
+                    }
+                    else if (config.water == null)
+                    {
+                        Debug.LogError("[Farm Land] Farm" + id + " Config.water is null");
+                    }
+
                     _dirtRenderer.material = config.water;
                     break;
             }

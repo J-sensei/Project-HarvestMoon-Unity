@@ -510,12 +510,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2d80cd2cc023b4a973a6903ce8700f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: -1
+  doNotSave: 0
   config: {fileID: 11400000, guid: 32bf9fea8623dbe40b34144b77b51f3b, type: 2}
   currentState: 0
   dirt: {fileID: 7267683121647005055}
   hoeDirt: {fileID: 6255343431100232881}
   selectObject: {fileID: 5770084017609888398}
   outline: {fileID: 7187956945765406327}
+  _dirtRenderer: {fileID: 6239739372876183801}
   crop: {fileID: 0}
   cropTransform: {fileID: 0}
 --- !u!114 &8409888555476081532
@@ -1299,6 +1302,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11d592dd5a528524f9a7ef935b15d3a6, type: 3}
+--- !u!23 &6239739372876183801 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4659588455243277052, guid: 11d592dd5a528524f9a7ef935b15d3a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1599392380245826053}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6255343431100232881 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4683003985002081972, guid: 11d592dd5a528524f9a7ef935b15d3a6,
