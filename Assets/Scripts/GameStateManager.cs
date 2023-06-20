@@ -78,7 +78,7 @@ public class GameStateManager : Singleton<GameStateManager>, ITimeChecker
         {
             StopCoroutine(_recordTimeCoroutine);
         }
-        StartCoroutine(RecordTimeRoutine());
+        _recordTimeCoroutine = StartCoroutine(RecordTimeRoutine());
     }
 
     public void SaveTempData(TempSceneData tempSceneData)

@@ -415,7 +415,7 @@ namespace Combat
         #region IPointerEvents
         public void OnPointerClick(PointerEventData eventData)
         {
-            if(eventData.button == PointerEventData.InputButton.Left && type == CombatCharacterType.Enemy)
+            if(eventData.button == PointerEventData.InputButton.Left && type == CombatCharacterType.Enemy && CombatManager.Instance.State == CombatState.Waiting)
             {
                 CombatManager.Instance.Select(this);
             }

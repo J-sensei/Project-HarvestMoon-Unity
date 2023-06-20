@@ -100,6 +100,8 @@ public class GameMenu : Singleton<GameMenu>
 
             _canvasGroup.alpha = 0f;
             _canvasGroup.DOFade(1f, _duration);
+
+            InventoryUIManager.Instance.UpdateInventoryUI(); // Update Inventory UI make sure its make up to date
         }
         else
         {

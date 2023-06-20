@@ -55,6 +55,7 @@ namespace Combat
         [SerializeField] private CombatCharacterBase player;
         [SerializeField] private List<CombatCharacterBase> enemies;
         private CombatCharacterBase _currentBusyCharacter;
+        public CombatState State { get { return state; } }
 
         [Header("Turns")]
         private const float TURN_DISTANCE_TO_RESET = 0f;
